@@ -1,0 +1,146 @@
+{
+  "run": "main",
+  "experiment": "apex_shortlist",
+  "status": "done",
+  "started": "2026-10-13 06:12:42",
+  "finished": "2026-10-13 10:46:13",
+  "command": "/home/ubuntu/jobs/apex-shortlist-main-25/work/math_swarm_explore/.venv/bin/lab run apex_shortlist --name main --arms desk --only 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 --open 40 --model 9B-bf16",
+  "git": {
+    "commit": "23266ab7188aff070794142168c631333aa29dbe",
+    "uncommitted_changes": false
+  },
+  "machines": [
+    {
+      "system": "Linux",
+      "machine": "x86_64",
+      "python": "3.12.13",
+      "sandbox": "linux 86eca2e187d2",
+      "gpu": {
+        "name": "NVIDIA H100 PCIe",
+        "memory_gb": 79.6,
+        "count": 1
+      },
+      "job": "apex-shortlist-main-25",
+      "instance_type": "gpu_1x_h100_pcie",
+      "region": "us-west-3"
+    }
+  ],
+  "settings": {
+    "benchmarks": [
+      "apex_shortlist"
+    ],
+    "split": "test",
+    "problems": null,
+    "seed": 0,
+    "dry_run": false,
+    "arm:desk": {
+      "name": "desk",
+      "agents": 8,
+      "steps": 20,
+      "model": "9B-bf16",
+      "thinking": 1024,
+      "max_tokens": 5760,
+      "lines": 300,
+      "max_total_tokens": 16384,
+      "sampling": {
+        "temperature": 0.6,
+        "top_k": 20,
+        "top_p": 0.95,
+        "min_p": 0.0,
+        "presence_penalty": 0.0,
+        "repetition_penalty": 1.0
+      },
+      "thought_sampling": {
+        "temperature": 1.0,
+        "top_k": 20,
+        "top_p": 0.95,
+        "min_p": 0.0,
+        "presence_penalty": 1.5,
+        "repetition_penalty": 1.0
+      },
+      "drafts": false,
+      "system": "You are solving a math problem by writing a Python file, work.py. Python runs the file every time you change it and you are shown what it printed. So let Python do the computing and the checking, and use your own thinking to decide what the file should do next.\n\n- Each reply is one step: think briefly, then call a tool.\n- Keep the file short, 300 lines at most: a few comment lines at the top for the approach, then code that computes each step. Do not copy the problem into the file.\n- When the code has worked the answer out, end the file with `print(\"ANSWER:\", value)`. The last `ANSWER:` line that a run without errors printed is the answer you hold.\n- When a run goes wrong, find out why before you change course: print the values involved, or try the piece on a small case you can check by hand.\n- Once the file prints an answer and checks it (an `assert` of something the problem states, a second method, a small case), call submit. Test a doubt by adding to the file, not by working it out again in your head. Do not keep polishing a file that is done.\n\nPython is 3.12 with sympy and numpy, and a run is stopped after 30 seconds. You have at most 20 steps.",
+      "looks": null,
+      "own_words": false,
+      "harness": "634021f6f24b",
+      "contact": null,
+      "workshop": "dd308df12225"
+    },
+    "arm:look_at_others": {
+      "name": "look_at_others",
+      "agents": 8,
+      "steps": 20,
+      "model": "9B-bf16",
+      "thinking": 1024,
+      "max_tokens": 5760,
+      "lines": 300,
+      "max_total_tokens": 16384,
+      "sampling": {
+        "temperature": 0.6,
+        "top_k": 20,
+        "top_p": 0.95,
+        "min_p": 0.0,
+        "presence_penalty": 0.0,
+        "repetition_penalty": 1.0
+      },
+      "thought_sampling": {
+        "temperature": 1.0,
+        "top_k": 20,
+        "top_p": 0.95,
+        "min_p": 0.0,
+        "presence_penalty": 1.5,
+        "repetition_penalty": 1.0
+      },
+      "drafts": false,
+      "system": "You are solving a math problem by writing a Python file, work.py. Python runs the file every time you change it and you are shown what it printed. So let Python do the computing and the checking, and use your own thinking to decide what the file should do next.\n\n- Each reply is one step: think briefly, then call a tool.\n- Keep the file short, 300 lines at most: a few comment lines at the top for the approach, then code that computes each step. Do not copy the problem into the file.\n- When the code has worked the answer out, end the file with `print(\"ANSWER:\", value)`. The last `ANSWER:` line that a run without errors printed is the answer you hold.\n- When a run goes wrong, find out why before you change course: print the values involved, or try the piece on a small case you can check by hand.\n- Once the file prints an answer and checks it (an `assert` of something the problem states, a second method, a small case), call submit. Test a doubt by adding to the file, not by working it out again in your head. Do not keep polishing a file that is done.\n\nPython is 3.12 with sympy and numpy, and a run is stopped after 30 seconds. You have at most 20 steps.",
+      "looks": {
+        "rule": "RandomLooks",
+        "p": 0.25,
+        "first": 2,
+        "at": "others"
+      },
+      "own_words": false,
+      "harness": "634021f6f24b",
+      "contact": "768650c15419",
+      "workshop": "dd308df12225"
+    },
+    "arm:always_look_at_others": {
+      "name": "always_look_at_others",
+      "agents": 8,
+      "steps": 20,
+      "model": "9B-bf16",
+      "thinking": 1024,
+      "max_tokens": 5760,
+      "lines": 300,
+      "max_total_tokens": 16384,
+      "sampling": {
+        "temperature": 0.6,
+        "top_k": 20,
+        "top_p": 0.95,
+        "min_p": 0.0,
+        "presence_penalty": 0.0,
+        "repetition_penalty": 1.0
+      },
+      "thought_sampling": {
+        "temperature": 1.0,
+        "top_k": 20,
+        "top_p": 0.95,
+        "min_p": 0.0,
+        "presence_penalty": 1.5,
+        "repetition_penalty": 1.0
+      },
+      "drafts": false,
+      "system": "You are solving a math problem by writing a Python file, work.py. Python runs the file every time you change it and you are shown what it printed. So let Python do the computing and the checking, and use your own thinking to decide what the file should do next.\n\n- Each reply is one step: think briefly, then call a tool.\n- Keep the file short, 300 lines at most: a few comment lines at the top for the approach, then code that computes each step. Do not copy the problem into the file.\n- When the code has worked the answer out, end the file with `print(\"ANSWER:\", value)`. The last `ANSWER:` line that a run without errors printed is the answer you hold.\n- When a run goes wrong, find out why before you change course: print the values involved, or try the piece on a small case you can check by hand.\n- Once the file prints an answer and checks it (an `assert` of something the problem states, a second method, a small case), call submit. Test a doubt by adding to the file, not by working it out again in your head. Do not keep polishing a file that is done.\n\nPython is 3.12 with sympy and numpy, and a run is stopped after 30 seconds. You have at most 20 steps.",
+      "looks": {
+        "rule": "RandomLooks",
+        "p": 1.0,
+        "first": 2,
+        "at": "others"
+      },
+      "own_words": false,
+      "harness": "634021f6f24b",
+      "contact": "768650c15419",
+      "workshop": "dd308df12225"
+    }
+  }
+}

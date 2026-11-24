@@ -1,0 +1,41 @@
+[project]
+name = "swarm-engine"
+version = "0.3.0"
+description = "Run a swarm of agents on one local model: many calls side by side, thinking with a budget. On a Mac through MLX, on a GPU through vLLM."
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    # The Mac's engine. Private batching/sampling integration: upgrade with explicit validation.
+    "mlx==0.32.3; sys_platform == 'darwin'",
+    "mlx-lm==0.32.0; sys_platform == 'darwin'",
+    "numpy",
+    "huggingface-hub",
+    # The GPU's engine (vllm.py) talks to a vLLM server and cuts prompts into tokens itself. vLLM is not a
+    # dependency: it lives in an environment of its own (`swarm-vllm install`).
+    "httpx",
+    "transformers",
+    "tokenizers",
+    "jinja2",
+]
+
+[project.optional-dependencies]
+serve = ["httpx"]
+dev = ["pytest", "httpx", "huggingface_hub"]
+
+[project.scripts]
+swarm-run = "swarm_engine.ml_run:main"
+swarm-check = "swarm_engine.check:main"
+swarm-bench = "swarm_engine.bench:main"
+swarm-serve = "swarm_engine.serve:main"
+swarm-vllm = "swarm_engine.vllm_server:main"
+swarm-cloud = "swarm_engine.cloud.controller:main"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["swarm_engine"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

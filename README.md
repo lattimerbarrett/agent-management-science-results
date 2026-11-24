@@ -9,7 +9,7 @@ The post has three case studies, then a prover. In the post's order:
 
 | in the post | the experiment | folder | what is in it today |
 |---|---|---|---|
-| Case study "Groupthink: How should agents communicate?" (Figure 2) | peer reading, on MathArena problems | [`groupthink/`](groupthink/) | waiting for its logs |
+| Case study "Groupthink: How should agents communicate?" (Figure 2) | peer reading, on MathArena problems | [`groupthink/`](groupthink/) | logs, result tables and code |
 | Case study "Contingency Theory: How should agent systems be organized?" (Figure 3) | program reconstruction, on ProgramLab | [`contingency-theory/`](contingency-theory/) | logs and result tables |
 | Case study "Superstitious Learning: How should agents learn from experience?" (Figure 4) | harness optimizers, on τ²-Bench | [`superstitious-learning/`](superstitious-learning/) | waiting for its logs |
 | "AMS lets us build much better agentic systems" (Figure 5) | the prover, on ArXivMath: explore, then prove | [`prover/`](prover/) | logs, result tables and code |
@@ -22,6 +22,22 @@ repo yet.
 
 One short block per experiment whose numbers are in, in the order the post has them. The detail is in each
 folder's own README.
+
+### Groupthink: how often agents read a peer's work · [`groupthink/`](groupthink/)
+
+*In the post: the case study "Groupthink: How should agents communicate?" (Figure 2).* Eight Qwen3.5-9B agents
+work on each of the first 25 problems of MathArena's Apex Shortlist, under three rules for how often an agent
+reads the work of a randomly picked peer: never, after 1 step in 4, and after every step.
+
+| share of agent pairs | without peer reading | with peer reading (a peer's file after every step) |
+|---|---|---|
+| gave the same wrong answer | **11.3%** (79 of 700) | **32.9%** (230 of 700) |
+| gave the same right answer | **28.4%** (199 of 700) | **43.7%** (306 of 700) |
+
+A pair is two of the eight agents on one problem. With a peer's file after 1 step in 4, the two rows are 25.3% and
+32.4%. It is one run with one seed, and no control was run for the extra turns that reading takes. The table for
+each reading rule, the 25 problems one by one, the logs of every model call and the code are in
+[`groupthink/`](groupthink/).
 
 ### Contingency Theory: one group of ten, or two groups of five · [`contingency-theory/`](contingency-theory/)
 
@@ -57,7 +73,7 @@ in [`prover/`](prover/).
 ```
 README.md                 this page: every experiment, and the headline results of those whose numbers are in
 _template/                a README to start a new section from
-groupthink/               a section (a case study), waiting for its logs
+groupthink/               a section (a case study)
 contingency-theory/       a section (a case study)
 superstitious-learning/   a section (a case study), waiting for its logs
 prover/                   a section
