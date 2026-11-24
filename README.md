@@ -10,7 +10,7 @@ The post has three case studies, then a prover. In the post's order:
 | in the post | the experiment | folder | what is in it today |
 |---|---|---|---|
 | Case study "Groupthink: How should agents communicate?" (Figure 2) | peer reading, on MathArena problems | [`groupthink/`](groupthink/) | waiting for its logs |
-| Case study "Contingency Theory: How should agent systems be organized?" (Figure 3) | program reconstruction, on ProgramLab | [`contingency-theory/`](contingency-theory/) | waiting for its logs |
+| Case study "Contingency Theory: How should agent systems be organized?" (Figure 3) | program reconstruction, on ProgramLab | [`contingency-theory/`](contingency-theory/) | logs and result tables |
 | Case study "Superstitious Learning: How should agents learn from experience?" (Figure 4) | harness optimizers, on τ²-Bench | [`superstitious-learning/`](superstitious-learning/) | waiting for its logs |
 | "AMS lets us build much better agentic systems" (Figure 5) | the prover, on ArXivMath: explore, then prove | [`prover/`](prover/) | logs, result tables and code |
 
@@ -22,6 +22,20 @@ repo yet.
 
 One short block per experiment whose numbers are in, in the order the post has them. The detail is in each
 folder's own README.
+
+### Contingency Theory: one group of ten, or two groups of five · [`contingency-theory/`](contingency-theory/)
+
+*In the post: the case study "Contingency Theory: How should agent systems be organized?" (Figure 3).* Ten GPT-6
+Luna agents in the Codex harness rebuild a program on each of 18 ProgramLab tasks, organized two ways.
+
+| 18 ProgramLab tasks | one group of ten | two groups of five |
+|---|---|---|
+| mean score | **0.405** | **0.367** |
+| tasks on which it scored higher | **14 of 18** | **4 of 18** |
+| its largest lead on a task | **13.1 points** (ttdl) | **6.5 points** (gitleaks) |
+
+A score is the fraction of a task's hidden tests passed, and each is one run. The task-by-task table, the score of
+all 36 runs and the transcripts of 32 of them are in [`contingency-theory/`](contingency-theory/).
 
 ### Prover: explore, then prove · [`prover/`](prover/)
 
@@ -44,7 +58,7 @@ in [`prover/`](prover/).
 README.md                 this page: every experiment, and the headline results of those whose numbers are in
 _template/                a README to start a new section from
 groupthink/               a section (a case study), waiting for its logs
-contingency-theory/       a section (a case study), waiting for its logs
+contingency-theory/       a section (a case study)
 superstitious-learning/   a section (a case study), waiting for its logs
 prover/                   a section
 ```
