@@ -14,9 +14,9 @@ effort, is organized three ways and set research-level problems from MathArena's
 
 | problems solved | September, 9 problems | October, 14 problems |
 |---|---|---|
-| **Full system** (explore, then a team of four on each candidate answer) | **8 of 9** · $23.30 a problem | **10 of 14** · $40.52 a problem |
-| **One team of four**, given only the problem | **5 of 9** · $7.98 a problem | **8 of 14** · $14.69 a problem |
-| **Lone agent**, given only the problem | **3 of 9** on the first run · **4 of 9** by any of up to 8 runs | **1 of 14** on the first run · **4 of 14** by any of up to 4 runs |
+| **Full system** (explore, then a team of four on each candidate answer) | **8 of 9** · median $12.28 a problem | **10 of 14** · median $27.13 a problem |
+| **One team of four**, given only the problem | **5 of 9** · median $2.91 a problem | **8 of 14** · median $10.36 a problem |
+| **Lone agent**, given only the problem | **3 of 9** on the first run · **4 of 9** by any of up to 8 runs · median $0.56 a run | **1 of 14** on the first run · **4 of 14** by any of up to 4 runs · median $0.47 a run |
 
 "Solved" means the system stopped on a proof that a separate judge, a model, accepted, and its answer matches the
 paper's. No person has checked the proofs. The problem-by-problem tables, the logs of every run and the code are

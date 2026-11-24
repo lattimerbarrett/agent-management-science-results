@@ -16,6 +16,7 @@ What "solved" means here is in the README.
 import csv
 import json
 from pathlib import Path
+from statistics import mean, median
 
 ROOT = Path(__file__).resolve().parent.parent
 RUNS = ROOT / "runs"
@@ -173,13 +174,43 @@ def month_table(month, spec, runs, full):
     fs = [r for r in full if r["month"] == month]
     total = [f"**{n} problems**",
              f"**{len(any_)} of {n}** by any run ({sum(r['solved'] for r in first)} of {n} on the first run; "
-             f"{sum(r['solved'] for r in lone)} of {len(lone)} runs) · {money(sum(r['cost'] for r in lone))}",
-             f"**{sum(r['solved'] for r in team)} of {n}** · {money(sum(r['cost'] for r in team))}",
-             f"**{sum(r['solved'] for r in fs)} of {n}** · {money(sum(r['cost'] for r in fs))}"]
+             f"{sum(r['solved'] for r in lone)} of {len(lone)} runs) · {spend(lone, 'a run')}",
+             f"**{sum(r['solved'] for r in team)} of {n}** · {spend(team)}",
+             f"**{sum(r['solved'] for r in fs)} of {n}** · {spend(fs)}"]
     if told:
         t = [r for r in runs if (r["month"], r["system"]) == (month, "told")]
-        total.append(f"{sum(r['solved'] for r in t)} of {n} · {money(sum(r['cost'] for r in t))}")
+        total.append(f"{sum(r['solved'] for r in t)} of {n} · {spend(t)}")
     lines.append("| " + " | ".join(total) + " |")
+    return lines
+
+
+def spend(rows, each=""):
+    """A column's cost in a table's last row: the median first, then the sum."""
+    return f"median {money(median(r['cost'] for r in rows))}{' ' + each if each else ''} · {money(sum(r['cost'] for r in rows))} in all"
+
+
+def cost_table(spec, runs, full):
+    """What a problem cost (for the lone agent, a run), a system and a month a row. The median comes first: a few
+    problems cost many times the rest, so the mean says little about what a problem usually costs."""
+    lines = ["| cost | median | mean | least | most | in all |", "|---|---|---|---|---|---|"]
+    picked = {}
+    for system, label in (("full", "Full system, a problem"), ("team", "One team of four, a problem"), ("lone", "Lone agent, a run")):
+        for month, s in spec.items():
+            listed = [f"p{p % 100}" for p in s["problems"]]
+            rows = ([r for r in full if r["month"] == month] if system == "full" else
+                    [r for r in runs if (r["month"], r["system"]) == (month, system) and r["problem"] in listed])
+            picked[system, month] = rows
+            c = [r["cost"] for r in rows]
+            lines.append(f"| {label} · {month.capitalize()}{f' ({len(rows)} runs)' if system == 'lone' else ''} | "
+                         + " | ".join(money(x) for x in (median(c), mean(c), min(c), max(c), sum(c))) + " |")
+    months = list(spec)
+    solved = [[r["cost"] for r in picked["full", m] if r["solved"]] for m in months]
+    missed = [r for m in months for r in picked["full", m] if not r["solved"]]
+    assert all(r["ended"] == "stopped" for r in missed)  # none of them ran out its budget: a person stopped each
+    lines += ["", "A problem the full system solved cost a median of "
+              + " and ".join(f"{money(median(c))} in {m.capitalize()}" for m, c in zip(months, solved))
+              + f". The {len(missed)} it did not solve ran until a person stopped them, at "
+              f"{money(min(r['cost'] for r in missed))} to {money(max(r['cost'] for r in missed))}."]
     return lines
 
 
@@ -205,15 +236,15 @@ def main():
         n = len(spec[month]["problems"])
         if system == "full":
             rows = [r for r in full if r["month"] == month]
-            return f"**{sum(r['solved'] for r in rows)} of {n}** · {money(sum(r['cost'] for r in rows) / n)} a problem"
+            return f"**{sum(r['solved'] for r in rows)} of {n}** · median {money(median(r['cost'] for r in rows))} a problem"
         listed = [f"p{p % 100}" for p in spec[month]["problems"]]
         rows = [r for r in runs if (r["month"], r["system"]) == (month, system) and r["problem"] in listed]
         if system == "team":
-            return f"**{sum(r['solved'] for r in rows)} of {n}** · {money(sum(r['cost'] for r in rows) / n)} a problem"
+            return f"**{sum(r['solved'] for r in rows)} of {n}** · median {money(median(r['cost'] for r in rows))} a problem"
         first = [r for r in rows if r["run_no"] == 1]
         per = max(r["run_no"] for r in rows)
         return (f"**{sum(r['solved'] for r in first)} of {n}** on the first run · **{len({r['problem'] for r in rows if r['solved']})} "
-                f"of {n}** by any of up to {per} runs")
+                f"of {n}** by any of up to {per} runs · median {money(median(r['cost'] for r in rows))} a run")
 
     out = ["## Headline", "",
            "| problems solved | September, 9 problems | October, 14 problems |", "|---|---|---|",
@@ -222,9 +253,10 @@ def main():
            f"| **Lone agent**, given only the problem | {top('september', 'lone')} | {top('october', 'lone')} |", ""]
     every = [r for r in runs if r["month"] == "october" and r["system"] == "lone" and r["run_no"] == 1]
     out += [f"On all {len(every)} October problems, one lone agent each solved **{sum(r['solved'] for r in every)} of {len(every)}** "
-            f"({money(sum(r['cost'] for r in every))} in all).", ""]
+            f"(median {money(median(r['cost'] for r in every))} a run, {money(sum(r['cost'] for r in every))} in all).", ""]
     for month, s in spec.items():
         out += [f"## {month.capitalize()}, problem by problem", ""] + month_table(month, s, runs, full) + [""]
+    out += ["## Cost", ""] + cost_table(spec, runs, full) + [""]
     (OUT / "tables.md").write_text("\n".join(out))
     print("\n".join(out))
     stops = [r for r in runs if r.get("stop") and not r["solved"]]

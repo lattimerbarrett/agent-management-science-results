@@ -11,11 +11,11 @@ September 2026 edition and fourteen from October's.
 
 | problems solved | September, 9 problems | October, 14 problems |
 |---|---|---|
-| **Full system** (explore, then a team of four on each candidate answer) | **8 of 9** · $23.30 a problem | **10 of 14** · $40.52 a problem |
-| **One team of four**, given only the problem | **5 of 9** · $7.98 a problem | **8 of 14** · $14.69 a problem |
-| **Lone agent**, given only the problem | **3 of 9** on the first run · **4 of 9** by any of up to 8 runs | **1 of 14** on the first run · **4 of 14** by any of up to 4 runs |
+| **Full system** (explore, then a team of four on each candidate answer) | **8 of 9** · median $12.28 a problem | **10 of 14** · median $27.13 a problem |
+| **One team of four**, given only the problem | **5 of 9** · median $2.91 a problem | **8 of 14** · median $10.36 a problem |
+| **Lone agent**, given only the problem | **3 of 9** on the first run · **4 of 9** by any of up to 8 runs · median $0.56 a run | **1 of 14** on the first run · **4 of 14** by any of up to 4 runs · median $0.47 a run |
 
-On all 47 October problems, one lone agent each solved **34 of 47** ($23.11 in all).
+On all 47 October problems, one lone agent each solved **34 of 47** (median $0.35 a run, $23.11 in all).
 
 **The three arrangements**
 
@@ -35,7 +35,8 @@ The judge is a model. No person has checked these proofs.
 
 **How to read a cell.** Each cell is one run, except the lone agent's, which says how many of its runs solved the
 problem. Where the full system ran a problem more than once, the table has its latest run. Cost is what the run
-spent on the model.
+spent on the model. The headline gives the median cost, because a few problems cost many times the rest; the means
+and the totals are under [Cost](#cost).
 
 ## September, problem by problem
 
@@ -50,7 +51,7 @@ spent on the model.
 | p41 | 0 of 8 | not solved · $4.85 | **solved** · $50.64 | **solved** · $11.04 |
 | p43 | 0 of 8 | not solved · $0.88 | **solved** · $16.05 | **solved** · $2.98 |
 | p48 | 1 of 8 | not solved · $0.62 | **solved** · $10.57 | **solved** · $2.02 |
-| **9 problems** | **4 of 9** by any run (3 of 9 on the first run; 22 of 72 runs) · $52.15 | **5 of 9** · $71.81 | **8 of 9** · $209.72 | 8 of 9 · $78.32 |
+| **9 problems** | **4 of 9** by any run (3 of 9 on the first run; 22 of 72 runs) · median $0.56 a run · $52.15 in all | **5 of 9** · median $2.91 · $71.81 in all | **8 of 9** · median $12.28 · $209.72 in all | 8 of 9 · median $2.89 · $78.32 in all |
 
 - **These nine are the development set.** The prompts and the stopping rule were built while looking at them.
 - **The last column is a diagnostic, not a baseline.** A team of four was told the paper's answer and asked only
@@ -80,7 +81,7 @@ spent on the model.
 | p41 | 0 of 4 | not solved · $25.88 | **solved** · $138.62 |
 | p42 | 1 of 4 | not solved · $0.89 | **solved** · $4.34 |
 | p45 | 0 of 4 | **solved** · $9.10 | **solved** · $13.69 |
-| **14 problems** | **4 of 14** by any run (1 of 14 on the first run; 4 of 53 runs) · $36.94 | **8 of 14** · $205.73 | **10 of 14** · $567.26 |
+| **14 problems** | **4 of 14** by any run (1 of 14 on the first run; 4 of 53 runs) · median $0.47 a run · $36.94 in all | **8 of 14** · median $10.36 · $205.73 in all | **10 of 14** · median $27.13 · $567.26 in all |
 
 - **The fourteen were picked by the lone agent.** They are the 13 October problems that one lone agent did not
   solve, plus p38. So its "1 of 14 on the first run" is how the list was made, not a measurement.
@@ -90,6 +91,23 @@ spent on the model.
   `results/runs.csv` with `stop` true and `solved` false. All 13 are lone-agent runs. The 10 in October each
   answered with the question restated as a calculation left to be carried out. The 3 in September are p43
   twice, on 3 where the answer is 2, and p37 once, on a restated question.
+
+## Cost
+
+| cost | median | mean | least | most | in all |
+|---|---|---|---|---|---|
+| Full system, a problem · September | $12.28 | $23.30 | $2.91 | $89.19 | $209.72 |
+| Full system, a problem · October | $27.13 | $40.52 | $2.64 | $138.62 | $567.26 |
+| One team of four, a problem · September | $2.91 | $7.98 | $0.62 | $37.46 | $71.81 |
+| One team of four, a problem · October | $10.36 | $14.69 | $0.89 | $50.69 | $205.73 |
+| Lone agent, a run · September (72 runs) | $0.56 | $0.72 | $0.06 | $2.36 | $52.15 |
+| Lone agent, a run · October (53 runs) | $0.47 | $0.70 | $0.08 | $2.60 | $36.94 |
+
+A problem the full system solved cost a median of $11.43 in September and $13.14 in October. The 5 it did not
+solve ran until a person stopped them, at $36.90 to $89.19.
+
+The full system's cost includes its judge. A lone agent's or a team's does not: the judge read each of those runs
+after it ended, for under $1 a run (`reading_cost` in `results/runs.csv`).
 
 ## Budgets
 
@@ -115,7 +133,7 @@ pyproject.toml, uv.lock    what the code needs installed (this folder is its own
 
 | file | what it holds |
 |---|---|
-| `tables.md` | the three tables above |
+| `tables.md` | the headline, the two problem-by-problem tables and the cost table above |
 | `runs.csv` | every lone-agent, team and told-team run, a run a row: its folder, cost, answer, the judge's verdict, right or not, solved or not |
 | `full_system.csv` | the full system, a problem a row: its folder, cost, minutes, explorers, proof teams, the proof it stopped on |
 | `full_system_teams.csv` | every proof team the full system started, a team a row: the answer it was told, right or not, what came of it |
