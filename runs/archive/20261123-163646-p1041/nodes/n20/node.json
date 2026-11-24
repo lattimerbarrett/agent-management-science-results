@@ -1,0 +1,181 @@
+{
+ "id": "n20",
+ "parent": "n10",
+ "depth": 4,
+ "option": {
+  "branch": "c1b1",
+  "counterfactual": "Weight 310 already occurs in RM(7,14), so the proposed exclusion at m=14 is false.",
+  "approach": "Examine the complete low-weight classification for a family omitted from the tentative numerical spectrum. Track the degree and dimension restrictions rather than inferring completeness from sparse constructions.",
+  "p": 0.0571
+ },
+ "status": "member",
+ "belief": {
+  "answer": "Writing N=2^m, the spectrum is\n\\[\\boxed{\\begin{aligned}\n\\mathcal W_m={}&[0,0]_2\\cup[128,128]_2\\cup[192,192]_2\\cup[224,224]_2\\cup[240,240]_2\\cup[248,248]_2\\\\\n&\\cup[252,256]_2\\cup[272,272]_2\\cup[288,288]_2\\cup[296,296]_2\\cup[304,304]_2\\\\\n&\\cup[308,N-308]_2\\\\\n&\\cup[N-304,N-304]_2\\cup[N-296,N-296]_2\\cup[N-288,N-288]_2\\cup[N-272,N-272]_2\\\\\n&\\cup[N-256,N-252]_2\\cup[N-248,N-248]_2\\cup[N-240,N-240]_2\\cup[N-224,N-224]_2\\\\\n&\\cup[N-192,N-192]_2\\cup[N-128,N-128]_2\\cup[N,N]_2.\n\\end{aligned}}\\]\nEvery constant endpoint b denotes 0\\cdot2^m+b, and every endpoint N-b denotes 1\\cdot2^m-b.",
+  "confidence": 0.25
+ },
+ "judge": {
+  "claim": true,
+  "same_as": null,
+  "answer": "Writing N=2^m, the spectrum is\n\\[\\boxed{\\begin{aligned}\n\\mathcal W_m={}&[0,0]_2\\cup[128,128]_2\\cup[192,192]_2\\cup[224,224]_2\\cup[240,240]_2\\cup[248,248]_2\\\\\n&\\cup[252,256]_2\\cup[272,272]_2\\cup[288,288]_2\\cup[296,296]_2\\cup[304,304]_2\\\\\n&\\cup[308,N-308]_2\\\\\n&\\cup[N-304,N-304]_2\\cup[N-296,N-296]_2\\cup[N-288,N-288]_2\\cup[N-272,N-272]_2\\\\\n&\\cup[N-256,N-252]_2\\cup[N-248,N-248]_2\\cup[N-240,N-240]_2\\cup[N-224,N-224]_2\\\\\n&\\cup[N-192,N-192]_2\\cup[N-128,N-128]_2\\cup[N,N]_2.\n\\end{aligned}}\\]\nEvery constant endpoint b denotes 0\\cdot2^m+b, and every endpoint N-b denotes 1\\cdot2^m-b.",
+  "reason": "It asserts an explicit complete spectrum. Unlike e1 and e3, it includes weight 310; unlike e2, it asserts that a fixed finite interval list exists.",
+  "experiment": true,
+  "n": 20,
+  "definite": true,
+  "gate": "The proposed answer gives a fixed finite list of intervals, ordered by lower endpoint, with every endpoint explicitly of the required form. For all m \u2265 14, the intervals are separated by missing even integers, so if the stated spectrum equality is true, they are maximal and settle the question.",
+  "procedure": false
+ },
+ "experiment": "e4",
+ "options": [
+  {
+   "branch": "c0b0",
+   "counterfactual": "Weight 310 is absent from RM(7,14), despite the latest working assumption that it occurs there.",
+   "approach": "Locate an explicit purported weight-310 polynomial and independently compute its truth table, weight, and squarefree degree. This would distinguish a genuine construction from an incorrect interpretation of a classification theorem.",
+   "p": 0.0513,
+   "child": null
+  },
+  {
+   "branch": "c0b1",
+   "counterfactual": "Weight 310 is absent from RM(7,14), despite the latest working assumption that it occurs there.",
+   "approach": "Derive the exact degree and dimension restrictions for weight 310 from the canonical low-weight families. Determine whether the first admissible parameters are degree 7 in dimension 14 or degree 8 in dimension 15.",
+   "p": 0.0359,
+   "child": null
+  },
+  {
+   "branch": "c0b2",
+   "counterfactual": "Weight 310 is absent from RM(7,14), despite the latest working assumption that it occurs there.",
+   "approach": "Audit the existing quotient-and-lift arguments specifically at weight 310. Identify whether they prove absence in dimension 14, or merely obstruct particular constructions.",
+   "p": 0.0154,
+   "child": null
+  },
+  {
+   "branch": "c1b0",
+   "counterfactual": "All four weights 322, 326, 330, and 334 occur already in RM(7,14), and the failed searches reflect restrictive construction families rather than genuine gaps.",
+   "approach": "Start from a verified weight-310 support and search for affine 7-flats intersecting it in 58, 56, 54, or 52 points. Taking symmetric differences would produce weights 322, 326, 330, or 334, respectively.",
+   "p": 0.1795,
+   "child": null
+  },
+  {
+   "branch": "c1b1",
+   "counterfactual": "All four weights 322, 326, 330, and 334 occur already in RM(7,14), and the failed searches reflect restrictive construction families rather than genuine gaps.",
+   "approach": "Search structured degree-seven polynomials with many monomials, using overlapping quadratic forms and products of affine linear factors. These could escape the obstructions established for sums of only a few minimum-weight words.",
+   "p": 0.1571,
+   "child": null
+  },
+  {
+   "branch": "c1b2",
+   "counterfactual": "All four weights 322, 326, 330, and 334 occur already in RM(7,14), and the failed searches reflect restrictive construction families rather than genuine gaps.",
+   "approach": "Use the quotient-and-lift criterion to seek weight-322 extensions of aperiodic weight-320 supports, then apply the same method to weights 324, 328, and 332. Verify every successful lift by a complete Boolean M\u00f6bius transform.",
+   "p": 0.1122,
+   "child": null
+  },
+  {
+   "branch": "c2b0",
+   "counterfactual": "The requested fixed interval list exists, but at least one of 322, 326, 330, and 334 is a permanent gap for every m at least 14.",
+   "approach": "Develop a global exclusion using parity of unordered difference multiplicities and the possible lower-weight quotients. The goal would be to rule out arbitrary supports, rather than only sparse sums of affine flats.",
+   "p": 0.2019,
+   "child": "n28"
+  },
+  {
+   "branch": "c2b1",
+   "counterfactual": "The requested fixed interval list exists, but at least one of 322, 326, 330, and 334 is a permanent gap for every m at least 14.",
+   "approach": "Classify the relevant supports of weights 320, 324, 328, and 332 sufficiently to determine their degree-five closures and allowable collision sets. A complete classification could exclude the corresponding weights two larger in all ambient dimensions.",
+   "p": 0.1571,
+   "child": null
+  },
+  {
+   "branch": "c2b2",
+   "counterfactual": "The requested fixed interval list exists, but at least one of 322, 326, 330, and 334 is a permanent gap for every m at least 14.",
+   "approach": "Separate attainability from exclusion: retain the verified central-interval constructions, incorporate a verified weight-310 construction, and formulate the remaining fringe as explicit candidate maximal intervals. Then prove stabilization of each unresolved gap before asserting the final list.",
+   "p": 0.0897,
+   "child": null
+  },
+  {
+   "branch": "own",
+   "counterfactual": null,
+   "approach": null,
+   "p": null,
+   "child": "n26"
+  },
+  {
+   "branch": "e4/c0b0",
+   "counterfactual": "Weight 310 is impossible in RM(7,14), despite being permitted by a parameter-independent necessary list of low weights.",
+   "approach": "Determine the exact degree and ambient-dimension restrictions on the classical low-weight family that permits weight 310. Distinguish a necessary numerical weight list from an existence assertion at the particular parameters (7,14).",
+   "p": 0.2368,
+   "child": null
+  },
+  {
+   "branch": "e4/c0b1",
+   "counterfactual": "Weight 310 is impossible in RM(7,14), despite being permitted by a parameter-independent necessary list of low weights.",
+   "approach": "Study projections of a hypothetical 310-point support along a direction containing exactly one colliding pair. This would give a weight-308 support, so a sufficiently complete classification of weight-308 supports and their admissible lifts could exclude 310.",
+   "p": 0.1421,
+   "child": null
+  },
+  {
+   "branch": "e4/c0b2",
+   "counterfactual": "Weight 310 is impossible in RM(7,14), despite being permitted by a parameter-independent necessary list of low weights.",
+   "approach": "Test whether weight 310 occurs in RM(8,15) using explicit constructions with independently verified truth tables and polynomial degrees. If it does, combine that certificate with a rigorous exclusion at dimension 14 to test whether the requested fixed list can exist.",
+   "p": 0.0947,
+   "child": null
+  },
+  {
+   "branch": "e4/c1b0",
+   "counterfactual": "All five weights 310, 322, 326, 330, and 334 occur in RM(7,14), and the proposed 23-interval spectrum is correct.",
+   "approach": "Seek a shared algebraic construction for the five missing weights rather than five unrelated searches. Explore sums of quadratic forms multiplied by products of affine linear factors, arranging their intersections so that weights can be calculated exactly.",
+   "p": 0.1421,
+   "child": null
+  },
+  {
+   "branch": "e4/c1b1",
+   "counterfactual": "All five weights 310, 322, 326, 330, and 334 occur in RM(7,14), and the proposed 23-interval spectrum is correct.",
+   "approach": "Inspect the saved construction certificates and identify nearby words admitting degree-preserving switches. Search the resulting shortened linear spaces for each missing weight, verifying every successful word by its full Boolean M\u00f6bius transform.",
+   "p": 0.1105,
+   "child": null
+  },
+  {
+   "branch": "e4/c1b2",
+   "counterfactual": "All five weights 310, 322, 326, 330, and 334 occur in RM(7,14), and the proposed 23-interval spectrum is correct.",
+   "approach": "Separate the proof into the already-certified central attainments and a small exceptional construction lemma. Authenticate the low-weight exclusion theorem while looking for explicit witnesses sufficient to finish that lemma and invoke concatenation.",
+   "p": 0.0632,
+   "child": null
+  },
+  {
+   "branch": "e4/c2b0",
+   "counterfactual": "The spectrum stabilizes by dimension 14, but some of 310, 322, 326, 330, and 334 are permanent gaps, so a fixed interval list exists and differs from the proposed one.",
+   "approach": "Investigate a universal obstruction for weights congruent to 2 modulo 4 near 320. Use the parity of the number of support pairs in each direction to constrain possible projections and reduce the five candidates to lower-weight support classifications.",
+   "p": 0.0947,
+   "child": null
+  },
+  {
+   "branch": "e4/c2b1",
+   "counterfactual": "The spectrum stabilizes by dimension 14, but some of 310, 322, 326, 330, and 334 are permanent gaps, so a fixed interval list exists and differs from the proposed one.",
+   "approach": "Attempt to prove stabilization directly by showing that every support of at most 334 points in dimension 15 has a weight-preserving projection into dimension 14. Combine this with the established central interval to isolate a finite classification problem.",
+   "p": 0.0737,
+   "child": null
+  },
+  {
+   "branch": "e4/c2b2",
+   "counterfactual": "The spectrum stabilizes by dimension 14, but some of 310, 322, 326, 330, and 334 are permanent gaps, so a fixed interval list exists and differs from the proposed one.",
+   "approach": "Audit the strongest restricted-family exclusion certificates to identify hypotheses that might hold for every word of the five candidate weights. Prove those structural hypotheses before using any finite enumeration as a global exclusion.",
+   "p": 0.0421,
+   "child": null
+  },
+  {
+   "branch": "e4/own",
+   "counterfactual": null,
+   "approach": null,
+   "p": null,
+   "child": null
+  }
+ ],
+ "cost": 0.3246,
+ "responses": 5,
+ "step_from": 74,
+ "known": [
+  "e1",
+  "e2",
+  "e4"
+ ],
+ "created": 1795489650.7249641,
+ "seen": "3e379f2f143f7f2d5ad91815ea52e6ef4fe2e498709c21657206a01b29b0bd98",
+ "take_at": 74
+}

@@ -1,0 +1,94 @@
+CORE-IDENTIFICATION NORMALIZATION LEMMA
+
+Given a valid k-uniform t-class configuration with disjoint nonempty
+cores X_i, call x in X_i used if it belongs to a member of a class other
+than i. Let N be the total number of used core points.
+
+For any distinct v,w in the same core X_i, there is a uniformity-preserving
+identification operation, preserving all core cardinalities, with new
+covering number t-1 exactly when some old minimum t-cover contains both
+v and w, and new covering number t otherwise. In the latter case it is
+a valid configuration with exactly the same deficits. If v,w are used,
+its number of used core points is at most N-1.
+
+PROOF. First form the quotient q that identifies v,w to a fresh z and
+fixes every other point. For the quotient family Q, t-1<=tau(Q)<=t:
+old covers map to covers, and a quotient cover lifts to an old cover by
+replacing z, if present, by v,w. Moreover tau(Q)=t-1 iff an old minimum
+t-cover contains both v,w. The forward direction follows by lifting a
+(t-1)-cover; it must use z and its lift is a t-cover. The reverse
+direction follows by applying q to such an old t-cover.
+
+The quotient members of class i have size k-1, as they contain both v,w;
+other members have size k unless they originally contained both v,w.
+Adjoin a fresh private point u to every quotient member of class i.
+The new core is X_i'=(X_i minus {v,w}) union {z,u}; other cores are fixed.
+This private-core addition leaves the quotient covering number unchanged:
+any cover using u can replace it by z without increasing its cardinality,
+and every cover of Q remains a cover after the addition.
+
+Every remaining short (k-1)-member E belongs to a class j!=i. Replace E
+by all k-sets E union {a}, a in R, where R is a fresh reservoir of t+1
+points outside all cores. (The same R may serve all short members.)
+Call the resulting set-family H. Its covering number equals tau(Q),
+because every old quotient cover covers H, whereas any H-cover C of size
+at most t misses some a in R; for each short E the member E union {a}
+then forces C to meet E. Covers of cardinality>t cannot be minimal since
+we already have a quotient cover of size<=t. Thus H has covering number
+t or t-1 according to the exact criterion above.
+
+Identification, private additions, and padding all preserve intersection.
+The displayed core sizes and rank k are unchanged. Different source
+classes may now have duplicate members: assign each distinct member to
+any one source class that produced it. It still contains that source's
+core. If tau(H)=t, no resulting class can be empty, because otherwise one
+representative of each remaining core would cover H in at most t-1
+points. Thus this deduplication gives a valid partition into t nonempty
+classes. Deficits k-|X_j| are unchanged.
+
+If v,w were used, their two contributions to N are replaced by at most
+the one used point z. The point u occurs only in class i, so is unused;
+reservoir points lie outside cores; no other core point gains an occurrence
+in another class. Deduplication can only remove occurrences. Hence N
+decreases at least one. QED.
+
+CONSEQUENCE. Every valid configuration can be replaced, at no increase of
+any deficit, by one satisfying simultaneously:
+ (1) every class core is its entire common intersection;
+ (2) the total family is edge-minimal subject to covering number t;
+ (3) every pair of distinct used points in any one core occurs together
+     in some minimum t-cover of the whole family.
+
+Indeed repeatedly perform (a) any permitted same-core merge of a used
+pair not lying together in any minimum cover; (b) deletion of any edge
+whose deletion preserves tau=t; (c) enlargement of a core to its full
+common intersection. Full class intersections are pairwise disjoint:
+a point common to two would cover both classes, and representatives of
+other cores would give a (t-1)-cover. Consequently enlargement is valid
+and only decreases deficits. Deleting edges cannot empty a class while
+preserving tau=t. It also cannot destroy the pair-cooccurrence property,
+since old minimum covers remain covers of size t.
+
+Termination can be formalized by the lexicographic potential (D,N,M),
+where D=sum deficits, N=#used core points, and M=#family members. An
+enlargement strictly lowers D; a merge keeps D and strictly lowers N
+(though M may increase from padding); a criticality deletion keeps D,
+does not increase N, and strictly lowers M if N is unchanged. These are
+nonnegative integers, and at each operation rank k and t are fixed, so
+D and N are globally bounded; there are finitely many (D,N) decreases,
+and between them only finitely many edge deletions. Thus the process
+terminates, with (1)--(3).
+
+ACTUAL CHECKS: workspace/agent2_core_identification_checks.py/.json.
+All 24 same-core pair merges in the 4-class/48-edge duplicate-center
+instance were checked by enumeration of all minimum covers and all new
+covers up to size4; criterion predicted tau correctly in every case.
+A 2-class example with an outside member containing BOTH merged points
+checks the all-reservoir padding step, including duplicate quotients.
+A second 2-class example checks the obstruction: a pair in an old
+minimum cover produces tau=t-1 after identification.
+
+WHAT THIS DOES NOT PROVE: No polynomial bound on N in the normalized
+configuration is presently established. In particular N=O(d^3) for
+maximum deficit d, which would give the desired 5/3 lower bound using
+N>=t(t-d-1), is NOT proved here.

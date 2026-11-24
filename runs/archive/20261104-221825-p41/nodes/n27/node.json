@@ -1,0 +1,108 @@
+{
+ "id": "n27",
+ "parent": "n18",
+ "depth": 5,
+ "option": {
+  "branch": "c1b1",
+  "counterfactual": "The number of additional vertices needed can grow with d even when k=1; edge-decomposability does not impose a dimension-independent completion bound.",
+  "approach": "Study joins of independently obstructed complexes. Determine whether a completion must spend separate auxiliary vertices on different factors, rather than allowing the same auxiliary vertex to repair every factor.",
+  "p": 0.0992
+ },
+ "status": "member",
+ "belief": {
+  "answer": "\\boxed{b(d,k)=d-2}",
+  "confidence": 0.32
+ },
+ "judge": {
+  "claim": true,
+  "same_as": "e7",
+  "answer": "b(d,k)=d-2",
+  "reason": "It asserts an exact formula for b(d,k), identical to e7.",
+  "experiment": false
+ },
+ "experiment": null,
+ "options": [
+  {
+   "branch": "c0b0",
+   "counterfactual": "One additional vertex suffices for every 1-decomposable complex, regardless of its dimension; joining several obstructed complexes does not force separate auxiliary vertices.",
+   "approach": "Try to complete the ridge skeleton of a 1-decomposable complex on its existing vertices. A successful construction would allow one new apex to supply the missing lower-dimensional faces before filling the original facets.",
+   "p": 0.1969,
+   "child": null
+  },
+  {
+   "branch": "c0b1",
+   "counterfactual": "One additional vertex suffices for every 1-decomposable complex, regardless of its dimension; joining several obstructed complexes does not force separate auxiliary vertices.",
+   "approach": "Analyze a join of two explicit obstructed complexes and construct a completion that reuses one auxiliary vertex. Track facets whose vertex counts exceed one factor\u2019s original facet size, since these may transfer buffer capacity between factors.",
+   "p": 0.1313,
+   "child": null
+  },
+  {
+   "branch": "c0b2",
+   "counterfactual": "One additional vertex suffices for every 1-decomposable complex, regardless of its dimension; joining several obstructed complexes does not force separate auxiliary vertices.",
+   "approach": "Induct on an edge-decomposition certificate, seeking a synchronization lemma for the two vertices of a shedding edge. The lemma would coordinate additions to its deletion and link without requiring a second new vertex.",
+   "p": 0.1094,
+   "child": null
+  },
+  {
+   "branch": "c1b0",
+   "counterfactual": "The worst-case number of additional vertices is d-2 even for 1-decomposable complexes, so restricting the size of shedding faces does not improve the universal bound.",
+   "approach": "Attempt to construct high-dimensional 1-decomposable obstructions by expanding a low-dimensional complex into clone classes. Seek decomposition certificates using only vertices and edges while proving that fewer than d-2 auxiliary vertices cannot permit the first essential addition.",
+   "p": 0.1875,
+   "child": null
+  },
+  {
+   "branch": "c1b1",
+   "counterfactual": "The worst-case number of additional vertices is d-2 even for 1-decomposable complexes, so restricting the size of shedding faces does not improve the universal bound.",
+   "approach": "Study operations that increase dimension and the required number of auxiliary vertices by one while preserving 1-decomposability. Such an operation, iterated from a three-dimensional obstruction, would match the established d-2 upper bound.",
+   "p": 0.1125,
+   "child": null
+  },
+  {
+   "branch": "c1b2",
+   "counterfactual": "The worst-case number of additional vertices is d-2 even for 1-decomposable complexes, so restricting the size of shedding faces does not improve the universal bound.",
+   "approach": "Inspect the existing universal lower-bound constructions for hidden edge-decomposition certificates. Group consecutive facet additions by a newly introduced edge and test whether their links admit recursive decompositions.",
+   "p": 0.075,
+   "child": null
+  },
+  {
+   "branch": "c2b0",
+   "counterfactual": "At least one of the reported counterexamples or universal lower-bound arguments is invalid, so its claimed obstruction cannot be used to determine b(d,k).",
+   "approach": "Independently run the portable counterexample verifiers and audit their deletion, link, and purity checks against the problem\u2019s definitions. Reconstruct the represented complexes rather than trusting the supplied certificate interpretation.",
+   "p": 0.0844,
+   "child": null
+  },
+  {
+   "branch": "c2b1",
+   "counterfactual": "At least one of the reported counterexamples or universal lower-bound arguments is invalid, so its claimed obstruction cannot be used to determine b(d,k).",
+   "approach": "Audit the universal first-exit argument, including facets containing auxiliary vertices and repeated origin classes. Look for an omitted facet type whose intersection with the preceding complex could be pure of codimension one.",
+   "p": 0.0656,
+   "child": null
+  },
+  {
+   "branch": "c2b2",
+   "counterfactual": "At least one of the reported counterexamples or universal lower-bound arguments is invalid, so its claimed obstruction cannot be used to determine b(d,k).",
+   "approach": "Separate the finite verified obstructions from the symbolic claims for arbitrary dimension. Establish exactly which parameter values follow from independently checked examples before attempting another general formula.",
+   "p": 0.0375,
+   "child": null
+  },
+  {
+   "branch": "own",
+   "counterfactual": null,
+   "approach": null,
+   "p": null,
+   "child": null
+  }
+ ],
+ "cost": 0.0976,
+ "responses": 1,
+ "step_from": 32,
+ "known": [
+  "e1",
+  "e4",
+  "e2",
+  "e3"
+ ],
+ "created": 1793858303.883944,
+ "seen": "6c00b702f48bbdf76b55c272178e715a23636c4fcbe91c3e6dcd47792f147a89",
+ "take_at": 32
+}

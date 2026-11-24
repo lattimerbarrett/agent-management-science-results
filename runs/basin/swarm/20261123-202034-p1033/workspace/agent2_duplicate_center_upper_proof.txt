@@ -1,0 +1,52 @@
+A simpler upper construction: duplicate center colors.
+
+Let m,n be positive integers with n>4m-1. Put T=nm and r=n-2m.
+Let the actual points be the edges of K_n. There are m colors/classes for
+each center a in [n]. Give every class i its own disjoint T-point core X_i,
+outside all actual points.
+
+For every r-subset P of the (n-1)-edge star at a, let O(P) be the 2m-1
+other centers b such that ab is omitted from P. Let L(P) be all m classes
+at every center in O(P), so |L(P)|=ell=m(2m-1).
+For each class i centered at a, include every set
+ X_i union P union {x_j:j in L(P)},
+where all choices x_j in X_j are independent. The rank is
+ k=T+r+ell=T+n+2m^2-3m,
+and every deficit equals D=n+2m^2-3m.
+
+Distinct classes give distinct sets, as one set contains its complete own
+T-point core and at most one point of each other core. Every class is
+nonempty. All cores are disjoint and nonempty.
+
+Intersection: same-class members share their core. Same-center petals
+intersect since 2r>n-1. For different centers a,b, disjoint petals force
+at least one to omit actual point ab. If P at a omits ab, it includes
+one representative of every class at b, hence intersects the full core
+of the other member.
+
+Covering number: selecting one representative of each core gives a
+T-point cover. Conversely suppose |C|<T. No core is exhausted. Let
+A be C's actual edges, and B the classes whose cores C meets. For each
+class outside B, its whole petal family must be met by A, because any
+petal disjoint from A can have all its independent target-core choices
+made outside C. A hits every r-subset of center a's (n-1)-edge star iff
+d_A(a)>=n-r=2m. Thus, writing Z={a:d_A(a)>=2m},
+ T-|B| <= m|Z| <= (1/2)sum_{a in Z}d_A(a) <= |A|.
+But |C|>=|A|+|B|, a contradiction.
+
+Taking n=m^2, m>=4, gives T=m^3, D=3m^2-3m. For arbitrary large t take
+m=ceil(t^(1/3)) and keep any t classes. Every subunion of t classes has
+covering number t: a cover of size<t could be supplemented with one
+core representative per omitted class to cover the whole original
+family in fewer than T points. Therefore
+ b(t)<=t(3 ceil(t^(1/3))^2-3 ceil(t^(1/3)))=(3+o(1))t^(5/3).
+
+The asymptotic leading constant from this construction can be optimized:
+take n=4m^2, giving T=4m^3, D=6m^2-3m and constant 6/4^(2/3).
+
+Actual checks: workspace/agent2_duplicate_center_checks.py/.json.
+For m=1,n=4: all 64 actual edge subsets, all 48 final members, all 1794
+possible covers of size<4 checked. For m=2,n=8: all 560 colored base
+petals and all 156520 pairs checked; all 1213 graphical degree sequences
+checked for Hall degree charge; 20000 random actual point sets checked
+for exact activation against enumerated petals.

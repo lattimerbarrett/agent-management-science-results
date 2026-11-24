@@ -1,0 +1,43 @@
+For rank3 let W=[[M3;12,M1;23],C12] and L=M1;23*M3;12.
+The specialized Magnus/Fox homomorphism at t=(1,-1,1), after transpose
+if using right-to-left automorphism composition, has image
+H x <-I>, where H=<D,U,V> is the free product of three involutions.
+Indeed U,V are opposite elementary matrices with off-diagonal entries +/-2.
+Their projective actions have ping-pong domains |z|<1 and |z|>1, proving
+projective freeness; D inverts each and has determinant -1. Thus H=F2:C2,
+which is C2*C2*C2. Scalar -I is independent and can be projected away.
+
+Put a=D, b=U*D, c=V*D (all involutions). In the mod2 noncommutative ring
+R=F2<a,b,c>/(a^2,b^2,c^2), map the three involutions to 1+a,1+b,1+c.
+This defines a group homomorphism. For every finite class q, truncate R
+above degree q; its units 1+positive-degree ideal have class at most q.
+The degree1 terms of U,V,D are a+b,a+c,a respectively. Therefore W has
+degree3 term
+ P=[a+c,a+b,a]=cba+bca+acb+abc=[a,(b+c)^2].
+Here associative brackets in characteristic2 are xy+yx.
+The degree1 term of L is s=b+c. Define W_3=W and W_q=[W_{q-1},L].
+Inductively its degreeq leading term is ad_s^(q-1)(a).
+This is nonzero for every q>=3: in its binomial expansion, the word
+ a b c b c ... (q letters total) occurs exactly once, in the endpoint
+ a*s^(q-1), and is not killed by the square-zero relations. Thus the
+class-q truncated ring detects W_q, so W_q is not in gamma_{q+1}(IA3).
+
+The Johnson degree3 derivation of W is zero: writing x=x1,y=x2,z=x3,
+[M3;12,M1;23] sends x to -ad_y^2(x), z to ad_y^2(z), y to0,
+which commutes with C12 (x -> [y,x],y,z ->0). Thus W in A4.
+The Andreadakis strong central property [A_i,A_j] <= A_{i+j} implies
+W_q in A_{q+1} inductively, while W_q in gamma_q(IA3) by construction.
+Hence (3,q) belongs to D for EVERY q>=3.
+
+Elementary ping-pong detail (to avoid taking Sanov on trust): choose coordinates
+so U(z)=z+2 and V(z)=z/(2z+1), allowing generator inversions if signs differ.
+For X={|z|>1} and Y={|z|<1}, every nonzero power U^k sends Y into X,
+and every nonzero V^k sends X into Y: |z+2k|>1 for z in Y, and
+|z/(2kz+1)|<1 for z in X. The two cyclic factors act freely by the
+ping-pong lemma, proving projective freeness. A direct proof of that lemma
+is obtained by conjugating any cyclically reduced alternating word so that
+it starts with a U-power and ends with a V-power; it sends X into U^k(Y),
+a proper subset of X, so cannot be the identity transformation. Pure powers
+are visibly nonidentity. Projective freeness also proves that -I is not in
+<U,V>, and determinant distinguishes D from <U,V>. Thus the full 2x2 image
+has exactly the asserted direct-product/free-product decomposition.

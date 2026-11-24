@@ -1,0 +1,68 @@
+{
+ "run": "20261122-183628-p1024",
+ "problem": 1024,
+ "told": false,
+ "solo": true,
+ "answer": "An exact determinantal formula valid for every allowed nonzero b is\n\\[\\boxed{\\Delta_b=\\operatorname{rank}_{\\mathbb C}\\mathcal B_S-\\operatorname{rank}_{\\mathbb C}\\mathcal B_O-\\operatorname{rank}_{\\mathbb C}\\mathcal B_L.}\\]\nThe finite matrices are defined as follows. Put\n\\[h=2g-2,\\quad q=2g-1,\\quad N=4g-4,\\quad d=q-k=g+r-1,\\quad J=\\lfloor N/k\\rfloor,\\quad M=N+Jd+1,\\quad P=Jd+h+1.\\]\nSet \\(s=(1-t^{4g+2})^{1/2}\\), \\(a=-\\tfrac12t^{-h}s\\), \\(\\phi=\\phi_b\\), and \\(\\psi=t^k\\phi\\). Define\n\\[A_{\\ell n}=\\binom{-n/k}{\\ell}(-k\\psi)^\\ell,\\qquad B_{\\ell n}=\\binom{1-n/k}{\\ell}(-k\\psi)^\\ell,\\qquad A_{-1,n}=0.\\]\nDefine Laurent-series matrices \\(T_O,T_S,T_L\\), indexed by fiber degrees \\(0,\\ldots,N\\), with two components for \\(T_S\\). Entries vanish unless \\(m=n+\\ell k\\) for an integer \\(\\ell\\geq0\\); for such indices set\n\\[(T_O)_{mn}=t^nA_{\\ell n},\\qquad (T_L)_{mn}=at^nB_{\\ell n},\\]\n\\[(T_S)_{mn}=\\begin{pmatrix}at^nA_{\\ell n}&0\\\\-at^{n-1}A_{\\ell n}-at^{n+k}\\phi' A_{\\ell-1,n}&t^nB_{\\ell n}\\end{pmatrix}.\\]\nLet\n\\[\\Lambda_M=\\{\\lambda\\in\\mathbb Z:0\\leq\\lambda\\leq M,\\ \\lambda\\text{ even or }\\lambda\\geq2g+1\\},\\qquad f_\\lambda=t^{-\\lambda}s^{\\lambda\\bmod2}.\\]\nFor each such transition matrix T define the finite matrix\n\\[\\mathcal B(T)_{(i,e),(j,\\lambda)}=[t^e]\\bigl(T_{ij}(t)f_\\lambda(t)\\bigr),\\qquad -P-M\\leq e\\leq-1,\\quad\\lambda\\in\\Lambda_M,\\]\nwhere i and j run over all component indices of T. Finally, \\(\\mathcal B_O=\\mathcal B(T_O)\\), \\(\\mathcal B_S=\\mathcal B(T_S)\\), and \\(\\mathcal B_L=\\mathcal B(T_L)\\). All series are expanded at t=0. The ranks are the actual ranks at the specified entire coefficient vector b, not generic ranks.",
+ "claims_proof": true,
+ "where": "Reply #1",
+ "answer_reason": "The agent explicitly presents this determinantal formula as its answer and ends by claiming it is proved for every allowed g and every nonzero complex coefficient vector, including all vanishing-component specializations.",
+ "definite": true,
+ "verify": {
+  "verdict": "sound",
+  "acknowledged": false,
+  "review": {
+   "claimed": "For every allowed g and every nonzero complex coefficient vector b, the prescribed finite matrices satisfy \u0394_b = rank(B_S) \u2212 rank(B_O) \u2212 rank(B_L).",
+   "verdict": "sound",
+   "team_acknowledged_gap": false,
+   "decisive_steps": [
+    {
+     "step": "Truncate the three sheaves at fiber degree N=4g\u22124 and identify their H\u00b9 with analytic H\u00b9 on X (final proof \u00a72).",
+     "basis": "argument",
+     "checked": "The graded pieces are O(np), S|E\u2297O(np), and \u0398_C(np), with S|E an extension of \u0398_C by O. Their H\u00b9 vanishes for n>4g\u22124 by the degree criterion. This gives stabilization. Formal functions applies to the proper resolution; the exceptional-ideal and pulled-back maximal-ideal filtrations are cofinal, and R\u00b9f_*F is a finite-length sheaf supported at the singular point."
+    },
+    {
+     "step": "Derive the transition matrices, including the horizontal-to-vertical derivative term (final proof \u00a73).",
+     "basis": "argument",
+     "checked": "Independently differentiated the fiber change: \u03b7_U=H\u03b7_W and \u03b4_U=a\u2202t+a(\u2212t\u207b\u00b9\u2212t^k\u03c6\u2032w^k)\u03b7_W. Expanding u^n=t^nw^nH^(\u2212n/k) gives precisely T_O, T_S, and T_L. The stated inverse transformations also agree."
+    },
+    {
+     "step": "Bound all global-section coefficients by pole order M and reduce regularity to the finite coefficient matrices (final proof \u00a74).",
+     "basis": "argument",
+     "checked": "Forward entries have valuation at least \u2212Jd\u2212h\u22121=\u2212P. Inverse entries have valuation at least \u2212n\u2212\u2113q\u22121\u2265\u2212M, since n+\u2113k\u2264N. Thus U-frame coefficients extend meromorphically across p with poles at most M. The functions f_\u03bb are exactly the pole-order basis of H\u2070(C,O(Mp)); regularity in the W frame is exactly B(T)v=0. These estimates require no coefficient of b to be nonzero."
+    },
+    {
+     "step": "Use Euler-characteristic cancellation and kernel dimensions to obtain the claimed rank combination.",
+     "basis": "argument",
+     "checked": "The graded exact sequence gives \u03c7(S_N)=\u03c7(O_N)+\u03c7(L_N). Consequently \u0394=h\u2070(O_N)\u2212h\u2070(S_N)+h\u2070(L_N). The three kernel dimensions are C\u2212rank(B_O), 2C\u2212rank(B_S), and C\u2212rank(B_L), so their domain dimensions cancel and yield the displayed formula."
+    },
+    {
+     "step": "Exact-arithmetic implementation and checks.",
+     "basis": "computation",
+     "checked": "Reran the entire saved scratchpad successfully, including symbolic inverse checks, split cases, stabilization checks, and the QQbar specialization. All reported outputs matched. Also independently constructed the Laurent-series coefficient matrices for g=2, b=(2), and g=4, b=(2,\u22123) and (0,1); every matrix entry matched the team's implementation."
+    }
+   ],
+   "failing_step": "The hardest step is the uniform inverse-transition pole bound and its use to capture every global section in the finite-dimensional coefficient space.",
+   "reason": "The proof supplies valid uniform truncation and pole bounds, correct transition matrices, and an exact kernel computation. The rank formula is an explicit finite rule for all complex specializations, including vanishing components; it does not rely on generic ranks. No unresolved gap was acknowledged or found."
+  },
+  "responses": 11,
+  "runs": 3,
+  "cost": 0.186
+ },
+ "stop": true,
+ "contract": {
+  "form": "A complete answer is an exact formula or explicit finite rule for the integer \u0394_b in terms of g and the entire coefficient vector b, valid for every integer g \u2265 2 and every nonzero b \u2208 \u2102^r. It may be piecewise, but must specify all cases, including vectors with vanishing components.",
+  "not_enough": "Bounds, a range of possible values, an unknown or undetermined value, a conjecture-dependent formula, or a formula valid only for generic b or selected cases would not settle the question."
+ },
+ "definite_reason": "The proposed answer gives an explicit finite rule: construct three finite matrices from g and the full vector b, then compute their ranks. It states validity for every allowed nonzero b and uses actual rather than generic ranks, so it includes vectors with vanishing components and, if true, determines \u0394_b in all required cases.",
+ "reference": "\\[\\boxed{\\displaystyle \\Delta_b=-\\max\\left\\{j\\in\\mathbb Z:0\\leq j<\\left\\lfloor\\frac{g+2}{3}\\right\\rfloor,\\ b_j\\neq0\\right\\}.}\\]",
+ "correct": false,
+ "graded_by": "judge",
+ "solved": false,
+ "cost": 0.2183,
+ "read_at": 1795391451.752776,
+ "matharena": true,
+ "restated": true,
+ "grade_note": "The response supplies a finite matrix-rank computation rather than the explicit negative of the largest index with nonzero coefficient. Establishing agreement requires constructing the matrices and evaluating or analyzing their ranks, not merely routine algebra.",
+ "graded_at": 1795396402.46754
+}

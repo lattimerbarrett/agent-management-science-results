@@ -1,0 +1,108 @@
+{
+ "id": "n20",
+ "parent": "n10",
+ "depth": 5,
+ "option": {
+  "branch": "c2b2",
+  "counterfactual": "A pure complex can become shellable after adding one facet even though that facet cannot be appended to a shelling of the original complex.",
+  "approach": "Distinguish completion through shellable complexes from extension of a prescribed shelling. Investigate whether the weaker completion requirement admits a direct construction even when extendable shellability fails.",
+  "p": 0.0005
+ },
+ "status": "member",
+ "belief": {
+  "answer": "The exact value is not established in general. The reported results give \\(\\max\\{1,\\min(d,k+1)-2\\}\\le b(d,k)\\le d-2\\), hence \\(\\boxed{b(3,k)=1}\\) for every \\(k\\ge1\\), and \\(\\boxed{b(d,k)=d-2}\\) for \\(k\\ge d-1\\).",
+  "confidence": 0.55
+ },
+ "judge": {
+  "claim": true,
+  "same_as": null,
+  "answer": "The exact value is not established in general. The reported results give \\(\\max\\{1,\\min(d,k+1)-2\\}\\le b(d,k)\\le d-2\\), hence \\(\\boxed{b(3,k)=1}\\) for every \\(k\\ge1\\), and \\(\\boxed{b(d,k)=d-2}\\) for \\(k\\ge d-1\\).",
+  "reason": "It asserts explicit bounds and exact values in specified cases. These differ from every prior answer: in particular, e5 asserts an exact formula, whereas this answer generally asserts only a range.",
+  "experiment": true
+ },
+ "experiment": "e6",
+ "options": [
+  {
+   "branch": "c0b0",
+   "counterfactual": "Every pure 1-decomposable complex can be completed on its existing vertices, so the reported 1-decomposable obstruction contains an error.",
+   "approach": "Audit the reported obstruction directly from its facets and decomposition certificate. Check exact deletions, link purity, and every missing facet to identify whether the error lies in decomposability or terminality.",
+   "p": 0.1647,
+   "child": null
+  },
+  {
+   "branch": "c0b1",
+   "counterfactual": "Every pure 1-decomposable complex can be completed on its existing vertices, so the reported 1-decomposable obstruction contains an error.",
+   "approach": "Try to prove same-vertex completion by induction on a shedding vertex or edge. The central task would be to synchronize completion of the deletion with completion of the link without introducing forbidden facets prematurely.",
+   "p": 0.0898,
+   "child": null
+  },
+  {
+   "branch": "c0b2",
+   "counterfactual": "Every pure 1-decomposable complex can be completed on its existing vertices, so the reported 1-decomposable obstruction contains an error.",
+   "approach": "Search small edge-decomposable complexes for a universal augmentation rule. Test whether a carefully chosen missing facet always preserves 1-decomposability, then examine the successful choices for an inductive invariant.",
+   "p": 0.0449,
+   "child": null
+  },
+  {
+   "branch": "c1b0",
+   "counterfactual": "The exact answer is b(d,k)=max{1,min(d,k+1)-2}, rather than an unresolved general value.",
+   "approach": "Develop an upper-bound induction that reduces the allowed shedding-face size when auxiliary vertices are introduced. Matching the reported lower bound would require proving this reduction rather than assuming that taking a skeleton reduces the parameter.",
+   "p": 0.2794,
+   "child": null
+  },
+  {
+   "branch": "c1b1",
+   "counterfactual": "The exact answer is b(d,k)=max{1,min(d,k+1)-2}, rather than an unresolved general value.",
+   "approach": "Analyze the case k=1 first and seek a one-auxiliary-vertex construction in arbitrary dimension. A proof for edge-decomposable complexes could supply the base case for induction on k.",
+   "p": 0.2445,
+   "child": null
+  },
+  {
+   "branch": "c1b2",
+   "counterfactual": "The exact answer is b(d,k)=max{1,min(d,k+1)-2}, rather than an unresolved general value.",
+   "approach": "Recast completion as a relative problem inside complexes with forbidden shedding faces. Establish a buffered relative-completion theorem whose number of required auxiliary vertices matches the proposed formula.",
+   "p": 0.1747,
+   "child": null
+  },
+  {
+   "branch": "c2b0",
+   "counterfactual": "A shellable pure complex can receive a single new facet and remain shellable even though that facet cannot be appended to its original shelling.",
+   "approach": "Construct a small example by exhaustively enumerating pure complexes, their shellings, and single-facet extensions. Explicitly compare shellability of the extension with purity of the new facet's intersection with the original complex.",
+   "p": 0.0006,
+   "child": null
+  },
+  {
+   "branch": "c2b1",
+   "counterfactual": "A shellable pure complex can receive a single new facet and remain shellable even though that facet cannot be appended to its original shelling.",
+   "approach": "Reexamine the disconnected-link argument at a maximal intersection face. Identify which assertion about links, dimensions, or shared vertices fails in the proposed example.",
+   "p": 0.0011,
+   "child": null
+  },
+  {
+   "branch": "c2b2",
+   "counterfactual": "A shellable pure complex can receive a single new facet and remain shellable even though that facet cannot be appended to its original shelling.",
+   "approach": "Separate completion through shellable complexes from extension of prescribed shellings and investigate the weaker completion property directly. This could invalidate the reduction to extendable shellability while leaving a constructive route to b(d,k).",
+   "p": 0.0003,
+   "child": null
+  },
+  {
+   "branch": "own",
+   "counterfactual": null,
+   "approach": null,
+   "p": null,
+   "child": null
+  }
+ ],
+ "cost": 0.0727,
+ "responses": 1,
+ "step_from": 24,
+ "known": [
+  "e1",
+  "e2",
+  "e3",
+  "e4"
+ ],
+ "created": 1793858165.790611,
+ "seen": "33c19419098d21d6752e9658bd3aa68aa8293436f850a8f643f792f39d422720",
+ "take_at": 24
+}

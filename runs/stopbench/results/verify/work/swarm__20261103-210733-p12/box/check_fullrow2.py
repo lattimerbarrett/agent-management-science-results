@@ -1,0 +1,1 @@
+exec(open('check_fullrow.py').read().replace('L.factor=lambda h,d:', 'from functools import lru_cache\nL.factor=lru_cache(None)(lambda h,d:').replace("%(h,d),'rb'))", "%(h,d),'rb')))") )

@@ -1,0 +1,44 @@
+GENERALIZED RANK NORMALIZATION (agent3)
+
+A generalized configuration has t disjoint nonempty cores Xi and nonempty
+colored classes Fi of sets Xi union P, with P disjoint Xi and |P|<=di.
+The union is intersecting and has covering number t; duplicated edges across
+colors are harmless and may be assigned to any source color. No color can
+then become empty, since its omission would give a (t-1)-core cover.
+
+The minimum of sum di over generalized configurations equals b(t).
+One inequality is immediate. Conversely choose K>max_i(|Xi|+di). Add private
+core points so new |Xi|=K-di. For each old petal P of size <di add ALL
+(di-|P|)-subsets of a fresh reservoir Z of size max_i di+t. Old full edges
+embed in every resulting edge, so intersection remains. Core representatives
+cover in t points. A putative cover of <t new points can be normalized by
+replacing any new private core point with an old core point of that color;
+this does not increase its size or lose any covered member. Reservoir choices
+can avoid this cover, since |Z\C|>=max_i di+1. Thus the normalized old-ground
+part would cover every old member with fewer than t points, impossible.
+All resulting edges have rank K, and deficits are exactly di.
+
+Therefore choose a generalized minimizer of D=b(t), and among those choose
+one of minimum total ground size. Merge two points v,w whenever they are not
+in distinct cores. Core nonemptiness/disjointness and petal rank budgets are
+preserved; intersection is preserved under quotient. For this quotient,
+covering number drops iff some old minimum t-cover contains BOTH v,w:
+- such a cover quotients to a (t-1)-cover;
+- a quotient cover with <t lifts to a cover of at most t old points, by
+  replacing the merged point with {v,w}; it must have exactly t-1 points,
+  contain the merged point, and lift to a minimum old t-cover containing both.
+If covering number did not drop, the quotient would be a generalized
+configuration of the same deficit budget but smaller ground size, contradiction.
+Hence EVERY pair not lying in distinct cores co-occurs in a minimum t-cover.
+This includes all external-external pairs and external-core pairs.
+
+Additional deletion consequence: all core points are used by another color,
+except possibly the sole point of a singleton core. Otherwise delete an
+unused core point (non-singleton case); all intersections and t-cover property
+survive. Every external point and every non-singleton core point has a private
+crosspair of full members whose sole intersection is that point: otherwise
+its deletion preserves intersection, petals only shrink, and remaining cores
+still supply a t-cover. Such a private pair must have distinct source colors.
+
+This is a proved normalization only. It does NOT yet bound ground size or
+used core points by O(d^3); that remains the missing lower-bound theorem.

@@ -1,0 +1,108 @@
+{
+ "id": "n15",
+ "parent": "n9",
+ "depth": 4,
+ "option": {
+  "branch": "c2b1",
+  "counterfactual": "The extendable-shellability assertion for simplex skeleta has been resolved, so the equivalence with the zero case does not justify calling the requested value unknown.",
+  "approach": "If extendable shellability is false, extract the resulting lower bound b(d,k) greater than zero for k at least d. Then investigate completion constructions using new vertices to determine whether that lower bound is sharp.",
+  "p": 0.2857
+ },
+ "status": "member",
+ "belief": {
+  "answer": "\\(\\boxed{b(d,k)=\\max\\{1,\\min\\{d,k+1\\}-2\\}}\\)",
+  "confidence": 0.2
+ },
+ "judge": {
+  "claim": true,
+  "same_as": "e5",
+  "answer": "b(d,k)=\\max\\{1,\\min\\{d,k+1\\}-2\\}",
+  "reason": "It claims an exact formula, and min{d,k+1}\u22122 = min{d\u22122,k\u22121}, so it is mathematically identical to e5.",
+  "experiment": false
+ },
+ "experiment": null,
+ "options": [
+  {
+   "branch": "c0b0",
+   "counterfactual": "The reported terminal shellable complexes contain a verification error, and it remains unknown whether every shellable subcomplex of a simplex skeleton can be completed without new vertices.",
+   "approach": "Locate and run a portable counterexample verifier, independently checking every deletion, link, and missing-facet intersection. This would distinguish a genuine obstruction from an error in the reported certificates.",
+   "p": 0.0359,
+   "child": null
+  },
+  {
+   "branch": "c0b1",
+   "counterfactual": "The reported terminal shellable complexes contain a verification error, and it remains unknown whether every shellable subcomplex of a simplex skeleton can be completed without new vertices.",
+   "approach": "Reconstruct the shellability-to-decomposability equivalence and the single-facet attachment lemma directly from the definitions. These establish exactly which zero-vertex assertions would remain unresolved if the counterexamples fail.",
+   "p": 0.0196,
+   "child": null
+  },
+  {
+   "branch": "c0b2",
+   "counterfactual": "The reported terminal shellable complexes contain a verification error, and it remains unknown whether every shellable subcomplex of a simplex skeleton can be completed without new vertices.",
+   "approach": "Search for a smaller terminal complex using exhaustive decomposability tests and facet-addition searches. An independently generated obstruction would avoid relying on the reported examples.",
+   "p": 0.0098,
+   "child": null
+  },
+  {
+   "branch": "c1b0",
+   "counterfactual": "The exact value is b(d,k)=d-2 for every k\u22651, so restricting shedding faces to vertices and edges does not reduce the worst-case number of auxiliary vertices.",
+   "approach": "Try to extend the certified three-dimensional 1-decomposable obstruction by replacing vertices with groups of clones. The goal would be to preserve edge-sized shedding faces while forcing any completion to use at least d-2 auxiliary vertices.",
+   "p": 0.2609,
+   "child": null
+  },
+  {
+   "branch": "c1b1",
+   "counterfactual": "The exact value is b(d,k)=d-2 for every k\u22651, so restricting shedding faces to vertices and edges does not reduce the worst-case number of auxiliary vertices.",
+   "approach": "Examine whether the general lower-bound construction admits decomposition certificates whose shedding faces always have at most two vertices. Such certificates would make its existing obstruction apply to every k\u22651.",
+   "p": 0.1565,
+   "child": null
+  },
+  {
+   "branch": "c1b2",
+   "counterfactual": "The exact value is b(d,k)=d-2 for every k\u22651, so restricting shedding faces to vertices and edges does not reduce the worst-case number of auxiliary vertices.",
+   "approach": "Prove the reported universal d-2 upper bound directly using the cone-filling lemma and induction on dimension. This would leave only a uniform lower-bound construction to establish the formula.",
+   "p": 0.1043,
+   "child": null
+  },
+  {
+   "branch": "c2b0",
+   "counterfactual": "The exact value is b(d,k)=min(d-2,k), rather than a bound controlled by k-1 once k\u22652.",
+   "approach": "Develop completion inside a target with k auxiliary vertices by induction on a supplied decomposition tree. The key would be to show that each shedding face creates capacity constraints that k free vertices can satisfy.",
+   "p": 0.1859,
+   "child": null
+  },
+  {
+   "branch": "c2b1",
+   "counterfactual": "The exact value is b(d,k)=min(d-2,k), rather than a bound controlled by k-1 once k\u22652.",
+   "approach": "Investigate the first undecided case d=4, k=2 by constructing 2-decomposable complexes that cannot be completed with one auxiliary vertex. A certified example would separate this formula from the competing k-1 bound.",
+   "p": 0.1446,
+   "child": null
+  },
+  {
+   "branch": "c2b2",
+   "counterfactual": "The exact value is b(d,k)=min(d-2,k), rather than a bound controlled by k-1 once k\u22652.",
+   "approach": "Analyze how clone expansion changes the minimum allowed shedding-face size in the lower-bound examples. A sharper parameter analysis might increase the established lower bound by one without changing the obstruction argument.",
+   "p": 0.0826,
+   "child": null
+  },
+  {
+   "branch": "own",
+   "counterfactual": null,
+   "approach": null,
+   "p": null,
+   "child": null
+  }
+ ],
+ "cost": 0.0726,
+ "responses": 1,
+ "step_from": 22,
+ "known": [
+  "e1",
+  "e2",
+  "e3",
+  "e4"
+ ],
+ "created": 1793858081.337288,
+ "seen": "98d13a4211348cf441289beabd9d26593a453d688db0286543fdcf729382200d",
+ "take_at": 22
+}

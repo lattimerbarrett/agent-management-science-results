@@ -1,0 +1,13 @@
+import sympy as s
+x,y,u,v,e=s.symbols('x y u v e',real=True)
+f=e*(x**5-10*x**3*y**2+5*x*y**4+u**2-v**2)
+z=s.Matrix([x,y,u,v]); G=s.Matrix([s.diff(f,t) for t in z]); B=s.hessian(f,z)
+J=s.diag(s.Matrix([[0,1],[-1,0]]),s.Matrix([[0,1],[-1,0]]))
+print('f =',f)
+print('gradient =',G.T)
+print('midpoint source determinant =',s.factor((s.eye(4)-J*B/2).det()))
+print('midpoint target determinant =',s.factor((s.eye(4)+J*B/2).det()))
+print('Hessian block squared norms: z block',s.simplify((B[:2,:2]**2)[0,0]),'; w block',s.simplify((B[2:,2:]**2)[0,0]))
+print('For radius <=1 and e=1/100, ||Hess f|| <=1/5<2; both projections are local diffeomorphisms.')
+print('Local degree: Re(z^5) gradient has degree -4; Re(w^2) gradient degree -1; product degree 4.')
+print('Boundary issue: this local germ cannot simply replace prescribed generating data. A joining construction must match f and df on a collar, while maintaining the projection determinant condition throughout.')

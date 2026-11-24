@@ -1,0 +1,10 @@
+import sympy as s
+x,y,z,a,b,c=s.symbols('x y z a b c', real=True)
+p=s.Matrix([x,y,z]); v=s.Matrix([a,b,c]); e=s.Matrix([0,0,1])
+expr=s.expand(p.dot(e.cross(p).cross(v)))
+print('omega(e3 cross p,v) =',expr)
+print('difference from |p|^2*v3 - p3*(p dot v) =',s.simplify(expr-(p.dot(p)*c-z*p.dot(v))))
+R=s.diag(-1,-1,1)
+print('time-one rotation for H=pi*z:',R)
+print('(R-I)p =', (R-s.eye(3))*p)
+print('Fixed points per sphere: x=y=0, z=+1 or -1; product count:',2*2)

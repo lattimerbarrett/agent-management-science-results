@@ -1,0 +1,21 @@
+import sympy as s
+e=s.symbols('e', integer=True, nonnegative=True)
+k=s.symbols('k', integer=True)
+print('Ext^1(B,A) dimension =',s.summation(12*e+5+k*e,(k,0,6)))
+print('Ext^1(A,B) dimension =',s.summation((13+k)*e+7,(k,0,4)))
+print('Total off-diagonal dimension =', s.summation(12*e+5+k*e,(k,0,6))+s.summation((13+k)*e+7,(k,0,4)))
+# intersections in the basis (S,f)
+def dot(x,y):
+    a,b=x;c,d=y
+    return s.expand(-e*a*c+a*d+b*c)
+A=(5,-1);B=(-1,12*e+5);P=(4,12*e+3)
+print('P slopes:',dot(A,P),dot(B,P),'mean',s.simplify((dot(A,P)+dot(B,P))/2))
+print('Degrees on S:',dot(A,(1,0)),dot(B,(1,0)))
+print('Degrees on f:',dot(A,(0,1)),dot(B,(0,1)))
+K=(-2,-e-2)
+D=(A[0]-B[0],s.expand(A[1]-B[1]))
+print('D=A-B:',D)
+print('K-D:',(K[0]-D[0],s.expand(K[1]-D[1])))
+print('K+D:',(K[0]+D[0],s.expand(K[1]+D[1])))
+print('Both H^2 off-diagonal groups vanish: K-D has negative S coefficient; K+D has negative f coefficient.')
+print('H^2(O_X)=0 as well, so the ordinary Ext^2 obstruction space vanishes.')

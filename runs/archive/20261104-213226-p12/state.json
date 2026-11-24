@@ -1,0 +1,1173 @@
+{
+ "id": "20261104-213226-p12",
+ "problem": 12,
+ "settings": {
+  "budget": 100.0,
+  "exp_budget": 12.0,
+  "agents": 4,
+  "workers": 2,
+  "max_experiments": 2,
+  "wait_rollouts": 6,
+  "seed_turns": 20,
+  "step_turns": 4,
+  "n": 3,
+  "k": 3,
+  "run_minutes": 10,
+  "seed": 0
+ },
+ "spent": 9.872,
+ "nodes": [
+  {
+   "id": "n0",
+   "parent": null,
+   "depth": 0,
+   "option": null,
+   "status": "member",
+   "belief": {
+    "answer": "The exact value is currently unknown; the established bounds are \\(\\boxed{43\\leq \\dim_{\\mathbb Q}R^{12}(\\mathcal M_{25})\\leq44}\\).",
+    "confidence": 0.97
+   },
+   "judge": {
+    "claim": true,
+    "same_as": null,
+    "answer": "The exact value is currently unknown; the established bounds are \\(\\boxed{43\\leq \\dim_{\\mathbb Q}R^{12}(\\mathcal M_{25})\\leq44}\\).",
+    "reason": "The answer makes a concrete claim of established bounds together with unknown exact value. There are no previous answers to match.",
+    "experiment": true
+   },
+   "experiment": "e1",
+   "options": [
+    {
+     "branch": "c0b0",
+     "counterfactual": "An additional proven relation among degree-12 kappa monomials determines the exact dimension of R^{12}(M_{25}) to be 43.",
+     "approach": "Identify the additional relation and check that it is independent of the Faber\u2013Zagier relations. Together with the rank-43 intersection pairing, this would establish the exact dimension.",
+     "p": 0.2222,
+     "child": "n2"
+    },
+    {
+     "branch": "c0b1",
+     "counterfactual": "An additional proven relation among degree-12 kappa monomials determines the exact dimension of R^{12}(M_{25}) to be 43.",
+     "approach": "Examine whether known relations on moduli spaces with marked points yield an additional independent relation after forgetting the markings. Such a relation could reduce the upper bound from 44 to 43.",
+     "p": 0.1333,
+     "child": "n6"
+    },
+    {
+     "branch": "c0b2",
+     "counterfactual": "An additional proven relation among degree-12 kappa monomials determines the exact dimension of R^{12}(M_{25}) to be 43.",
+     "approach": "Check whether a theorem proves nondegeneracy of the tautological pairing in these particular degrees. If applicable to Chow groups, it would identify the dimension with the pairing rank, 43.",
+     "p": 0.0889,
+     "child": null
+    },
+    {
+     "branch": "c1b0",
+     "counterfactual": "A proven nonvanishing result determines the exact dimension of R^{12}(M_{25}) to be 44, despite its socle pairing having rank 43.",
+     "approach": "Look for a theorem detecting a nonzero tautological class in the kernel of the socle pairing. Verify that it concerns the Chow ring of the unpointed, smooth genus-25 moduli stack.",
+     "p": 0.15,
+     "child": null
+    },
+    {
+     "branch": "c1b1",
+     "counterfactual": "A proven nonvanishing result determines the exact dimension of R^{12}(M_{25}) to be 44, despite its socle pairing having rank 43.",
+     "approach": "Construct an explicit representative of the extra class in the Faber\u2013Zagier quotient and investigate an independent geometric test for its nonvanishing. A successful test would raise the lower bound to 44.",
+     "p": 0.1167,
+     "child": "n4"
+    },
+    {
+     "branch": "c1b2",
+     "counterfactual": "A proven nonvanishing result determines the exact dimension of R^{12}(M_{25}) to be 44, despite its socle pairing having rank 43.",
+     "approach": "Check whether completeness of the Faber\u2013Zagier relations has been proved specifically in genus 25 and degree 12. Such a result would establish dimension 44 without requiring completeness in all genera.",
+     "p": 0.0667,
+     "child": "n1"
+    },
+    {
+     "branch": "c2b0",
+     "counterfactual": "At least one of the numerical claims underlying the bounds 43 and 44 is incorrect because the relation calculation or intersection-pairing calculation used an erroneous convention.",
+     "approach": "Recompute the degree-12 Faber\u2013Zagier relation matrix independently, checking the genus inequality, parity restriction, and substitution kappa_0 = 48. Compute its rank over the rational numbers.",
+     "p": 0.0889,
+     "child": null
+    },
+    {
+     "branch": "c2b1",
+     "counterfactual": "At least one of the numerical claims underlying the bounds 43 and 44 is incorrect because the relation calculation or intersection-pairing calculation used an erroneous convention.",
+     "approach": "Rebuild the degree-11 versus degree-12 intersection matrix from the Hodge integral formula. Check the conversion from products of psi classes to products of kappa classes before recomputing its rank.",
+     "p": 0.0778,
+     "child": "n3"
+    },
+    {
+     "branch": "c2b2",
+     "counterfactual": "At least one of the numerical claims underlying the bounds 43 and 44 is incorrect because the relation calculation or intersection-pairing calculation used an erroneous convention.",
+     "approach": "Test the computational formulas in smaller genera where the tautological dimensions are established. Use any discrepancy to locate a normalization or indexing error before returning to genus 25.",
+     "p": 0.0556,
+     "child": null
+    },
+    {
+     "branch": "own",
+     "counterfactual": null,
+     "approach": null,
+     "p": null,
+     "child": null
+    },
+    {
+     "branch": "e1/c0b0",
+     "counterfactual": "An additional proven relation among degree-12 kappa monomials exists beyond the Faber\u2013Zagier relations, and the exact dimension is 43.",
+     "approach": "Examine available local materials for an additional Chow relation, then express it in the 77-monomial basis and test whether it increases the known relation rank from 33 to 34. An independent genuine relation would combine with the lower bound to prove dimension 43.",
+     "p": 0.225,
+     "child": null
+    },
+    {
+     "branch": "e1/c0b1",
+     "counterfactual": "An additional proven relation among degree-12 kappa monomials exists beyond the Faber\u2013Zagier relations, and the exact dimension is 43.",
+     "approach": "Investigate whether established relations on moduli spaces with marked points yield an additional relation after proper pushforward and restriction to the smooth locus. Verify both its geometric validity and its independence from the existing relations.",
+     "p": 0.15,
+     "child": null
+    },
+    {
+     "branch": "e1/c0b2",
+     "counterfactual": "An additional proven relation among degree-12 kappa monomials exists beyond the Faber\u2013Zagier relations, and the exact dimension is 43.",
+     "approach": "Identify the precise theorem establishing the additional relation and check its applicability to rational Chow groups of the smooth moduli stack. If its hypotheses apply, revise the answer to 43 and explain why the existing lower bound makes this exact.",
+     "p": 0.125,
+     "child": null
+    },
+    {
+     "branch": "e1/c1b0",
+     "counterfactual": "The extra degree-12 class in the Faber\u2013Zagier quotient has been proved nonzero in the Chow ring, so the exact dimension is 44.",
+     "approach": "Extract a representative of the one-dimensional kernel of the socle pairing in the Faber\u2013Zagier quotient. Examine the presumed nonvanishing theorem to determine whether it applies to that representative in the actual Chow ring.",
+     "p": 0.15,
+     "child": null
+    },
+    {
+     "branch": "e1/c1b1",
+     "counterfactual": "The extra degree-12 class in the Faber\u2013Zagier quotient has been proved nonzero in the Chow ring, so the exact dimension is 44.",
+     "approach": "Look for an established cycle-theoretic invariant that detects the additional class despite its vanishing socle pairings. A detector independent of the 43 existing pairing functionals would establish the missing lower bound.",
+     "p": 0.0938,
+     "child": null
+    },
+    {
+     "branch": "e1/c1b2",
+     "counterfactual": "The extra degree-12 class in the Faber\u2013Zagier quotient has been proved nonzero in the Chow ring, so the exact dimension is 44.",
+     "approach": "Check whether a proven completeness theorem for Faber\u2013Zagier relations covers genus 25 and codimension 12. If it does, combine that theorem with the exact relation-matrix rank to conclude dimension 44.",
+     "p": 0.1312,
+     "child": null
+    },
+    {
+     "branch": "e1/c2b0",
+     "counterfactual": "One of the geometric inputs used to establish the bounds does not apply to the rational Chow ring specified in the question, even though the finite matrix computations are correct.",
+     "approach": "Audit the Faber\u2013Zagier theorem being used, focusing on whether its relations hold in Chow rather than only in cohomology and whether its kappa conventions match the question. Reassess the upper bound if either identification fails.",
+     "p": 0.05,
+     "child": null
+    },
+    {
+     "branch": "e1/c2b1",
+     "counterfactual": "One of the geometric inputs used to establish the bounds does not apply to the rational Chow ring specified in the question, even though the finite matrix computations are correct.",
+     "approach": "Recheck that integration against the two Hodge classes descends from the compactification to the Chow group of the smooth locus. Verify boundary vanishing and lift independence before treating the pairing matrix as a lower-bound certificate.",
+     "p": 0.05,
+     "child": null
+    },
+    {
+     "branch": "e1/c2b2",
+     "counterfactual": "One of the geometric inputs used to establish the bounds does not apply to the rational Chow ring specified in the question, even though the finite matrix computations are correct.",
+     "approach": "Trace the compactification and forgetful-map conventions in the intersection formula, checking that they recover exactly the universally defined kappa classes in the question. Recompute the relevant pairing only if that comparison introduces corrections.",
+     "p": 0.025,
+     "child": null
+    },
+    {
+     "branch": "e1/own",
+     "counterfactual": null,
+     "approach": null,
+     "p": null,
+     "child": null
+    }
+   ],
+   "cost": 0.0859,
+   "responses": 7,
+   "step_from": 0,
+   "known": [
+    "e1"
+   ],
+   "created": 1793845946.876207
+  },
+  {
+   "id": "n1",
+   "parent": "n0",
+   "depth": 1,
+   "option": {
+    "branch": "c1b2",
+    "counterfactual": "A proven nonvanishing result determines the exact dimension of R^{12}(M_{25}) to be 44, despite its socle pairing having rank 43.",
+    "approach": "Check whether completeness of the Faber\u2013Zagier relations has been proved specifically in genus 25 and degree 12. Such a result would establish dimension 44 without requiring completeness in all genera.",
+    "p": 0.0667
+   },
+   "status": "member",
+   "belief": {
+    "answer": "\\boxed{44}",
+    "confidence": 1.0
+   },
+   "judge": {
+    "claim": true,
+    "same_as": null,
+    "answer": "44",
+    "reason": "It claims an exact value of 44, which differs from e1's claim that the exact value is unknown with bounds 43 to 44.",
+    "experiment": true
+   },
+   "experiment": "e2",
+   "options": [
+    {
+     "branch": "c0b0",
+     "counterfactual": "No proven nonvanishing result establishes dimension 44 in this degree; the exact dimension remains unknown between 43 and 44.",
+     "approach": "Separate the verified dimension of the Faber\u2013Zagier quotient from the dimension of the actual Chow subring, and explain why the former only supplies an upper bound.",
+     "p": 0.4722,
+     "child": null
+    },
+    {
+     "branch": "c0b1",
+     "counterfactual": "No proven nonvanishing result establishes dimension 44 in this degree; the exact dimension remains unknown between 43 and 44.",
+     "approach": "Examine the claimed genus-specific nonvanishing result and require a precise theorem statement before using it to assert dimension 44.",
+     "p": 0.3306,
+     "child": null
+    },
+    {
+     "branch": "c0b2",
+     "counterfactual": "No proven nonvanishing result establishes dimension 44 in this degree; the exact dimension remains unknown between 43 and 44.",
+     "approach": "Explain the remaining one-dimensional ambiguity using the rank-43 socle pairing, identifying exactly what additional nonvanishing or relation would resolve it.",
+     "p": 0.1417,
+     "child": null
+    },
+    {
+     "branch": "c1b0",
+     "counterfactual": "An additional Chow relation beyond the Faber\u2013Zagier relations is known in genus 25 and degree 12, so the exact dimension is 43.",
+     "approach": "Identify the additional relation and verify that it is independent of the 33-dimensional space of Faber\u2013Zagier relations.",
+     "p": 0.02,
+     "child": null
+    },
+    {
+     "branch": "c1b1",
+     "counterfactual": "An additional Chow relation beyond the Faber\u2013Zagier relations is known in genus 25 and degree 12, so the exact dimension is 43.",
+     "approach": "Combine the additional relation with the existing upper bound of 44 and the pairing lower bound of 43 to conclude that the dimension is exactly 43.",
+     "p": 0.0178,
+     "child": null
+    },
+    {
+     "branch": "c1b2",
+     "counterfactual": "An additional Chow relation beyond the Faber\u2013Zagier relations is known in genus 25 and degree 12, so the exact dimension is 43.",
+     "approach": "Check that the additional relation holds in the rational Chow ring of the unpointed open moduli stack, rather than only in cohomology or on another moduli space.",
+     "p": 0.0067,
+     "child": null
+    },
+    {
+     "branch": "c2b0",
+     "counterfactual": "The computed rank 33 of the degree-12 Faber\u2013Zagier relations is incorrect because the calculation omits relations or implements their indexing incorrectly.",
+     "approach": "Audit the generating-series conventions, parity condition, and inequality selecting Faber\u2013Zagier relations, then reconstruct the relation matrix.",
+     "p": 0.005,
+     "child": null
+    },
+    {
+     "branch": "c2b1",
+     "counterfactual": "The computed rank 33 of the degree-12 Faber\u2013Zagier relations is incorrect because the calculation omits relations or implements their indexing incorrectly.",
+     "approach": "Independently generate the degree-12 relations, including products of lower-degree relations with kappa monomials, and compare their span with the existing matrix.",
+     "p": 0.0039,
+     "child": null
+    },
+    {
+     "branch": "c2b2",
+     "counterfactual": "The computed rank 33 of the degree-12 Faber\u2013Zagier relations is incorrect because the calculation omits relations or implements their indexing incorrectly.",
+     "approach": "Test the implementation in lower genera and degrees where the tautological dimensions are established before trusting its genus-25 output.",
+     "p": 0.0022,
+     "child": null
+    },
+    {
+     "branch": "own",
+     "counterfactual": null,
+     "approach": null,
+     "p": null,
+     "child": null
+    }
+   ],
+   "cost": 0.0182,
+   "responses": 2,
+   "step_from": 15,
+   "known": [
+    "e2"
+   ],
+   "created": 1793846060.610975
+  },
+  {
+   "id": "n2",
+   "parent": "n0",
+   "depth": 1,
+   "option": {
+    "branch": "c0b0",
+    "counterfactual": "An additional proven relation among degree-12 kappa monomials determines the exact dimension of R^{12}(M_{25}) to be 43.",
+    "approach": "Identify the additional relation and check that it is independent of the Faber\u2013Zagier relations. Together with the rank-43 intersection pairing, this would establish the exact dimension.",
+    "p": 0.2222
+   },
+   "status": "member",
+   "belief": {
+    "answer": "\\boxed{43}",
+    "confidence": 1.0
+   },
+   "judge": {
+    "claim": true,
+    "same_as": null,
+    "answer": "43",
+    "reason": "It claims the exact value is 43, which differs from both the bounds-and-unknown claim in e1 and the exact value 44 in e2.",
+    "experiment": true
+   },
+   "experiment": "e3",
+   "options": [
+    {
+     "branch": "c0b0",
+     "counterfactual": "No additional degree-12 relation independent of the Faber\u2013Zagier relations has been proved in the Chow ring of the moduli stack of genus-25 curves.",
+     "approach": "Explain that the established bounds are 43 and 44, and distinguish the dimension of the Faber\u2013Zagier quotient from the unknown dimension of the actual tautological ring.",
+     "p": 0.5967,
+     "child": null
+    },
+    {
+     "branch": "c0b1",
+     "counterfactual": "No additional degree-12 relation independent of the Faber\u2013Zagier relations has been proved in the Chow ring of the moduli stack of genus-25 curves.",
+     "approach": "Audit the proposed extra relation for a geometric proof of vanishing. A class annihilated by all complementary-degree pairings need not vanish in the Chow ring, so computing that kernel alone cannot establish dimension 43.",
+     "p": 0.2983,
+     "child": null
+    },
+    {
+     "branch": "c0b2",
+     "counterfactual": "No additional degree-12 relation independent of the Faber\u2013Zagier relations has been proved in the Chow ring of the moduli stack of genus-25 curves.",
+     "approach": "Present the two conditional conclusions: completeness of the Faber\u2013Zagier relations gives dimension 44, whereas vanishing of their quotient's one-dimensional pairing kernel gives dimension 43.",
+     "p": 0.0994,
+     "child": null
+    },
+    {
+     "branch": "c1b0",
+     "counterfactual": "The complementary-degree intersection pairing has rational rank 44, rather than 43.",
+     "approach": "Recompute the intersection matrix using exact rational arithmetic. Rank 44, combined with the Faber\u2013Zagier upper bound of 44, would determine the dimension without an additional relation.",
+     "p": 0.0011,
+     "child": "n9"
+    },
+    {
+     "branch": "c1b1",
+     "counterfactual": "The complementary-degree intersection pairing has rational rank 44, rather than 43.",
+     "approach": "Compute the pairing ranks modulo several other primes to test whether the previously observed rank 43 resulted from reduction at an exceptional prime.",
+     "p": 0.0007,
+     "child": null
+    },
+    {
+     "branch": "c1b2",
+     "counterfactual": "The complementary-degree intersection pairing has rational rank 44, rather than 43.",
+     "approach": "Check the formula converting products of kappa classes into descendant intersection numbers, especially its signs and combinatorial coefficients, before recomputing the rank.",
+     "p": 0.0004,
+     "child": "n5"
+    },
+    {
+     "branch": "c2b0",
+     "counterfactual": "The proven Faber\u2013Zagier relations already span a 34-dimensional space in degree 12, rather than a 33-dimensional space.",
+     "approach": "Recompute the relation matrix over the rational numbers. A rank of 34 would give an upper bound of 43, which the rank-43 intersection pairing would make exact.",
+     "p": 0.0013,
+     "child": null
+    },
+    {
+     "branch": "c2b1",
+     "counterfactual": "The proven Faber\u2013Zagier relations already span a 34-dimensional space in degree 12, rather than a 33-dimensional space.",
+     "approach": "Audit the enumeration of admissible Faber\u2013Zagier relations and all products of lower-degree relations with kappa monomials, looking for an omitted independent row.",
+     "p": 0.0013,
+     "child": null
+    },
+    {
+     "branch": "c2b2",
+     "counterfactual": "The proven Faber\u2013Zagier relations already span a 34-dimensional space in degree 12, rather than a 33-dimensional space.",
+     "approach": "Repeat the relation-rank calculation at several primes and compare pivot columns, testing whether the apparent rank deficit is an artifact of modular arithmetic.",
+     "p": 0.0007,
+     "child": null
+    },
+    {
+     "branch": "own",
+     "counterfactual": null,
+     "approach": null,
+     "p": null,
+     "child": null
+    }
+   ],
+   "cost": 0.0429,
+   "responses": 3,
+   "step_from": 15,
+   "known": [],
+   "created": 1793846060.614293
+  },
+  {
+   "id": "n3",
+   "parent": "n0",
+   "depth": 1,
+   "option": {
+    "branch": "c2b1",
+    "counterfactual": "At least one of the numerical claims underlying the bounds 43 and 44 is incorrect because the relation calculation or intersection-pairing calculation used an erroneous convention.",
+    "approach": "Rebuild the degree-11 versus degree-12 intersection matrix from the Hodge integral formula. Check the conversion from products of psi classes to products of kappa classes before recomputing its rank.",
+    "p": 0.0778
+   },
+   "status": "member",
+   "belief": {
+    "answer": "\\(\\boxed{43}\\)",
+    "confidence": 0.65
+   },
+   "judge": {
+    "claim": true,
+    "same_as": "e3",
+    "answer": "43",
+    "reason": "It claims the exact value is 43, which is the same claim as e3.",
+    "experiment": false
+   },
+   "experiment": null,
+   "options": [
+    {
+     "branch": "c0b0",
+     "counterfactual": "The Faber\u2013Zagier relations give an upper bound smaller than 44 for the degree-12 tautological ring of M_25.",
+     "approach": "Recompute the degree-12 relation space over the rational numbers, including products of all lower-degree relations. This would test whether the earlier finite-field calculation understated its rank.",
+     "p": 0.1429,
+     "child": null
+    },
+    {
+     "branch": "c0b1",
+     "counterfactual": "The Faber\u2013Zagier relations give an upper bound smaller than 44 for the degree-12 tautological ring of M_25.",
+     "approach": "Check the generating series and the genus-dependent conditions defining the Faber\u2013Zagier relations. A missed admissible relation could lower the upper bound.",
+     "p": 0.0857,
+     "child": null
+    },
+    {
+     "branch": "c0b2",
+     "counterfactual": "The Faber\u2013Zagier relations give an upper bound smaller than 44 for the degree-12 tautological ring of M_25.",
+     "approach": "Construct the relations using the alternative formulation involving the kappa operator and compare the resulting relation spaces. Agreement between independent constructions would resolve a convention error.",
+     "p": 0.0571,
+     "child": null
+    },
+    {
+     "branch": "c1b0",
+     "counterfactual": "An additional proven relation, beyond the Faber\u2013Zagier relations, determines the exact dimension of R^12(M_25).",
+     "approach": "Identify a precise theorem giving additional relations on the unpointed open moduli space and check its applicability in genus 25 and degree 12. An actual additional independent relation would make the lower bound 43 exact.",
+     "p": 0.2571,
+     "child": null
+    },
+    {
+     "branch": "c1b1",
+     "counterfactual": "An additional proven relation, beyond the Faber\u2013Zagier relations, determines the exact dimension of R^12(M_25).",
+     "approach": "Examine whether relations obtained by forgetting marked points enlarge the computed relation space. Compute their images in the one-dimensional gap between the known bounds.",
+     "p": 0.2,
+     "child": null
+    },
+    {
+     "branch": "c1b2",
+     "counterfactual": "An additional proven relation, beyond the Faber\u2013Zagier relations, determines the exact dimension of R^12(M_25).",
+     "approach": "Determine whether a known computation of the Chow ring or tautological ring in this genus settles the remaining pairing kernel. Distinguish a theorem about the actual Chow ring from a computation of a conjectural quotient.",
+     "p": 0.1143,
+     "child": null
+    },
+    {
+     "branch": "c2b0",
+     "counterfactual": "The rank-43 intersection calculation does not provide a valid lower bound for the Chow-theoretic tautological ring defined in the question.",
+     "approach": "Verify that integration against the two top Hodge classes defines a functional on the Chow ring of the open moduli space. Check the boundary-vanishing statement needed for independence from compactification extensions.",
+     "p": 0.0571,
+     "child": null
+    },
+    {
+     "branch": "c2b1",
+     "counterfactual": "The rank-43 intersection calculation does not provide a valid lower bound for the Chow-theoretic tautological ring defined in the question.",
+     "approach": "Derive the conversion between products of psi classes and products of kappa classes directly from forgetful maps. Compare its low-length cases with the formula used for the intersection matrix.",
+     "p": 0.05,
+     "child": null
+    },
+    {
+     "branch": "c2b2",
+     "counterfactual": "The rank-43 intersection calculation does not provide a valid lower bound for the Chow-theoretic tautological ring defined in the question.",
+     "approach": "Verify the Hodge integral formula and its normalization against individual top-degree kappa intersections. Then determine whether the resulting bilinear form factors through the ring specified in the question.",
+     "p": 0.0357,
+     "child": null
+    },
+    {
+     "branch": "own",
+     "counterfactual": null,
+     "approach": null,
+     "p": null,
+     "child": null
+    }
+   ],
+   "cost": 0.064,
+   "responses": 3,
+   "step_from": 15,
+   "known": [],
+   "created": 1793846088.250535
+  },
+  {
+   "id": "n4",
+   "parent": "n0",
+   "depth": 1,
+   "option": {
+    "branch": "c1b1",
+    "counterfactual": "A proven nonvanishing result determines the exact dimension of R^{12}(M_{25}) to be 44, despite its socle pairing having rank 43.",
+    "approach": "Construct an explicit representative of the extra class in the Faber\u2013Zagier quotient and investigate an independent geometric test for its nonvanishing. A successful test would raise the lower bound to 44.",
+    "p": 0.1167
+   },
+   "status": "member",
+   "belief": {
+    "answer": "\\(\\boxed{44}\\)",
+    "confidence": 1.0
+   },
+   "judge": {
+    "claim": true,
+    "same_as": "e2",
+    "answer": "44",
+    "reason": "It claims the exact value is 44, which is the same claim as e2.",
+    "experiment": false
+   },
+   "experiment": null,
+   "options": [
+    {
+     "branch": "c0b0",
+     "counterfactual": "There is no proven nonvanishing theorem for the extra degree-12 class; its nonvanishing in the Chow ring remains conjectural.",
+     "approach": "Distinguish the established bounds from the additional nonvanishing assumption, and explain why that assumption would give 44 without presenting it as a proved fact.",
+     "p": 0.5374,
+     "child": null
+    },
+    {
+     "branch": "c0b1",
+     "counterfactual": "There is no proven nonvanishing theorem for the extra degree-12 class; its nonvanishing in the Chow ring remains conjectural.",
+     "approach": "Complete the exact linear-algebra calculation to exhibit the extra class formally, while emphasizing that a nonzero class modulo the known relations need not remain nonzero in the Chow ring.",
+     "p": 0.2931,
+     "child": null
+    },
+    {
+     "branch": "c0b2",
+     "counterfactual": "There is no proven nonvanishing theorem for the extra degree-12 class; its nonvanishing in the Chow ring remains conjectural.",
+     "approach": "Investigate what an independent geometric nonvanishing test would require, including why vanishing against every complementary tautological class does not prove that the class itself vanishes.",
+     "p": 0.1466,
+     "child": null
+    },
+    {
+     "branch": "c1b0",
+     "counterfactual": "The claimed 44-dimensional quotient by the Faber\u2013Zagier relations is incorrect because the relation calculation omitted additional independent relations.",
+     "approach": "Audit the generation of relations in every degree up to 12, including products of lower-degree relations, and recompute their rank over the rational numbers.",
+     "p": 0.0086,
+     "child": null
+    },
+    {
+     "branch": "c1b1",
+     "counterfactual": "The claimed 44-dimensional quotient by the Faber\u2013Zagier relations is incorrect because the relation calculation omitted additional independent relations.",
+     "approach": "Check the indexing, parity conditions, and treatment of the constant kappa class in the Faber\u2013Zagier generating series to locate a possible missing relation.",
+     "p": 0.0052,
+     "child": null
+    },
+    {
+     "branch": "c1b2",
+     "counterfactual": "The claimed 44-dimensional quotient by the Faber\u2013Zagier relations is incorrect because the relation calculation omitted additional independent relations.",
+     "approach": "Determine whether any additional relation comes from a theorem beyond the Faber\u2013Zagier relations, and test whether it reduces the upper bound to 43.",
+     "p": 0.0034,
+     "child": null
+    },
+    {
+     "branch": "c2b0",
+     "counterfactual": "The socle pairing in degrees 11 and 12 has rank 44 rather than 43, so the usual intersection pairing already proves the exact dimension.",
+     "approach": "Finish computing the intersection matrix over the rational numbers and determine its exact rank, rather than relying on reduction modulo a prime.",
+     "p": 0.0032,
+     "child": null
+    },
+    {
+     "branch": "c2b1",
+     "counterfactual": "The socle pairing in degrees 11 and 12 has rank 44 rather than 43, so the usual intersection pairing already proves the exact dimension.",
+     "approach": "Audit the conversion between products of kappa classes and descendant intersection numbers, checking the combinatorial signs and normalization.",
+     "p": 0.0017,
+     "child": null
+    },
+    {
+     "branch": "c2b2",
+     "counterfactual": "The socle pairing in degrees 11 and 12 has rank 44 rather than 43, so the usual intersection pairing already proves the exact dimension.",
+     "approach": "Search for a nonzero 44-by-44 minor of the intersection matrix; such a minor, together with the 44-dimensional upper bound, would establish the answer directly.",
+     "p": 0.0009,
+     "child": null
+    },
+    {
+     "branch": "own",
+     "counterfactual": null,
+     "approach": null,
+     "p": null,
+     "child": null
+    }
+   ],
+   "cost": 0.0418,
+   "responses": 4,
+   "step_from": 15,
+   "known": [],
+   "created": 1793846109.477843
+  },
+  {
+   "id": "n5",
+   "parent": "n2",
+   "depth": 2,
+   "option": {
+    "branch": "c1b2",
+    "counterfactual": "The complementary-degree intersection pairing has rational rank 44, rather than 43.",
+    "approach": "Check the formula converting products of kappa classes into descendant intersection numbers, especially its signs and combinatorial coefficients, before recomputing the rank.",
+    "p": 0.0004
+   },
+   "status": "member",
+   "belief": {
+    "answer": "\\boxed{44}",
+    "confidence": 0.7
+   },
+   "judge": {
+    "claim": true,
+    "same_as": "e2",
+    "answer": "44",
+    "reason": "It claims the exact value is 44, which is the same claim as e2.",
+    "experiment": false
+   },
+   "experiment": null,
+   "options": [
+    {
+     "branch": "c0b0",
+     "counterfactual": "There is a proven degree-12 relation on the Chow ring of M_25 that is independent of the Faber\u2013Zagier relations.",
+     "approach": "Express the additional relation in the basis of degree-12 kappa monomials and check that adjoining it increases the relation-space rank from 33 to 34. Combine the resulting upper bound of 43 with the rank-43 intersection pairing.",
+     "p": 0.3964,
+     "child": null
+    },
+    {
+     "branch": "c0b1",
+     "counterfactual": "There is a proven degree-12 relation on the Chow ring of M_25 that is independent of the Faber\u2013Zagier relations.",
+     "approach": "Examine the theorem establishing the additional relation, checking that it concerns rational equivalence on the open moduli stack rather than only cohomology or its compactification. If its independence is established there, use it to conclude that the dimension is 43.",
+     "p": 0.2162,
+     "child": null
+    },
+    {
+     "branch": "c0b2",
+     "counterfactual": "There is a proven degree-12 relation on the Chow ring of M_25 that is independent of the Faber\u2013Zagier relations.",
+     "approach": "Reduce the additional relation modulo the Faber\u2013Zagier relations and compare its image with the one-dimensional kernel of the induced intersection pairing. A nonzero image would eliminate that kernel and establish dimension 43.",
+     "p": 0.1081,
+     "child": null
+    },
+    {
+     "branch": "c1b0",
+     "counterfactual": "The complementary-degree intersection pairing has rational rank 44; the computations yielding rank 43 use an incorrect intersection formula.",
+     "approach": "Derive the conversion from products of kappa classes to descendant intersections directly from forgetful pushforwards, checking the signs and multiplicities on products of two, three, and four classes. Rebuild the pairing matrix using the corrected conversion.",
+     "p": 0.0041,
+     "child": null
+    },
+    {
+     "branch": "c1b1",
+     "counterfactual": "The complementary-degree intersection pairing has rational rank 44; the computations yielding rank 43 use an incorrect intersection formula.",
+     "approach": "Compute the pairing independently using a recursion for Hodge integrals rather than the existing set-partition formula. Exhibit a nonzero 44-by-44 minor to certify the stronger lower bound.",
+     "p": 0.0032,
+     "child": null
+    },
+    {
+     "branch": "c1b2",
+     "counterfactual": "The complementary-degree intersection pairing has rational rank 44; the computations yielding rank 43 use an incorrect intersection formula.",
+     "approach": "Check the normalization and genus dependence of the descendant intersection formula against known top-degree kappa evaluations. Use the corrected matrix together with the Faber\u2013Zagier upper bound to establish dimension 44.",
+     "p": 0.0018,
+     "child": "n8"
+    },
+    {
+     "branch": "c2b0",
+     "counterfactual": "The intersection pairing has rank 43, but an established nonvanishing result proves that its extra kernel class survives in the Chow ring, making the dimension 44.",
+     "approach": "Identify a representative of the extra kernel class modulo the Faber\u2013Zagier relations and check that it satisfies the hypotheses of the nonvanishing theorem. Combine its survival with the 43 classes detected by the pairing.",
+     "p": 0.1351,
+     "child": null
+    },
+    {
+     "branch": "c2b1",
+     "counterfactual": "The intersection pairing has rank 43, but an established nonvanishing result proves that its extra kernel class survives in the Chow ring, making the dimension 44.",
+     "approach": "Look for a geometric pullback or another Chow-theoretic invariant that detects the extra class even though complementary tautological intersections do not. A nonzero detection would supply the missing lower bound of 44.",
+     "p": 0.0811,
+     "child": null
+    },
+    {
+     "branch": "c2b2",
+     "counterfactual": "The intersection pairing has rank 43, but an established nonvanishing result proves that its extra kernel class survives in the Chow ring, making the dimension 44.",
+     "approach": "Check whether a proven presentation of the tautological ring establishes completeness of the Faber\u2013Zagier relations in this particular genus and degree. If so, compute the dimension directly as 77 minus 33.",
+     "p": 0.0541,
+     "child": null
+    },
+    {
+     "branch": "own",
+     "counterfactual": null,
+     "approach": null,
+     "p": null,
+     "child": null
+    }
+   ],
+   "cost": 0.0449,
+   "responses": 2,
+   "step_from": 22,
+   "known": [],
+   "created": 1793846154.562484
+  },
+  {
+   "id": "n6",
+   "parent": "n0",
+   "depth": 1,
+   "option": {
+    "branch": "c0b1",
+    "counterfactual": "An additional proven relation among degree-12 kappa monomials determines the exact dimension of R^{12}(M_{25}) to be 43.",
+    "approach": "Examine whether known relations on moduli spaces with marked points yield an additional independent relation after forgetting the markings. Such a relation could reduce the upper bound from 44 to 43.",
+    "p": 0.1333
+   },
+   "status": "member",
+   "belief": {
+    "answer": "\\boxed{43}",
+    "confidence": 1.0
+   },
+   "judge": {
+    "claim": true,
+    "same_as": "e3",
+    "answer": "43",
+    "reason": "It claims the exact dimension is 43, which is the same claim as e3.",
+    "experiment": false
+   },
+   "experiment": null,
+   "options": [
+    {
+     "branch": "c0b0",
+     "counterfactual": "There is no established additional Chow relation reducing the degree-12 Faber\u2013Zagier quotient from dimension 44 to dimension 43; the exact dimension remains unresolved.",
+     "approach": "Audit the claimed extra relation and distinguish a proven relation from a vector in the kernel of the intersection pairing. If no proof is available, report the bounds 43 and 44 rather than an exact dimension.",
+     "p": 0.5467,
+     "child": null
+    },
+    {
+     "branch": "c0b1",
+     "counterfactual": "There is no established additional Chow relation reducing the degree-12 Faber\u2013Zagier quotient from dimension 44 to dimension 43; the exact dimension remains unresolved.",
+     "approach": "Explain that subtracting one additional relation in a computation merely assumes its existence. Retract the resulting exact value unless the relation can be independently justified.",
+     "p": 0.2103,
+     "child": null
+    },
+    {
+     "branch": "c0b2",
+     "counterfactual": "There is no established additional Chow relation reducing the degree-12 Faber\u2013Zagier quotient from dimension 44 to dimension 43; the exact dimension remains unresolved.",
+     "approach": "Examine the proposed construction using marked curves, focusing on whether forgetting the markings actually produces a relation independent of the Faber\u2013Zagier relations.",
+     "p": 0.0841,
+     "child": "n7"
+    },
+    {
+     "branch": "c1b0",
+     "counterfactual": "The computed rank 33 of the degree-12 Faber\u2013Zagier relation space is incorrect, so its quotient need not have dimension 44.",
+     "approach": "Recompute the relation matrix over the rational numbers, checking the genus, parity condition, and all products of lower-degree relations.",
+     "p": 0.0093,
+     "child": null
+    },
+    {
+     "branch": "c1b1",
+     "counterfactual": "The computed rank 33 of the degree-12 Faber\u2013Zagier relation space is incorrect, so its quotient need not have dimension 44.",
+     "approach": "Validate the implementation in smaller genera where the tautological ring dimensions are established, then isolate any discrepancy affecting genus 25.",
+     "p": 0.0056,
+     "child": null
+    },
+    {
+     "branch": "c1b2",
+     "counterfactual": "The computed rank 33 of the degree-12 Faber\u2013Zagier relation space is incorrect, so its quotient need not have dimension 44.",
+     "approach": "Construct the same relation space using a different formulation of the Faber\u2013Zagier relations and compare the resulting ranks.",
+     "p": 0.0037,
+     "child": null
+    },
+    {
+     "branch": "c2b0",
+     "counterfactual": "An asserted additional relation vanishes in cohomology or under every socle pairing but has not been proved to vanish in the rational Chow ring specified in the problem.",
+     "approach": "Check exactly where the proposed relation vanishes. Explain why numerical or cohomological vanishing alone does not establish rational equivalence.",
+     "p": 0.0701,
+     "child": null
+    },
+    {
+     "branch": "c2b1",
+     "counterfactual": "An asserted additional relation vanishes in cohomology or under every socle pairing but has not been proved to vanish in the rational Chow ring specified in the problem.",
+     "approach": "Investigate whether the construction on a moduli space with marked points is a Chow-theoretic identity whose proper pushforward gives the required relation.",
+     "p": 0.0421,
+     "child": null
+    },
+    {
+     "branch": "c2b2",
+     "counterfactual": "An asserted additional relation vanishes in cohomology or under every socle pairing but has not been proved to vanish in the rational Chow ring specified in the problem.",
+     "approach": "Separate the dimension of the Gorenstein quotient detected by the socle pairing from the dimension of the actual Chow tautological ring, retaining only conclusions justified for the latter.",
+     "p": 0.028,
+     "child": null
+    },
+    {
+     "branch": "own",
+     "counterfactual": null,
+     "approach": null,
+     "p": null,
+     "child": null
+    }
+   ],
+   "cost": 0.0241,
+   "responses": 3,
+   "step_from": 15,
+   "known": [],
+   "created": 1793846162.1652532
+  },
+  {
+   "id": "n7",
+   "parent": "n6",
+   "depth": 2,
+   "option": {
+    "branch": "c0b2",
+    "counterfactual": "There is no established additional Chow relation reducing the degree-12 Faber\u2013Zagier quotient from dimension 44 to dimension 43; the exact dimension remains unresolved.",
+    "approach": "Examine the proposed construction using marked curves, focusing on whether forgetting the markings actually produces a relation independent of the Faber\u2013Zagier relations.",
+    "p": 0.0841
+   },
+   "status": "member",
+   "belief": {
+    "answer": "The exact dimension is not currently known; the established bounds are \\(\\boxed{43\\leq \\dim_{\\mathbb Q}R^{12}(\\mathcal M_{25})\\leq44}\\).",
+    "confidence": 0.99
+   },
+   "judge": {
+    "claim": true,
+    "same_as": "e1",
+    "answer": "The exact dimension is not currently known; the established bounds are \\(\\boxed{43\\leq \\dim_{\\mathbb Q}R^{12}(\\mathcal M_{25})\\leq44}\\).",
+    "reason": "It claims explicit bounds and that the exact value remains unresolved, which is the same claim as e1.",
+    "experiment": false
+   },
+   "experiment": null,
+   "options": [
+    {
+     "branch": "c0b0",
+     "counterfactual": "An additional proven Chow relation, independent of the Faber\u2013Zagier relations, exists in degree 12 on \\(\\mathcal M_{25}\\), making the dimension exactly 43.",
+     "approach": "Examine the precise additional relation and its proof, then check its independence from the known degree-12 relations. Combine the resulting upper bound of 43 with the socle-pairing lower bound of 43.",
+     "p": 0.2453,
+     "child": null
+    },
+    {
+     "branch": "c0b1",
+     "counterfactual": "An additional proven Chow relation, independent of the Faber\u2013Zagier relations, exists in degree 12 on \\(\\mathcal M_{25}\\), making the dimension exactly 43.",
+     "approach": "If the additional relation comes from marked curves, explicitly compute its pushforward under the forgetful morphism. Reduce that pushforward modulo the Faber\u2013Zagier relation space to verify that it genuinely adds a relation.",
+     "p": 0.1813,
+     "child": null
+    },
+    {
+     "branch": "c0b2",
+     "counterfactual": "An additional proven Chow relation, independent of the Faber\u2013Zagier relations, exists in degree 12 on \\(\\mathcal M_{25}\\), making the dimension exactly 43.",
+     "approach": "Check the scope of the theorem supplying the relation, especially whether it establishes vanishing in the rational Chow ring rather than only numerical equivalence. Use the exact dimension 43 only if the theorem applies to the ring in the question.",
+     "p": 0.1067,
+     "child": null
+    },
+    {
+     "branch": "c1b0",
+     "counterfactual": "The degree-12 Faber\u2013Zagier quotient maps injectively to the Chow ring of \\(\\mathcal M_{25}\\), so the dimension is known to be 44.",
+     "approach": "Identify a completeness theorem for the Faber\u2013Zagier relations that applies specifically to genus 25 and degree 12. Verify its hypotheses and combine it with the quotient dimension 44.",
+     "p": 0.112,
+     "child": null
+    },
+    {
+     "branch": "c1b1",
+     "counterfactual": "The degree-12 Faber\u2013Zagier quotient maps injectively to the Chow ring of \\(\\mathcal M_{25}\\), so the dimension is known to be 44.",
+     "approach": "Look for an invariant that detects the extra class annihilated by the socle pairing. A nonzero value on that class would rule out the only possible additional relation.",
+     "p": 0.0933,
+     "child": null
+    },
+    {
+     "branch": "c1b2",
+     "counterfactual": "The degree-12 Faber\u2013Zagier quotient maps injectively to the Chow ring of \\(\\mathcal M_{25}\\), so the dimension is known to be 44.",
+     "approach": "Examine whether a known presentation of the relevant Chow subring proves that all 44 quotient classes remain independent. Distinguish such a presentation from a conjectural presentation or a calculation of formal relations.",
+     "p": 0.0613,
+     "child": null
+    },
+    {
+     "branch": "c2b0",
+     "counterfactual": "The calculation of the Faber\u2013Zagier relation space is incorrect, and those relations already reduce the degree-12 quotient to dimension 43.",
+     "approach": "Recompute the relation space using an independent formulation of the Faber\u2013Zagier relations. Check the genus inequality, parity condition, and all products of lower-degree relations.",
+     "p": 0.088,
+     "child": null
+    },
+    {
+     "branch": "c2b1",
+     "counterfactual": "The calculation of the Faber\u2013Zagier relation space is incorrect, and those relations already reduce the degree-12 quotient to dimension 43.",
+     "approach": "Audit the formal-series implementation, particularly the constant kappa class and the indexing of partition coefficients. Correct any discrepancy and recompute the degree-12 rank.",
+     "p": 0.068,
+     "child": null
+    },
+    {
+     "branch": "c2b2",
+     "counterfactual": "The calculation of the Faber\u2013Zagier relation space is incorrect, and those relations already reduce the degree-12 quotient to dimension 43.",
+     "approach": "Compute an exact rational row reduction and compare its relation generators with the existing modular calculation. If the corrected relation rank is 34, combine it with the pairing lower bound to establish dimension 43.",
+     "p": 0.044,
+     "child": null
+    },
+    {
+     "branch": "own",
+     "counterfactual": null,
+     "approach": null,
+     "p": null,
+     "child": null
+    }
+   ],
+   "cost": 0.0259,
+   "responses": 2,
+   "step_from": 22,
+   "known": [],
+   "created": 1793846194.130153
+  },
+  {
+   "id": "n8",
+   "parent": "n5",
+   "depth": 3,
+   "option": {
+    "branch": "c1b2",
+    "counterfactual": "The complementary-degree intersection pairing has rational rank 44; the computations yielding rank 43 use an incorrect intersection formula.",
+    "approach": "Check the normalization and genus dependence of the descendant intersection formula against known top-degree kappa evaluations. Use the corrected matrix together with the Faber\u2013Zagier upper bound to establish dimension 44.",
+    "p": 0.0018
+   },
+   "status": "member",
+   "belief": {
+    "answer": "\\boxed{44}",
+    "confidence": 0.99
+   },
+   "judge": {
+    "claim": true,
+    "same_as": "e2",
+    "answer": "44",
+    "reason": "It claims the exact value is 44, which is the same claim as e2.",
+    "experiment": false
+   },
+   "experiment": null,
+   "options": [
+    {
+     "branch": "c0b0",
+     "counterfactual": "The complementary-degree intersection pairing has rational rank 43, not 44, so it does not establish that the requested dimension is 44.",
+     "approach": "Independently reconstruct the pairing from descendant intersection numbers and compute its rank over the rational numbers. Check the conversion from descendant integrals to products of kappa classes explicitly in small cases.",
+     "p": 0.4848,
+     "child": null
+    },
+    {
+     "branch": "c0b1",
+     "counterfactual": "The complementary-degree intersection pairing has rational rank 43, not 44, so it does not establish that the requested dimension is 44.",
+     "approach": "Find an exact certificate for the rank: a nonzero 43-by-43 minor together with enough rational kernel vectors to establish the matching upper bound.",
+     "p": 0.2909,
+     "child": null
+    },
+    {
+     "branch": "c0b2",
+     "counterfactual": "The complementary-degree intersection pairing has rational rank 43, not 44, so it does not establish that the requested dimension is 44.",
+     "approach": "Separate what the pairing proves from what the Faber\u2013Zagier relations prove. If no additional geometric information resolves the gap, report the bounds 43 and 44 rather than claim an exact dimension.",
+     "p": 0.1939,
+     "child": null
+    },
+    {
+     "branch": "c1b0",
+     "counterfactual": "An additional proven Chow relation, independent of the Faber\u2013Zagier relations, makes the requested dimension 43 rather than 44.",
+     "approach": "Identify the additional relation and its geometric justification, then express it in the degree-12 kappa-monomial basis. Check that adjoining it increases the relation-space rank from 33 to 34.",
+     "p": 0.0121,
+     "child": null
+    },
+    {
+     "branch": "c1b1",
+     "counterfactual": "An additional proven Chow relation, independent of the Faber\u2013Zagier relations, makes the requested dimension 43 rather than 44.",
+     "approach": "Reduce the additional relation modulo the Faber\u2013Zagier relations and verify that its remainder is nonzero. Combine the resulting upper bound of 43 with a certified rank-43 pairing.",
+     "p": 0.0085,
+     "child": null
+    },
+    {
+     "branch": "c1b2",
+     "counterfactual": "An additional proven Chow relation, independent of the Faber\u2013Zagier relations, makes the requested dimension 43 rather than 44.",
+     "approach": "Determine whether the asserted additional relation holds in rational Chow rather than only numerically or in cohomology. Use it to determine the requested dimension only if its Chow-theoretic vanishing is established.",
+     "p": 0.0036,
+     "child": null
+    },
+    {
+     "branch": "c2b0",
+     "counterfactual": "The degree-12 Faber\u2013Zagier relation space does not have rank 33, so the claimed upper bound of 44 is incorrect.",
+     "approach": "Regenerate all relevant Faber\u2013Zagier relations, including products of lower-degree relations, and compute their rank over the rational numbers.",
+     "p": 0.0027,
+     "child": null
+    },
+    {
+     "branch": "c2b1",
+     "counterfactual": "The degree-12 Faber\u2013Zagier relation space does not have rank 33, so the claimed upper bound of 44 is incorrect.",
+     "approach": "Audit the genus-dependent inequality, parity condition, and substitution for kappa zero in the relation generator. Correct any discrepancy before rebuilding the degree-12 relation matrix.",
+     "p": 0.0021,
+     "child": null
+    },
+    {
+     "branch": "c2b2",
+     "counterfactual": "The degree-12 Faber\u2013Zagier relation space does not have rank 33, so the claimed upper bound of 44 is incorrect.",
+     "approach": "Construct the relation matrix using an independent formulation of the Faber\u2013Zagier series and compare its row space with the existing matrix. Use the verified rank to revise the dimension bound.",
+     "p": 0.0012,
+     "child": null
+    },
+    {
+     "branch": "own",
+     "counterfactual": null,
+     "approach": null,
+     "p": null,
+     "child": null
+    }
+   ],
+   "cost": 0.0313,
+   "responses": 1,
+   "step_from": 27,
+   "known": [],
+   "created": 1793846212.365109
+  },
+  {
+   "id": "n9",
+   "parent": "n2",
+   "depth": 2,
+   "option": {
+    "branch": "c1b0",
+    "counterfactual": "The complementary-degree intersection pairing has rational rank 44, rather than 43.",
+    "approach": "Recompute the intersection matrix using exact rational arithmetic. Rank 44, combined with the Faber\u2013Zagier upper bound of 44, would determine the dimension without an additional relation.",
+    "p": 0.0011
+   },
+   "status": "member",
+   "belief": {
+    "answer": "\\boxed{44}",
+    "confidence": 0.5
+   },
+   "judge": {
+    "claim": true,
+    "same_as": "e2",
+    "answer": "44",
+    "reason": "It claims the exact value is 44, which is the same claim as e2.",
+    "experiment": false
+   },
+   "experiment": null,
+   "options": [
+    {
+     "branch": "c0b0",
+     "counterfactual": "An additional proven Chow relation, independent of the Faber\u2013Zagier relations, makes the dimension of R^{12}(M_{25}) equal to 43.",
+     "approach": "Identify the precise additional relation and its geometric justification, then reduce its coefficient vector modulo the Faber\u2013Zagier relation space. Independence would give an upper bound of 43, matching the intersection-pairing lower bound.",
+     "p": 0.2973,
+     "child": null
+    },
+    {
+     "branch": "c0b1",
+     "counterfactual": "An additional proven Chow relation, independent of the Faber\u2013Zagier relations, makes the dimension of R^{12}(M_{25}) equal to 43.",
+     "approach": "Investigate whether relations obtained by forgetting marked points provide the additional relation. Any candidate must be justified in the Chow ring, rather than merely annihilated by intersection numbers.",
+     "p": 0.1622,
+     "child": null
+    },
+    {
+     "branch": "c0b2",
+     "counterfactual": "An additional proven Chow relation, independent of the Faber\u2013Zagier relations, makes the dimension of R^{12}(M_{25}) equal to 43.",
+     "approach": "Seek an established presentation of the degree-12 tautological ring that includes the additional relation. Verify that its hypotheses concern the unpointed smooth moduli stack and rational Chow groups.",
+     "p": 0.0811,
+     "child": null
+    },
+    {
+     "branch": "c1b0",
+     "counterfactual": "The dimension of R^{12}(M_{25}) is known to be 44, despite the complementary tautological intersection pairing having rank 43.",
+     "approach": "Look for a geometric invariant that detects the one-dimensional kernel of the tautological pairing. Such an invariant could establish a forty-fourth independent class without requiring that pairing to be nondegenerate.",
+     "p": 0.2027,
+     "child": null
+    },
+    {
+     "branch": "c1b1",
+     "counterfactual": "The dimension of R^{12}(M_{25}) is known to be 44, despite the complementary tautological intersection pairing having rank 43.",
+     "approach": "Investigate whether completeness of the Faber\u2013Zagier relations has been proved specifically in genus 25 and degree 12. That restricted completeness result would establish dimension 44 without requiring a presentation in every degree.",
+     "p": 0.1577,
+     "child": null
+    },
+    {
+     "branch": "c1b2",
+     "counterfactual": "The dimension of R^{12}(M_{25}) is known to be 44, despite the complementary tautological intersection pairing having rank 43.",
+     "approach": "Examine whether restriction to a suitable family of smooth genus-25 curves detects the extra class. A nonzero pullback of the pairing-kernel generator would show that it does not vanish in the Chow ring.",
+     "p": 0.0901,
+     "child": null
+    },
+    {
+     "branch": "c2b0",
+     "counterfactual": "The complementary-degree intersection pairing actually has rational rank 44; the rank-43 computation uses an incorrect formula or implementation.",
+     "approach": "Derive the kappa intersection formula independently from the pushforward identities for marked-point psi classes. Rebuild the matrix using that derivation and compare individual entries with the existing computation.",
+     "p": 0.0045,
+     "child": null
+    },
+    {
+     "branch": "c2b1",
+     "counterfactual": "The complementary-degree intersection pairing actually has rational rank 44; the rank-43 computation uses an incorrect formula or implementation.",
+     "approach": "Construct an explicit nonzero 44-by-44 minor using independently computed intersection numbers. This would certify the lower bound of 44 and, together with the Faber\u2013Zagier upper bound, determine the dimension.",
+     "p": 0.0027,
+     "child": null
+    },
+    {
+     "branch": "c2b2",
+     "counterfactual": "The complementary-degree intersection pairing actually has rational rank 44; the rank-43 computation uses an incorrect formula or implementation.",
+     "approach": "Audit the genus, complementary degree, double-factorial indices, and set-partition multiplicities in the intersection calculation. Correct any discrepancy before recomputing the exact rational rank.",
+     "p": 0.0018,
+     "child": null
+    },
+    {
+     "branch": "own",
+     "counterfactual": null,
+     "approach": null,
+     "p": null,
+     "child": null
+    }
+   ],
+   "cost": 0.034,
+   "responses": 2,
+   "step_from": 22,
+   "known": [],
+   "created": 1793846229.059155
+  }
+ ],
+ "members": [
+  "n0",
+  "n1",
+  "n2",
+  "n4",
+  "n3",
+  "n6",
+  "n5",
+  "n7",
+  "n8",
+  "n9"
+ ],
+ "experiments": [
+  {
+   "id": "e1",
+   "node": "n0",
+   "answer": "The exact value is currently unknown; the established bounds are \\(\\boxed{43\\leq \\dim_{\\mathbb Q}R^{12}(\\mathcal M_{25})\\leq44}\\).",
+   "status": "ended",
+   "cost": 0.4002,
+   "key": "archive/20261104-213226-p12/e1",
+   "swarm": "20261104-213226-p12-e1",
+   "halves": "Proving the stated bounds takes two halves: \\(R^{12}(\\mathcal M_{25})\\) contains 43 classes linearly independent over \\(\\mathbb Q\\), and \\(R^{12}(\\mathcal M_{25})\\) is spanned over \\(\\mathbb Q\\) by at most 44 classes.",
+   "report": {
+    "status": "PROVED",
+    "text": "## Established conclusion\n\nThe team proved both bounds\n\\[\n\\boxed{43\\leq \\dim_{\\mathbb Q}R^{12}(\\mathcal M_{25})\\leq44}.\n\\]\nThey did **not** determine whether the dimension is \\(43\\) or \\(44\\). Nothing they found contradicts the answer they were given. Their computations use established geometric theorems as inputs; Python checks the resulting finite algebra and rank certificates, not those theorems themselves.\n\n## Lower bound: a Hodge-integral pairing\n\nThe construction pairs degree \\(12\\) and degree \\(11\\) tautological classes using a functional on degree \\(23=g-2\\).\n\nOn \\(\\overline{\\mathcal M}_{25}\\), let \\(\\lambda_i\\) be the Hodge-bundle Chern classes. The class \\(\\lambda_{25}\\lambda_{24}\\) restricts to zero on the boundary:\n\n* On the nonseparating boundary, the pulled-back Hodge bundle has a trivial quotient, so its top Chern class vanishes.\n* On a separating boundary of genera \\(h\\) and \\(25-h\\), the Hodge bundle splits. Each term in the restriction contains either \\(\\lambda_h^2\\) or \\(\\lambda_{25-h}^2\\), which vanish by Mumford\u2019s relation.\n\nConsequently, localization and the projection formula show that integrating a compactification lift against this class gives a well-defined functional on \\(\\mathrm{CH}^{23}(\\mathcal M_{25};\\mathbb Q)\\). Its normalization is legitimate because\n\\[\nI_{25}:=\\int_{\\overline{\\mathcal M}_{25}}\n \\kappa_{23}\\lambda_{25}\\lambda_{24}\n =\\frac{24!\\,|B_{50}|}{2^{25}50!}\\ne0.\n\\]\n\nThe proven Faber intersection-number theorem, combined with the permutation formula for pushing forward products of \\(\\psi\\)-classes and its set-partition inversion, gives, for positive \\(d_i\\) summing to \\(23\\),\n\\[\n\\frac{\\int\\kappa_{d_1}\\cdots\\kappa_{d_n}\n                 \\lambda_{25}\\lambda_{24}}{I_{25}}\n=\n\\frac{49!!}{49!}\n\\sum_{\\mathcal P}\n(-1)^{n-|\\mathcal P|}\n\\frac{(47+|\\mathcal P|)!}\n{\\prod_{B\\in\\mathcal P}(2\\sum_{i\\in B}d_i+1)!!}.\n\\]\nHere \\(\\mathcal P\\) ranges over labeled set partitions. An important checked detail is that the inversion coefficient is just \\((-1)^{n-|\\mathcal P|}\\), with **no additional block factorials**.\n\nThere are \\(p(12)=77\\) degree-\\(12\\) monomials and \\(p(11)=56\\) degree-\\(11\\) monomials. The team formed their \\(77\\times56\\) pairing matrix using this formula. Recursive enumeration of the block containing the first label, with binomial multiplicities for repeated indices, makes the computation small.\n\nTwo independent modular computations found rank \\(43\\):\n\n* Modulo \\(1{,}000{,}003\\), agent_2 obtained a nonzero \\(43\\times43\\) minor with determinant \\(221905\\). In that implementation\u2019s reverse-lexicographic partition order, the zero-based row indices are \\(0,\\ldots,40,43,44\\), and column indices \\(0,\\ldots,41,45\\).\n* Modulo \\(1{,}000{,}000{,}007\\), agent_3 obtained a minor with determinant \\(125270649\\).\n\nAll relevant denominators are invertible modulo these primes. Agent_1 reran the first computation; agents_2 and _3 also compared all \\(4312\\) matrix entries modulo the first prime, obtaining agreement after reordering and accounting for a common normalization scalar \\(302036\\).\n\nA nonzero modular minor proves rational pairing rank **at least** \\(43\\). Every relation in \\(R^{12}\\) annihilates this pairing, so the dimension is at least \\(43\\).\n\n## Upper bound: Chow-valued Faber\u2013Zagier relations\n\nSet\n\\[\nA(T)=\\sum_{n\\ge0}\\frac{(6n)!}{(3n)!(2n)!}T^n,\\qquad\nB(T)=\\sum_{n\\ge0}\\frac{(6n)!}{(3n)!(2n)!}\n \\frac{6n+1}{6n-1}T^n,\n\\]\nand \\(C_{3i}=T^iA,\\ C_{3i+1}=T^iB\\). Define\n\\[\n\\{F\\}=\\sum_n[T^n]F\\,K_nT^n,\n\\qquad\n\\mathsf K(K_{e_1}\\cdots K_{e_m})\n=\\sum_{\\tau\\in S_m}\\prod_{\\text{cycles }c}\n \\kappa_{\\sum_{i\\in c}e_i},\n\\]\nwith \\(\\kappa_0=48\\).\n\nThe Chow-valid Faber\u2013Zagier theorem supplies\n\\[\n[T^r]\\mathsf K\\!\\left(\n e^{\\{1-A\\}}\\prod_{s\\in\\sigma}\\{C_s\\}\n\\right)=0\n\\]\nwhen no part of \\(\\sigma\\) is \\(2\\bmod3\\),\n\\[\n3r\\ge26+|\\sigma|,\n\\qquad 25\\equiv r+|\\sigma|+1\\pmod2.\n\\]\nThe sign in the exponent is specifically \\(+\\{1-A\\}\\).\n\nTaking all admissible relations through degree \\(12\\), and multiplying by all monomials needed to reach degree \\(12\\), produces \\(59\\) rows in the \\(77\\)-monomial basis. The contributions from degrees \\(9,10,11,12\\) are respectively \\(3,10,13,33\\).\n\nAgent_1 implemented the auxiliary-\\(K\\) permutation formula directly. Agent_4 independently used a cycle-index expansion, with exponential factor\n\\[\n\\exp\\!\\left(-\\sum_{n\\ge1}\\kappa_n[T^n]\\log A\\,T^n\\right).\n\\]\nTheir full rational \\(59\\times77\\) matrices agreed entry by entry. Modular elimination gave rank \\(33\\); agent_4 additionally checked **exact rational rank \\(33\\)** by fraction-free elimination. Thus there are \\(33\\) independent genuine Chow relations, proving\n\\[\n\\dim R^{12}\\le77-33=44.\n\\]\n\n## Workspace and reproducibility\n\nThe reported executable files and results are:\n\n* `workspace/agent1_fz.py` and `workspace/agent1_fz_certificate.json`: upper matrix, labels, pivots, and modular verification.\n* `workspace/agent4_fz_check.py` and `workspace/agent4_fz_data.json`: independent upper construction and exact rational rank.\n* `workspace/lower_pairing_agent2.py` and `workspace/lower_pairing_agent2.json`: first lower matrix and explicit minor certificate.\n* `workspace/agent3_lower.py` and `workspace/agent3_lower_certificate.json`: independent lower implementation and certificate.\n* `workspace/final_checker_agent1.py`: combined standard-library-only checker, successfully run, producing \\(77\\) monomials, \\(59\\) relations of modular rank \\(33\\), and a \\(77\\times56\\) pairing of modular rank \\(43\\).\n\nA self-copying launcher temporarily overwrote agent_2\u2019s script during verification. It was restored, the self-writing line removed, and its assertions rerun successfully. Agent_3\u2019s analogous self-copy line was also removed.\n\n## What remains unresolved\n\nNeither pairing degeneracy nor the available Faber\u2013Zagier relations decide the exact dimension. The computations leave open an additional relation reducing the dimension to \\(43\\), versus dimension \\(44\\) with a class undetected by this pairing. Exact rank \\(33\\) of the constructed relation matrix does not prove that these generate every Chow relation. No contradiction to the supplied bounds was found."
+   },
+   "manager": {
+    "new": false,
+    "reason": "The experiment establishes only the known bounds 43 \u2264 dim_Q R^{12}(M_25) \u2264 44. It does not determine which value is correct, so it leaves the exact-dimension question unresolved and supplies no new definite answer."
+   },
+   "reason": "all agents idle, the judge found the proof complete",
+   "budget": 12.0,
+   "started": 1793846053.3996868
+  },
+  {
+   "id": "e2",
+   "node": "n1",
+   "answer": "44",
+   "status": "ended",
+   "cost": 6.2073,
+   "key": "archive/20261104-213226-p12/e2",
+   "swarm": "20261104-213226-p12-e2",
+   "halves": "Proving 44 takes two halves: \\(\\dim_{\\mathbb Q}R^{12}(\\mathcal M_{25})\\le44\\) (the codimension-\\(12\\) part of the \\(\\mathbb Q\\)-algebra generated by the \\(\\kappa_i\\) is spanned by 44 classes), and \\(\\dim_{\\mathbb Q}R^{12}(\\mathcal M_{25})\\ge44\\) (there are 44 classes in that part that are linearly independent modulo rational equivalence).",
+   "report": {
+    "status": "PROVED",
+    "text": "## Result\n\nThe team established\n\\[\n\\boxed{\\dim_{\\mathbb Q}R^{12}(\\mathcal M_{25})=44}.\n\\]\nTheir initial computations proved only \\(43\\leq\\dim R^{12}\\leq44\\). They subsequently closed the gap by constructing an additional functional on the **actual Chow group**, using boundary classes and Chow-theoretic Pixton relations. Thus the final proof does not assume completeness of Faber\u2013Zagier relations or a Gorenstein conjecture.\n\n## Where the finished proof and code are\n\nThe final deliverable is:\n\n- **Archive:** `workspace/M25_degree12_exact_proof.zip`\n- **Unpacked bundle:** `workspace/agent1_bundle/`\n- **Proof:** `workspace/agent1_bundle/proof.md`\n- **Verifier:** `workspace/agent1_bundle/verify.py`\n- **Independent proof copy:** `workspace/agent4_full_proof_final.md`\n\nRun `python verify.py` from the bundle directory. It uses only Python\u2019s standard library, regenerates relation coefficients from formulas, and reads an explicit rational certificate\u2014not cached relation matrices. Multiple agents independently executed it successfully in approximately 17\u201318 seconds.\n\nArchive SHA-256:\n```text\ne71819b06159e9794d2cc2f3d81c2c5fb165313fe360c2d4f071742ad3b96107\n```\n\n## Upper bound: 44\n\nThere are \\(p(12)=77\\) degree-12 \\(\\kappa\\)-monomials.\n\nThe computation uses the standard Faber\u2013Zagier series\n\\[\nA(t)=\\sum_{n\\ge0}\\frac{(6n)!}{(3n)!(2n)!}t^n,\\qquad\nB(t)=\\sum_{n\\ge0}\\frac{(6n)!}{(3n)!(2n)!}\n\\frac{6n+1}{6n-1}t^n,\n\\]\nwith \\(B(0)=-1\\), and \\(\\kappa_0=48\\). It generates eligible genus-25 relations in degrees \\(9,10,11,12\\), multiplying lower-degree relations by every required complementary \\(\\kappa\\)-monomial.\n\nThis produces 59 relation vectors. A selected \\(33\\times33\\) minor has determinant\n\\[\n368438425\\pmod{1\\,000\\,000\\,007}.\n\\]\nThe relevant denominators are invertible at this prime. Consequently, 33 relations are independent over \\(\\mathbb Q\\), leaving 44 explicitly specified monomials spanning \\(R^{12}\\).\n\nOriginal upper-bound artifacts include `workspace/agent2_fz.py` and `workspace/agent2_upper_certificate.json`. The final bundle independently regenerates this calculation.\n\n## Why the obvious lower bound was insufficient\n\nThe ordinary socle pairing is\n\\[\nR^{12}(\\mathcal M_{25})\\times R^{11}(\\mathcal M_{25})\n\\longrightarrow\\mathbb Q,\\qquad\n(f,q)\\longmapsto\n\\int_{\\overline{\\mathcal M}_{25}}fq\\,\\lambda_{25}\\lambda_{24}.\n\\]\nIt is well-defined on the open Chow ring because the Hodge product restricts to zero on boundary divisors.\n\nFaber\u2019s Hodge intersection formula, combined with inversion of the \\(\\psi\\)-to-\\(\\kappa\\) pushforward identity, computes this pairing exactly. Its \\(77\\times56\\) matrix has **rational rank 43**, not 44. On the 44-dimensional FZ quotient, its radical is one-dimensional.\n\nArtifacts include:\n\n- `workspace/agent3_lower.py`\n- `workspace/agent3_pairing_Z.json`\n- `workspace/agent3_radical.json`\n- `workspace/agent3_radical_check.py`\n\nThe radical polynomial is nonzero modulo the computed FZ relations, but that fact alone would not prove it nonzero in Chow. The team explicitly recognized this distinction.\n\n## The missing functional: boundary correction\n\nThe successful construction uses Chow-theoretic Pixton \\(3\\)-spin relations: the explicit PPZ formulas, with Janda\u2019s theorem supplying vanishing in Chow rather than merely cohomology.\n\nLet\n\\[\n\\Lambda=\\lambda_{24}\\lambda_{23},\\qquad L=\\psi_1+\\psi_2.\n\\]\nLet \\(D\\subset\\overline{\\mathcal M}_{24,2}\\) be the rational-tail divisor carrying both markings; identify its genus-24 factor with \\(\\overline{\\mathcal M}_{24,1}\\), and write \\(K=\\psi_1\\) there.\n\nAn explicit rational certificate supplies a symmetric degree-12 polynomial \\(\\beta\\), every term containing a marked \\(\\psi\\), and a degree-11 polynomial \\(\\rho\\), satisfying\n\\[\n\\Lambda L\\beta+D_*(\\Lambda K\\rho)=0,\\qquad\n\\Lambda K^2\\rho=0.\n\\]\n\nDefine\n\\[\nc=\\frac12\\xi_{\\mathrm{irr}*}(\\Lambda\\beta)\n+\\xi_{1*}\\bigl(\\Lambda(\\lambda_{\\mathrm{ell}}-K)\\rho\\bigr)\n\\in\\mathrm{CH}^{60}(\\overline{\\mathcal M}_{25}),\n\\]\nwhere the gluing maps respectively create a nonseparating node and attach an elliptic tail.\n\nThe proof checks that \\(c\\) restricts to zero on every normalized boundary divisor. The first identity cancels its nonseparating-boundary restriction; the second kills its elliptic-tail self-intersection. Other contributions vanish through \\(\\Lambda\\), while \\(\\beta|_D=0\\). Localization and the projection formula therefore make\n\\[\nf\\longmapsto\\int_{\\overline{\\mathcal M}_{25}}\\widetilde f\\,c\n\\]\na well-defined functional on \\(\\mathrm{CH}^{12}(\\mathcal M_{25})\\).\n\nCrucially, they retained the rational-tail correction in the **full** Pixton relation. An earlier \u201cunsafe\u201d calculation using only open pointed relations detected the radical but did not establish a Chow functional.\n\n## Exact certificate and lower determinant\n\nThe coupled certificate has 1,553 nonzero rational row coefficients. It verifies **1,908 exact polynomial coefficient identities**, incorporating both the pointed relation and its rational-tail correction. The resulting \\(\\beta\\) has 312 symmetric terms and \\(\\rho\\) has 195 terms.\n\nA modular solution was lifted to \\(\\mathbb Q\\); every constraint was then checked exactly, independently using Sage rational arithmetic, Python `Fraction`, and GMP rational arithmetic. Thus modular solvability was not mistaken for rational solvability.\n\nThe functional evaluates as\n\\[\n\\frac12 A(f)+\\frac1{24}B(f),\n\\]\nwhere\n\\[\nA(f)=\\int_{\\overline{\\mathcal M}_{24,2}}\\Lambda\\beta f(\\kappa),\n\\quad\nB(f)=\\int_{\\overline{\\mathcal M}_{24,1}}\n\\Lambda\\rho\\bigl(f(\\kappa)-K\\partial_{\\kappa_1}f(\\kappa)\\bigr).\n\\]\nThe factors account for ordered branches and \\(\\int_{\\overline{\\mathcal M}_{1,1}}\\lambda_1=1/24\\).\n\nEvaluate the 44 spanning monomials against 43 ordinary Hodge functionals and this new functional. After harmless nonzero column normalizations, the determinant is\n\\[\n540716\\pmod{1\\,000\\,003}\\ne0.\n\\]\nThis proves independence in Chow. The verifier also checks that the new functional annihilates all 59 target FZ relations.\n\n## Failed approaches and remaining issues\n\nNo mathematical gap remained in the final record. Earlier approaches did fail: ordinary pairing supplied only 43; naive double-cover tests encountered boundary and degree obstructions; Hodge polynomials did not represent the radical; tested spinor complete-intersection families killed all degree-12 pullbacks. No reliable \u201crecent theorem\u201d giving the missing independence was identified or assumed.\n\nSelf-truncating script footers were discovered and repaired before final verification. Nothing found contradicts 44; the rank-43 socle pairing is a degeneracy of that pairing, not a dimension-43 proof."
+   },
+   "manager": {
+    "new": true,
+    "reason": "The experiment reports a complete proof that the dimension is 44: 33 independent Chow-valued Faber\u2013Zagier relations give the upper bound, and an exactly certified boundary-corrected Chow functional raises the lower bound from 43 to 44. The construction uses established Chow-theoretic Pixton relations, not conjectural completeness or Gorenstein assumptions, and closes the gap left by the earlier experiment."
+   },
+   "reason": "all agents idle, the judge found the proof complete",
+   "budget": 12.0,
+   "started": 1793846077.4073431
+  },
+  {
+   "id": "e3",
+   "node": "n2",
+   "answer": "43",
+   "status": "ended",
+   "cost": 2.6447,
+   "key": "archive/20261104-213226-p12/e3",
+   "swarm": "20261104-213226-p12-e3",
+   "halves": "Proving 43 takes two halves: \\(\\dim_{\\mathbb Q}R^{12}(\\mathcal M_{25})\\le43\\) (the codimension-\\(12\\) part of the \\(\\mathbb Q\\)-algebra generated by the \\(\\kappa_i\\) is spanned by 43 classes), and \\(\\dim_{\\mathbb Q}R^{12}(\\mathcal M_{25})\\ge43\\) (there are 43 classes in that part which are linearly independent modulo rational equivalence).",
+   "report": null,
+   "manager": null,
+   "reason": "the archive ended: a new result: e2 (44)",
+   "budget": 12.0,
+   "started": 1793846271.014198
+  }
+ ],
+ "reason": "a new result: e2 (44)",
+ "ended": true
+}

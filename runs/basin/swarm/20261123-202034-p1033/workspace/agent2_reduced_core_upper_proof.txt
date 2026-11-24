@@ -1,0 +1,55 @@
+REDUCED CORES AND EXACT RANK EXCESS IN THE DUPLICATE-CENTER UPPER
+
+Use the duplicate-center construction with m>=2, n>4m-1,
+ T=nm, r=n-2m, ell=m(2m-1), D=r+ell=n+2m^2-3m.
+All actual petals, target labels, and independent choices are as in
+workspace/agent2_duplicate_center_upper_proof.txt. The sole change is
+that every core has size c=T-n+1=n(m-1)+1, not T.
+Then c>T/2 and the uniform rank is
+ k=c+D=T+2m^2-3m+1.
+Thus rank excess s=k-T=2m^2-3m+1, independent of n.
+Intersection and disjoint classes follow exactly as before (c>=2).
+
+We prove tau=T. Core representatives give a T-point cover. Suppose
+|C|<T. Let A be its actual edge points and B the classes whose cores it
+meets but does not exhaust. Since c>T/2, C exhausts at most one core.
+If none is exhausted, the original Hall degree proof applies verbatim.
+
+Suppose one exhausted core belongs to a class centered at b. For any
+other center a!=b, if C does not meet the core of some class i centered
+at a, an uncovered final member exists unless either deg_A(a)>=2m or
+actual edge ab belongs to A. Indeed, otherwise the star at a has at
+least r available points outside A and includes available ab. Choose
+an r-subset P containing ab and avoiding A. This petal does not target
+ANY class at center b, so avoids the exhausted core, and all other
+target-core representatives can be chosen outside C.
+
+Partition the n-1 centers a!=b into three kinds:
+ (i) ab in A; their number is the count of A-star edges at b;
+ (ii) ab notin A, deg_A(a)>=2m;
+ (iii) neither condition, so ALL m class cores at a must be met by C.
+For type (ii), every A-edge incident with a is a non-star edge (its
+other endpoint is not b); summing degrees shows their number is at
+most |A_nonstar|/m. Type (iii) centers number at most |B|/m. Consequently
+ n-1 <= |A_star|+(|A_nonstar|+|B|)/m <= |A|+|B|.
+Therefore |C|>=c+|A|+|B|>=c+n-1=T, contradiction.
+
+There is in fact a T-cover consisting of one whole core centered at b
+plus the full actual star at b, of size c+n-1=T. At center b the actual
+star meets every petal; at any other center a, a petal either contains
+ab and is hit by the star, or omits ab and targets every class at b,
+so is hit by the exhausted core.
+
+Thus the reduced-core construction is valid for all stated m,n. Taking
+n=4m^2 yields T=4m^3,D=6m^2-3m, rank excess s=2m^2-3m+1. Taking n=m^2
+and m>=4 yields T=m^3,D=3m^2-3m with the same rank excess. The cost and
+5/3 exponent are unchanged, while the rank-excess tradeoff is explicit.
+
+ACTUAL CHECK: m=2,n=8 gives T16,c9,r4,ell6,D10,k19,s3. Every one of
+1,683,218 actual edge sets A of size<=7 was enumerated. The exact count
+of partial core representatives additionally necessary after exhausting
+one fixed core was computed from the activation formula, and
+ |A|+required_partial >=7
+was checked in every case, with equality achieved. Symmetry covers all
+choices of exhausted core. Source/results:
+ workspace/agent2_reduced_core_upper_checks.py/.json.

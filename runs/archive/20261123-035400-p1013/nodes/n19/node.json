@@ -1,0 +1,109 @@
+{
+ "id": "n19",
+ "parent": "n18",
+ "depth": 6,
+ "option": {
+  "branch": "c2b0",
+  "counterfactual": "The eight-vertex counterexample's asserted extremal function is incorrect because an overlooked family of graphs has more edges than the proposed construction.",
+  "approach": "Search for exceptional configurations above the proposed extremal edge count, allowing missing cross edges and unrestricted adjacencies to exceptional vertices. A single scalable construction would refute the asserted upper bound.",
+  "p": 0.0729
+ },
+ "status": "member",
+ "belief": {
+  "answer": "\\boxed{\\mathcal S_r=(1/r,\\infty)\\quad\\text{for every integer }r\\ge2.}",
+  "confidence": 0.28
+ },
+ "judge": {
+  "claim": true,
+  "same_as": null,
+  "answer": "\\(\\mathcal S_r=(1/r,\\infty)\\) for every integer \\(r\\ge2\\).",
+  "reason": "This explicitly specifies every set and excludes its boundary point. It differs from every listed answer, including e7, which includes 1/2 in S_2.",
+  "experiment": true,
+  "n": 21,
+  "definite": true,
+  "gate": "It explicitly specifies the entire set for every integer r\u22652 and excludes its finite boundary point 1/r, leaving no membership unresolved."
+ },
+ "experiment": "e11",
+ "options": [
+  {
+   "branch": "c0b0",
+   "counterfactual": "For the eight-vertex graph H with edges 03,04,06,07,13,15,17,25,27,37,47,67, the asserted formula ex(n,H)=max_a[a(n-a)+floor(2a/3)] is correct for every sufficiently large n; there is no overlooked family exceeding it.",
+   "approach": "Audit the stability-and-pruning proof independently, checking each local embedding and the minimum-degree reduction. If every step is valid, use that proof rather than continuing to search for a nonexistent larger construction.",
+   "p": 0.3056,
+   "child": null
+  },
+  {
+   "branch": "c0b1",
+   "counterfactual": "For the eight-vertex graph H with edges 03,04,06,07,13,15,17,25,27,37,47,67, the asserted formula ex(n,H)=max_a[a(n-a)+floor(2a/3)] is correct for every sufficiently large n; there is no overlooked family exceeding it.",
+   "approach": "Verify the cycle comparison independently through exact path-block enumeration and rigorous bounds on the limiting series. This would establish whether the claimed membership 1/3 in S_2 follows once the extremal formula is secured.",
+   "p": 0.1389,
+   "child": null
+  },
+  {
+   "branch": "c0b2",
+   "counterfactual": "For the eight-vertex graph H with edges 03,04,06,07,13,15,17,25,27,37,47,67, the asserted formula ex(n,H)=max_a[a(n-a)+floor(2a/3)] is correct for every sufficiently large n; there is no overlooked family exceeding it.",
+   "approach": "Identify precisely which supplied assertions become incompatible with this extremal formula and the cycle comparison. Separate independently proved statements from reported conclusions before using any claimed endpoint information.",
+   "p": 0.1111,
+   "child": null
+  },
+  {
+   "branch": "c1b0",
+   "counterfactual": "For at least one r, the infimum of S_r belongs to S_r, contrary to the asserted universal nonattainment of the boundary.",
+   "approach": "Reconsider closed-ray answers and distinguish an extremal bound with a bounded additive error from bounds valid only after increasing the linear coefficient. A single forbidden graph attaining the limiting coefficient could settle endpoint inclusion.",
+   "p": 0.0508,
+   "child": null
+  },
+  {
+   "branch": "c1b1",
+   "counterfactual": "For at least one r, the infimum of S_r belongs to S_r, contrary to the asserted universal nonattainment of the boundary.",
+   "approach": "Investigate whether the eight-vertex construction attains the smallest possible coefficient for r=2. Combine its proposed coefficient 1/3 with structural restrictions on graphs whose extremal surplus is smaller.",
+   "p": 0.0444,
+   "child": null
+  },
+  {
+   "branch": "c1b2",
+   "counterfactual": "For at least one r, the infimum of S_r belongs to S_r, contrary to the asserted universal nonattainment of the boundary.",
+   "approach": "Study the possible linear coefficients produced by Simonovits-type extremal structures below the universal-vertex threshold 1/r. If these coefficients form a discrete sequence locally, an attained minimum may follow whenever a counterexample exists below that threshold.",
+   "p": 0.0317,
+   "child": null
+  },
+  {
+   "branch": "c2b0",
+   "counterfactual": "An overlooked construction exceeding the eight-vertex graph's proposed extremal function exists, but it requires repeated connected components of order at least four and cannot occur in the templates with components of order at most three that have been tested.",
+   "approach": "Extend the satisfiability search to repeated four- and five-vertex components, retaining arbitrary exceptional-vertex adjacencies. Require the weighted edge count to exceed the proposed extremal function and forbid every embedding of H.",
+   "p": 0.1587,
+   "child": null
+  },
+  {
+   "branch": "c2b1",
+   "counterfactual": "An overlooked construction exceeding the eight-vertex graph's proposed extremal function exists, but it requires repeated connected components of order at least four and cannot occur in the templates with components of order at most three that have been tested.",
+   "approach": "Enumerate connected component types of orders four and five and test their complete joins with an independent part. Determine whether the claimed internal claw, path, or triangle embedding exclusions actually eliminate every denser component.",
+   "p": 0.0952,
+   "child": null
+  },
+  {
+   "branch": "c2b2",
+   "counterfactual": "An overlooked construction exceeding the eight-vertex graph's proposed extremal function exists, but it requires repeated connected components of order at least four and cannot occur in the templates with components of order at most three that have been tested.",
+   "approach": "Allow systematic missing cross edges between component roles instead of only exceptional vertices. Search for a configuration where those missing edges prevent the local extension to H while additional internal edges more than compensate for their cost.",
+   "p": 0.0635,
+   "child": null
+  },
+  {
+   "branch": "own",
+   "counterfactual": null,
+   "approach": null,
+   "p": null,
+   "child": null
+  }
+ ],
+ "cost": 0.5878,
+ "responses": 5,
+ "step_from": 60,
+ "known": [
+  "e1",
+  "e2"
+ ],
+ "created": 1795428223.4040341,
+ "seen": "e339e721e53da49ca9673c29a0379ddd08f7d1c6478c97076963403d17162fab",
+ "take_at": 60
+}

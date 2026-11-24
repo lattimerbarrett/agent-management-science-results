@@ -1,0 +1,43 @@
+LOWER BOUND (spectral-invariant proof)
+
+Work over the monotone Novikov field with the variable q normalized so that
+multiplication by q decreases the action filtration by 4 pi. Let e=[M] and
+A=[S^2 x {pt}]. The quantum-homology identity is A*A=q e. Indeed PD(A) is the
+positive generator of the second sphere; its square is the degree-one sphere
+contribution, and the degree-one three-point invariant of S^2 is one. No other
+class can contribute by degree and positivity. The two factor sphere classes
+have equal area, so their Novikov variables agree under monotone specialization.
+
+We use these standard Floer spectral-invariant properties (with action and
+Hamiltonian conventions chosen consistently):
+(1) For nonzero a, c(a,H) is finite and belongs to the capped action spectrum.
+(2) c(q a,H)=c(a,H)-4 pi.
+(3) If Fix(phi_H^1) is finite and B is an ordinary homology class of positive
+    codimension, then c(a*B,H)<c(a,H), whenever a*B is nonzero.
+
+For clarity, the finite-fixed-point strictness in (3) comes from the marked
+Floer-cylinder model of the cap product. Represent B by a cycle avoiding the
+finite union of periodic-orbit images. Take disjoint small tubes around those
+orbits. A cylinder satisfying the marked-point constraint must exit these
+tubes, and therefore has a uniformly positive energy. A bubbled configuration
+has positive area at least 4 pi. The resulting cap chain map decreases filtration
+by a uniform positive constant. Nondegenerate approximations and continuity
+extend the strict inequality to degenerate H with this same finite orbit set.
+This explains precisely why no nondegeneracy assumption is needed.
+
+Applying (3) twice gives
+  c(e,H)>c(A,H)>c(A*A,H)=c(q e,H)=c(e,H)-4 pi.
+If there is a single geometric fixed point, its corresponding periodic loop is
+contractible because M is simply connected. Every capped orbit is obtained by
+recapping that same loop, and recapping changes its action by
+  omega(m[S^2 x pt]+n[pt x S^2])=4 pi(m+n).
+Thus its entire action spectrum is one coset alpha+4 pi Z. Spectrality places
+both c(e,H) and c(A,H) in this coset, contradicting their strict separation by
+less than 4 pi. If there are no fixed points, the action spectrum is empty,
+already contradicting (1). Consequently a finite fixed set has at least two
+points.
+
+The Python checks in agent4_lower_checks.py verify the sphere area normalization,
+the quantum-ring algebra after its geometric structure constants are established,
+and the resulting integer-lattice contradiction. They do not pretend to prove
+the analytic Floer inputs by computation.

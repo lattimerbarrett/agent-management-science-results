@@ -1,0 +1,109 @@
+{
+ "id": "n10",
+ "parent": "n3",
+ "depth": 2,
+ "option": {
+  "branch": "e2/c0b2",
+  "counterfactual": "For some m greater than 7, the integral homology of K_m differs from the proposed formula: Z^{binom(m,4)-binom(m,3)} plus Z/2 in degree m-3, and Z^{(m^4+2m^3+11m^2+10m+12)/12} in degree m-2.",
+  "approach": "Study the small complex over the integers while separating generators according to the last column. Derive a recurrence that tracks torsion as well as free rank, and identify where it differs from the conjectured recurrence.",
+  "p": 0.061
+ },
+ "status": "member",
+ "belief": {
+  "answer": "For m=7, |K_7| \u2243 M(\u2124/2\u2124,4) \u2228 \u22c1^{309}S^5. I have not determined the homotopy type for every m\u22658.",
+  "confidence": 0.02
+ },
+ "judge": {
+  "claim": true,
+  "same_as": null,
+  "answer": "For m=7, |K_7| \u2243 M(\u2124/2\u2124,4) \u2228 \u22c1^{309}S^5. I have not determined the homotopy type for every m\u22658.",
+  "reason": "It makes a concrete homotopy-type claim for m=7. This special-case claim differs from e1's all-m formula and from e2's impossibility claim.",
+  "experiment": false,
+  "n": 11,
+  "definite": false,
+  "gate": "The proposed answer gives a decomposition only for m=7 and explicitly leaves all m\u22658 undetermined, so it does not cover every required value of m.",
+  "procedure": false
+ },
+ "experiment": null,
+ "options": [
+  {
+   "branch": "c0b0",
+   "counterfactual": "For some larger m, K_m has additional integral torsion that is absent for 7 \u2264 m \u2264 12, so extrapolating the observed homology pattern gives the wrong answer.",
+   "approach": "Compute exact integral reductions for successive larger values of m, beginning with m=13. Track the surviving invariant factors rather than just ranks over selected finite fields, so that new torsion cannot escape detection.",
+   "p": 0.0816,
+   "child": null
+  },
+  {
+   "branch": "c0b1",
+   "counterfactual": "For some larger m, K_m has additional integral torsion that is absent for 7 \u2264 m \u2264 12, so extrapolating the observed homology pattern gives the wrong answer.",
+   "approach": "Separate the reduced chain generators according to whether their colored part or exterior bracket contains the last column. Analyze the resulting connecting maps to locate a mechanism that could introduce new torsion as m increases.",
+   "p": 0.0816,
+   "child": null
+  },
+  {
+   "branch": "c0b2",
+   "counterfactual": "For some larger m, K_m has additional integral torsion that is absent for 7 \u2264 m \u2264 12, so extrapolating the observed homology pattern gives the wrong answer.",
+   "approach": "Analyze the residual matrices left after all available unit cancellations. Determine whether their integer relations depend on m through divisibility conditions that could produce additional prime factors.",
+   "p": 0.0408,
+   "child": null
+  },
+  {
+   "branch": "c1b0",
+   "counterfactual": "The small chain complex used in the calculations does not correctly compute the integral homology of K_m for every m.",
+   "approach": "Reconstruct the reduction from the full augmented simplicial chain complex, carefully checking the empty-face convention and all boundary signs. Identify precisely why eliminating the fourth-row direction does or does not leave the claimed small complex.",
+   "p": 0.0367,
+   "child": null
+  },
+  {
+   "branch": "c1b1",
+   "counterfactual": "The small chain complex used in the calculations does not correctly compute the integral homology of K_m for every m.",
+   "approach": "Independently enumerate the faces of K_8 and perform exact integral cancellations on its full simplicial chain complex. Compare the result with the small-complex calculation to test the reduction beyond the independently certified case m=7.",
+   "p": 0.0245,
+   "child": null
+  },
+  {
+   "branch": "c1b2",
+   "counterfactual": "The small chain complex used in the calculations does not correctly compute the integral homology of K_m for every m.",
+   "approach": "Construct explicit inclusion, projection, and chain-homotopy maps for the reduction of each fourth-row simplex skeleton. Check that these maps remain compatible when a vertex in one of the other rows is deleted.",
+   "p": 0.0204,
+   "child": null
+  },
+  {
+   "branch": "c2b0",
+   "counterfactual": "There is no exceptional larger value of m: the proposed homology formula, with exactly one Z/2 summand, is correct for every m\u22657.",
+   "approach": "Prove that the residual integral matrix after unit cancellation always has rank one and entries with greatest common divisor two. Combine this with exactness in the lower degrees and the Euler characteristic to obtain all homology multiplicities.",
+   "p": 0.2857,
+   "child": null
+  },
+  {
+   "branch": "c2b1",
+   "counterfactual": "There is no exceptional larger value of m: the proposed homology formula, with exactly one Z/2 summand, is correct for every m\u22657.",
+   "approach": "Derive an integral recurrence by separating generators involving the last column. Show that increasing m adds only free homology generators and preserves the single degree-two differential responsible for the Z/2 summand.",
+   "p": 0.3214,
+   "child": null
+  },
+  {
+   "branch": "c2b2",
+   "counterfactual": "There is no exceptional larger value of m: the proposed homology formula, with exactly one Z/2 summand, is correct for every m\u22657.",
+   "approach": "Look for a uniform topological decomposition using the fourth row as a distinguished row. Seek a discrete Morse matching that isolates one Moore-space contribution and leaves sphere contributions that can be counted explicitly.",
+   "p": 0.1071,
+   "child": null
+  },
+  {
+   "branch": "own",
+   "counterfactual": null,
+   "approach": null,
+   "p": null,
+   "child": null
+  }
+ ],
+ "cost": 0.0553,
+ "responses": 5,
+ "step_from": 33,
+ "known": [
+  "e2"
+ ],
+ "created": 1795460655.6830661,
+ "seen": "2b3fc01037c85d6d41809a19c4952ea243dda8ff21e0b8f345ed4bb7436bb374",
+ "take_at": 33
+}

@@ -1,0 +1,88 @@
+UNCONDITIONAL QUARTIC RELATIVE LEMMAS (only strict Kasami--Tokura used)
+
+1. AFFINE NORMALIZATION ON A7-FLAT.
+Let D be an affine7-flat in F2^10, and t have degree<=4. There is an affine
+linear ell on F2^10 such that t'=t+1_D ell has wt(t' restricted D)<64.
+Indeed extend affine coordinates on D and use invertibility of the Walsh
+transform: some character has nonzero correlation with (-1)^(t|D).
+Choose its constant sign to make that correlation positive. The chosen
+ell on D extends to the whole space. Degree(1_D ell)<=3+1=4, and t'=t
+outside D. This uses no enumeration of arbitrary functions.
+
+2. PUNCTURED GAP.
+For every degree<=4 t on F2^10, its weight OUTSIDE any affine7-flat D is
+NOT 50,52,54.
+Proof: normalize as in1. Then total weight(t')<E+64<=118<128.
+The strict Kasami--Tokura classification for RM(4,10), minimum64, gives:
+  minimum: a6-flat, weight64;
+  quadratic type: a quadratic of rank4 or6 supported in an8-flat,
+                  weights96 or112;
+  two-flat type: symmetric difference of two6-flats meeting in a3-flat,
+                 weight112.
+(The weight96 two-flat type is the same rank4 quadratic type.) These
+are ALL strict-KT forms possible below119: degree4 permits only s<=4 in
+its two-flat type; s4 has weight120 and is already too large.
+For minimum64 the inside weight is64-E in{10,12,14}, impossible since an
+affine-flat intersection has weight zero or a power of two.
+For quadratic96 the inside weight is42,44,46. For quadratic112 it is
+58,60,62. A nonempty D intersection with its8-flat has dimension5,6,or7.
+A rank<=rho quadratic on a k-flat has weights0,2^k,2^(k-1), and
+2^(k-1) +/- 2^(k-j-1) for even ranks2j<=min(rho,k). None of the required
+inside values occurs, for rho4 (weight96) or rho6 (weight112).
+Finally let t'=1_F+1_G, dimF=dimG=6, |F intersect G|=8. If D contains F,
+D intersect G has dimension3 or4: D has only one dimension beyond F,
+while their common3-flat is contained in D. Thus inside weight is56 or64.
+The same holds swapping F,G. If neither is contained, each section size
+is at most32. To obtain inside58,60,62 both sections must be32. Their
+5-dimensional direction spaces inside D7 intersect in dimension at least3
+and at most3 (since dirF intersect dirG has dimension3). They span dirD,
+so the affine sections meet, and their intersection is exactly a3-flat.
+The inside weight is32+32-2*8=48, again not58/60/62. Contradiction.
+
+3. QUARTIC WEIGHT256 WITH MINIMUM FIRST DERIVATIVE.
+Let h in RM(4,11) have weight256, with a reduced first derivative equal
+to1_D, D an affine7-flat in F2^10. Then h is periodic OR its support has
+proper affine span.
+Write h=y1_D+t. Its outside-D weight is E=(256-128)/2=64. Applying1 and
+the affine shear y -> y+ell lets us assume wt(t)<128. This preserves
+full-span and periodicity, and strict KT applies to t, as follows.
+If t is a minimum6-flat, its direction intersects dirD in dimension>=3,
+so h is periodic. Quadratic types have support spanning an8-flat L and
+weights96,112,120 (ranks4,6,8). Rank4 has a4-dimensional period space P;
+P intersect dirD has dimension>=1, so h is periodic. For ranks6,8 the
+required inside weights are48,56. If h has full affine span11, its
+projection has full affine span10, and hence affine span(D union L)=F10.
+Since the inside weight is positive D intersects L, so dim(D intersect L)
+=7+8-10=5. It contains only32 points, impossible for inside48 or56.
+The remaining two-flat KT types are F Delta G with dimF=dimG=6,
+intersection dimension6-s, s2,3,4, and weights96,112,120. Their common
+period space P has dimension6-s. If P intersects dirD nontrivially,
+h is periodic. Otherwise projection along P injects dirD, so each D
+intersection with F orG has dimension at most s, hence their symmetric
+difference insideD has weight<=2^(s+1). But the required inside weights
+are32,48,56, larger respectively than8,16,32. Contradiction.
+This proves3. For zero t there is no weight256, so no omitted case.
+
+4. EVERY FULLSPAN QUARTIC WORD OF WEIGHT256 IS PERIODIC.
+Let h in RM(4,11) have weight256 and suppose it is aperiodic. The average
+weight of a reduced nonzero-direction derivative is
+             256*(2048-256)/2047 < 256.
+Thus some nonzero reduced derivative is a cubic on10 variables of weight
+strictly below256 (minimum128). Every strict-KT cubic on10 variables is
+periodic: minimum words have periods; quadratic type is supported in a
+9-flat and has rank<=8, leaving a period; two-flat type has common period
+dimension7-s>=4 because s<=3. Hence h has a zero second derivative in
+some independent directions a,b. In coordinates h=a*u+b*v+t on9 base
+variables, with u,v cubic. Aperiodicity implies <u,v> has dimension2:
+otherwise some nonzero direction in <a,b> is a period. Let U be the
+union of their supports. The2-dimensional fiber formula gives
+ wt(h)>=2|U|=wt(u)+wt(v)+wt(u+v).
+If the2D cubic code contains no minimum64 word, all its three nonzero
+weights are at least96, so wt(h)>=288, contradiction. Thus it contains
+a minimum64 word, and after a GL2 change a reduced first derivative of
+h has weight128. Apply3. Therefore h cannot be both fullspan11 and
+aperiodic. This is unconditional and uses NO KTA coverage at2d or above.
+
+See agent2_verify_quartic_relative.py for exact finite arithmetic and
+Walsh normalization checks. These lemmas alone do not settle weights272,
+288 in the smaller quartic classification problem.

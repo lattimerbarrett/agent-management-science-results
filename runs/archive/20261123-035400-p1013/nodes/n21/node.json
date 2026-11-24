@@ -1,0 +1,108 @@
+{
+ "id": "n21",
+ "parent": "n11",
+ "depth": 5,
+ "option": {
+  "branch": "c1b2",
+  "counterfactual": "For r=2, the actual threshold is positive, so no graph satisfying ex(n,H)=t_2(n)+O(1) witnesses membership in S_2.",
+  "approach": "Search explicit forbidden graphs with known linear extremal corrections smaller than n/2. Compare all their competing extremal constructions with plausible cycle-maximizing alternatives to obtain a sharper upper bound on the threshold.",
+  "p": 0.0585
+ },
+ "status": "member",
+ "belief": {
+  "answer": "\\(\\boxed{\\mathcal S_2=[1/3,\\infty),\\qquad \\mathcal S_r=[1/r,\\infty)\\ \\text{for }r\\ge3.}\\)",
+  "confidence": 0.06
+ },
+ "judge": {
+  "claim": true,
+  "same_as": "e10",
+  "answer": "\\mathcal S_2=[1/3,\\infty),\\qquad \\mathcal S_r=[1/r,\\infty)\\ \\text{for }r\\ge3.",
+  "reason": "It claims an explicit formula for every set, and that formula is identical to e10.",
+  "experiment": false,
+  "n": 22
+ },
+ "experiment": null,
+ "options": [
+  {
+   "branch": "c0b0",
+   "counterfactual": "There is a fixed graph H with chromatic number three witnessing 1/4 \u2208 S\u2082, so the known witness at coefficient 1/3 does not attain the threshold.",
+   "approach": "Search constructions consisting of a complete bipartite graph, a large matching inside one part, and a bounded exceptional configuration that includes missing cross-edges. Compare exact cycle counts against the maximum-edge constructions, because these missing edges were excluded from the recent search.",
+   "p": 0.25,
+   "child": null
+  },
+  {
+   "branch": "c0b1",
+   "counterfactual": "There is a fixed graph H with chromatic number three witnessing 1/4 \u2208 S\u2082, so the known witness at coefficient 1/3 does not attain the threshold.",
+   "approach": "Search larger forbidden graphs that embed in a complete bipartite graph with internal matchings on both sides but not with a matching on only one side. Impose a color-critical vertex as an additional filter, then inspect the surviving graphs for competing bounded exceptional configurations.",
+   "p": 0.1667,
+   "child": null
+  },
+  {
+   "branch": "c0b2",
+   "counterfactual": "There is a fixed graph H with chromatic number three witnessing 1/4 \u2208 S\u2082, so the known witness at coefficient 1/3 does not attain the threshold.",
+   "approach": "Derive the first two asymptotic terms for cycle counts in a complete bipartite graph with a primary matching and arbitrary fixed exceptional edges. Use those formulas to identify configurations where a one-edge deficit is offset by a cycle advantage, and then seek a forbidden graph realizing them.",
+   "p": 0.1389,
+   "child": null
+  },
+  {
+   "branch": "c1b0",
+   "counterfactual": "There is a fixed graph H witnessing 0 \u2208 S\u2082; thus even a bounded additive correction to the Tur\u00e1n number can permit infinitely many failures of simultaneous maximization.",
+   "approach": "Enumerate bounded exceptional configurations with both internal additions and cross-edge deletions, allowing larger configurations than the previous search. At odd orders, prioritize configurations concentrating internal edges in the larger bipartition class, where their cycle contribution can differ from that of cross-edges.",
+   "p": 0.0444,
+   "child": null
+  },
+  {
+   "branch": "c1b1",
+   "counterfactual": "There is a fixed graph H witnessing 0 \u2208 S\u2082; thus even a bounded additive correction to the Tur\u00e1n number can permit infinitely many failures of simultaneous maximization.",
+   "approach": "Analyze the structural consequences of ex(n,H) = t\u2082(n) + O(1) without assuming that all cross-edges are present. Determine whether an edge-extremal exceptional configuration can be forced to retain cross-edges that a cycle-maximizing configuration profitably exchanges for internal edges.",
+   "p": 0.0389,
+   "child": null
+  },
+  {
+   "branch": "c1b2",
+   "counterfactual": "There is a fixed graph H witnessing 0 \u2208 S\u2082; thus even a bounded additive correction to the Tur\u00e1n number can permit infinitely many failures of simultaneous maximization.",
+   "approach": "Generate forbidden graphs having both a star and a matching among their one-part decomposition graphs. For each candidate, search finite exceptional configurations and compare the largest edge surplus with the largest asymptotic cycle contribution.",
+   "p": 0.0278,
+   "child": null
+  },
+  {
+   "branch": "c2b0",
+   "counterfactual": "For every r \u2265 3, S\u1d63 is empty, even though S\u2082 contains 1/3; failures of simultaneous maximization are confined to chromatic number three.",
+   "approach": "Investigate whether the known chromatic-number-three counterexample can be transferred to higher chromatic numbers by joining it to a fixed complete multipartite graph. Compute the corresponding cycle comparison to see whether the extra parts eliminate its advantage.",
+   "p": 0.1333,
+   "child": null
+  },
+  {
+   "branch": "c2b1",
+   "counterfactual": "For every r \u2265 3, S\u1d63 is empty, even though S\u2082 contains 1/3; failures of simultaneous maximization are confined to chromatic number three.",
+   "approach": "Develop cycle asymptotics for nearly balanced complete r-partite graphs with bounded-degree internal additions. Compare edge count, part imbalance, and internal path counts to identify whether a general simultaneous-maximization argument becomes available when r \u2265 3.",
+   "p": 0.1167,
+   "child": null
+  },
+  {
+   "branch": "c2b2",
+   "counterfactual": "For every r \u2265 3, S\u1d63 is empty, even though S\u2082 contains 1/3; failures of simultaneous maximization are confined to chromatic number three.",
+   "approach": "Test explicit higher-chromatic forbidden graphs with known linear extremal corrections, including joins involving odd wheels or friendship graphs. Search their competing extremal templates for a cycle improvement that loses edges; a rigorous example would refute the proposed distinction between r = 2 and r \u2265 3.",
+   "p": 0.0833,
+   "child": null
+  },
+  {
+   "branch": "own",
+   "counterfactual": null,
+   "approach": null,
+   "p": null,
+   "child": null
+  }
+ ],
+ "cost": 0.3097,
+ "responses": 5,
+ "step_from": 48,
+ "known": [
+  "e1",
+  "e2",
+  "e4"
+ ],
+ "created": 1795428619.458271,
+ "seen": "2828cae9b5ba92142969a79b0dc98cef3e212c04e2ed9e269090a4eb1940210e",
+ "take_at": 48
+}

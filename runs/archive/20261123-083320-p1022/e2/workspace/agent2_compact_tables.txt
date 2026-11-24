@@ -1,0 +1,54 @@
+COMPACT FINITE TABLES FOR THE FINAL PROOF
+
+Entries are total Chern classes c(F_i) of the q-HN blocks, ordered from
+largest to smallest splitting degree. All unprinted higher classes vanish.
+Set s=x+y, t=xy and use the following abbreviations:
+ Z=1, P=1-s, R=1+s, P2=1-2s, R2=1+2s.
+For P3 additionally set u=s^2-t, M=1+s+u, N=1-s+u.
+Dualizing E and twisting reverses the multiplicities and replaces each
+F by its dual (changes signs on odd Chern classes), so only one orientation
+of a composition needs to be printed.
+
+P2, ranks <=3:
+ multiplicities       complete tuples
+ (1,m), m=1,2         (Z,Z), (P,R)
+ (1,1,1)              (Z,Z,Z), (P,R,Z), (Z,P,R), (P2,Z,R2).
+The reversed (2,1) is covered by duality. A constant splitting degree is
+already trivial after twist. The last tuple gives Sym^2 Q; the others
+descend or recognize Q. These are 4 full systems and 10 roots when both
+orientations are counted.
+
+P3, ranks <=5:
+ multiplicities       complete tuples AFTER the edge-product reduction
+ (1,m), m=2,3,4       (Z,Z), (P,M)
+ (2,m), m=2,3         (Z,Z), (P,M), (N,R)
+ (1,m,1), m=2,3       (Z,Z,Z), (P,M,Z), (Z,N,R)
+ (1,2,2)              (Z,Z,Z), (P,M,Z), (Z,N,R), (Z,P,M),
+                      (P2,Z,R2+4u)
+ (2,1,2)              (Z,Z,Z), (Z,P,M), (N,R,Z),
+                      (P2,Z,R2+4u), (P2+4u,Z,R2).
+All reversed compositions are covered by duality. Edge-product reduction
+means: if either first or last adjacent multiplicity product is <2,
+that extremal HN block descends (a nonconstant P2 Grassmann map has rank2
+differential). Every composition with >=4 blocks has such an edge since
+otherwise disjoint edge pairs have rank sum >=3+3=6. Three-block positive
+compositions of rank<=5 with both products>=2 are exactly 121,131,122,221,212.
+Two-block 11 likewise descends. Thus the displayed table covers every
+non-descended possibility.
+
+How the table is used:
+- A proper initial sum of c1 coefficients equal to zero gives descent.
+- In two-step (P,M), first rank1 is Q-recognition; first rank>=2 has c2=0
+  and peels extremal line summands. (N,R) is the dual situation.
+- In 212, its final two tuples have c2=0 in respectively the first or
+  last rank2 block, so peel a top or bottom line and use induction.
+- The sole remaining tuple in 122 is the quadratic-morphism obstruction
+  of agent2_lower_proof.txt. Its dual covers221.
+
+Full unpruned computation: 26 systems, 74 distinct complex roots, categorized
+as 52 partial descents, 3 Q recognitions, 3 dual Q recognitions,
+6 edge-differential contradictions, 4 top peelings, 4 bottom peelings,
+2 quadratic obstructions. The table itself is independently recomputed
+and checked by agent2_compact_tables.py (20.4s); all root-completeness
+certificates are in agent2_lower_certificate.py (35s), using exact ideal
+membership and finite Cartesian enumeration, with no integrality assumption.

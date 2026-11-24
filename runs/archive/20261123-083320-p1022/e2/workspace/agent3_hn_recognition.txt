@@ -1,0 +1,74 @@
+WEDGE HN RECOGNITION ON P4 (detailed proof)
+
+Notation: V=C5, Q on P(V) rank4, I=P(Q) with p:I->P4,
+q:I->G(2,V). On G, S rank2 tautological, R=V/S rank3;
+s=c1(S*), t=c2(S*). On I use x=c1 p*O(1), y=s-x.
+Assume E has rank6 or7, uniform type (1,1,1,0,...,0), and
+A=q*F is its first HN piece after twisting by p*O(-1), with
+c(F)=(1,-2s,2s^2-t,-st).
+Claim F=det(S) tensor R and E=Lambda^2 Q (+ O if rank7).
+
+1. On a p-fiber P3, A is a subbundle of a trivial bundle.
+Thus A* is globally generated, rank3, c=(1,2h,2h^2,0).
+For any gg rank3 B with these Chern classes, two general sections
+have smooth codimension2 dependency C (transversality for globally
+generated bundles); Thom-Porteous and the standard genus formula
+c3(B)=2pa(C)-2+(4-c1(B))*deg(C) give deg C=2, pa=-1.
+Hence C consists of two skew lines. We have
+0 -> O^2 -> B -> I_C(2) -> 0.
+Ext^1(I_C(2),O)=H0(omega_C(2))=C^2 (local duality).
+An extension by O^2 is a 2x2 matrix; local freeness requires each
+column nonzero. Rank2 gives one isomorphism class, namely Omega^1(2),
+as is checked by applying the same argument to that gg bundle.
+Rank1 gives H+O, where H is locally free rank2 in
+0 -> O -> H -> I_C(2) -> 0. No identification of H is needed.
+
+2. In the first case A=Omega^2(2)=T(-2), and its cohomology at twists
+0,-1,-2,-3 is respectively 0,0,H2=C,0.
+In the second case A=H(-2)+O since det H=O(2), giving cohomology
+(h0,h1)=(1,1) at twist0, zero at twists -1,-3, and H2=C at twist -2.
+These follow from the displayed sequence and cohomology of two skew
+lines. At twist -2 the relevant C^2->C map is onto by local freeness;
+at twist -3 Serre duality reduces to acyclicity of H(-1).
+
+3. The generic fiber cannot be of the second type. Otherwise every
+fiber is of that type by semicontinuity, and p_*A=O(b) is a line bundle
+whose evaluation is everywhere a subbundle of A. Its quotient has rank2.
+The identity c3(A)=b x*(c2(A)-b x*(c1(A)-b x)) has xy^2 coefficient
+-1=2b, impossible for integer b. Degrees <=3 have no Chow relations.
+Thus p_*A=0, and R1p_*A=T is torsion. Moreover R2p_*A(-2)=L is a
+line bundle, while all other direct images of A(-2), A(-1), A(-3)
+vanish. Relative Beilinson gives
+0 -> A -> p*L tensor Omega_p^2(2) -> p*T -> 0.
+Here relative twists refer to O_p(1); note A(-i) above also does so.
+There is no twist discrepancy: the fiber computation involves exactly
+these relative twists. Omega_p^2(2)=Lambda^2(qR*)=q*(detS tensor R).
+Writing L=O(ell), equality of Chern characters gives
+p*ch(T)=(exp(ell*x)-1)*ch(A).
+The degree2 xy coefficient on the right is -2ell, hence ell=0.
+Consequently ch(T)=0, and a nonzero torsion sheaf on P4 cannot have
+zero Chern character (its Hilbert polynomial would vanish). Thus T=0
+and A=q*(detS tensor R), as claimed. Descent by q_*O=O identifies F.
+
+4. The original HN inclusion is p*O(1) tensor A -> p*E.
+But p*O(1) tensor A = O_p(-1) tensor (p*Q/O_p(-1)), canonically a
+subbundle of p*Lambda^2 Q. Relative adjunction (or the relative Euler
+sequence) gives a map psi:Lambda^2 Q -> E inducing this inclusion.
+On each line L, psi is an isomorphism on the positive O(1)^3 parts.
+In splitting bases its matrix is [invertible constant, linear;0,constant].
+Hence its rank is constant along L, and therefore globally constant.
+At each point its kernel contains no decomposable bivector because
+those lie in v wedge Q for some nonzero v, where the HN inclusion
+is injective. Any projective line in P(Lambda^2 C4) meets the Plucker
+quadric, so the kernel has dimension <=1. If it has dimension1,
+it is a line bundle K=O(k) consisting everywhere of nondegenerate
+bivectors. Squaring gives K^2=det Q=O(1), contradiction 2k=1.
+Thus psi is injective. Its quotient restricts trivially to every line,
+so is zero (rank6) or O (rank7). Finally H1(Lambda^2 Q)=0 by Euler's
+exterior-power sequence, so the rank7 extension splits.
+
+Arithmetic checks: agent3_hn_recognition.py.
+Geometric ingredients used and proved/sketched above: transversality
+for general sections, local duality, relative Beilinson, line-bundle
+cohomology, standard Chern genus formula. This lemma does not itself
+prove that every uniform E has the stipulated splitting/Chern data.

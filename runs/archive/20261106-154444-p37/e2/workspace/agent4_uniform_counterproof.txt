@@ -1,0 +1,27 @@
+UNIFORM CROSSING-COEFFICIENT COUNTERPROOF (agent4)
+Let c tend to infinity and 3<=r<=c, t=c+r. Partition [t] into r balanced blocks (sizes floor(t/r) or ceil(t/r)), all >=2. Let
+ P(x)=prod_j ((1+x)^{s_j}-1-x^{s_j}), N=[x^{floor(t/2)}]P(x).
+Each factor has symmetric unimodal coefficients, so P does also; hence its middle coefficient is maximal and N>=P(1)/(t+1).
+A subset is crossing if it meets and does not contain each block. N counts crossing middle subsets.
+
+Capacity lemma: There are b independent complementary choices giving 2^b maximal intersecting families on [t], whose pairwise first-difference complementary sets are all crossing, where b=N/2 for even t and b>=floor(t/2)*N/t for odd t.
+Even case: include all sets larger than t/2, exclude smaller ones; independently choose one from each crossing complementary middle pair, freeze all remaining pairs. The resulting families are intersecting and complement-complete, hence maximal.
+Odd case t=2m+1: choose coordinate i contained in at least mN/t crossing m-sets (averaging). Independently include/exclude each such m-set; exclude all other m-sets, include m+1 sets precisely when their complementary m-set was excluded; include all larger sets and exclude smaller. Chosen m-sets share i. Thus two chosen m-sets intersect, and a chosen m-set intersects any chosen m+1 set (otherwise they would be complementary). Larger sets intersect automatically. Each complementary pair is represented exactly once, so maximality follows. Choices differ only on crossing complementary pairs.
+
+To convert 2^b families to t suitable permutations: enumerate all complementary pairs in one fixed order. For coordinate i lexicographically order their choice strings, preferring the choice containing i. For distinct F,G, their first differing complementary pair gives A in F and A^c in G, and exactly coordinates i in A put F after G. For fixed F all such sets A belong to intersecting F, so each vertex is last on any triple in some permutation. All comparisons in both orientations occur in each block, because A and A^c cross every block.
+
+Uniform asymptotic: b >= (2-o(1))*w_c for every 3<=r<=c, where w_c=C(c+1,floor((c+1)/2)).
+Write L=8 log_2 c, alpha=log_2(3/2).
+1. r<=L. Each block size >=c/L. A uniform middle subset of [t] misses a given block with probability C(t-s,m)/C(t,m) <=(1-m/t)^s <=0.51^s for large c, and contains it with probability <=0.51^s. Union bound shows N=(1-o(1))*C(t,floor(t/2)), uniformly here. Since t>=c+3, N>=(1-o(1))*C(c+3,floor((c+3)/2))=(4-o(1))*w_c. Thus b>=(2-o(1))*w_c.
+2. L<=r<=c-L. For s>=3, (2^s-2)/2^{s-1}>=3/2; for s=2 the ratio is 1. At least min(r,c-r)>=L blocks have size>=3 (if r<=c/2 all blocks do; if r>=c/2 there are c-r blocks of size3). Hence P(1)>=2^c*(3/2)^L and N>=P(1)/(t+1), which is much larger than w_c=Theta(2^c/sqrt(c)). Therefore b/w_c tends to infinity uniformly here.
+3. c-L<r<=c. Put a=c-r<L. There are a blocks of size3 and c-2a blocks of size2. Thus
+ P(x)=2^{c-2a}3^a*x^{c-a}(1+x)^a,
+ N=2^{c-2a}3^a*C(a,floor(a/2)).
+This formula is exact for both parities of a and t: floor(t/2)-(c-a)=floor(a/2).
+Since C(a,floor(a/2))>=2^a/(a+1) and (3/2)^a/(a+1)>=1/2 for all nonnegative integers a, N>=2^{c-1}. Again b/w_c tends to infinity.
+
+Together these prove the claimed uniform capacity bound. For r>c use the r=c construction on 2c coordinates and add r-c pure input-chain coordinates, which do not depend on the Q element.
+
+Grid embedding: index suitable permutations by coordinates i and blocks by input chain directions j. Let rho_i(v) be vertex rank. Map (p_1,...,p_r,A) to the t chain coordinates (max_{v in A}rho_i(v), p_j), lexicographically, for i in block j. If A is not a subset of B, a distinguished a in A\B can be put later than every element of B by triple suitability, separating their coordinate ranks. If A subset B and an input chain coordinate p_j exceeds q_j, there is i in block j with equal Q ranks: automatic if A=B; if A={a} and B={a,b}, within-block pair orientation puts a later than b. Thus the map reflects and preserves every comparison. For r>c append the unused pure chain coordinates.
+
+Consequence: log_2 lambda(c+2)<=log_2 D(c+1)=(1+o(1))*w_c, by restriction injection and the elementary Dedekind asymptotic. Therefore n=lambda(c+2)+1 <=2^b uniformly in r>=3 for all sufficiently large c. Every dimension-r poset embeds into a product of r finite chains. Hence dim(P x Q_n)<=r+c for every r>=3, for all sufficiently large c. Taking d=c+3 yields F(d)<=d-3, contradicting the proposed F(d)=d-2. Conversely taking any dimension3 P gives dim(P x Q_n)>=dim Q_n=d, so F(d)>=d-3. Thus the actual F(d) equals d-3 for all sufficiently large d.

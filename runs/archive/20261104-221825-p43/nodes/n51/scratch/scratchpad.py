@@ -1,0 +1,12 @@
+import sympy as s
+m,n=s.symbols('m n',integer=True)
+omega=4*s.pi*(m+n)
+c1=2*(m+n)
+print('omega - 2*pi*c1 =',s.simplify(omega-2*s.pi*c1))
+print('Minimal Chern number =',s.gcd(2,2))
+print('half dimension n =',4//2)
+# H*(M;F2)=F2[a,b]/(a^2,b^2)
+a,b=s.symbols('a b')
+G=s.groebner([a*a,b*b],a,b, modulus=2)
+print('a*b reduces to',G.reduce(a*b)[1])
+print('degree-three positive-class monomials:',[G.reduce(p)[1] for p in [a**3,a*a*b,a*b*b,b**3]])

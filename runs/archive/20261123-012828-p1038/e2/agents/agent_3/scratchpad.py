@@ -1,0 +1,2 @@
+from pathlib import Path
+p=Path('workspace/agent3_analytic_all_m.md');s=p.read_text();s=s.replace('F_A(v)>0: C_m(v)>0;', 'Put q_0=99/(1/10+sqrt((1/10)^2+99^2)), the cross-ring slope denoted q in the m=1 note; it is unrelated to the integer q in A=mq. Then F_A(v)>0: C_m(v)>0;').replace('the j=0 factor is 1-qv>0','the j=0 factor is 1-q_0 v>0');p.write_text(s);print('fixed q notation')

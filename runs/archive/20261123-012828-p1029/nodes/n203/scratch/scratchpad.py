@@ -1,0 +1,10 @@
+import sympy as s
+N,j=s.symbols('N j',integer=True,nonnegative=True)
+C,delta=s.symbols('C delta',positive=True)
+print('Uniformized projection increments have quasitrace eta =',delta/C)
+print('Finite satisfiability for a putative supremum u:')
+print('For constraints x >= a_0,...,a_N and x <= u, choose x=a_N.')
+print('Then u-a_N >= a_(N+1)-a_N, so tau(u-a_N) >= eta.')
+print('Thus countable saturation gives an upper bound x <= u with tau(u-x)>=eta>0.')
+print('This contradicts leastness of u, provided order and tau are definable in the quasitrace metric.')
+print('The construction supplies no numerical endpoint beyond eta=delta/C.')

@@ -1,0 +1,130 @@
+UNIFORM GRAPH LYAPUNOV--SCHMIDT PROOF ARCHITECTURE (AUDIT DRAFT)
+Agent 1. This draft is not a claim that the requested low-dimensional theorem is proved.
+It appears to work for any n>17 possessing the finite profile maximum below;
+that includes a separately certified n21 toy and creates an unresolved conflict
+with the requested threshold25. Every logical lemma below needs audit.
+
+1. Functional setting.
+Let d=n-1, m=(n-2)/2, p=(n+2)/(n-2), q=p+1, alpha=(n-2)/(2d).
+H=D^{1,2}(R^n_+) with inner product int grad u.grad v. Trace Sobolev gives
+||u_0||_{2d/(n-2)} <= C||u||_H. For a smooth compactly supported graph F,
+pull back the epigraph by T_F(y,z)=(y,z+F(y)). Then volume density=1,
+A_F=[[I,-DF],[-DF^t,1+|DF|^2]], and
+b_F=Delta F - F_a F_b F_ab/(1+|DF|^2) = H_F dS/dy.
+Set a_F(u,v)=int A_F Du.Dv + alpha int b_F u_0 v_0,
+E_F(u)=a_F(u,u)/2 - (n-2)^2/2 int (u_+)^q.
+The boundary coefficient here alpha=2c_n, as required.
+If eta=||DF||infty+||D2F||_Ld is small then
+|a_F-a_0| <= C eta ||u||_H||v||_H, and a_F coercive.
+
+2. Uniform projected inverse and contraction.
+The flat bubble U_(eps,xi)=(eps/(eps^2+|y-xi|^2+z^2))^m solves E_0'=0.
+Its Hessian is A_0(v,w)=int Dv.Dw-n(n+2)int U^(4/(n-2))vw.
+Kernel K is spanned by eps and tangential-xi derivatives (dimension n).
+On K-perp the Riesz operator of A_0 has bounded inverse C_n uniformly
+in eps,xi, by conformal invariance: under the unit-hemisphere map its
+numerator is int(|D v|^2-n v^2); spherical harmonics give one negative
+mode, n zero modes, and a positive spectral gap on all remaining modes.
+Perturbation a_F-a_0 preserves this projected inverse if eta is small.
+For n>6, nonlinearity u_+^p has derivative Holder p-1 in H->H*, and
+||N(U+w)-N(U)-N'(U)w||H* <= C||w||H^p.
+Contraction produces unique small w in K-perp solving projected E_F'=0,
+with ||w||H <= C||E_F'(U)||H*. It is C1 in finite bubble parameters.
+For reduced action j(a)=E_F(U_a+w_a), j'=0 implies full E_F'=0:
+orthogonality gives <Z,partial_a w>=-<partial_a Z,w>, hence tangent
+matrix is the nondegenerate flat Jacobi Gram plus O(||w||H).
+No uniform parameter-derivative estimate for w is required.
+
+3. Fixed graph construction.
+Choose p_i=(2^-i,0,...,0), rho_i=2^(-i-4), mu_i=2^(-i^2),
+lambda_i=exp(-(i+10)^4); supports B_(2rho_i)(p_i) can be chosen disjoint.
+Let chi=1 on B_1, supported B_2. Let P2(y)=y^t A y, tr A=0, and
+F_i(y)=tau mu_i chi((y-p_i)/rho_i) P2(y-p_i)
+       [lambda_i^4 a0+lambda_i^2 a1 |y-p_i|^2+a2|y-p_i|^4].
+F=sum F_i is compactly supported C-infinity, flat at 0, since
+||D^k F_i||infty <= C_k tau mu_i rho_i^(6-k). Choose tau sufficiently
+small for the form-smallness in 1 and 2.
+Define t_i=tau mu_i lambda_i^5. At scale lambda_i around p_i the
+local graph is t_i f_Ri, where
+f=P2(a0+a1 r^2+a2 r^4), Ri=rho_i/lambda_i, f_R=chi(y/R)f.
+Other bumps lie outside rescaled ball radius comparable Ri.
+For any fixed exponent N,
+lambda_i^((n-12)/2) rho_i^(-N)/mu_i ->0 (n>12).
+This makes all distant-bump residuals o(t_i) and direct energies o(t_i^2).
+
+4. Rescaled source and direct energy estimates (n>17).
+Keep bubble parameters a=(s,xi) in a fixed compact neighborhood with s>0;
+after physical rescaling epsilon=lambda_i s, center=p_i+lambda_i xi,
+the bubble is fixed U_a and graph h_i(y)=F(p_i+lambda_i y)/lambda_i.
+The first residual functional is
+ell_f(v)=-int f_a(U_a v_n+U_n v_a)+alpha int Delta f U_0 v_0.
+For degree6 f, all coefficient norms are finite for n>12:
+Df DU=O(r^(6-n)) in L2(R^n_+), D2f U0=O(r^(6-n)) in
+L^(2d/n)(R^d). Thus cutoff f_R->f in source norm uniformly compact a.
+Quadratic metric residual <= ||Dh_i||infty times the linear norm;
+boundary nonlinear residual has two slope factors. Local slopes go to0;
+distant bumps have residual O(C rho_i^-N lambda_i^((n-2)/2)). Hence
+E_F'(U_a)/t_i -> ell_f in H*, uniformly compact a after rescaling.
+
+Exact linear cancellation:
+-int DF.D_y U U_n + c_n int Delta F U_0^2 =0.
+Therefore
+E_F(U)-E_0(U)=1/2 int |DF|^2 U_n^2
+ -c_n int [F_a F_b F_ab/(1+|DF|^2)] U_0^2.
+The quadratic local coefficient K_f=1/2 int |Df|^2 U_n^2 exists n>12.
+The cubic local absolute bound has radial tail r^(16-n), integrable n>17.
+Distant terms are O(C rho_i^-N lambda_i^(n-2))=o(t_i^2).
+Consequently E_F(U_a)=E_0(U)+t_i^2 K_f(a)+o(t_i^2), uniformly compact a.
+
+5. Strong operator convergence and reduced action.
+Rescaled metric coefficients converge to flat locally, uniformly bounded
+by the small global eta. Thus (A_i-A_0)v->0 in H* for every fixed v:
+use dominated convergence on gradients; for boundary terms use bounded
+Ld curvature coefficient, trace-Sobolev tails, and local convergence.
+Uniform projected inverse bounds imply inverse strong convergence on
+fixed right sides. Therefore w_i/t_i -> v_f=-A_0^-1 P ell_f strongly H.
+Taylor remainder of action is O(||w||^q)=o(t_i^2), q>2. Projected equation
+gives
+j_i(a)=E_0(U)+t_i^2[K_f(a)-A_0(v_f,v_f)/2]+o(t_i^2)
+uniformly on compact parameter sets.
+
+6. Identification with shape/DtN norm.
+For fixed ambient bubble pulled back to graph, first field correction
+is q_f=f U_n in H (n>12). Direct ambient-bubble second graph derivative
+is zero by reflection parity. Changing gauge therefore identifies
+K_f-A_0(v_f,v_f)/2 = -Q_f/2,
+where Q_f=A_0(w_f,w_f) and w_f solves the homogeneous interior Jacobi
+problem with linearized Robin source on the plane. Under round compactification,
+Q_f is a common positive constant times the J D^-1 J shape quadratic form:
+for boundary degree L>=2, J_L=(L-1)(L+n-1),
+D_L=2 Gamma((L+n+1)/2) Gamma(L/2)/
+       [Gamma((L+n)/2) Gamma((L-1)/2)].
+Modes L1 have J=0; L0 flux solution has boundary trace0 hence zero norm.
+Exact cross-l Grams in agent1_exact_cross_gram.py encode this coefficient.
+
+7. From strict profile maximum to blowup.
+If a->Q_f(a) has strict local maximum at an interior parameter, uniform
+C0 convergence puts a local minimum of j_i inside a fixed compact
+parameter neighborhood for all large i. It is a critical point, hence
+full positive-part PDE solution. Testing negative part with coercive a_F
+forces u>=0; strong maximum principle gives u>0. Critical weak solutions
+are smooth by Brezis--Kato followed by elliptic regularity.
+Rescaled u_i->U in H, hence in trace critical L^(2d/(n-2)). A boundary
+ball of physical radius O(lambda_i) retains positive trace norm;
+its supremum is therefore >=C lambda_i^(-(n-2)/2)->infinity.
+
+8. Compact geometry and ancillary hypotheses.
+Epigraph equals halfspace outside a compact set, so spherical
+compactification is a smooth compact connected domain with boundary.
+Use restricted round metric; it is LCF. Coercive a_F and conformal
+covariance plus Sobolev imply positive first Robin conformal-Laplacian
+eigenvalue. At each p_i, DF=0 and tracefree Hessian
+2 tau mu_i lambda_i^4 a0 A is nonzero; conformal invariance of tracefree
+II rules out conformal hemisphere. Round conformal factor stays bounded
+above/below near p_i, so boundary supremum blowup persists.
+
+UNRESOLVED ISSUE: the analytical range stated above is n>17, not n>=25.
+Agent2 has exact finite strict-maximum certificates at n21 as well as
+all n>=25. If every step above is valid, it disproves the requested
+low-dimensional compactness assertion. No such conclusion is claimed
+until all estimates and the finite n21 certificate are fully audited.

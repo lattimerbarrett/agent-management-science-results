@@ -1,0 +1,25 @@
+from pathlib import Path
+text=r'''# Independent audit of the completed lower bound
+
+The lower bound is now unconditional. Use the ordered triangles
+012,023,124,234,015,145,035,356,567,346,457,347,146,167,137,017,047,046,026,256,027.
+Call their complex B. The restriction faces after the first triangle are
+3,4,34,5,45,35,6,7,46,47,37,16,17,13,07,04,06,26,25,27.
+Here a restriction face R means that the faces introduced by triangle F are precisely the interval [R,F]. Each |R| is 1 or 2, so each prefix is edge-decomposable (deletion at R is the preceding prefix and link is the simplex F minus R). B has all 28 edges. Let S consist of these 21 triangles and the extra triangle 127. It is proper (013 is missing), and the counts of four-sets having j triangles in S, j=0,1,2,3,4, are 9,14,46,0,1. Thus S is closed under the rule that three boundary triangles of a tetrahedron force the fourth. All these finite statements were independently checked from the explicit lists.
+
+Fix d>=3, q=d+1 and m=q. Replace each of the eight vertices by an ordered cluster of m copies. Define K_q to have as facets every q-set whose projection is a face of B. It is pure of rank q and has all pairs of its 8m vertices as edges.
+
+To prove K_q edge-decomposable, expand the preceding triangle order. The first triangle supplies the uniform rank-q skeleton on its 3m copies, which is vertex-decomposable. For a subsequent triangle F with restriction R (size s<=2), process all transversals r' of its R-clusters in decreasing lexicographic order. At a phase r', adjoin all q-facets whose smallest copy in each R-cluster is precisely the selected copy in r'. The link of r' is the uniform rank-(q-s) skeleton on U: all copies in F minus R, together with the copies in the R-clusters larger than the selected ones.
+
+The face r' was absent before this phase: a previously processed minimum transversal cannot be lexicographically larger while its facet contains r'. The deletion of r' equals the pre-phase complex. Indeed remove one selected copy from a new facet G. If the projection now omits some R-vertex, it was a face of the preceding base-triangle prefix, and can be extended to an old q-facet using unused copies (m>=q). Otherwise the new minimum transversal is lexicographically larger; extend to an earlier q-facet using an unused copy in a cluster of F minus R. Such a cluster exists since |R|<=2<3, and has m>=q copies. Thus every newly added r'-avoiding face was already present. The pre-phase complex is pure rank q and edge-decomposable, and the link is vertex-decomposable, so r' (size<=2) is a legitimate shedding face. Induction proves the final complex K_q is edge-decomposable.
+
+Define a barrier C of old-copy triangles by declaring a triple allowed when its projection has size at most two, or is a triangle in S. The triangle family of K_q is contained in C. The barrier is proper, since one copy each of 0,1,3 gives a forbidden triple. It is closed: a four-set projecting to four distinct original vertices uses closedness of S; projection type (2,1,1) has two or four allowed triangles; all other types have all four.
+
+Suppose a completion with r<=d-3 fresh vertices kept every prefix k-decomposable, for any k>=1. Such prefixes are shellable. A single facet addition preserving shellability must attach along a pure union of ridges: otherwise a lower-dimensional maximal intersection face has a disconnected positive-dimensional link in the new complex, impossible for a shellable complex.
+
+Choose the first added q-facet F introducing an old-copy triangle T outside C. Let R be the vertices x of F for which F minus x was already present. Pure ridge attachment says the newly introduced faces are exactly those containing R. Therefore R is contained in T. Since all old vertices and edges were present initially, |R| cannot be 0,1,2; hence R=T. All three ridges F minus t, t in T, were already present. There are at least q-r>=4 old vertices in F. Choose an old u outside T. Each triangle u union (T minus t) was present before F, hence belongs to C by choice of F. This makes exactly three allowed triangles on u union T, contradicting closedness. Consequently no such completion exists with r<=d-3, and b(d,k)>=d-2.
+
+Independent computational checks: workspace/agent2_independent_lower.py constructs this specific family directly and verifies its full certificates and all expanded barrier four-sets for q=4,5,6. Facet counts are 7960,54258,357519; all passed. The smaller auxiliary q=4,m=2 example has 16 vertices and 280 tetrahedra; its full certificate passed BOTH the original definition-based recursive verifier and a separate optimized verifier. Data: workspace/agent2_seed16_certificate.pkl and agent2_seed16.json. The general proof uses m=q for clean extension arguments.
+'''
+Path('workspace/agent2_completed_lower_audit.md').write_text(text)
+print('Savedcompletedlowerproofaudit',len(text),'characters')

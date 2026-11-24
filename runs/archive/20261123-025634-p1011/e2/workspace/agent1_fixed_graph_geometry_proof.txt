@@ -1,0 +1,67 @@
+Fixed smooth graph construction and smallness, dimension21.
+
+Let A=diag(1,...,1,-1,...,-1), ten of each, P(y)=y^tAy in R^20.
+Fix z0 in (-.425186,-.425185) from the exact finite-profile lemma and
+b=7/150. Set f(y)=P(y)(1+z0|y|^2+b|y|^4).
+Choose chi in C_c^infty(B_2), chi=1 on B_1. For i>=1 let
+p_i=(2^-i,0,...,0), rho_i=2^(-i-4), mu_i=2^(-i^2),
+lambda_i=exp(-(i+10)^4). Then lambda_i<rho_i and the balls B_(2rho_i)(p_i)
+are pairwise disjoint. For tau>0 fixed define
+F_i(y)=tau mu_i chi((y-p_i)/rho_i) P(y-p_i)
+ [lambda_i^4+z0 lambda_i^2 |y-p_i|^2+b|y-p_i|^4],
+F=sum_i F_i, extended by0 at0 and outside union of supports.
+
+For each integer k>=0,
+ ||D^k F_i||infty <= C_k tau mu_i rho_i^(6-k).
+Indeed each homogeneous polynomial term has degree r=2,4,6 and prefactor
+lambda_i^(6-r)<=rho_i^(6-r); the product rule with the cutoff contributes
+rho_i^(-s), while a degree-r derivative contributes rho_i^(r-k+s).
+For any N>=0, mu_i rho_i^(6-k)|p_i|^(-N)
+=2^(-i^2+O_(k,N)(i))->0. Consequently every derivative extends by0
+continuously at0 and induction proves F is C-infinity with every jet0
+at0. The support is compact, contained in B_1.
+
+Disjoint supports give
+ ||DF||infty <= C tau,
+ ||D2F||L20^20=sum_i ||D2F_i||L20^20
+ <= C tau^20 sum_i (mu_i rho_i^5)^20 <= C tau^20.
+Thus eta(F)=||DF||infty+||D2F||L20 <= C tau.
+
+At y=p_i the cutoff is identically1 nearby, DF(p_i)=0 and
+D2F(p_i)=2 tau mu_i lambda_i^4 A. Its trace is0 and it is nonzero.
+For epigraph outward normal -e_z at p_i the second fundamental form
+is D2F(p_i), so the tracefree second fundamental form is nonzero.
+
+At scale lambda_i about p_i, put h_i(y)=F(p_i+lambda_i y)/lambda_i,
+t_i=tau mu_i lambda_i^5 and R_i=rho_i/lambda_i. The own bump is EXACTLY
+ t_i chi(y/R_i) f(y).
+All other bumps have |y|>=c R_i after this rescaling. Uniformly in i,
+||Dh_i||infty+||D2h_i||L20 <= Ctau. For any fixed compact set,
+Dh_i,D2h_i->0 uniformly, since the own profile is t_i f and other
+supports eventually escape. (Equivalently use the global smoothness
+of F and lambda_i->0.) The curvature coefficient b_hi obeys same L20
+bound. Source tails in the analytical theorem are O(R_i^(-19/2));
+direct-energy tails O(R_i^-19). Their ratios to t_i,t_i^2 are respectively
+ O(tau^-1 mu_i^-1 rho_i^(-19/2) lambda_i^(9/2)),
+ O(tau^-2 mu_i^-2 rho_i^-19 lambda_i^9),
+which tend0 because lambda_i=exp(-Theta(i^4)) whereas all remaining
+factors grow at most exp(O(i^2)). These are the ONLY needed separation
+conditions; all geometry is fixed once tau,z0 and chi are fixed.
+
+Let Omega={z>F(y)}. Outside a bounded full Euclidean region Omega is
+exactly the upper halfspace; its spherical compactification M is a
+smooth compact connected manifold with smooth nonempty boundary,
+and the restricted unit round metric g is smooth and locally
+conformally flat up to boundary in the explicit ambient-flat sense.
+No assertion about smooth extension of the flattening T_F is needed.
+
+For tau sufficiently small the physical Euclidean conformal-Laplacian
+form pulled back by T_F is >=(1/2)||D v||2^2. Conformal covariance
+transfers it to Q_g on M. The Euclidean Sobolev inequality and critical
+volume invariance give
+ Q_g(w)>=C||w||L^(42/19)(M,g)^2
+ >=C Vol_g(M)^(-2/21)||w||L2(M,g)^2.
+Thus lambda1(-L_g,B_g)>0. The conformal covariance identity initially
+holds on smooth functions vanishing near north and extends by H1
+point-capacity0/density. Nonumbilicity at p_i is preserved by the round
+conformal factor, ruling out conformal equivalence to a hemisphere.

@@ -1,0 +1,67 @@
+{
+ "run": "20261122-220013-p1024",
+ "problem": 1024,
+ "told": false,
+ "solo": true,
+ "answer": "The exact answer is the finite determinantal formula \u0394_b = 4g\u22123 + rank_C A_S(b) \u2212 rank_C A_O(b) \u2212 rank_C A_L(b), with ranks evaluated at the given vector b. Define N=4g\u22123, B=4g, s(t)=(1\u2212t^(4g+2))^(1/2), a(t)=\u2212(1/2)t^(\u22122g+2)s(t), and P(t,w)=1\u2212k t^k \u03c6_b(t)w^k. For M\u22650 let B(M)={t^(\u22122i): i\u22650, 2i\u2264M} \u222a {t^(\u22122i\u22122g\u22121)s(t): i\u22650, 2i+2g+1\u2264M}. All series below are truncated modulo w^N, and a column is its coefficient vector in the specified rows. A_O and A_L have rows (m,e) with 0\u2264m<N and \u2212B\u22123m\u2264e<0. For each 0\u2264n<N, A_O has columns f(t)t^n w^n P^(\u2212n/k), for f\u2208B(4n+B), and A_L has columns f(t)a(t)t^n w^n P^(1\u2212n/k), for f\u2208B(4n+B\u22122g+2). A_S has rows (h,m,e) with 0\u2264m<N and 1\u2212B\u22123m\u2264e<0, and rows (v,m,e) with 0\u2264m<N and \u2212B\u22123m\u2264e<0. Its columns, written as (horizontal,vertical) pairs, are (0, f(t)t^n w^n P^(1\u2212n/k)) for f\u2208B(4n+B), and (f(t)a(t)t^n w^n P^(\u2212n/k), f(t)a(t)t^n w^n P^(\u2212n/k)(\u2212t^(\u22121)\u2212t^k \u03c6_b\u2032(t)w^k)) for f\u2208B(4n+B\u22122g+1), for every 0\u2264n<N. This formula applies to every allowed coefficient vector, including vectors with vanishing components.",
+ "claims_proof": true,
+ "where": "Reply #1, formula (6), with definitions (1)\u2013(5).",
+ "answer_reason": "The agent ends by asserting that this finite determinantal formula determines the exact answer for every allowed g and b, and presents its proof as complete.",
+ "definite": true,
+ "verify": {
+  "verdict": "sound",
+  "acknowledged": false,
+  "review": {
+   "claimed": "For every g\u22652 and every allowed coefficient vector b, \u0394_b=4g\u22123+rank_C A_S(b)\u2212rank_C A_O(b)\u2212rank_C A_L(b), with the three finite matrices defined in the final answer.",
+   "verdict": "sound",
+   "team_acknowledged_gap": false,
+   "decisive_steps": [
+    {
+     "step": "Uniform truncation at N=4g\u22123 computes the actual surface cohomology for O, S, and L.",
+     "basis": "argument",
+     "checked": "Verified the associated graded bundles and the restriction sequence for S. For n\u2265N, both O_E(np) and \u0398_E(np) have degree greater than 2g\u22122. The resulting vanishing on all finite neighborhoods, formal functions for the proper contraction, and the Stein base give the claimed H^1 isomorphisms. The ideal-adic filtrations involved are cofinal because their radicals define E."
+    },
+    {
+     "step": "The specified columns are the transition images for the three sheaves.",
+     "basis": "argument",
+     "checked": "Independently differentiated the gluing. Its inverse is y=twP^(\u22121/k); V=P v; and H=a h+a(\u2212t^(\u22121)\u2212t^k \u03c6_b\u2032w^k)v. Their determinant is aP. These identities give exactly the O, S, and L columns, including the derivative term and all powers of P."
+    },
+    {
+     "step": "The cohomology has the stated principal-parts presentation with coefficient ring R=C[x,z]/(z\u00b2\u2212x^(2g+1)+1).",
+     "basis": "argument",
+     "checked": "Checked the algebraization justification: the finite-neighborhood transition matrix and its inverse are meromorphic at p, so its lattice is bounded between two standard lattices and is determined by finite jets. It therefore defines an algebraic elementary modification of the trivial bundle away from p, with the required analytic realization. The principal-parts sequence then yields the stated quotient. The monomial basis of R has precisely the listed pole orders."
+    },
+    {
+     "step": "Discarding all columns and rows outside the displayed windows does not change the cokernel.",
+     "basis": "argument",
+     "checked": "Verified the valuation estimates, including the extra vertical derivative term for S. The inequality 4k\u22652g\u22121 guarantees that retained columns have no omitted-row entries. Above the column cutoffs, every integer pole order occurs exactly once. Ordering by fiber degree, then eliminating horizontal before vertical components, makes the omitted block invertible; elimination terminates on finite principal parts. Thus high-pole columns cannot introduce additional relations."
+    },
+    {
+     "step": "Exact implementation and final alternating-sum calculation.",
+     "basis": "computation",
+     "checked": "Read the Sage implementation and reran its full g=2,\u2026,6 tests, including vectors with zero components and enlarged windows/neighborhoods; all passed. Independently checked the split-case Serre-duality counts through g=7 and the g=7 vector (0,0,1). Also checked the enlarged omitted blocks symbolically at g=4 over Q(b0,b1): retained-to-omitted entries vanish and omitted blocks have nonzero constant determinants. The row counts Q,Q,2Q\u2212N yield exactly the claimed constant N=4g\u22123."
+    }
+   ],
+   "failing_step": "The hardest step is \u00a72.4: proving that omitted high-pole columns map isomorphically onto omitted rows.",
+   "reason": "The final proof supplies the necessary uniform cohomological cutoff, correct transition matrices, a justified principal-parts model, and a valid finite elimination argument. These establish the determinantal formula for every specialization of b, not merely generic vectors. The exact computational checks reproduce the reported values, and no unresolved objection or acknowledged gap remains in the final proof."
+  },
+  "responses": 12,
+  "runs": 3,
+  "cost": 0.1716
+ },
+ "stop": true,
+ "contract": {
+  "form": "A complete answer must give an exact formula for the integer \u0394_b as a function of every integer g \u2265 2 and every nonzero vector b \u2208 \u2102^r, with r = \u230a(g+2)/3\u230b. The formula may be piecewise, but its conditions must explicitly determine the value for every allowed coefficient vector, including those with vanishing components.",
+  "not_enough": "Bounds, a range of possible values, generic values alone, computations for selected genera or coefficient vectors, or a conjectural or conditional formula do not settle the question. Nor does a formula that leaves some allowed vectors untreated or depends on auxiliary quantities whose values are not explicitly determined by g and b."
+ },
+ "definite_reason": "The formula specifies finite matrices whose entries are explicitly determined by g and b. Their ranks therefore determine a unique integer for every allowed vector, including those with vanishing components, without leaving any auxiliary quantities unspecified.",
+ "reference": "\\[\\boxed{\\displaystyle \\Delta_b=-\\max\\left\\{j\\in\\mathbb Z:0\\leq j<\\left\\lfloor\\frac{g+2}{3}\\right\\rfloor,\\ b_j\\neq0\\right\\}.}\\]",
+ "correct": false,
+ "graded_by": "judge",
+ "matharena": true,
+ "restated": true,
+ "grade_note": "The response supplies a finite matrix-rank computation rather than the explicit largest-index formula in the ground truth. Establishing agreement would require constructing and evaluating the matrices or proving how their ranks depend on \\(b\\), not merely routine algebra.",
+ "solved": false,
+ "cost": 0.2006,
+ "read_at": 1795403976.580673
+}

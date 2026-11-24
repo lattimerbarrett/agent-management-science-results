@@ -1,0 +1,4 @@
+from pathlib import Path
+p=Path('workspace/agent3_uniform_homology.md');s=p.read_text();s=s.replace('For fixed colored set A, coefficient is Lambda^{4-a}(Z^{remaining}/Z(sum e_j)), exactly the Hodge dual row4 skeleton homology.','For fixed colored set A, coefficient is Lambda^{4-a}(Z^{remaining}/Z(sum e_j)), exactly the Hodge dual row4 skeleton homology. More precisely, with U the remaining columns, Lambda^{m-5}Aug(Z^U) = Lambda^{4-a}(Aug(Z^U)^*) tensor det Aug(Z^U); and Aug(Z^U)^* = Z^U/Z(sum e_j). The colored-face orientation det Z^A combines with det Aug(Z^U) to the fixed det Z^[m]. Exterior complementation against e_1 wedge ... wedge e_m then turns deletion of a colored vertex into d(y_rj)=x_j, with y even and x odd. This explicitly accounts for the signs, rather than assuming an unproved twist.')
+p.write_text(s)
+print('added determinant identification')

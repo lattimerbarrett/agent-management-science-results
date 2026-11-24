@@ -1,0 +1,107 @@
+{
+ "id": "n30",
+ "parent": "n1",
+ "depth": 2,
+ "option": {
+  "branch": "e2/c0b1",
+  "counterfactual": "A fixed finite interval list does exist for every m\u226514; none of the five unresolved weights first appears after m=14.",
+  "approach": "Search directly for dimension-14 witnesses of weights 310, 322, 326, 330, and 334. Each verified witness would settle its comparison without requiring a classification of all dimension-15 supports.",
+  "p": 0.2216
+ },
+ "status": "member",
+ "belief": {
+  "answer": "Let \\(N=2^m\\). Then\\n\\[\\n\\boxed{\\begin{aligned}\\n\\mathcal W_m={}&[0,0]_2\\cup[128,128]_2\\cup[192,192]_2\\cup[224,224]_2\\cup[240,240]_2\\cup[248,248]_2\\\\\\n&\\cup[252,256]_2\\cup[272,272]_2\\cup[288,288]_2\\cup[296,296]_2\\cup[304,304]_2\\cup[308,308]_2\\\\\\n&\\cup[312,320]_2\\cup[324,324]_2\\cup[328,328]_2\\cup[332,332]_2\\cup[336,N-336]_2\\\\\\n&\\cup[N-332,N-332]_2\\cup[N-328,N-328]_2\\cup[N-324,N-324]_2\\cup[N-320,N-312]_2\\\\\\n&\\cup[N-308,N-308]_2\\cup[N-304,N-304]_2\\cup[N-296,N-296]_2\\cup[N-288,N-288]_2\\\\\\n&\\cup[N-272,N-272]_2\\cup[N-256,N-252]_2\\cup[N-248,N-248]_2\\cup[N-240,N-240]_2\\\\\\n&\\cup[N-224,N-224]_2\\cup[N-192,N-192]_2\\cup[N-128,N-128]_2\\cup[N,N]_2.\\n\\end{aligned}}\\n\\]\\nEvery constant endpoint \\(b\\) means \\(0\\cdot2^m+b\\), and every endpoint \\(N-b\\) means \\(1\\cdot2^m-b\\).",
+  "confidence": 0.7
+ },
+ "judge": {
+  "claim": true,
+  "same_as": "e3",
+  "answer": "Let \\(N=2^m\\). Then\n\\[\n\\boxed{\\begin{aligned}\n\\mathcal W_m={}&[0,0]_2\\cup[128,128]_2\\cup[192,192]_2\\cup[224,224]_2\\cup[240,240]_2\\cup[248,248]_2\\\\\n&\\cup[252,256]_2\\cup[272,272]_2\\cup[288,288]_2\\cup[296,296]_2\\cup[304,304]_2\\cup[308,308]_2\\\\\n&\\cup[312,320]_2\\cup[324,324]_2\\cup[328,328]_2\\cup[332,332]_2\\cup[336,N-336]_2\\\\\n&\\cup[N-332,N-332]_2\\cup[N-328,N-328]_2\\cup[N-324,N-324]_2\\cup[N-320,N-312]_2\\\\\n&\\cup[N-308,N-308]_2\\cup[N-304,N-304]_2\\cup[N-296,N-296]_2\\cup[N-288,N-288]_2\\\\\n&\\cup[N-272,N-272]_2\\cup[N-256,N-252]_2\\cup[N-248,N-248]_2\\cup[N-240,N-240]_2\\\\\n&\\cup[N-224,N-224]_2\\cup[N-192,N-192]_2\\cup[N-128,N-128]_2\\cup[N,N]_2.\n\\end{aligned}}\n\\]\nEvery constant endpoint \\(b\\) means \\(0\\cdot2^m+b\\), and every endpoint \\(N-b\\) means \\(1\\cdot2^m-b\\).",
+  "reason": "The answer asserts an explicit complete spectrum, so it makes a provable claim. Its intervals are mathematically identical to those in e3.",
+  "experiment": false,
+  "n": 31
+ },
+ "experiment": null,
+ "options": [
+  {
+   "branch": "c0b0",
+   "counterfactual": "None of the weights 310, 322, 326, 330, and 334 occurs in either RM(7,14) or RM(8,15). The correct spectrum therefore has additional gaps rather than additional constructions waiting to be found.",
+   "approach": "Study projection of a hypothetical support of each target weight, recording collision counts and the smaller weights that projection would produce. Use the established smaller-weight classifications to reduce the possible supports to explicit cases.",
+   "p": 0.3347,
+   "child": null
+  },
+  {
+   "branch": "c0b1",
+   "counterfactual": "None of the weights 310, 322, 326, 330, and 334 occurs in either RM(7,14) or RM(8,15). The correct spectrum therefore has additional gaps rather than additional constructions waiting to be found.",
+   "approach": "Audit the weight-308 classification and its possible lifts first, aiming to exclude weight 310 completely. This isolates one unresolved weight and may supply closure arguments reusable for the other four.",
+   "p": 0.1902,
+   "child": null
+  },
+  {
+   "branch": "c0b2",
+   "counterfactual": "None of the weights 310, 322, 326, 330, and 334 occurs in either RM(7,14) or RM(8,15). The correct spectrum therefore has additional gaps rather than additional constructions waiting to be found.",
+   "approach": "Seek a structural lower bound for codewords whose weight is congruent to 2 modulo 4 between weights 320 and 336. Such a bound could exclude all four remaining central candidates simultaneously rather than treating individual constructions.",
+   "p": 0.1522,
+   "child": null
+  },
+  {
+   "branch": "c1b0",
+   "counterfactual": "At least one of the five unresolved weights occurs in RM(8,15) but not in RM(7,14), so the requested uniform interval list really does not exist.",
+   "approach": "Search dimension-15 lifts of dimension-14 supports of weights 308, 320, 324, 328, and 332, using degree-five evaluation relations to construct a target weight. Independently verify any resulting truth table before attempting its dimension-14 exclusion.",
+   "p": 0.044,
+   "child": null
+  },
+  {
+   "branch": "c1b1",
+   "counterfactual": "At least one of the five unresolved weights occurs in RM(8,15) but not in RM(7,14), so the requested uniform interval list really does not exist.",
+   "approach": "Analyze supports that cannot be projected injectively from dimension 15 to dimension 14. Their odd pair-count constraints may force enough structure to prove that a particular dimension-15 construction has no dimension-14 counterpart.",
+   "p": 0.0256,
+   "child": null
+  },
+  {
+   "branch": "c1b2",
+   "counterfactual": "At least one of the five unresolved weights occurs in RM(8,15) but not in RM(7,14), so the requested uniform interval list really does not exist.",
+   "approach": "Prioritize weight 310 and classify its possible projections and lifts in both dimensions. Its smaller size may make the required simultaneous absence and presence proofs more manageable than those for weights above 320.",
+   "p": 0.0137,
+   "child": null
+  },
+  {
+   "branch": "c2b0",
+   "counterfactual": "The unresolved weights are attainable in dimension 14, but their supports cannot be reached efficiently by searches built from a few minimum-weight affine flats.",
+   "approach": "Complete the unfinished matching of exact joint weight profiles for mixed-degree tensor constructions on two seven-variable blocks. Compatible profiles would give explicit degree-seven functions without requiring a short affine-flat representation.",
+   "p": 0.1038,
+   "child": null
+  },
+  {
+   "branch": "c2b1",
+   "counterfactual": "The unresolved weights are attainable in dimension 14, but their supports cannot be reached efficiently by searches built from a few minimum-weight affine flats.",
+   "approach": "Search shortened Reed\u2013Muller subcodes supported inside carefully chosen unions of known low-weight supports. Computing the whole shortened space could reveal target words that local changes to the original generators miss.",
+   "p": 0.0719,
+   "child": null
+  },
+  {
+   "branch": "c2b2",
+   "counterfactual": "The unresolved weights are attainable in dimension 14, but their supports cannot be reached efficiently by searches built from a few minimum-weight affine flats.",
+   "approach": "Use degree-preserving rearrangements within small parallel fibers of known weight-320 or weight-336 words, solving the resulting linear constraints exactly. This searches beyond affine-flat moves while retaining direct truth-table verification of degree and weight.",
+   "p": 0.0639,
+   "child": null
+  },
+  {
+   "branch": "own",
+   "counterfactual": null,
+   "approach": null,
+   "p": null,
+   "child": null
+  }
+ ],
+ "cost": 0.2461,
+ "responses": 5,
+ "step_from": 48,
+ "known": [
+  "e2",
+  "e1"
+ ],
+ "created": 1795490361.9956522,
+ "seen": "23038d108005ace146659d95623f1e6f23280111f2c45b4b2a4cdaa878c35444",
+ "take_at": 48
+}

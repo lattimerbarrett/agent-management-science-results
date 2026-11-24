@@ -1,0 +1,259 @@
+COMPLETE UNCONDITIONAL DIMENSION14 EXCLUSION
+
+Theorem. No word in RM(7,14) has weight322,326,330,334.
+This proof has NO coarse KTA structural-coverage assumption.
+
+STANDARD CLASSICAL INPUTS (explicit, not our former unverified K):
+* Minimum distance2^(n-r), equality precisely affine(n-r)-flat indicators;
+  second nonzero weight3/2 times minimum.
+* Kasami--Tokura classification strictly below twice minimum: a word is
+  an affine-factor times a quadratic form, or XOR of two minimum words.
+  The quadratic-core support span is c+2, c=n-r; its quadratic rank is2mu
+  and the remaining core variables are periods. The two-flat type has
+  pair-direction common dimension c-mu. These usual normal forms are used
+  explicitly below, never an arbitrary-word theorem at/beyond2d.
+* Two NUMERICAL low-weight specializations of Kasami--Tokura--Azumi:
+  in codimension6 the least weight2 mod4 is126 and the next is154;
+  in codimension7 there is no weight260 or264. Only these numbers, not
+  a KTA structural statement, enter this dimension14 proof.
+* The divided-square identity proved in agent4_group_algebra.py: for a
+  codimension7 support A, Q(A) belongs to I^14, has constant coefficient
+  wt(A)/2 mod2, and Q(A+B)=Q(A)+Q(B)+AB. For a target in dimension14 this
+  gives Q(A)=J14. A minimum6-flat has Q=0.
+
+Fix a hypothetical target f with supportS and weightw.
+
+LEMMA1. NO MINIMUM128 FIRST REDUCED DERIVATIVE.
+If one exists, write f=y*1_D+t on F2 times F2^13, D an affine7-flat,
+deg(t)<=7. Then w=128+2 wt(t outsideD), so the outside weight is one of
+97,99,101,103. The universal odd-puncture lemma says the only odd outside
+weights below105 are63,93,95. Its complete moment proof is appended below.
+Contradiction. This is arbitrary t, not a sum-of-flats assumption.
+
+LEMMA2. EVERY FIRST REDUCED DERIVATIVE IS APERIODIC.
+First f itself has no nonzero period: a period would make w twice a weight
+of RM(7,13), whose weights are even, contrary w2 mod4. If a reduced first
+derivative had a nonzero period, choose two independent directions a,b
+and write f=a u+b v+t on12 transverse variables. Here u,v belong to
+RM(6,12), of minimum64, and are independent (otherwise f has a period).
+On a transverse point in suppu union suppv the4-point fiber has weight2;
+else it has weight0 or4. Thus U=|suppu union suppv| is odd and
+ wt(u)+wt(v)+wt(u+v)=2U<=w<=334.
+An odd number of these three weights are2 mod4. If all three, their sum
+is>=3*126>334. Thus exactly one is2 mod4. Neither other word can have
+weight64, because this would give a minimum128 first derivative, excluded
+by Lemma1. Hence both others are>=96. The2 mod4 word is<=142, so its
+weight is126 by the explicit numerical KTA input. The other two weights
+must be(96,96) or(96,112).
+
+Represent their first nonzero support-moment6-forms by alpha,beta,gamma,
+with alpha+beta+gamma=0. KT strict-first-band normal forms give:
+alpha=vol(U6)+vol(W6), U6 directsum W6=F2^12 (weight126);
+beta has essential space dimension8 (weight96);
+gamma has essential dimension<=9 (weight96 or112).
+Indeed96 has moment vol4 times a rank4 alternating2-form;112 is either
+vol2 times the dual of a rank6 quadratic, or vol3 times two complementary
+3-volumes. Their essential dimensions are8 and8/9 respectively.
+This configuration is impossible by the following elementary exterior
+argument. Let M=ess(beta), dimM8, and K=ann ess(gamma), dimK>=3.
+For eta inK, contraction eta alpha equals eta beta and has essential
+dimension<=8. If eta is nonzero on both U6,W6, its contraction has essential
+dimension10, impossible. Therefore the linear space K is contained in the
+union of the two pure annihilator factors, hence in one factor, say U6*.
+Two independent contractions force U6 subsetM. Now beta+volU6 is annihilated
+by K and lies in Lambda6 M, so lies in Lambda6(M intersectKperp), whose
+ambient dimension is<=8-3=5. It is0. This forces beta=volU6, essential
+dimension6, contradiction. Thus every first derivative is aperiodic.
+By KT<256 in RM(6,13), every nonzero word below256 is periodic: the
+quadratic9-variable core has rank<=8, and two7-flat directions intersect
+in dimension>=1. Hence ALL first reduced derivatives of f have weight>=256.
+
+LEMMA3. NO FIRST REDUCED DERIVATIVE OF WEIGHT>=256 HAS SUPPORT SPAN<=11.
+Suppose g does, let L be an affine support span in the13-dimensional
+quotient, and let U be its preimage in V14, of dimension<=12. Outside U,
+f occurs in complete pairs, and its total outside weight is<=w-wt(g)<=78.
+Since Q(f)=J14, f is not supported in U. Choose a hyperplane H13 containing
+U and avoiding an outside supportpoint. The section outsideH is a nonzero
+RM(7,13) word of weight<=78. Its minimum is64, next96, so it is precisely
+an affine6-flat F. The other section B has outside-U weight<=14. If it had
+an outside-U point, cut insideH by a hyperplane containingU but excluding
+that point: the nonzero restriction belongs to RM(7,12), minimum32>14.
+Thus B is supported in U. The restriction of Q(f) to directions inH is
+Q(B)+Q(F)=Q(B), since a6-flat has Q0. It equalsJ13, impossible since Q(B)
+is supported in the proper direction space of U insideH. Contradiction.
+
+LEMMA4. g in RM(6,13), wt(g)=256, with a minimum128 first reduced derivative,
+is PERIODIC OR has support affine span<=11.
+Write g=y*1_D+t on F2 times F2^12, D7flat and deg(t)<=6. Its outside-D
+weight is64. Add1_D times an affine ell onD, absorbing this by an affine
+y-shear. Parseval on128 points gives an ell making inside weight<64.
+The new t has total weight<128 and belongs to RM(6,12), minimum64.
+Apply STRICT KT. If t is minimum or is XOR of two minima, g is XOR of at
+most three minimum7-flat indicators (lift each6-flat with the free y).
+If t is quadratic-core, its support is in an8-flat L, weight96,112,120;
+its intersection withD has weight32,48,56 respectively. Therefore
+ dim(D intersectL)>=5, dim affspan(D unionL)<=7+8-5=10,
+so g has support span<=11 after adding y. Undoing the affine shear
+preserves this conclusion.
+
+For completeness, every XOR<=3 affine7-flat word of weight256 in ambient
+at most14 has a nonzero period. For two flats, weight256 means disjoint;
+in ambient<=14 disjoint7-flats have a nonzero common direction (otherwise
+their directions complement in14 and every pair of cosets meets).
+For three, a pair intersection64 collapses their XOR into one7-flat;
+intersection128 cancels. Otherwise all actual pair sizes are<=32.
+If there were no common period, the three pair-direction dimensions
+r,s,t satisfy r+s,r+t,s+t<=7. If one is>=6, its actual intersection is
+empty (elsecollapse), and the other actual sizes sum<=4. Otherwise
+r,s,t<=5, and 2^r+2^s+2^t<=40 by a three-integer check. Hence total actual
+pair sizes P<=40. But weight256=384-2P+4T forces P>=64, contradiction.
+This proves Lemma4 using ONLY strict KT and elementary flat geometry.
+
+BOOTSTRAP. The full proof in agent4_derivative_bootstrap_proof.txt is
+included as Appendix1. It shows that every target f has a ZERO THIRD
+DERIVATIVE, with no K/pairbound/aperiodicity assumptions. Briefly random
+4-dimensional parityprojection has mean<256, so either a zero fourth
+exists or KT-periodicity gives a zero fifth. Under absence of a zero kth,
+the k+1 top coefficients of a zero(k+1)st form an independent code of
+minimum64 on at most167 supportpoints; averaging yields a64 coefficient,
+thus a minimum kth derivative128. For k4 or3 the codimension-one parent
+projections have mean<256 and are therefore KT-periodic, giving a zero
+kth contradiction. This forces zero4th and then zero3rd.
+
+FINAL CONTRADICTION.
+Lemma2 forbids zero second derivatives. A zero third derivative therefore
+has three independent quadratic fiber coefficients in RM(5,11), minimum64,
+second96. Their code has union<=167 and nonzero average<=4*167/7<96, so
+one is a minimum64 word: f has a MINIMUM128 SECOND reduced derivative.
+For this2-dimensional kernel, its three parent first derivatives have
+average at most128+2/3*(w-128)=(2w+128)/3<=796/3<268.
+Each parent is a doubly-even RM(6,13) word, and by Lemma2 has weight>=256.
+(The divisibility follows directly from self-orthogonality and the fact
+that all generating monomials have weights divisible4.) The numerical
+gap260/264 therefore forces a parent of weight256. It has a minimum128
+first derivative inherited from the minimum second derivative of f.
+Lemma4 makes it periodic or support-span<=11. The first alternative
+contradicts Lemma2; the second contradicts Lemma3. This proves the theorem.
+
+APPENDIX1. COMPLETE BOOTSTRAP PROOF FOLLOWS.
+DERIVATIVE BOOTSTRAP: EVERY TARGET HAS A ZERO THIRD DERIVATIVE
+
+Let f belong to RM(7,14), of weight w in{322,326,330,334}. Only classical
+KT STRICTLY below2d is used in this file, except the explicitly marked final
+optional deduction of a256 first derivative using the numeric gap256..272.
+
+Definitions. For a k-dimensional translation subspace U, write pi_U f for
+its parityprojection to V/U, i.e. a reduced kth derivative. Its degree is
+at most7-k, so it has codimension7 and minimum128 whenever nonzero.
+
+LEMMA A (zero-next derivative forces a minimum derivative).
+Fix k in{2,3,4}. Suppose pi_K f=0 for some(k+1)-space K, but pi_U f!=0 for
+EVERY k-space U. Choose k+1 coordinates z on K and14-(k+1)=13-k transverse
+coordinates x. The z-degree is<=k. The k+1 coefficients u_i of degree-k
+z-monomials belong to RM(7-k,13-k), of minimum64 and second weight96.
+They are linearly independent, because every nonzero k-vector in a(k+1)-
+space is decomposable: a dependence is a zero kth derivative.
+For x in their union T, the z-fiber is nonzero and even (degree<=k on k+1
+variables), so has at least2 supportpoints. Therefore |T|<=167.
+The2^(k+1)-1 nonzero words of their code have total weight2^k|T|. For each
+k2/3/4, 2^k*167 <96*(2^(k+1)-1). Thus some nonzero word is below96, hence64,
+and is the indicator of an affine6-flat. A change of basis on K normalizes
+it to a kth coefficient. The reduced kth derivative is then independent
+of the last z-coordinate, and is a MINIMUM128 word, an affine7-flat D.
+
+LEMMA B (minimum derivative descends at low weight).
+Suppose pi_U f=1_D is minimum128, dimU=k. For x in D, the fiber F_x in U
+has odd size, while outside D it has even size. Let M(x)=sum_{z in F_x}z
+in U (coordinates on U). For ell in U* nonzero, pi_ker(ell) f is a function
+h_ell on(V/U) times F2. Its two values outside D agree and equal ell(M(x));
+inside D exactly one of them is1. Consequently
+ wt(h_ell)=128+2e_ell,
+ e_ell=|{x outside D:ell(M(x))=1}|.
+If L counts outside-D fibers with M(x)!=0, then
+ sum_{ell!=0}e_ell=2^(k-1)L <=2^(k-1)*(w-128)/2,
+since each such fiber has at least2 points and the odd fibers already
+cost128. Therefore
+ average_ell wt(h_ell)<=128+2^(k-1)/(2^k-1)*(w-128).
+For k4 this is<=3568/15<256; for k3 it is<=1720/7<256.
+So for k3 or4, some h_ell has weight<256. It is nonzero, because its
+further derivative along U/ker(ell) is1_D. By KT<2d it has a nonzero period:
+its code is respectively RM(5,12) or RM(4,11), and all those strict-first-
+band words are periodic. (Quadratic-core type has9 core variables and
+rank<=8; two7-flat type has common direction dimension>=2 or3.) Lifting
+this period gives a zero kth derivative of f. Thus existence of a minimum
+kth derivative contradicts absence of zero kth derivatives, for k3 or4.
+
+STEP1. SOME ZERO FOURTH DERIVATIVE.
+If one already exists there is nothing to prove. Otherwise average a
+random4-space parityprojection. Its expected weight is at most
+ w-2binom(w,2)*15/16383+4binom(w,3)*210/(16383*16382),
+which is<256 for all four targets (exact bounds244.617..251.429).
+There is a nonzero projection h in RM(3,10) below256. KT says h is periodic
+(quadratic-core type leaves a period; two7-flat type common direction>=4).
+Lifting its period gives a ZERO FIFTH derivative. Lemma A with k4 then
+gives a minimum fourth derivative, and Lemma B contradicts the assumption
+that every fourth derivative is nonzero. Hence some fourth derivative is0.
+
+STEP2. SOME ZERO THIRD DERIVATIVE.
+Assume contrariwise every third derivative nonzero. Step1 gives a zero
+fourth derivative; Lemma A with k3 gives a minimum third derivative.
+Lemma B again gives a zero third derivative, contradiction.
+
+OPTIONAL FINAL REDUCTION FOR A HYPOTHETICAL FORBIDDEN WORD.
+The team's independently proved aperiodic-first-derivative lemma says all
+first reduced derivatives of a target are aperiodic, so no second derivative
+vanishes and every first reduced derivative has weight>=256 (KT<256 gives
+periodicity). Apply Lemma A with k2 to the zero third derivative fromStep2:
+some SECOND reduced derivative is minimum128. Lemma B for k2 says that one
+of its three parent first derivatives has weight<= (2w+128)/3 <=796/3<268.
+The parents are nonzero doubly-even RM(6,13) words of weight>=256. Using the
+classical numeric gap(no260/264), one parent is256 and has a minimum first
+reduced derivative128. Therefore the remaining m14 obstruction reduces
+ONLY to the established Lemma4 (the256-with-minimum128 lemma), not to
+arbitrary KTA structural coverage. No unverified K is used in Steps1--2.
+
+APPENDIX2. ODD-PUNCTURE LEMMA USED IN LEMMA1.
+D is any affine7-flat in F13; deg(t)<=7. Coordinates x in F6,z inF7,
+D={x=0}. Fiber moments M_J(x)=sum_z t(x,z)prod(z_j,j inJ) have degree<=|J|.
+A nonzero degreea polynomial onb variables has weight>=2^(b-a).
+An even set whose moments throughdegreea vanish has size>=2^(a+1);
+an odd fiber agreeing throughdegreea with singleton0 is either singleton
+or has size>=2^(a+1)-1. With these conventions:
+PROOF OF (B). Fiber parity is constant; odd outside weight forces it
+identically1. Baseline is63; let E=e-63, an even number<=40. First
+moments are affine and can be made identically zero by affine z-shifts.
+
+If some second moment is nonzero, it is quadratic on six variables.
+Its full weight is at least16; if not of minimum weight, at least24.
+The latter would give >=23 outside fibers of cost>=2, exceeding40.
+Thus every nonzero second moment is the indicator of an affine four-flat.
+Two distinct such supports have union>=24, again too large. Hence all
+second moments are constants times a common four-flat indicator 1_T.
+The alternating moment matrix M has rank2: rank>=4 would cost>=4 on
+at least15 fibers, exceeding40. Indeed for an odd zero-XOR fiber R,
+rank M <= |R|-1. A rank2 alternating matrix identifies a unique plane P,
+and its unique minimum-size odd zero-XOR fiber is P without0.
+
+Use canonical singleton0 fibers offT and canonical P-without0 fibers onT.
+Their outside weight e0 is 63+2*|T without0|, namely93 or95. Every actual
+fiber has size at least the canonical one. Let R=e-e0<=10. Defective
+fibers have excess at least2, so there are <=5. A third-moment error
+(actual minus canonical) has degree<=3; if nonzero its support off0 is
+at least8-1=7. Thus it vanishes. Any defective fiber now differs from
+its canonical fiber by a nonzero null3 set, of size>=16. This costs>=10
+for a canonical triple, >=14 for a canonical singleton. There is at most
+one defect. Fourth-moment errors have degree<=4, with nonzero outside
+support >=4-1=3>1. They vanish; now a defect costs>=32-2*3=26>10.
+Therefore e=e0 in {93,95}.
+
+If all second moments vanish, a nonzero third moment has at least7
+outside points. Their odd fibers cost>=6 each, totaling42>40. Thus all
+third moments vanish. A nonzero fourth moment similarly costs at least
+(4-1)*14=42>40, so all fourth moments vanish. A defective odd fiber now
+costs>=30; thus there is at most one. For this fiber R, the set
+R symmetric-difference {0} is a nonzero null4 set on F2^7 of size<=42.
+It is an RM(2,7) word. The first two nonzero weights of that code are
+32,48 (the elementary quadratic-form rank formula). Thus its size32,
+R has size31 or33, and E=30 or32. Hence e=93 or95. With no defect e=63.
+QED.
+

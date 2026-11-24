@@ -1,0 +1,73 @@
+{
+ "run": "20261122-180706-p1007",
+ "problem": 1007,
+ "told": false,
+ "solo": true,
+ "answer": "\\(\\mathcal E_X=\\{(n,\\star):n\\geq4,\\ \\star\\in\\{\\mathrm{Hod},\\mathrm{Dol},\\mathrm{dR}\\}\\}\\) for every smooth connected complex projective curve \\(X\\) of genus at least two.",
+ "claims_proof": true,
+ "where": "Reply #1",
+ "answer_reason": "The agent states this answer in the opening box and concludes that its proof is complete, with nothing remaining to be settled.",
+ "definite": true,
+ "verify": {
+  "verdict": "sound",
+  "acknowledged": false,
+  "review": {
+   "claimed": "For every smooth connected complex projective curve of genus at least two, the incidence set is exactly all (n,star) with n>=4 and star in {Hod,Dol,dR}.",
+   "verdict": "sound",
+   "team_acknowledged_gap": false,
+   "decisive_steps": [
+    {
+     "step": "Final proof \u00a7\u00a71\u20132: classification of stable full-chain components, attracting-set dimensions, and exclusion of ranks two and three.",
+     "basis": "argument",
+     "checked": "Checked the tail stability criterion, the Picard/symmetric-product parametrization, and the tangent-weight dimension calculation. Equal dimensions fix d1-dn; in rank two this fixes the degree vector, and in rank three it fixes the determinant-polarization weight. The projective-coordinate weight test then excludes the proposed incidence."
+    },
+    {
+     "step": "Final proof \u00a7\u00a73\u20134: uniform degree vectors and the Dolbeault elementary-modification degeneration.",
+     "basis": "argument",
+     "checked": "Verified stability and nonnegative arrow degrees for p and q in every rank at least four, including genus two. Checked that the modification changes the generic graded degrees by -e2+e3 and the three arrow divisors by (-x,2x,-x), while its special member is Q0. The required divisor choices exist on every curve under consideration."
+    },
+    {
+     "step": "Final proof \u00a75.2: the obstruction calculation enabling deformation to nonzero lambda.",
+     "basis": "argument",
+     "checked": "Checked the deformation complex and its Serre-dual kernel. The additional lower-triangular pole would lie in H0(L2 L1^{-1}) and is excluded by the chosen nontrivial degree-zero line bundle. The diagonal commutator equations kill the first upper diagonal. The remaining holomorphic lower-triangular endomorphism commutes with the stable auxiliary Higgs field and is scalar. Thus fixing determinant and its logarithmic connection removes the obstruction; the degree-residue condition supplies that determinant connection."
+    },
+    {
+     "step": "Final proof \u00a75.3: obtaining a boundary incidence within a nonzero-lambda fiber.",
+     "basis": "argument",
+     "checked": "Checked that smoothness provides the required local two-parameter deformation, that upper modification gives holomorphic connections transverse to the induced filtrations, and that the q and p filtrations occur on t=0 and t!=0 respectively. Openness of nonzero symbols gives the incidence in a general nonzero-lambda fiber, which scales to the de Rham fiber."
+    },
+    {
+     "step": "Python verification and the local modification equations.",
+     "basis": "computation",
+     "checked": "Reran the team's scratchpad successfully, reproducing the symbolic checks and enumeration counts. Additionally checked the full 4-by-4 local connection matrix, not just its middle block: the stated residue and regular-part equations remove all poles and give Griffiths transversality for both induced filtrations."
+    },
+    {
+     "step": "Properness of each nonempty equal-dimensional incidence.",
+     "basis": "argument",
+     "checked": "The attracting sets are irreducible locally closed and disjoint. For such sets of equal dimension, containment of one in the other's closure would force two disjoint dense opens in the same irreducible closure. This verifies the application of the equal-dimension observation; its statement implicitly needs the disjointness present here."
+    }
+   ],
+   "failing_step": "The hardest step is \u00a75.2\u20135.3, the determinant-fixed obstruction calculation and its use to move the incidence into a nonzero-lambda fiber.",
+   "reason": "The proof supplies both the low-rank exclusion and a uniform construction in every higher rank. In particular, it does not merely infer the de Rham assertion from the Dolbeault degeneration: its filtered logarithmic deformation calculation supplies the necessary fiberwise deformation. The algebraic checks rerun correctly, and the substantive geometric steps apply to the stated moduli problem."
+  },
+  "responses": 9,
+  "runs": 1,
+  "cost": 0.2104
+ },
+ "stop": true,
+ "contract": {
+  "form": "A complete answer must explicitly specify the exact set \\(\\mathcal E_X\\) for every smooth connected complex projective curve \\(X\\) of genus at least two: equivalently, a necessary-and-sufficient criterion for membership of every pair \\((n,\\star)\\), with any dependence on \\(X\\) made explicit.",
+  "not_enough": "Examples of qualifying pairs, partial rank or fiber classifications, bounds on possible ranks, or conjectural or conditional descriptions do not settle the question. Neither does establishing equal dimensions or nonempty intersection alone without resolving the required proper-intersection condition."
+ },
+ "definite_reason": "The proposed answer explicitly specifies the exact set of pairs for every curve X in the question, giving a necessary-and-sufficient membership criterion with no unresolved dependence on X.",
+ "reference": "\\[\\boxed{\\mathcal E_X=\\mathbb Z_{\\geq4}\\times\\{\\mathrm{Hod},\\mathrm{Dol},\\mathrm{dR}\\}}\\] for every smooth connected complex projective curve \\(X\\) of genus \\(g\\geq2\\).",
+ "correct": true,
+ "graded_by": "judge",
+ "solved": true,
+ "cost": 0.2365,
+ "read_at": 1795390000.058638,
+ "matharena": true,
+ "restated": false,
+ "grade_note": "The model\u2019s final answer is exactly the reference set: all ranks \\(n\\geq4\\) and all three fibers, for every curve satisfying the stated hypotheses.",
+ "graded_at": 1795396402.007586
+}

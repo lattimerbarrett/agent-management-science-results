@@ -1,0 +1,50 @@
+QUADRATIC RAMIFICATION LEMMA ON P2
+Let W be a basepointfree vector space of quadratic forms on P2 over C,
+and let phi:P2->P(W*) be its (necessarily finite) morphism. Its differential
+cannot have rank <2 exactly at the points of one projective line L.
+
+Proof. Suppose its rank-drop set is precisely L={z=0}. The restricted
+linear system W|L is basepointfree, so has dimension 2 or 3 (dimension1
+would be spanned by a binary quadratic, which has a zero).
+
+If dimension3, choose a basis of W whose restrictions to L are
+x^2,xy,y^2,0,... . Let g_i(x,y) be the z-linear coefficients (normal
+derivatives) of its members. On L the derivative in the tangent direction
+is nonzero, since the restriction is a conic embedding. Thus ramification
+along L says (g_i) belongs to the affine tangent plane to that conic:
+g_i=0 for i>=3 and y^2g_0-2xyg_1+x^2g_2=0.
+Writing each g_i linear and comparing coefficients gives
+g_0=2Dx, g_1=Cx+Dy, g_2=2Cy for constants C,D.
+Changing coordinates to x'=x+Dz,y'=y+Cz eliminates all mixed z*x,z*y
+terms. Thus W is contained in span{x'^2,x'y',y'^2,z^2}.
+Basepointfreeness at p=[0:0:1] forces some z^2 coefficient nonzero,
+and then phi is defined there but dphi_p=0: in the affine chart z=1
+all remaining coordinate functions have vanishing linear term.
+This is a ramification point outside L, a contradiction.
+
+If dimension2, the basepointfree binary-quadratic pencil gives a degree2
+map P1->P1, hence after source and target projective coordinate changes
+is span{x^2,y^2}. For all remaining basis members, restriction to L is0.
+At a general point of L the tangent derivative of phi|L is nonzero.
+Ramification along L therefore forces the normal derivatives of all
+remaining members to vanish. They are consequently multiples of z^2.
+Thus W has dimension at most3; basepointfreeness forces dimension3,
+and after basis changes it has generators
+ f0=x^2+z(ax+by)+cz^2,
+ f1=y^2+z(dx+ey)+fz^2,
+ f2=z^2.
+The Jacobian determinant is
+ 2z*((2x+az)*(2y+ez)-bd*z^2).
+Its second factor restricts to 4xy on L, and is therefore a nonconstant
+quadratic not supported on L. It has a zero outside L, giving a further
+ramification point. Contradiction. This proves the lemma.
+
+APPLICATION TO THE P3 RANK5 WIDTH-THREE EXCEPTION
+For ranks(low,middle,high)=(1,2,2), the nonconstant formal incidence root
+has B_x=O_P2(2), c1(C_x)=c2(C_x)=0. Horizontality gives the differential
+of the bottom direction map as T_P2->C_x^* tensor O(2), a map of rank2
+bundles whose determinant has class (4-3)H=H. The direction map is
+finite, so this determinant is nonzero. Since the target is a subbundle
+of the full Grassmannian tangent pullback, its zero set is exactly the
+ramification set, a single line. The direction map is defined by a
+basepointfree subsystem of |O_P2(2)|, contradicting the lemma.

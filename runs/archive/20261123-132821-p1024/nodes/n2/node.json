@@ -1,0 +1,107 @@
+{
+ "id": "n2",
+ "parent": "n0",
+ "depth": 1,
+ "option": {
+  "branch": "own",
+  "counterfactual": null,
+  "approach": null,
+  "p": null
+ },
+ "status": "member",
+ "belief": {
+  "answer": "The following finite matrix-rank formula gives the answer for every allowed vector b, without any genericity assumptions. Set h=2g\u22122, N=4g\u22124, d=2g\u22121\u2212k, Q=\u230aN/k\u230b, B=2h+1+dQ, and J=B+N+dQ+1. Write \u03c6(t)=\u03a3_{j=0}^{r\u22121}b_j t^{\u2212(2g\u22121\u22122j)}, q(t)=kt^k\u03c6(t), and a(t)=\u2212(1/2)t^{\u2212h}(1\u2212t^{4g+2})^{1/2}. All matrices acting on polynomials in w below are truncated modulo w^{N+1}. Define (N+1)\u00d7(N+1) matrices P,D,C by P_{mn}=t^n(n/k)_j q^j/j! if m=n+jk for an integer j\u22650, and P_{mn}=0 otherwise; D is multiplication by 1\u2212qw^k; C is multiplication by \u2212t^{\u22121}\u2212t^k\u03c6\u2032(t)w^k. Here (x)_0=1 and (x)_j=x(x+1)\u22ef(x+j\u22121). Put T_O=P, T_L=aDP, and T_S=[[aP,0],[aCP,DP]]. Define H_B={s\u2208\u2124:0\u2264s\u2264B, s even or s\u22652g+1}, and F_s(t)=t^{\u2212s} for even s and F_s(t)=t^{\u2212s}(1\u2212t^{4g+2})^{1/2} for odd s. For each m\u00d7m matrix T among T_O,T_L,T_S, define the finite complex matrix M(T), with rows (\u03b1,j)\u2208{1,\u2026,m}\u00d7{1,\u2026,J} and columns (i,s)\u2208{1,\u2026,m}\u00d7H_B, by M(T)_{(\u03b1,j),(i,s)}=[t^{\u2212j}](a(t)^{\u22121}(T^{\u2212\ud835\uddb3})_{\u03b1i}F_s(t)). Then\n\\[\\boxed{\\Delta_b=\\operatorname{rank}_{\\mathbb C}M(T_S)-\\operatorname{rank}_{\\mathbb C}M(T_O)-\\operatorname{rank}_{\\mathbb C}M(T_L).}\\]\nAll coefficient extractions are finite, and all matrix entries are explicit polynomials in the entire coefficient vector b.",
+  "confidence": 0.93
+ },
+ "judge": {
+  "claim": true,
+  "same_as": null,
+  "answer": "Set h=2g\u22122, N=4g\u22124, d=2g\u22121\u2212k, Q=\u230aN/k\u230b, B=2h+1+dQ, and J=B+N+dQ+1. Write \u03c6(t)=\u03a3_{j=0}^{r\u22121}b_j t^{\u2212(2g\u22121\u22122j)}, q(t)=kt^k\u03c6(t), and a(t)=\u2212(1/2)t^{\u2212h}(1\u2212t^{4g+2})^{1/2}. All matrices acting on polynomials in w are truncated modulo w^{N+1}. Define (N+1)\u00d7(N+1) matrices P,D,C by P_{mn}=t^n(n/k)_j q^j/j! if m=n+jk for an integer j\u22650, and P_{mn}=0 otherwise; D is multiplication by 1\u2212qw^k; C is multiplication by \u2212t^{\u22121}\u2212t^k\u03c6\u2032(t)w^k. Here (x)_0=1 and (x)_j=x(x+1)\u22ef(x+j\u22121). Put T_O=P, T_L=aDP, and T_S=[[aP,0],[aCP,DP]]. Define H_B={s\u2208\u2124:0\u2264s\u2264B, s even or s\u22652g+1}, and F_s(t)=t^{\u2212s} for even s and F_s(t)=t^{\u2212s}(1\u2212t^{4g+2})^{1/2} for odd s. For each m\u00d7m matrix T among T_O,T_L,T_S, define the finite complex matrix M(T), with rows (\u03b1,j)\u2208{1,\u2026,m}\u00d7{1,\u2026,J} and columns (i,s)\u2208{1,\u2026,m}\u00d7H_B, by M(T)_{(\u03b1,j),(i,s)}=[t^{\u2212j}](a(t)^{\u22121}(T^{\u2212\ud835\uddb3})_{\u03b1i}F_s(t)). Then \u0394_b=rank_C M(T_S)\u2212rank_C M(T_O)\u2212rank_C M(T_L) for every allowed vector b, without any genericity assumptions. All coefficient extractions are finite, and all matrix entries are explicit polynomials in the entire coefficient vector b.",
+  "reason": "The answer asserts an explicit finite matrix-rank formula for \u0394_b for every allowed b, which a team could attempt to prove. There are no previous answers.",
+  "experiment": false,
+  "n": 2,
+  "definite": false,
+  "gate": "The proposed answer reduces the cohomology calculation to ranks of explicit finite matrices but leaves those ranks to be computed. It therefore gives a procedure for finding \u0394_b, not the requested result describing its value as a function of g and b, including the exceptional cases with vanishing components.",
+  "procedure": true
+ },
+ "experiment": null,
+ "options": [
+  {
+   "branch": "c0b0",
+   "counterfactual": "The cohomology groups defining \u0394_b are not all determined by restricting the relevant sheaves to the neighborhood defined by I_E^(4g\u22123). Higher infinitesimal neighborhoods contribute additional terms.",
+   "approach": "Reexamine the restriction sequences for all three sheaves and determine exactly when their first cohomology groups stabilize. Use that stabilization threshold to replace the truncation bound in the matrix formula.",
+   "p": 0.0379,
+   "child": null
+  },
+  {
+   "branch": "c0b1",
+   "counterfactual": "The cohomology groups defining \u0394_b are not all determined by restricting the relevant sheaves to the neighborhood defined by I_E^(4g\u22123). Higher infinitesimal neighborhoods contribute additional terms.",
+   "approach": "Check the hypotheses of the theorem on formal functions for the contracted surface and compare analytic cohomology with the inverse limit over infinitesimal neighborhoods. Identify whether the problem lies in stabilization or in the analytic comparison.",
+   "p": 0.0207,
+   "child": null
+  },
+  {
+   "branch": "c0b2",
+   "counterfactual": "The cohomology groups defining \u0394_b are not all determined by restricting the relevant sheaves to the neighborhood defined by I_E^(4g\u22123). Higher infinitesimal neighborhoods contribute additional terms.",
+   "approach": "Compute the finite-neighborhood cohomology at several successive truncation orders for small genera and sparse coefficient vectors. Use any change in dimension to identify the missing contribution.",
+   "p": 0.0103,
+   "child": null
+  },
+  {
+   "branch": "c1b0",
+   "counterfactual": "The stated finite matrix-rank formula is incorrect because its transition matrices or Laurent-coefficient bounds omit a contribution from the nonlinear gluing.",
+   "approach": "Derive the coordinate changes for functions, logarithmic vector fields, and their exterior products directly from the original gluing. Compare each resulting matrix block with the proposed matrices to locate the discrepancy.",
+   "p": 0.1207,
+   "child": null
+  },
+  {
+   "branch": "c1b1",
+   "counterfactual": "The stated finite matrix-rank formula is incorrect because its transition matrices or Laurent-coefficient bounds omit a contribution from the nonlinear gluing.",
+   "approach": "Replace the Laurent-coefficient bounds by independently justified, more conservative bounds and recompute small examples. This would distinguish an insufficient truncation bound from an incorrect transition matrix.",
+   "p": 0.0603,
+   "child": null
+  },
+  {
+   "branch": "c1b2",
+   "counterfactual": "The stated finite matrix-rank formula is incorrect because its transition matrices or Laurent-coefficient bounds omit a contribution from the nonlinear gluing.",
+   "approach": "Construct an independent calculation using \u010cech cohomology and principal parts on the curve. Compare its dimensions with those predicted by the dual-section matrix calculation.",
+   "p": 0.0603,
+   "child": null
+  },
+  {
+   "branch": "c2b0",
+   "counterfactual": "For fixed g, \u0394_b is independent of the choice of nonzero b, including choices with vanishing components. Dependence on the full coefficient vector disappears in the alternating combination.",
+   "approach": "Compare coordinate vectors, vectors with several nonzero components, and generic vectors in the first genera with r greater than one. Look for constant alternating rank even when the individual cohomology dimensions vary.",
+   "p": 0.2759,
+   "child": null
+  },
+  {
+   "branch": "c2b1",
+   "counterfactual": "For fixed g, \u0394_b is independent of the choice of nonzero b, including choices with vanishing components. Dependence on the full coefficient vector disappears in the alternating combination.",
+   "approach": "Search for an exact sequence or a map between the three cohomology calculations that forces their coefficient-dependent contributions to cancel. Such a construction could replace the matrix-rank formula with a formula depending only on g.",
+   "p": 0.3103,
+   "child": "n5"
+  },
+  {
+   "branch": "c2b2",
+   "counterfactual": "For fixed g, \u0394_b is independent of the choice of nonzero b, including choices with vanishing components. Dependence on the full coefficient vector disappears in the alternating combination.",
+   "approach": "Study coordinate changes preserving the curve and its zero section to determine which coefficient vectors define equivalent neighborhoods. Combine those equivalences with a deformation argument to investigate constancy across the remaining vectors.",
+   "p": 0.1034,
+   "child": null
+  },
+  {
+   "branch": "own",
+   "counterfactual": null,
+   "approach": null,
+   "p": null,
+   "child": null
+  }
+ ],
+ "cost": 0.0328,
+ "responses": 4,
+ "step_from": 3,
+ "known": [],
+ "created": 1795458738.102241,
+ "seen": "f251ab80c35a652f91091c86122f4abac4bc98dbeea43722c271b42df7c01a58",
+ "take_at": null
+}

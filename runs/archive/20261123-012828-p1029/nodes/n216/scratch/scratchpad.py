@@ -1,0 +1,1 @@
+print(open('experiments/e1/agent3_completion_audit.md').read())

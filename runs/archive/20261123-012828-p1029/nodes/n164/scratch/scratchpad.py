@@ -1,0 +1,10 @@
+from pathlib import Path
+p=Path('experiments/e1/agent3_qt_ultraproduct_notes.md')
+print(p.read_text())
+print('\nNO-SUPREMUM CHECK (separate from AW and factoriality):')
+print('Let A_n=[a_n^(k)] have limiting positive gap eta and suppose s=sup A_n.')
+print('Lift s by bounded selfadjoint s_k. For each fixed n,')
+print('tau_k(((a_n^(k)-s_k)_+)^2) tends to 0 along the ultrafilter.')
+print('Choose m(k) tending to infinity slowly enough that both n=m(k),m(k)+1 errors tend to zero.')
+print('Then B=[a_m(k)^(k)] and C=[a_(m(k)+1)^(k)] are upper bounds for every A_n and B,C<=s.')
+print('Leastness forces B=C=s, but tau(C-B)=eta>0. Contradiction.')

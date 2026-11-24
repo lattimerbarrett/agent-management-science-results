@@ -1,0 +1,11 @@
+from pathlib import Path
+src=Path('workspace/generic_weighted_jets_agent4.py').read_text()
+src=src.replace("K,m,p,q,ell=field('m,p,q,ell',QQ)","K,m,p,q,ell,Vv,T=field('m,p,q,ell,Vv,T',QQ)")
+src=src.replace('def mp(state,U,V):','H=(T-1)*(Vv-T)\ndef mp(state,U,V):')
+src=src.replace('5*M[2]-2-4*ss,5*M[3]-2*mm-4*dd','(1+Vv)*M[2]-(Vv-H)-2*H*ss,(1+Vv)*M[3]-(Vv-H)*mm-2*H*dd')
+src=src.replace('5*M[4]-2*M[2]-8*ss,5*M[5]-2*M[3]-8*dd','(1+Vv)*M[4]-(Vv-H)*M[2]-2*H*T*ss,(1+Vv)*M[5]-(Vv-H)*M[3]-2*H*T*dd')
+src=src.replace('C=2-b','C=T-b').replace('C*C+2*a*a','C*C+T*a*a').replace('4*a*C*ss','2*T*a*C*ss')
+src=src.replace('],1,4);b=mp(a,4,1)','],1,Vv);b=mp(a,Vv,1)')
+src=src.replace("for i,row in enumerate(coef):print(i,list(enumerate(row)),flush=True)","print('derived',flush=True)")
+src=src.replace('generic_weighted_jets_agent4','generic_param_jets_agent4')
+exec(compile(src,'param','exec'))

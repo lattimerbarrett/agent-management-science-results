@@ -1,0 +1,17 @@
+For the standard C^2 worm defining function rho=|z-exp(i log|w|^2)|^2-1+eta(log|w|^2), the tangential Levi form (times |w|^2, in the tangent vector (rho_w,-rho_z)) is
+eta_prime^2-2 eta_prime*y+(2*x+eta_second)*(1-eta).
+On the boundary (x-1)^2+y^2=1-eta, this equals
+(eta_prime-y)^2+(x-eta)^2+eta*(1-eta)+eta_second*(1-eta).
+Thus it is nonnegative when 0<=eta<=1 and eta_second>=0.
+SymPy verified both identities exactly.
+
+ALL DIMENSIONS: Add ||zeta||^2 to rho. For a=e^{-it}v_z, b=v_w/w, c=v_zeta, tangent vectors satisfy
+(bar(xi)-1)*a + bar(zeta).c = -(eta_prime-2*y)*b.
+The Levi form equals |a-i*b|^2+||c||^2+(2*x+eta_second-1)*|b|^2.
+Cauchy-Schwarz and |xi-1|^2+||zeta||^2=1-eta imply
+(1-eta)*Levi >= N*|b|^2,
+N=(eta_prime-y)^2+(x-eta)^2+eta*(1-eta)+eta_second*(1-eta)>=0.
+At eta=1 tangency forces b=0 because eta_prime!=0, so Levi>=0 too.
+SymPy verified the completed-square and N identities exactly.
+
+Independent real-coordinate Wirtinger differentiation verified rho_z, rho_w, rho_zbarz, rho_zbarw and rho_wbarw at w=1 exactly.

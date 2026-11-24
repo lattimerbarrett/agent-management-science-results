@@ -1,0 +1,107 @@
+{
+ "id": "n9",
+ "parent": "n7",
+ "depth": 3,
+ "option": {
+  "branch": "c2b0",
+  "counterfactual": "For some arbitrarily large cubic graphs, the maximum effective resistance exceeds the repeated-block construction by a positive amount too small for the numerical search to distinguish reliably.",
+  "approach": "Enumerate exact boundary resistance profiles for small replacements of several consecutive blocks. Compare the resulting rational resistances exactly, including replacements that appear numerically tied.",
+  "p": 0.1697
+ },
+ "status": "member",
+ "belief": {
+  "answer": "Put \\(N=\\binom n2\\), \\(H=(n^{n-2})!\\), \\(B=2^{N+n}\\), and \\(\\delta(x)=\\lfloor1/(|x|+1)\\rfloor\\). For \\(0\\le b<2^N\\), let \\(A_b\\) be symmetric with zero diagonal and with its upper-triangular entries, in lexicographic order, equal to the binary digits of \\(b\\), least significant first. Set \\(d_{b,i}=\\sum_j(A_b)_{ij}\\) and \\(L_b=\\operatorname{diag}(d_{b,1},\\ldots,d_{b,n})-A_b\\). Write \\(L^{[S]}\\) for deletion of rows and columns indexed by \\(S\\), and define \\(a_b=\\det L_b^{[\\{n\\}]}\\), \\(f_{b,uv}=\\det L_b^{[\\{u,v\\}]}\\), \\(q_b=a_b+\\delta(a_b)\\), and \\(w_b=(1-\\delta(a_b))\\prod_{i=2}^n\\delta(d_{b,i}-d_{b,1})\\). Then, throughout the stated domain,\\n\\[\\boxed{\\displaystyle t_n=\\frac1H\\left\\lfloor\\log_B\\!\\left(1+\\sum_{b=0}^{2^N-1}w_b\\sum_{1\\le u<v\\le n}B^{\\,Hn d_{b,1}f_{b,uv}/q_b}\\right)\\right\\rfloor.}\\]",
+  "confidence": 0.98
+ },
+ "judge": {
+  "claim": true,
+  "same_as": null,
+  "answer": "Put \\(N=\\binom n2\\), \\(H=(n^{n-2})!\\), \\(B=2^{N+n}\\), and \\(\\delta(x)=\\lfloor1/(|x|+1)\\rfloor\\). For \\(0\\le b<2^N\\), let \\(A_b\\) be symmetric with zero diagonal and with its upper-triangular entries, in lexicographic order, equal to the binary digits of \\(b\\), least significant first. Set \\(d_{b,i}=\\sum_j(A_b)_{ij}\\) and \\(L_b=\\operatorname{diag}(d_{b,1},\\ldots,d_{b,n})-A_b\\). Write \\(L^{[S]}\\) for deletion of rows and columns indexed by \\(S\\), and define \\(a_b=\\det L_b^{[\\{n\\}]}\\), \\(f_{b,uv}=\\det L_b^{[\\{u,v\\}]}\\), \\(q_b=a_b+\\delta(a_b)\\), and \\(w_b=(1-\\delta(a_b))\\prod_{i=2}^n\\delta(d_{b,i}-d_{b,1})\\). Then, throughout the stated domain,\n\\[\\boxed{\\displaystyle t_n=\\frac1H\\left\\lfloor\\log_B\\!\\left(1+\\sum_{b=0}^{2^N-1}w_b\\sum_{1\\le u<v\\le n}B^{\\,Hn d_{b,1}f_{b,uv}/q_b}\\right)\\right\\rfloor.}\\]",
+  "reason": "It asserts an explicit exact formula for t_n, so it is a provable claim. Its exhaustive graph-enumeration formula is a different claim from e1's piecewise formula.",
+  "experiment": false,
+  "n": 9,
+  "definite": false,
+  "gate": "The formula enumerates all labeled graphs, tests which are connected and regular, computes their pairwise commute times through determinants, and encodes the maximum using a logarithm. It therefore repackages the defining optimization as a finite calculation rather than giving the requested explicit exact value of t_n.",
+  "procedure": true
+ },
+ "experiment": null,
+ "options": [
+  {
+   "branch": "c0b0",
+   "counterfactual": "For infinitely many admissible even values of n, a regular graph of degree greater than three has a larger maximum commute time than every cubic graph on n vertices.",
+   "approach": "Search degrees five and seven alongside degree three at several larger even vertex counts. Compare n times the degree times the effective resistance, since resistance alone does not determine the winning degree.",
+   "p": 0.0421,
+   "child": null
+  },
+  {
+   "branch": "c0b1",
+   "counterfactual": "For infinitely many admissible even values of n, a regular graph of degree greater than three has a larger maximum commute time than every cubic graph on n vertices.",
+   "approach": "Construct chains of dense components for general odd degree and calculate their commute times exactly. Determine whether their growth rates or finite-size corrections can surpass the cubic constructions.",
+   "p": 0.0368,
+   "child": null
+  },
+  {
+   "branch": "c0b2",
+   "counterfactual": "For infinitely many admissible even values of n, a regular graph of degree greater than three has a larger maximum commute time than every cubic graph on n vertices.",
+   "approach": "Develop degree-dependent upper bounds for resistance diameter using electrical flows and regularity. Compare these bounds with explicit cubic lower bounds to identify which higher degrees actually require investigation.",
+   "p": 0.0263,
+   "child": null
+  },
+  {
+   "branch": "c1b0",
+   "counterfactual": "For sufficiently large even n, the maximum effective resistance among cubic graphs increases by exactly two when n is increased by four; no arbitrarily small positive improvement over the optimal repeated-block construction exists.",
+   "approach": "Enumerate small cubic fragments with two attachment vertices and compare their effective resistances using exact rational arithmetic. Test whether every fragment satisfies a sharp linear bound with equality only for repeated copies of the same block.",
+   "p": 0.1184,
+   "child": null
+  },
+  {
+   "branch": "c1b1",
+   "counterfactual": "For sufficiently large even n, the maximum effective resistance among cubic graphs increases by exactly two when n is increased by four; no arbitrarily small positive improvement over the optimal repeated-block construction exists.",
+   "approach": "Seek an inductive reduction that removes four vertices while decreasing resistance by at most two. Classify the graphs to which that reduction does not apply and handle those exceptions separately.",
+   "p": 0.0921,
+   "child": null
+  },
+  {
+   "branch": "c1b2",
+   "counterfactual": "For sufficiently large even n, the maximum effective resistance among cubic graphs increases by exactly two when n is increased by four; no arbitrarily small positive improvement over the optimal repeated-block construction exists.",
+   "approach": "Analyze the components remaining after all bridges are removed. Bound the resistance contribution of each component in terms of its size, then optimize the allocation of vertices between the two end components and the intervening components.",
+   "p": 0.0526,
+   "child": null
+  },
+  {
+   "branch": "c2b0",
+   "counterfactual": "For infinitely many admissible odd values of n, an extremal graph can be chosen to have no articulation vertex, so articulation-based chains are not necessary even at large sizes.",
+   "approach": "Search specifically among four-regular graphs with no articulation vertex and compare their exact commute times with the best articulation-based constructions. Preserve promising examples to inspect their two-edge and two-vertex separators.",
+   "p": 0.2526,
+   "child": null
+  },
+  {
+   "branch": "c2b1",
+   "counterfactual": "For infinitely many admissible odd values of n, an extremal graph can be chosen to have no articulation vertex, so articulation-based chains are not necessary even at large sizes.",
+   "approach": "Construct two-connected networks from components joined across pairs of attachment vertices. Retain the full boundary resistance data and calculate whether coupling two channels can outperform the articulation-based lower bounds.",
+   "p": 0.2526,
+   "child": null
+  },
+  {
+   "branch": "c2b2",
+   "counterfactual": "For infinitely many admissible odd values of n, an extremal graph can be chosen to have no articulation vertex, so articulation-based chains are not necessary even at large sizes.",
+   "approach": "Examine whether an articulation-based construction can be modified to eliminate its articulation vertices without decreasing the relevant resistance. Analyze degree-preserving edge switches exactly, including cases where numerical calculations suggest a tie.",
+   "p": 0.1263,
+   "child": null
+  },
+  {
+   "branch": "own",
+   "counterfactual": null,
+   "approach": null,
+   "p": null,
+   "child": null
+  }
+ ],
+ "cost": 0.0573,
+ "responses": 5,
+ "step_from": 37,
+ "known": [],
+ "created": 1795470896.7564852,
+ "seen": "3221b11521faae6036dd352f9c627970c7c25f2a1669caaf505f94edbd656f21",
+ "take_at": 37
+}

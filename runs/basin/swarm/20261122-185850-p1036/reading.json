@@ -1,0 +1,74 @@
+{
+ "run": "20261122-185850-p1036",
+ "problem": 1036,
+ "told": false,
+ "solo": true,
+ "answer": "\\(\\mathscr P_n=[5/2,\\infty)\\) for every \\(n\\ge2\\).",
+ "claims_proof": true,
+ "where": "Reply #3.",
+ "answer_reason": "The agent explicitly states this set of exponents and concludes that its proof establishes both admissibility and sharpness in every dimension.",
+ "definite": true,
+ "verify": {
+  "verdict": "sound",
+  "acknowledged": false,
+  "review": {
+   "claimed": "The team claims a complete proof that \\(\\mathscr P_n=[5/2,\\infty)\\) for every integer \\(n\\ge2\\), including the endpoint inequality and sharp counterexamples for every smaller exponent.",
+   "verdict": "sound",
+   "team_acknowledged_gap": false,
+   "acknowledged_where": "",
+   "decisive_steps": [
+    {
+     "step": "Final reply \u00a7\u00a72\u20133: compactness near equality and the rearrangement quantity J.",
+     "basis": "argument",
+     "checked": "Checked the moment and supporting-halfspace Hardy estimates, the exclusion of an unbounded convex limit by translating a ground state in a recession direction, and the subsequent use of PPW equality. Checked the Wronskian identity, the integration-by-parts expression (13), and the estimates leading to (11). These give a nonnegative J controlled by the spectral deficit and the claimed rearrangement-defect bounds."
+    },
+    {
+     "step": "Final reply \u00a73: classical PPW and Ashbaugh\u2013Benguria input.",
+     "basis": "citation",
+     "checked": "The classical results are used in their applicable forms: PPW with ball equality, and monotonicity of g and N for the ratio of the ball\u2019s degree-one and ground-state radial factors, with constant continuation of g. The trial-function and rearrangement inequalities (8) have the correct directions."
+    },
+    {
+     "step": "Final reply \u00a74: local eigenfunction stability, particularly coercivity (24).",
+     "basis": "argument",
+     "checked": "Checked the potential identities and the angular decomposition of its quadratic form. The degree-one positive radial zero mode is exactly the translation mode; higher degrees add positive angular potential. In the contradiction argument, equimeasurability removes the radial component, minimizing translations removes the kernel, and the positive exterior potential accounts for exterior mass. Fatou\u2019s lemma with the stated lower bound on W'' justifies (26). The square-root estimate then yields (1)."
+    },
+    {
+     "step": "Final reply \u00a75: the convex geometric trace estimate with exponent 5/2.",
+     "basis": "argument",
+     "checked": "Checked the semiconcavity/total-variation estimates, the inward heat smoothing of the convex gauge, and its O(h^2) integrated radial error. The curvature bound supplies the stated collar, and the explicit collar test function has second derivatives O(h^{-1}) on volume O(h), giving the required O(h^{-1/2}) norm. The boundary-layer Harnack comparison supplies (31). Green\u2019s identity therefore gives a-Ch^2 <= C h^{-1/2}||u-z||_2, and h proportional to sqrt(a) gives the included endpoint."
+    },
+    {
+     "step": "Final reply \u00a76: sharpness in every dimension, including the uniform Taylor remainder.",
+     "basis": "argument",
+     "checked": "Checked the signed-permutation construction and the real irreducibility argument, including n=2, which prevents splitting of the second cluster and makes the deficit even. Checked the Dirichlet-to-Neumann weights in the second variation and their O(1/ell) cancellation. The thin-layer pullback has form sources O(t sqrt(k)) and diagonal remainders O(t^2 k); the separated-cluster Schur complement and Cauchy estimate give the stated O(t^4 k^3) remainder. Thus t=epsilon k^{-2} gives convex domains with deficit O(k^{-5}) and asymmetry bounded below by c k^{-2}, excluding every p<5/2."
+    },
+    {
+     "step": "Final reply \u00a77 and agents/agent_1/scratchpad.py: executable checks.",
+     "basis": "computation",
+     "checked": "Read and reran the complete saved script. All symbolic assertions, Bessel coefficient checks, and planar Fourier\u2013Bessel diagnostics passed. The diagnostics are correctly identified as non-rigorous numerical checks rather than substitutes for the analytic estimates."
+    }
+   ],
+   "failing_step": "Hardest checked step: the nonlinear coercivity argument (24), together with the inward-smoothed-boundary trace estimate (35)\u2013(36).",
+   "reason": "The final proof supplies both essential directions: a uniform endpoint estimate, globalized by convex compactness, and a dimension-independent sharpness construction with a genuinely uniform perturbation remainder. The remaining exponent bookkeeping is valid because asymmetry is at most 2. The earlier admission of incompleteness predates this proof; no gap is left acknowledged or conditional in the final argument."
+  },
+  "responses": 11,
+  "runs": 1,
+  "cost": 0.2552
+ },
+ "stop": true,
+ "contract": {
+  "form": "A complete answer must explicitly identify the entire set \\(\\mathscr P_n\\subset(0,\\infty)\\) for every integer \\(n\\ge2\\), specifying exactly which exponents belong, including whether any boundary exponents are included. It must establish the uniform inequality for every included exponent and its failure for every excluded exponent.",
+  "not_enough": "A sufficient range of exponents, a necessary bound, an unresolved endpoint, results for only some dimensions or convex domains, or a conjectural or conditional characterization would not settle the question. The constants need not be given explicitly, but their required uniform existence must be established."
+ },
+ "definite_reason": "It explicitly identifies the entire set for every n\u22652, including the boundary exponent 5/2, and thereby asserts both membership for all included exponents and failure for all excluded exponents.",
+ "reference": "\\(\\mathscr P_n=[5/2,\\infty)\\) for every integer \\(n\\ge2\\).",
+ "correct": true,
+ "graded_by": "judge",
+ "solved": true,
+ "cost": 0.2873,
+ "read_at": 1795394021.566444,
+ "matharena": true,
+ "restated": false,
+ "grade_note": "The model\u2019s final answer exactly matches the ground truth: \\(\\mathscr P_n=[5/2,\\infty)\\) for every integer \\(n\\ge2\\).",
+ "graded_at": 1795396402.6253362
+}

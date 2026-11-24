@@ -1,0 +1,68 @@
+{
+ "run": "20261123-194148-p1024",
+ "problem": 1024,
+ "told": false,
+ "solo": false,
+ "answer": "\\displaystyle \\Delta_b=-\\max\\{j\\in\\{0,\\ldots,r-1\\}:b_j\\ne0\\}.",
+ "claims_proof": true,
+ "where": "Channel post #63 and all four agents' last replies.",
+ "answer_reason": "All four agents agree on this formula and state that the proof is complete.",
+ "definite": true,
+ "verify": {
+  "verdict": "sound",
+  "acknowledged": false,
+  "review": {
+   "claimed": "For every g \u2265 2 and every allowed nonzero coefficient vector b, \u0394_b = \u2212max{j : b_j \u2260 0}.",
+   "verdict": "sound",
+   "team_acknowledged_gap": false,
+   "decisive_steps": [
+    {
+     "step": "Analytic cohomology is computed by the finite fiber-order filtration (agent_1 final, equations (5)\u2013(7)).",
+     "basis": "argument",
+     "checked": "Checked the graded bundles and vanishing thresholds: O and F have graded O(np), while P and L have graded O((n\u22122g+2)p). Formal functions applies to the proper resolution, and relative cohomological dimension one supplies H\u00b2=0. This justifies both truncation and H\u00b9(I^(2g\u22121)F)=0."
+    },
+    {
+     "step": "The scalar first obstruction maps have coefficients n for O,P and n\u2212k for F,L, and there are no additional higher rank losses (posts #54\u201359; agent_1 final \u00a72).",
+     "basis": "argument",
+     "checked": "Derived the transitions from u=tv(1\u2212kt^k\u03c6_bv^k)^(\u22121/k). After normalizing each graded bundle, the first obstruction is the stated scalar times multiplication by \u03c6_b. Relevant H\u2070 coefficients are even under the hyperelliptic involution; odd first corrections make the 2k obstruction even, whereas H\u00b9(O(mp)) for m\u22650 has only odd parity. The inequality 3k\u22652g\u22122 leaves only a possible degree-zero source at the next stage, which is either killed by the first obstruction or is the exactly lifting constant. The exceptional F source n=k lifts exactly because its transition factor is B^0."
+    },
+    {
+     "step": "The scalar comparisons are h\u00b9(F)\u2212h\u00b9(O)=s\u22121 and h\u00b9(P)=h\u00b9(L), where s=1+max supp(b) (agent_1 final \u00a73).",
+     "basis": "argument",
+     "checked": "The first-map ranks for O and F differ only at n=0 and n=k. Verified R\u2080=1 and the matrix R_k=(b_(\u2113+a)), with r rows and at least r columns. Its leading s-by-s block has determinant \u00b1b_(s\u22121)^s and all rows or columns beyond that block vanish. For P and L all possible source degrees n\u22652g\u22122 have both scalar coefficients nonzero."
+    },
+    {
+     "step": "The connecting homomorphism H\u2070(P)\u2192H\u00b9(F) vanishes (posts #51\u201352; agent_1 final \u00a74).",
+     "basis": "argument",
+     "checked": "A global P section cannot have fiber order below d=2g\u22122. Its only possible degree-d symbol has nonzero obstruction d[\u03c6_b] in H\u00b9(O(kp)), since every monomial of \u03c6_b is an independent odd gap of order at least 2k+1. Thus all such sections lie in I^(d+1)P and lift through I^(d+1)S because H\u00b9(I^(d+1)F)=0. Consequently h\u00b9(S)=h\u00b9(F)+h\u00b9(P)."
+    },
+    {
+     "step": "Exact Laurent \u010cech-matrix verification and resolution of earlier objections.",
+     "basis": "computation",
+     "checked": "Read the transition-expansion and exact sparse-rank code, including its corrected Laurent windows R_n=3n+4g. Reran workspace/agent1_verification.py: all 42 exact cohomology checks passed, as did the cutoff and degree checks. The earlier insufficient cutoff was explicitly corrected in posts #37\u201344; the concern about directly filtering S was bypassed by the proved connecting-map argument, not left as an assumption."
+    }
+   ],
+   "failing_step": "The hardest step is excluding higher scalar filtration differentials; the parity argument together with 3k\u22652g\u22122 establishes this, including the equality case and the exceptional degree n=k.",
+   "reason": "The final record contains a complete proof, not merely numerical evidence or a rank-formula reduction. The verified scalar comparisons and vanishing connecting map give \u0394_b=h\u00b9(O)\u2212h\u00b9(F)=1\u2212s=\u2212max supp(b). The anti-triangular rank argument covers every pattern of zero components. Earlier problems in alternative arguments and computational cutoffs were resolved before the final proof."
+  },
+  "responses": 8,
+  "runs": 1,
+  "cost": 0.1862
+ },
+ "stop": true,
+ "contract": {
+  "form": "A complete answer is an exact formula or explicit finite rule for the integer \u0394_b in terms of g and the entire coefficient vector b, valid for every integer g \u2265 2 and every nonzero b \u2208 \u2102^r. Any case distinctions must cover all allowed vectors, including those with vanishing components.",
+  "not_enough": "Bounds, a range of possible values, an unknown or undetermined value, a conjecture-dependent answer, or a formula valid only for generic vectors or selected cases would not settle the question. Nor would a dependence on additional cohomology dimensions left unevaluated."
+ },
+ "definite_reason": "The formula gives a specific integer from g and b for every allowed vector. Since b is nonzero, the maximum is always defined, including when some components vanish.",
+ "procedure": false,
+ "reference": "\\[\\boxed{\\displaystyle \\Delta_b=-\\max\\left\\{j\\in\\mathbb Z:0\\leq j<\\left\\lfloor\\frac{g+2}{3}\\right\\rfloor,\\ b_j\\neq0\\right\\}.}\\]",
+ "correct": true,
+ "graded_by": "judge",
+ "matharena": true,
+ "restated": false,
+ "grade_note": "The model\u2019s answer matches the reference exactly, using the defined value \\(r=\\lfloor(g+2)/3\\rfloor\\).",
+ "solved": true,
+ "cost": 0.2308,
+ "read_at": 1795481610.184055
+}

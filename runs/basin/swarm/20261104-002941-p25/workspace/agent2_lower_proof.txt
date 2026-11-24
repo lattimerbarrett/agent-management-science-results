@@ -1,0 +1,53 @@
+LOWER BOUND (fully elementary)
+
+Fix c<1/9 and finite triangle-free H; write h=|V(H)|. Choose odd k>=3
+large enough that alpha/(3(1+alpha))>c for alpha=(k-1)/(2k).
+Let T_0=h, T_{i+1}=2^{T_i}. Choose N>max(k,T_{k-1}).
+The shift graph F=S(N,k) has as vertices increasing k-tuples in [N], with
+an edge between the two consecutive k-windows of each increasing (k+1)-tuple.
+Then chi(F)>h: an l-coloring of S(N,j), j>=2, produces a coloring of
+S(N,j-1) by at most 2^l colors, assigning each tuple the set of colors of
+its right-extensions. For consecutive (j-1)-windows, the full j-tuple's
+color belongs to the first extension set but not the second, because all
+right-extensions of the second window are adjacent to that full j-tuple.
+Iteration would imply chi(S(N,1))=N<=T_{k-1}.
+
+Index m=N! coordinates by permutations pi of [N]. For a vertex v of F,
+let L(v) be the coordinates where the pi-minimal element of v occurs at
+an even position (positions numbered 1,...,k). Every label has size
+r=m(k-1)/(2k)=alpha*m. Labels of adjacent vertices are disjoint: for their
+combined (k+1)-tuple, a minimum at either endpoint leaves one window with
+minimum at odd position 1 or k; an internal minimum switches parity between
+the two windows.
+
+Orient every F edge u->v arbitrarily and replace it by u-a_uv-b_uv-v.
+Call the resulting graph D, and assign types 0 to original vertices, 1 to
+a_uv and 2 to b_uv. Assign labels L(u), L(v), L(u), L(v) along each such
+path. Equivalently a_uv gets L(v), b_uv gets L(u). Every same-type
+3-edge walk in D has endpoints with disjoint labels. This follows directly
+from subdivision vertices having degree 2: for type 0 it traverses one
+subdivided F-edge, and for type 1 or 2 it traverses an end segment of one
+subdivided edge, a branch vertex, then an end segment of another; the two
+endpoint labels are labels of endpoints of one of these F-edges.
+
+For each type i add m*q vertices W_i, q copies of each coordinate, and
+r*q vertices P_i. Join W_i completely to P_i. Each D-vertex x of type i
+is joined to copies of precisely the coordinates in its label. There are
+n=s+3(m+r)q vertices, where s=|D|; all degrees are at least rq.
+Choose integer q so rq>=c[s+3(m+r)q], possible by the chosen strict ratio.
+For c=0 any positive q works.
+
+There are no C3 or C5. D has girth at least 9. After deleting its edges,
+the new graph consists of three bipartite components, one per type, all
+D-vertices in the same side within each component. Thus every excursion
+of a cycle through new vertices has even length and joins same-type
+D-vertices. An odd cycle of length at most 5 not entirely in D can use
+only one or three D-edges. One is impossible because D-edges change type.
+Three forces a 3-path in D closed by a 2-path through a W_i vertex. Its
+same-type endpoints would have intersecting labels, a contradiction.
+
+Finally, a homomorphism to triangle-free H must send the original endpoints
+of each subdivided F-edge to different vertices: otherwise its 3-path
+would give a closed 3-walk in a simple triangle-free H. Its restriction to
+V(F) would be a proper h-coloring of F, contradiction. This proves that
+no c<1/9 has the required property, with no topological input.

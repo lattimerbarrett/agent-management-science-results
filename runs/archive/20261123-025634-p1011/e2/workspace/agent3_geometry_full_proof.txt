@@ -1,0 +1,155 @@
+COMPACTIFICATION, POSITIVITY, REGULARITY, AND BOUNDARY BLOWUP
+Agent 3. Full proof of the geometric/regularity part of the graph construction.
+
+Notation. n>=3, m=n-1, a=(n-2)/2, p=(n+2)/(n-2),
+q=p+1=2n/(n-2), r=2m/(n-2), alpha=(n-2)/(2m)=2c_n.
+Let F in C_c^infinity(R^m), let Omega_F={(y,z):z>F(y)}, and
+T_F(y,z)=(y,z+F(y)) from the upper half-space H. Put
+ b_F=Delta F - F_j F_k F_jk/(1+|DF|^2),
+ A_F=[[I,-DF],[-DF^t,1+|DF|^2]].
+The exact pulled-back conformal energy is
+ a_F(w,w)=int_H A_F Dw.Dw + alpha int_R^m b_F w(y,0)^2.
+Assume delta=||DF||infinity+||D2F||_Lm is sufficiently small depending
+only on n. Suppose w_i are nonzero critical points of
+ E_F(w)=a_F(w,w)/2 - n(n-2)/q int_H (w_+)^q.
+The conclusions below hold whenever these critical points have the
+bubble convergence stated in Section 6. Their existence is a separate
+Lyapunov--Schmidt theorem; no such theorem is assumed proved here.
+
+1. Fixed smooth graphs used in the construction.
+Choose p_i=2^{-i}e_1, rho_i=2^{-i-4}, mu_i=2^{-i^2},
+lambda_i=exp(-(i+10)^4), and chi in C_c^infinity(B_2), chi=1 on B_1.
+Let A be a nonzero symmetric tracefree m by m matrix, P2(y)=y^t A y,
+and choose fixed a0!=0,a1,a2. Define
+ F_i(y)=tau mu_i chi((y-p_i)/rho_i) P2(y-p_i)
+          [a0 lambda_i^4+a1 lambda_i^2|y-p_i|^2+a2|y-p_i|^4],
+ F=sum_{i>=1}F_i.
+The supports B_{2rho_i}(p_i) are pairwise disjoint: adjacent distance
+is 2^{-i-1}, while the sum of their radii is 3*2^{-i-4}.
+For every integer k>=0, the product rule and lambda_i<=rho_i give
+ ||D^k F_i||infinity <= C_k tau mu_i rho_i^{6-k}.
+On this support |y| is comparable to 2^{-i}. Therefore for all k,N,
+ ||D^k F_i||infinity / |p_i|^N ->0.
+All derivatives, extended by zero at the unique accumulation point 0,
+are continuous and vanish there; induction on k proves F is smooth
+and flat to infinite order at 0. It has compact support. Disjointness
+also gives ||DF||infinity<=C tau and
+ ||D2F||_Lm^m=sum_i ||D2F_i||_Lm^m
+               <=C tau^m sum_i (mu_i rho_i^5)^m.
+Thus delta<=C tau, and can be as small as required.
+
+2. Compact smooth manifold and nonhemisphere condition.
+Use inverse stereographic projection sigma^{-1}:R^n->S^n\{N} and set
+ M=closure in S^n of sigma^{-1}(Omega_F), with restricted round metric g.
+There is a full Euclidean ball outside which Omega_F agrees with the
+upper half-space: if y is outside supp F the inequalities agree exactly;
+if y is in supp F but |(y,z)| is sufficiently large, then |z|>||F||infinity
+and z,z-F(y) have the same sign. Consequently near N the set M is
+exactly a round hemisphere, so its boundary and metric are smooth there.
+Everywhere else smoothness follows because the boundary is the graph F.
+The domain is connected and has nonempty smooth boundary, and M is compact.
+The round metric is locally conformally flat in the explicit ambient
+sense of the problem, including all boundary points.
+At p_i, DF=0 and D2F=2 tau mu_i a0 lambda_i^4 A. The outward normal
+of the epigraph is (DF,-1)/sqrt(1+|DF|^2); hence II_flat at p_i equals
+D2F. Its tracefree part is nonzero. Under a conformal change ghat=e^{2h}g,
+ IIhat=e^h(II+(nu h)g_boundary), so IIhat^circ=e^h II^circ.
+Thus the restricted round metric also has a nonumbilic boundary point.
+Every metric conformally diffeomorphic to the round hemisphere has
+II^circ identically zero; our metric cannot be conformally equivalent
+to that hemisphere.
+
+3. Quantitative positive Yamabe type.
+Write S_n,T_n for half-space Sobolev and trace-Sobolev constants:
+ ||w||_Lq(H)<=S_n||Dw||_2,
+ ||w_0||_Lr(R^m)<=T_n||Dw||_2.
+For delta<=1, ||A_F-I||infinity<=3||DF||infinity and
+ ||b_F||_Lm<=C_n||D2F||_Lm. Holder and trace Sobolev therefore give
+ |a_F(w,w)-||Dw||_2^2| <= C_n delta ||Dw||_2^2.
+Choose tau so C_n delta<=1/2. Then a_F>=||Dw||_2^2/2.
+Let Omega(x)=2/(1+|x|^2), chi0=Omega^a. On the punctured compactified
+domain, g=chi0^{4/(n-2)}delta. For smooth compact u, v=chi0 u is a
+finite-Dirichlet-energy function on Omega_F; w=v o T_F belongs to D1(H).
+Conformal covariance, or direct integration by parts, gives
+ Q_g(u):=int_M(|Du|_g^2+c_n R_g u^2)+alpha int_boundaryM H_g u^2
+        =int_OmegaF |Dv|^2+alpha int_boundaryOmegaF H_flat v^2
+        =a_F(w,w).
+Also int_M |u|^q=int_OmegaF |v|^q=int_H |w|^q since det DT_F=1.
+It follows that
+ Q_g(u)>=1/(2S_n^2)||u||_Lq(g)^2
+       >=[Vol_g(M)^(-2/n)/(2S_n^2)]||u||_L2(g)^2.
+The variational first eigenvalue of (-L_g,B_g) is therefore at least
+Vol_g(M)^(-2/n)/(2S_n^2)>0, proving precisely the required Yamabe type.
+
+4. The energy-space transfer and absence of a puncture defect.
+The conformal transform above identifies smooth functions supported
+away from N with smooth finite-energy functions on Omega_F supported
+away from infinity. T_F is globally bi-Lipschitz because DF is bounded.
+(The vertical flattening need not extend smoothly through N; no such
+claim is used.) Smooth compactly supported functions up to the flat
+boundary are dense in D1(H). Functions on M vanishing near N are dense
+in H1(M): take cutoffs that vanish in a ball of radius epsilon around N
+and equal one outside radius 2epsilon; their Dirichlet cost is
+O(epsilon^{n-2}) and their L2 cost is O(epsilon^n). Multiply a smooth
+function by these cutoffs and then use smooth density in H1.
+The norm Q_g is equivalent to H1: its L2 coercivity was proved above;
+trace interpolation gives Q_g(u)>=1/2||Du||_2^2-C||u||_2^2, which
+combined with that coercivity yields ||u||_H1^2<=C Q_g(u).
+The reverse inequality follows bounded coefficients and the trace theorem.
+Consequently the conformal transformation extends by completion to an
+isomorphism D1(H)->H1(M), preserving Q and the critical nonlinear integral.
+Thus each critical point w_i gives an H1 weak solution u_i on all of M,
+not merely on M\{N}, of
+ Q_g(u_i,phi)=n(n-2) int_M (u_i)_+^p phi
+for every phi in H1(M). This also proves removability at N directly;
+there is no untested distribution supported at the compactification point.
+
+5. Positivity and smoothness.
+Let u be one of the nonzero weak solutions. Testing with u^-=max(-u,0)
+gives -Q_g(u^-,u^-)=0 because (u_+)^p u^-=0. Positivity of Q_g forces
+u^-=0, so u>=0. All finite L^s integrability follows by the usual
+Brezis--Kato truncation argument, whose relevant estimates are as follows.
+Write -Delta_g u=a(x)u with a=n(n-2)u^{p-1}-c_nR_g in L^{n/2}; the
+Robin coefficient alpha H_g is smooth and bounded. For beta>=1 and
+u_L=min(u,L), test the equation with u u_L^{2beta-2}; put
+W=u u_L^{beta-1}. Gradient comparison yields
+ ||DW||_2^2<=C beta^2 int |a|W^2+C beta int_boundary |alpha H_g|W^2.
+Trace interpolation absorbs the boundary-gradient term and leaves
+C_beta||W||_2^2. Split |a| into its bounded part and an L^{n/2} tail
+of norm smaller than the required multiple of beta^{-2}. Holder and
+Sobolev absorb the tail, giving
+ ||W||_Lq^2<=C_beta ||W||_2^2.
+Let L tend to infinity. Starting from u in Lq and iterating exponents
+by q/2>1 proves u in every finite L^s; the same tests and trace Sobolev
+also give every finite boundary L^s norm. Standard global Robin W^{2,s}
+regularity now applies since the interior right-hand side belongs to
+all finite L^s and the Robin coefficient is smooth. In particular u
+is C^{1,theta} for some theta>0, and then C^{2,theta'} by Schauder theory.
+On our round domain R_g=n(n-1)>0. Since L_g u=-n(n-2)u^p<=0,
+the strong maximum principle gives u>0 in the interior. If u vanished
+at a boundary point, Hopf's lemma would give partial_nu u<0 there,
+whereas Robin gives partial_nu u=-alpha H_g u=0, a contradiction.
+Hence u>0 on the closed compact domain. It has a positive minimum;
+the map t->t^p is smooth on its range. Ordinary elliptic bootstrap with
+smooth Robin coefficients therefore gives u in C^infinity(M).
+
+6. Boundary blowup follows from energy-space bubble convergence.
+Suppose the LS construction gives scales lambda_i->0, centers p_i->0,
+and functions W_i(y,z)=lambda_i^a w_i(p_i+lambda_i y,lambda_i z)
+such that ||W_i-U_{s_i,xi_i}||_D1(H)->0, with (s_i,xi_i) in a fixed
+compact set K contained in (0,infinity) x R^m. By trace Sobolev the
+same convergence holds in L^r of the boundary. Choose R large and c>0
+so inf_{(s,xi) in K} int_{B_R} U_{s,xi}(y,0)^r dy>=2c.
+For large i, int_{B_R} W_i(y,0)^r dy>=c. Critical trace scaling ar=m
+gives int_{B_{Rlambda_i}(p_i)} w_i(y,0)^r dy>=c, whence
+ sup_{boundaryH} w_i >=[c/(|B_R|lambda_i^m)]^{1/r}
+                         =C lambda_i^{-a}->infinity.
+In physical coordinates v_i(y,F(y))=w_i(y,0), and compact u_i=v_i/chi0.
+The factor chi0 is bounded above and below near the p_i, uniformly in i.
+Therefore max_boundaryM u_i>=C'lambda_i^{-a}->infinity.
+
+This proves all geometric, positivity, transfer, regularity and blowup
+claims for the SINGLE fixed F, conditional only on the existence and
+bubble convergence supplied by the separate uniform LS theorem.
+No low-dimensional compactness claim and no dimension25 threshold is
+used in this lemma; it applies in every n>=3 where those LS inputs hold.

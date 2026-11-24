@@ -1,0 +1,111 @@
+MINIMUM-DERIVATIVE WEIGHT256 LEMMA (UNCONDITIONAL)
+
+Theorem. If g in RM(6,13) has weight256 and some reduced first derivative
+is a minimum word of weight128, then g has a nonzero translation period
+or the affine span of its support has dimension at most11.
+
+This does NOT assert that all weight256 words are periodic. It uses only
+minimum and second Reed--Muller weights and the minimum-flat equality case.
+
+Moment convention. For a subset R of F2^q and J subset{1,...,q}, let
+mu_J(R)=sum_{y in R} product_{j in J} y_j in F2. Vanishing of all moments
+with |J|<k is exactly membership in RM(q-k,q), whose minimum weight is2^k.
+The degree-k moment array of a minimum word is the decomposable k-vector
+of its affine k-flat direction. Thus if a nonzero degree-k array is not
+decomposable, the second-weight bound forces weight at least3*2^(k-1).
+These standard facts follow either from the ANF/dual monomial pairing or
+from the group-algebra filtration. They are invariant under affine maps.
+
+Normalize the derivative direction to t, and its support to D={X=0}, where
+X in F2^5, Y in F2^7. Then g=t*1_D+h(X,Y), deg(h)<=6. Each base point on D
+contributes exactly one support point of g; off D it contributes twice h.
+Therefore wt(h outside D)=64. Define
+ M_J(X)=sum_Y h(X,Y) product_{j in J}Y_j.
+Summation in7 variables gives deg(M_J)<=|J|-1; in particular M_empty=0.
+Every outside fiber R_X has even size. There is a least k in{1,...,6} for
+which an outside fiber has a nonzero degree-k moment: otherwise every
+nonempty outside fiber would have weight at least128, impossible. Every
+outside fiber has all moments below k zero, hence nonempty size>=2^k.
+For j<k the polynomials M_J also vanish at0: they vanish off0 and have
+degree<=j-1<=4, whereas a nonzero function supported only at0 in F2^5
+has degree5. Thus these lower moments are globally zero.
+
+CASE k=1. The first-moment vector is a nonzero constant v. Apply GL(Y) to
+make v=e1. All31 outside fibers have size>=2; their total excess over62 is2,
+so at most one is nonminimum. For i,j>1, the affine polynomial M_{ij}(X)
+is zero on every minimum fiber, since a pair of difference e1 has this
+moment zero. Hence it has outside support<=1. A nonzero affine function on
+F2^5 has outside support>=15, so M_{ij}=0 globally. The remaining M_{1j}
+are affine. Translate Y_j by M_{1j}(X) (j>1), an affine coordinate change.
+Now every outside fiber has the same moments through degree2 as P={0,e1}.
+If a fiber differs from P, their symmetric difference has moments through
+2 zero, so has size>=8; the fiber itself has size>=8-2=6, excess>=4. This
+exceeds the available total excess2. Thus all31 fibers equal P and their
+weight is62, a contradiction. Hence k>=2.
+
+CASES k=2 or3. An M_J of degree k has degree<=k-1 on F2^5 and outside
+support at most64/2^k. Its full support has size<=17 (k2) or9 (k3), below
+the second-weight lower bounds24 or12 for RM(k-1,5). Thus every nonzero component is a
+minimum word, the indicator of an affine T of dimension6-k. Two distinct
+such flats have union size at least3*2^(5-k), and outside union size at
+least23 or11, respectively, exceeding16 or8. Hence all nonzero components
+have the SAME support T, so M_k(X)=1_T(X)*beta for one nonzero k-vector beta.
+If beta were not decomposable, each outside T fiber would have size at
+least3*2^(k-1), giving total>=15*6=90 or7*12=84. Thus beta is decomposable.
+Normalize it to the direction P=span(e1,...,ek). The baseline outside
+weight is2^k*|T minus{0}|, namely64 if0 notin T, or64-2^k if0 in T.
+Outside T every nonzero fiber has moments through k zero, so size>=2^(k+1).
+This exceeds the available excess (zero or2^k). Therefore h vanishes off
+T union{0}.
+
+If0 notin T, the baseline64 exhausts the weight: each T fiber is an affine
+coset of P. Each polynomial M_J with |J|=k+1 has degree<=k and support in
+T union{0}. Choose an affine hyperplane H containing T but not0. Its
+restriction to the opposite4-flat has support at most{0}; since k<=3,
+its minimum nonzero weight is2^(4-k)>=2. Thus it is zero there, and all
+M_{k+1} are supported on T. A polynomial of degree<=k supported on T,
+whose codimension is k-1, is 1_T times an affine function on T. For a
+coset of P, the moments indexed by {1,...,k,j}, j>k, are exactly its
+translation coordinates outside P. Hence these translations are affine
+in X on T, and the union of the fibers is one affine6-flat F disjoint D.
+Now h+1_F has degree<=6 and is supported on D, of codimension5. It equals
+1_D times an affine function r on D. Consequently
+ g=1_D*(t+r)+1_F
+is the XOR of two DISJOINT affine7-flat indicators in F2^13 (the second
+flat is F times the full t-line). Their7-dimensional directions intersect
+nontrivially, giving a common nonzero translation period of g.
+
+If0 in T, total excess over the baseline is2^k. There are at most two
+nonminimum outside fibers, since a nonminimum has excess>=2^(k-1).
+Every M_{k+1} is supported on T and has degree<=k, hence its restriction
+after factoring 1_T is affine. For a minimum fiber with direction P,
+all its degree-(k+1) moments except the indices {1,...,k,j} vanish.
+Each of these nonspecial affine functions is supported outside0 on at
+most two points. But a nonzero affine function on T has outside0 weight
+at least7 (k2, dimT4) or3 (k3, dimT3). Thus all nonspecial functions vanish.
+The special ones give affine translation coordinates; extend them to X
+and make an affine Y-shear. Every outside T fiber now has the same
+moments through degree k+1 as P. A differing fiber has symmetric difference
+with P of weight>=2^(k+2), so its own weight>=3*2^k, with excess>=2^(k+1),
+more than the available2^k. Hence there are no defects and the outside
+weight is64-2^k, contradiction. This finishes k2/3.
+
+CASE k=4. Each nonzero component M_J is in RM(3,5), with outside support
+<=4 and full support<=5. Its minimum and second weights are4 and6; so it
+is an affine2-flat indicator. Two distinct such flats have union size>=6,
+outside union>=5>4. Thus all nonzero components have one common affine
+2-flat T. Off T, a nonzero fiber has moments through4 zero, so size>=32.
+The T baseline is at least3*16=48, leaving at most16; hence there are no
+such off-T fibers. Thus support(g) is contained in
+ span(T union{0}) times F2^7_Y times F2_t,
+an affine/linear subspace of dimension at most3+7+1=11.
+
+CASES k=5 or6. There are at most64/2^k=2 or1 nonzero outside X-fibers.
+Together with X=0 these span an X-space of dimension at most2 or1. Hence
+support(g) has affine span at most2+7+1=10 or1+7+1=9.
+
+The cases exhaust all possibilities and prove the theorem.
+
+All numerical bounds, the exact5-variable minimum/second word facts used
+above, the common-flat union assertions, and the extraction of translation
+coordinates are independently checked in agent1_verify_min256_lemma.py.

@@ -1,0 +1,11 @@
+All graphs are finite, simple, and undirected. Cycles are considered as subgraphs, not necessarily induced subgraphs. A graph homomorphism from \(G\) to \(H\) is a map \(f:V(G)\to V(H)\) such that \(f(u)f(v)\in E(H)\) whenever \(uv\in E(G)\); the map need not be injective.
+
+For a real number \(c\in[0,1]\), consider the following property: there exists a finite graph \(H_c\) containing no cycle of length \(3\) such that, for every integer \(n\geq1\), every graph \(G\) on \(n\) vertices containing no cycle of length \(3\) or \(5\), and in which every vertex has at least \(cn\) neighbors, admits a homomorphism to \(H_c\). The graph \(H_c\) may depend on \(c\), but not on \(n\) or \(G\).
+
+What is the exact infimum of the numbers \(c\in[0,1]\) having this property?
+
+The answer is \frac{1}{9}. This was proved recently, so it is not an open problem: your team's task is to prove it, completely, and to write Python that really computes or checks every step that can be checked. Printing what you believe is not evidence. Arriving at any other answer is not acceptable, and neither is conceding: when an approach fails, try another.
+
+Proving \(1/9\) takes two halves: for every \(c\in(1/9,1]\), there exists a finite graph \(H_c\) containing no cycle of length \(3\) such that every graph \(G\) on \(n\ge1\) vertices containing no cycle of length \(3\) or \(5\), with every vertex having at least \(cn\) neighbors, admits a homomorphism to \(H_c\); and for every \(c\in[0,1/9)\) and every finite graph \(H\) containing no cycle of length \(3\), there exist an integer \(n\ge1\) and a graph \(G\) on \(n\) vertices containing no cycle of length \(3\) or \(5\), with every vertex having at least \(cn\) neighbors, that admits no homomorphism to \(H\). Split the halves, and the pieces of each, between you on Slack.
+
+Stop only when the team's proof is complete. Before you stop, post on Slack what you proved, and what is left.

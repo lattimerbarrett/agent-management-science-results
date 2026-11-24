@@ -1,0 +1,13 @@
+import sympy as sp
+N=sp.symbols('N', integer=True, positive=True)
+eta=sp.symbols('eta', positive=True)
+u=sp.symbols('u', real=True)
+print('Two-increment necessary condition:')
+print(sp.reduce_inequalities([eta>0, eta<=u, eta<=1-u], u))
+print('Algebraic certificate:',sp.simplify((u-eta)+(1-u-eta)))
+print('\nAudit conclusions:')
+print('1. Exhaustion follows if the quasitrace is a trace on the generated subalgebra.')
+print('2. Exhaustion also follows from domination by a state through a modulus vanishing at zero.')
+print('3. Neither property follows merely from the stated quasitrace axioms.')
+print('4. AW* projection annihilators do not, without a separate theorem, establish either property.')
+print('5. The universal exhaustion lemma used previously must be withdrawn.')

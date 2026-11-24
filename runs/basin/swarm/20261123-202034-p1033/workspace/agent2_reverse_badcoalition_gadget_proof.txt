@@ -1,0 +1,48 @@
+REVERSE BAD-COALITION GADGET (PURE HALL MODEL ONLY)
+
+INPUT: a pairwise-intersecting k-uniform clutter B on W, k>=2, with M
+members. Put T=|W|. This constructs T colored actual-petal families of
+rank at most M+1 with Hall transversal inequalities. It DOES NOT by
+itself construct an intersecting original core family: no suitable
+small out-target assignment is supplied.
+
+Take a fresh point v and pairwise disjoint blocks Q_F of size k-1,
+one for each F in B. For every x in W define H_x by two types:
+ A_x = all sets choosing exactly one point of each Q_F with x in F;
+ B_x = all sets {v} union a choice of one point of each Q_F with x notin F.
+Use the ordinary convention that a product over no blocks is {empty}.
+
+EXACT ACTIVATION. For any actual point set S, let E={F: Q_F subset S},
+and write U=union(E), I=intersection(E), with U=empty,I=W if E=empty.
+A_x is entirely hit by S iff x in U. If v in S, B_x is always hit;
+otherwise B_x is entirely hit iff x notin I. Consequently the set of
+colors whose WHOLE H_x is hit is U if v in S, and U\I otherwise.
+
+HALL. For h=|E|, |U|<=h(k-1)+1 because the inner members intersect.
+Also |U\I|<=h(k-1): if I is nonempty, remove its s>=1 points from each
+member and use |U\I|<=h(k-s). If I is empty, expose members successively.
+Every new member meets the previous union. At the FIRST step when the
+running common intersection becomes empty, the new member meets the
+previous union in at least TWO points: if its only union point were p,
+its intersection with every earlier member would force p into their
+common intersection. This gives |U|<=k+(h-1)(k-1)-1=h(k-1).
+Thus when v in S, |S|>=1+h(k-1)>=|U|; when v notin S,
+|S|>=h(k-1)>=|U\I|. In either case activated colors <=|S|.
+Equivalently, for every J subset W, tau(union_{x in J} H_x)>=|J|.
+
+PRUNING v. Delete all petals containing v, leaving exactly A_x.
+A coalition J is now bad iff its union of colored petal families has
+transversal number <|J|. A cover S activates U as above, and costs at
+least h(k-1). If |J|>|S| and J subset U, then |U|<=h(k-1)+1 forces
+J=U, |J|=h(k-1)+1, and J contains some inner member F. Conversely, if
+F belongs to B, exhausting its single block Q_F, of cost k-1, covers
+all k colors of F. Thus F itself is bad. We do not need or assert that
+every superset of F is bad; badness need not be upward closed here.
+Hence every bad coalition contains an F in B, and each F itself is
+bad. The inclusion-minimal bad coalitions are EXACTLY B.
+
+RANK: A_x has degree deg_B(x), B_x has degree 1+M-deg_B(x), both <=M+1.
+The large M cost is precisely why this gadget currently does not yield
+an efficient recursion for b(t). Replacing blocks by shared factored
+cores/petals must reprove activation-Hall, as well as furnish original
+core-family intersection; neither follows from this generic gadget.

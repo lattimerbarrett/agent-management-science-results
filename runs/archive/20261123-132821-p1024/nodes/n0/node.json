@@ -1,0 +1,102 @@
+{
+ "id": "n0",
+ "parent": null,
+ "depth": 0,
+ "option": null,
+ "status": "member",
+ "belief": {
+  "answer": "The following finite matrix-rank formula gives the answer for every allowed vector b, without genericity assumptions. Set h=2g\u22122, N=4g\u22124, d=2g\u22121\u2212k, Q=\u230aN/k\u230b, B=2h+1+dQ and J=B+N+dQ+1. Put \u03c6=\u2211_{j=0}^{r\u22121}b_jt^{\u2212(2g\u22121\u22122j)}, q=kt^k\u03c6 and a=\u2212(1/2)t^{\u2212h}(1\u2212t^{4g+2})^{1/2}. All matrices acting on polynomials in w below are taken modulo w^{N+1}. Let P be the substitution matrix F(u)\u21a6F(tw(1\u2212qw^k)^{\u22121/k}); explicitly, P_{mn}=t^n(n/k)_j q^j/j! if m=n+jk with j\u22650, and P_{mn}=0 otherwise, for 0\u2264m,n\u2264N. Let D and C be multiplication by 1\u2212qw^k and \u2212t^{\u22121}\u2212t^k\u03c6\u2032w^k, respectively. Define T_O=P, T_L=aDP, and T_S=((aP,0),(aCP,DP)) in block notation. Define H_B={s\u2208Z:0\u2264s\u2264B and s even}\u222a{s\u2208Z:2g+1\u2264s\u2264B and s odd}, and F_s=t^{\u2212s} for even s, F_s=t^{\u2212s}(1\u2212t^{4g+2})^{1/2} for odd s. For each m\u00d7m matrix T among T_O,T_L,T_S, form the finite complex matrix M(T) with rows (\u03b1,j), 1\u2264\u03b1\u2264m, 1\u2264j\u2264J, columns (i,s), 1\u2264i\u2264m, s\u2208H_B, and entries M(T)_{(\u03b1,j),(i,s)}=[t^{\u2212j}](a^{\u22121}(T^{\u2212\ud835\uddb3})_{\u03b1i}F_s). Then \\boxed{\\Delta_b=\\operatorname{rank}_{\\mathbb C}M(T_S)-\\operatorname{rank}_{\\mathbb C}M(T_O)-\\operatorname{rank}_{\\mathbb C}M(T_L)}.",
+  "confidence": 0.88
+ },
+ "judge": {
+  "claim": true,
+  "same_as": null,
+  "answer": "Set h=2g\u22122, N=4g\u22124, d=2g\u22121\u2212k, Q=\u230aN/k\u230b, B=2h+1+dQ, and J=B+N+dQ+1. Put \u03c6=\u2211_{j=0}^{r\u22121}b_jt^{\u2212(2g\u22121\u22122j)}, q=kt^k\u03c6, and a=\u2212(1/2)t^{\u2212h}(1\u2212t^{4g+2})^{1/2}. All matrices acting on polynomials in w are taken modulo w^{N+1}. Let P be the substitution matrix F(u)\u21a6F(tw(1\u2212qw^k)^{\u22121/k}); explicitly, P_{mn}=t^n(n/k)_j q^j/j! if m=n+jk with j\u22650, and P_{mn}=0 otherwise, for 0\u2264m,n\u2264N. Let D and C be multiplication by 1\u2212qw^k and \u2212t^{\u22121}\u2212t^k\u03c6\u2032w^k, respectively. Define T_O=P, T_L=aDP, and T_S=((aP,0),(aCP,DP)) in block notation. Define H_B={s\u2208\u2124:0\u2264s\u2264B and s even}\u222a{s\u2208\u2124:2g+1\u2264s\u2264B and s odd}, and F_s=t^{\u2212s} for even s and F_s=t^{\u2212s}(1\u2212t^{4g+2})^{1/2} for odd s. For each m\u00d7m matrix T among T_O,T_L,T_S, form M(T) with rows (\u03b1,j), 1\u2264\u03b1\u2264m, 1\u2264j\u2264J, columns (i,s), 1\u2264i\u2264m, s\u2208H_B, and entries M(T)_{(\u03b1,j),(i,s)}=[t^{\u2212j}](a^{\u22121}(T^{\u2212\ud835\uddb3})_{\u03b1i}F_s). Then, for every allowed nonzero b, \u0394_b=rank_\u2102 M(T_S)\u2212rank_\u2102 M(T_O)\u2212rank_\u2102 M(T_L).",
+  "reason": "It asserts an explicit finite matrix-rank formula for the requested quantity for every allowed coefficient vector. No previous answers were listed.",
+  "experiment": false,
+  "n": 1,
+  "definite": false,
+  "gate": "The proposed answer reduces the cohomology dimensions to ranks of explicitly constructed matrices but leaves those ranks to be computed. It therefore supplies a finite procedure, not the requested resulting formula describing the dependence on g and all coefficient vectors b, including their vanishing patterns.",
+  "procedure": true
+ },
+ "experiment": null,
+ "options": [
+  {
+   "branch": "c0b0",
+   "counterfactual": "The finite Laurent-coefficient matrix formula fails for some coefficient vectors because its stated pole bounds omit necessary equations.",
+   "approach": "Derive independent pole bounds using determinants and adjugates of the transition matrices. Replace the truncation bounds by these more conservative bounds before asserting a uniform formula.",
+   "p": 0.072,
+   "child": null
+  },
+  {
+   "branch": "c0b1",
+   "counterfactual": "The finite Laurent-coefficient matrix formula fails for some coefficient vectors because its stated pole bounds omit necessary equations.",
+   "approach": "Compute the transition matrices and their inverses exactly for several small genera and sparse coefficient vectors. Compare their actual pole orders with the proposed bounds to locate the missing equations.",
+   "p": 0.056,
+   "child": null
+  },
+  {
+   "branch": "c0b2",
+   "counterfactual": "The finite Laurent-coefficient matrix formula fails for some coefficient vectors because its stated pole bounds omit necessary equations.",
+   "approach": "Define the finite constraints using the complete polar parts of the explicitly computed inverse transition matrices. This would avoid reliance on the disputed uniform bound.",
+   "p": 0.032,
+   "child": null
+  },
+  {
+   "branch": "c1b0",
+   "counterfactual": "The invariant is independent of the entire nonzero coefficient vector, even though the gluing depends on that vector.",
+   "approach": "Compute the invariant for small genera using vectors with different supports and compare the results. These examples could reveal a common value and suggest which rank changes cancel.",
+   "p": 0.096,
+   "child": "n3"
+  },
+  {
+   "branch": "c1b1",
+   "counterfactual": "The invariant is independent of the entire nonzero coefficient vector, even though the gluing depends on that vector.",
+   "approach": "Search for an exact sequence relating the three sheaves that forces their alternating cohomology dimension to be independent of the deformation parameters.",
+   "p": 0.084,
+   "child": null
+  },
+  {
+   "branch": "c1b2",
+   "counterfactual": "The invariant is independent of the entire nonzero coefficient vector, even though the gluing depends on that vector.",
+   "approach": "Study coordinate changes preserving the zero section to determine which coefficient vectors define equivalent surface germs. Separate equivalence-based constancy from any additional cohomological constancy.",
+   "p": 0.06,
+   "child": null
+  },
+  {
+   "branch": "c2b0",
+   "counterfactual": "A matrix-rank expression does not provide the requested formula adequately; an explicit classification of the possible values and their coefficient conditions is necessary.",
+   "approach": "Reduce the large matrices by eliminating blocks whose ranks are independent of the coefficients. Express the answer through smaller matrices built directly from the entries of the coefficient vector.",
+   "p": 0.27,
+   "child": "n4"
+  },
+  {
+   "branch": "c2b1",
+   "counterfactual": "A matrix-rank expression does not provide the requested formula adequately; an explicit classification of the possible values and their coefficient conditions is necessary.",
+   "approach": "Analyze the filtration by powers of the exceptional-curve ideal and compute its connecting maps explicitly. Use the hyperelliptic gap sequence to identify the coefficient conditions under which their ranks change.",
+   "p": 0.21,
+   "child": "n1"
+  },
+  {
+   "branch": "c2b2",
+   "counterfactual": "A matrix-rank expression does not provide the requested formula adequately; an explicit classification of the possible values and their coefficient conditions is necessary.",
+   "approach": "Calculate exact examples for small genera and several support patterns, then formulate a classification in terms of vanishing components or minors. Prove that classification using the explicit transition matrices.",
+   "p": 0.12,
+   "child": null
+  },
+  {
+   "branch": "own",
+   "counterfactual": null,
+   "approach": null,
+   "p": null,
+   "child": "n2"
+  }
+ ],
+ "cost": 0.1471,
+ "responses": 1,
+ "step_from": 0,
+ "known": [],
+ "created": 1795458501.214126,
+ "seen": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+ "take_at": null
+}

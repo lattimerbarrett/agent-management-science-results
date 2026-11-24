@@ -1,0 +1,53 @@
+AUXILIARY PROFILE LEMMA (not PDE reduction).
+Let n>=25, m=n-1, x=(n-2)/2. Let P_2(y)=y^T A y with A diagonal,
+trace A=0, chosen with k=floor(m/2) eigenvalues 1 and ell=m-k
+eigenvalues -k/ell. Let F=P_2(1-r^2/2+r^4/20).
+Let B_n be the positive sphere shape quadratic form with multipliers
+J_L^2/D_L for L>=2, zero on L=0,1, where
+J_L=m-L(L+m-1),
+D_L=2 Gamma((L+n+1)/2)Gamma(L/2)/[Gamma((L+n)/2)Gamma((L-1)/2)].
+The Gram matrices G_l(i,j) are B_n on stereographic normal shapes
+2P_l(y)r^(2i)/(1+r^2), divided by the L2 norm squared of P_l on S^(m-1).
+They are computed exactly by agent2_symbolic_gram.py.
+
+Write c=(1,-1/2,1/20), b_j(s)=c_j s^j.
+For N(s)=s b(s)^T G_2 b(s), there is a unique s_* in (7/10,4/5)
+with N'(s_*)=0 and N''(s)<0 on that interval.
+Moreover the centre Hessian of the full translation/scale shape norm is
+negative definite at (s_*,0). Therefore the negative shape norm has a
+strict local minimum in all these parameters.
+
+Proof by exact certificates:
+All entries G_l/pi have form R_l(x)+q Q_l(x), with rational functions
+R,Q and q=Gamma(x+3/2)^2/[pi Gamma(x+1)^2]. Gamma log convexity gives
+(x+1)^2/(x+3/2) < pi q < x+1.
+Using 333/106<pi<22/7 gives q_-<q<q_+ where
+q_-=(7/22)(x+1)^2/(x+3/2), q_+=(106/333)(x+1).
+N'(7/10)>0, N'(4/5)<0 and -N''(s)>0 follow by verifying both
+q endpoints; linearity in q suffices.
+
+For each coordinate k put a_k=(A^2)kk/tr(A^2). They lie between
+(m-1)/[m(m+1)] and (m+1)/[m(m-1)]. Define
+T_ij(a)=(2+4i/(m+2))(2+4j/(m+2))*a(m+2)/2*G_1(i,j)
+ +4ij[1/(m+4)+2ma/((m+4)(m+2))]*G_3(i-1,j-1)
+ +[2j+8ja+4j(j-1)(1+4a)/(m+4)]*G_2(i,j-1),
+where terms with a negative matrix index are zero.
+The centre Hessian sign is that of b^T(T+T^T)b/2. It is negative:
+the exact certificate verifies this for both q endpoints and both a
+endpoints throughout s in [7/10,4/5]. Bilinearity in q,a suffices.
+All off diagonal centre entries and centre/scale mixed entries vanish
+by coordinate reflection symmetry.
+
+agent2_profile_certificate.py verifies 32 rational polynomial
+inequalities using exact arithmetic. For an interval inequality it
+uses Bernstein coefficients on s in [7/10,4/5]. For each Bernstein
+coefficient, after x=t+23/2 the rational numerator and denominator
+have nonnegative coefficients and strictly positive constant terms.
+The expanded polynomial certificates are in
+agent2_profile_certificates.json. Thus positivity holds for all real
+x>=23/2, not merely tested integer dimensions.
+
+LIMITATION: This is a lemma about a finite spectral shape quadratic
+form. It does not establish a uniform Lyapunov-Schmidt reduction or
+infinite gluing for the original PDE. It does not establish sharpness,
+nor preclude similar minima below25.

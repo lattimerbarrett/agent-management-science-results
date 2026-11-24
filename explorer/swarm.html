@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Swarm playground</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/marked@12.0.2/marked.min.js"></script>
+<link rel="stylesheet" href="ui.css">
+<script src="ui.js"></script>
+<style>
+.av { width: 26px; height: 26px; border-radius: 50%; display: inline-grid; place-items: center; color: #fff; font-size: 11px; font-weight: 600; flex: none; }
+.av.sm { width: 18px; height: 18px; font-size: 9.5px; }
+.msgs .m { display: grid; grid-template-columns: 30px 1fr; gap: 0 10px; padding: 8px 10px; border-radius: 8px; margin: 0 -10px; }
+.msgs .m:hover { background: var(--surface-2); }
+.msgs .m:hover .acts { opacity: 1; }
+.msgs .line1 { display: flex; align-items: baseline; gap: 8px; }
+.msgs .who { font-weight: 600; } .msgs .who[data-agent] { cursor: pointer; } .msgs .who[data-agent]:hover { text-decoration: underline; }
+.msgs .meta { color: var(--ink-3); font-size: 11.5px; }
+.msgs .acts { margin-left: auto; opacity: 0; transition: opacity .1s; }
+.msgs .body > :first-child { margin-top: 2px; } .msgs .body > :last-child { margin-bottom: 0; }
+.msgs .replies { grid-column: 2; margin-top: 6px; padding-left: 12px; border-left: 2px solid var(--line-2); }
+.msgs .replies .m { margin: 0; }
+.tag { color: var(--accent); font-weight: 600; background: var(--accent-soft); padding: 0 3px; border-radius: 4px; }
+.compose { position: sticky; bottom: 12px; margin-top: 24px; }
+.compose .card { margin: 0; box-shadow: var(--shadow-2); }
+.compose textarea { border: 0; box-shadow: none !important; min-height: 64px; padding: 12px 14px; border-radius: 10px 10px 0 0; }
+.compose .row { display: flex; gap: 8px; align-items: center; padding: 8px 10px; border-top: 1px solid var(--line); font-size: 12px; color: var(--ink-3); }
+.agenthead { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+.agenthead .name { font-weight: 600; font-size: 15px; }
+.chips { display: flex; gap: 6px; flex-wrap: wrap; }
+.noteRow { display: grid; grid-template-columns: 26px 1fr; gap: 10px; align-items: start; margin-bottom: 10px; }
+.noteRow textarea { min-height: 38px; }
+.counts { display: inline-flex; gap: 8px; align-items: center; }
+.counts span { display: inline-flex; align-items: center; gap: 4px; }
+.problem-answer { display: flex; align-items: center; gap: 8px; font-size: 13px; color: var(--ink-2); }
+/* the Verifier tab: a not-told run's reading */
+.stages { display: flex; flex-wrap: wrap; gap: 6px 14px; font-size: 12.5px; }
+.stages span { display: inline-flex; align-items: center; gap: 5px; color: var(--muted); }
+.stages span.done { color: var(--good); } .stages span.now { color: var(--violet); font-weight: 600; }
+.vstep { display: grid; grid-template-columns: 26px 1fr; gap: 0 10px; padding: 8px 0; border-top: 1px solid var(--line); }
+.vstep:first-child { border-top: 0; }
+.vstep .vnum { font: 600 11px var(--mono); color: var(--muted); padding-top: 3px; text-align: right; }
+.vstep .vbody { min-width: 0; display: grid; gap: 6px; }
+.vstep .fold pre { margin: 0; border: 0; border-radius: 0; max-height: 420px; overflow: auto; }
+.vstep .fold pre.err { color: var(--bad); }
+.vstep .think { font-size: 12.5px; color: var(--muted); }
+</style>
+</head>
+<body>
+<nav id="nav"></nav>
+<main><div class="topbar"><div class="tabs" id="tabs"></div><div class="actions" id="actions"></div></div><div class="page" id="page"></div></main>
+<script>
+const tagged = html => html.replace(/(^|[^\w@&])@([A-Za-z0-9_.-]*[A-Za-z0-9_-])/g, '$1<span class="tag">@$2</span>');
+const avatar = (name, cls = "") => `<span class="av ${cls}" style="background:${agentColor(name)}">${name === "lead" ? icon("user", "sm") : esc(String(name).match(/\d+$/)?.[0] ?? String(name)[0].toUpperCase())}</span>`;
+
+/* ---------- state ---------- */
+const KEY = "swarm-playground";
+const S = {
+  all: [], defaults: null, cfg: null,  // every problem's defaults, the chosen one's; the page's settings (kept in localStorage)
+  tab: "setup", run: null, key: null, kind: null, follower: null, ended: true, status: "", reason: "", runs: [],
+  agents: {}, order: [],               // name -> stream (makeStream) + state, n, cost
+  slack: [], slackSeen: 0, folder: "", total: 0, budget: 0, file: null,
+  solo: false,                         // the run shown is a lone agent's (no Slack: its "channel" is its replies and the lead's messages)
+};
+// ?embed=1&run=<key>[&live=<id>]: one run alone, no sidebar (the prover archive's page shows its experiments so)
+const EMBED = new URLSearchParams(location.search);
+const saveCfg = () => EMBED.get("embed") ? null : store.set(KEY, {cfg: S.cfg, key: S.key});
+
+/* ---------- the runs (sidebar) ---------- */
+let runsTimer = null;
+async function loadRuns() {
+  clearTimeout(runsTimer);
+  if (EMBED.get("embed")) return;
+  try { S.runs = await (await fetch("/api/swarm/runs")).json(); } catch {}
+  renderNav();
+  if (S.key) renderTabs();
+  runsTimer = setTimeout(loadRuns, S.runs.some(r => r.live || r.reading?.state === "reading") ? 4000 : 20000);
+}
+function renderNav() {
+  if (EMBED.get("embed")) return;
+  const row = r => {
+    const mine = r.key === S.key && !S.ended;
+    return runRow({key: r.key, on: r.key === S.key, state: runState(r.reason, r.live), cost: mine ? S.total : r.cost, budget: r.budget,
+      title: r.kind === "swarm" ? `p${r.problem ?? "?"} · ${when(r.name)}` : when(r.name),
+      sub: r.kind === "swarm" ? `${r.solo ? "alone" : `${r.agents} agent${r.agents === 1 ? "" : "s"}`}${r.told === false ? " · not told" : ""}${r.reading ? ` · ${readingWord(r.reading)}` : r.reason && !r.live ? ` · ${shortReason(r.reason)}` : ""}` : (r.reason || ""),
+      tooltip: [r.reason || "live", r.reading ? `reading: ${readingWord(r.reading)}` : ""].filter(Boolean).join(" · ")});
+  };
+  const sw = S.runs.filter(r => r.kind === "swarm"), pg = S.runs.filter(r => r.kind === "playground");
+  sideRuns(`<div class="head"><span>Swarms</span><span>${sw.length}</span></div>${sw.map(row).join("") || '<div class="empty quiet">None yet</div>'}`
+    + (pg.length ? `<div class="head"><span>Single agent</span><span>${pg.length}</span></div>${pg.map(row).join("")}` : ""));
+}
+async function openRun(key, given) {
+  const r = given || S.runs.find(x => x.key === key);
+  if (!r) return;
+  const keepTab = S.key === key ? S.tab : null;
+  S.key = key; S.kind = r.kind; S.solo = !!r.solo; saveCfg(); renderNav();
+  reset();
+  if (r.live) { connect(r.live, key, keepTab); return show(keepTab && tabOk(keepTab) ? keepTab : S.kind === "swarm" ? "slack" : "setup"); }
+  await loadSaved(key, keepTab);
+}
+async function loadSaved(key, keepTab) {
+  reset();
+  S.run = null; S.ended = false; S.status = "Loading";
+  renderTabs();
+  const events = await (await fetch(`/api/swarm/saved?run=${encodeURIComponent(key)}`)).json();
+  if (S.key !== key) return;
+  events.forEach(onEvent);
+  S.status = ""; S.slackSeen = S.slack.length;
+  show(keepTab && tabOk(keepTab) ? keepTab : S.slack.length ? "slack" : (S.order[0] || "info"));
+}
+const tabOk = t => ["slack", "files", "info"].includes(t) || (t === "verifier" && readingOf(S.key)) || S.agents[t];
+
+/* ---------- tabs ---------- */
+function renderTabs() {
+  const unread = S.slack.length - S.slackSeen;
+  const tabs = (S.key ? [] : [["setup", `${icon("sliders", "sm")}Setup`]])
+    .concat(!S.key || S.kind === "playground" ? [] : [["slack", `${S.solo ? `${icon("inbox", "sm")}replies` : `${icon("hash", "sm")}proof`}${unread > 0 && S.tab !== "slack" ? `<span class="count">${unread}</span>` : ""}`]])
+    .concat(S.order.map(a => [a, `${avatar(a, "sm")}${esc(a)}<span class="dot ${S.agents[a].state}"></span>`]))
+    .concat(S.key ? [["files", `${icon("folder", "sm")}Files`], ["info", `${icon("book", "sm")}Prompts`]] : [])
+    .concat(readingOf(S.key) ? [["verifier", `${icon("shield", "sm")}Verifier${readingOf(S.key).state === "reading" ? '<span class="dot working"></span>' : ""}`]] : []);
+  const html = tabs.map(([k, label], i) => (i && k === "files" ? '<span class="sep"></span>' : "") + `<button class="${S.tab === k ? "on" : ""}" data-tab="${esc(k)}">${label}</button>`).join("");
+  const box = document.getElementById("tabs");
+  if (box.dataset.html !== html) { box.dataset.html = html; box.innerHTML = html; }
+  renderActions();
+}
+function renderActions() {
+  let html;
+  if (!S.key) html = `<button class="btn primary go">${icon("play", "sm")}Run swarm</button>`;
+  else if (!S.ended) {
+    const c = {working: 0, idle: 0, done: 0};
+    S.order.forEach(a => c[S.agents[a].state]++);
+    html = `<span class="status">${S.status ? S.status : `<span class="counts num" title="working · idle · done"><span><span class="dot working"></span>${c.working}</span><span><span class="dot idle"></span>${c.idle}</span>${c.done ? `<span><span class="dot done"></span>${c.done}</span>` : ""}</span>`
+      + `${meter(S.total, S.budget)}<span class="num">${money(S.total)} <span class="quiet">/ ${money(S.budget)}</span></span>`}</span>`
+      + (S.run ? `<button class="btn danger sm go">${icon("stop", "sm")}Stop</button>` : "");
+  } else html = `<span class="status">${pill(`<span class="state ${runState(S.reason)}"></span>${S.reason ? reasonHtml(S.reason) : "saved"}`, "", S.reason)}${readingPill(readingOf(S.key))}<span class="num">${money(S.total)}</span></span>`;
+  const box = document.getElementById("actions");
+  if (box.dataset.html !== html) { box.dataset.html = html; box.innerHTML = html; }
+}
+
+function show(tab) {
+  S.tab = tab;
+  if (tab === "slack") S.slackSeen = S.slack.length;
+  renderTabs();
+  const page = document.getElementById("page");
+  page.className = "page" + (tab === "files" ? " wide" : "");
+  page.innerHTML = "";
+  if (tab === "setup") page.appendChild(setupEl());
+  else if (tab === "slack") page.appendChild(slackEl());
+  else if (tab === "files") renderFiles(page);
+  else if (tab === "info") renderInfo(page);
+  else if (tab === "verifier") renderVerifier(page);
+  else if (S.agents[tab]) {
+    page.insertAdjacentHTML("beforeend", `<div class="card"><div class="bd agenthead"></div></div>`);
+    agentHead();
+    page.appendChild(S.agents[tab].el);
+  }
+  if (!EMBED.get("embed")) location.replace("#" + tab);
+}
+function agentHead() {
+  const box = document.querySelector(".agenthead"), ag = S.agents[S.tab];
+  if (!box || !ag) return;
+  const cls = {working: "good", idle: "warn", done: ""}[ag.state] ?? "";
+  box.innerHTML = `${avatar(S.tab)}<span class="name">${esc(S.tab)}</span>${pill(`<span class="dot ${ag.state}"></span>${esc(ag.state)}`, cls)}`
+    + `<span style="margin-left:auto" class="quiet num">${ag.n} responses · ${money(ag.cost)}</span>`;
+}
+
+/* ---------- setup ---------- */
+const HOLES = [["{name}", "the agent's name"], ["{n}", "how many agents"], ["{roster}", "every agent's name"], ["{run_time}", "the longest run"],
+  ["{memory}", "a run's memory"], ["{file_size}", "the largest file a run may write"], ["{workers}", "a run's worker processes"]];
+const holes = () => `<span class="chips">${HOLES.map(([h, t]) => `<button class="chip" data-hole="${h}" title="${esc(t)}">${h}</button>`).join("")}</span>`;
+let SETUP = null, lastArea = null;
+function setupEl() {
+  if (!SETUP) {
+    SETUP = document.createElement("div");
+    SETUP.className = "setup";
+    SETUP.addEventListener("input", e => {
+      const t = e.target;
+      if (t.name === "problem") return pickProblem(+t.value);
+      if (t.name === "told") return pickMode(t.value === "1", !!S.cfg.solo);
+      if (t.name === "solo") return pickMode(S.cfg.told !== false, t.value === "1");
+      if (t.classList.contains("sys")) S.cfg[sysKey()] = t.value;
+      else if (t.classList.contains("msg")) S.cfg.prompt = t.value;
+      else if (t.classList.contains("note")) S.cfg.notes[+t.dataset.i] = t.value;
+      else if (t.name === "n") { S.cfg.n = Math.max(1, Math.min(S.defaults.max_agents, +t.value || 1)); drawNotes(); }
+      else if (t.name === "budget") S.cfg.budget = +t.value || S.defaults.budget;
+      else if (t.name === "responses") S.cfg.max_responses = Math.max(1, Math.min(S.defaults.max_responses, Math.round(+t.value) || S.defaults.max_responses));
+      else if (t.name === "minutes") S.cfg.run_minutes = Math.max(1, Math.min(S.defaults.run_minutes, +t.value || S.defaults.run_minutes));
+      saveCfg();
+    });
+    SETUP.addEventListener("focusin", e => { if (e.target.tagName === "TEXTAREA") lastArea = e.target; });
+    SETUP.addEventListener("click", e => {  // a placeholder chip: into the prompt it sits on, at the cursor
+      const b = e.target.closest("[data-hole]");
+      if (!b) return;
+      const ta = b.closest(".card").querySelector("textarea");
+      const at = ta.selectionStart ?? ta.value.length;
+      ta.setRangeText(b.dataset.hole, at, ta.selectionEnd ?? at, "end");
+      ta.focus();
+      ta.dispatchEvent(new Event("input", {bubbles: true}));
+    });
+  }
+  const d = S.defaults;
+  SETUP.innerHTML = `<div class="card"><div class="hd">${icon("target", "sm")}Run<span class="right"><span class="quiet" title="ends when every agent has stopped this long and no nudge is left (${d.max_nudges} used, or the judge found the proof complete)">${icon("clock", "sm")} ends ${Math.round(d.nudge_after / 60)} min after all stop</span><button class="btn ghost sm reset">${icon("refresh", "sm")}Defaults</button></span></div><div class="bd grid-fields">
+      <label class="field" style="grid-column: span 2">Problem<select name="problem">${S.all.map(x => `<option value="${x.problem}" ${x.problem === S.cfg.problem ? "selected" : ""}>p${x.problem} · ${esc(x.answer.replace(/^\\\(|\\\)$/g, ""))}</option>`).join("")}</select></label>
+      <label class="field">The answer<select name="told"><option value="1" ${S.cfg.told === false ? "" : "selected"}>told</option><option value="0" ${S.cfg.told === false ? "selected" : ""}>not told</option></select></label>
+      <label class="field">Working<select name="solo"><option value="0" ${S.cfg.solo ? "" : "selected"}>as a team, on Slack</option><option value="1" ${S.cfg.solo ? "selected" : ""}>alone, no Slack</option></select></label>
+      <label class="field">Agents<input type="number" name="n" min="1" max="${d.max_agents}" value="${agentsN()}" ${S.cfg.solo ? "disabled" : ""}></label>
+      <label class="field">Budget, whole run<span class="adorn"><span>$</span><input type="number" name="budget" min="1" step="1" value="${S.cfg.budget}"></span></label>
+      <label class="field">Responses each<input type="number" name="responses" min="1" max="${d.max_responses}" step="1" value="${S.cfg.max_responses}"></label>
+      <label class="field">Longest run<span class="adorn"><input type="number" name="minutes" min="1" max="${d.run_minutes}" step="1" value="${S.cfg.run_minutes}"><span>min</span></span></label>
+    </div><div class="bd" style="border-top:1px solid var(--line);padding:10px 16px"><span class="problem-answer">${icon("check", "sm")}${tex(d.answer.replace(/^\\\(|\\\)$/g, ""))}${S.cfg.told === false ? '<span class="quiet">· not told to the agents, nor to the nudge\'s judge</span>' : ""}</span></div></div>
+    <div class="card"><div class="hd">${icon("code", "sm")}System prompt<span class="right">${holes()}</span></div><div class="bd"><textarea class="sys mono" spellcheck="false" rows="16"></textarea></div></div>
+    <div class="card"><div class="hd">${icon("inbox", "sm")}First message<span class="right">${holes()}</span></div><div class="bd"><textarea class="msg" spellcheck="false" rows="14"></textarea></div></div>
+    <div class="card"><div class="hd">${icon("users", "sm")}Notes<span class="sub">each agent's own, after the message</span></div><div class="bd notes"></div></div>
+    <button class="btn primary go">${icon("play", "sm")}Run swarm</button>`;
+  SETUP.querySelector(".sys").value = S.cfg[sysKey()] ?? S.defaults[sysKey()];
+  SETUP.querySelector(".msg").value = S.cfg.prompt;
+  SETUP.querySelector(".reset").onclick = () => {
+    const cleared = Object.fromEntries([true, false].flatMap(told => [false, true].map(solo => [promptKey(S.cfg.problem, told, solo), undefined])));
+    S.cfg = {...fresh(), prompts: {...(S.cfg.prompts || {}), ...cleared}}; saveCfg(); show("setup");
+  };
+  drawNotes();
+  return SETUP;
+}
+function drawNotes() {
+  const box = SETUP.querySelector(".notes");
+  while (S.cfg.notes.length < agentsN()) S.cfg.notes.push("");
+  box.innerHTML = Array.from({length: agentsN()}, (_, i) =>
+    `<div class="noteRow" title="agent_${i + 1}">${avatar(`agent_${i + 1}`)}<textarea class="note" data-i="${i}" rows="1" spellcheck="false" placeholder="agent_${i + 1}"></textarea></div>`).join("");
+  box.querySelectorAll(".note").forEach(t => t.value = S.cfg.notes[+t.dataset.i] || "");
+}
+const fresh = () => ({problem: S.defaults.problem, told: true, solo: false, prompts: {}, system: S.defaults.system,
+                      system_solo: S.defaults.system_solo, prompt: S.defaults.prompt,
+                      n: S.defaults.n, budget: S.defaults.budget, max_responses: S.defaults.max_responses,
+                      run_minutes: S.defaults.run_minutes, notes: []});
+const defaultsOf = p => S.all.find(x => x.problem === p) || S.all[0];
+// another problem: its first message is the one last written for it here, or its default; the rest stays
+function pickProblem(p) {
+  S.cfg.prompts = {...(S.cfg.prompts || {}), [promptKey(S.cfg.problem, S.cfg.told, S.cfg.solo)]: S.cfg.prompt};
+  S.defaults = defaultsOf(p);
+  S.cfg.problem = S.defaults.problem;
+  S.cfg.prompt = S.cfg.prompts[promptKey(S.cfg.problem, S.cfg.told, S.cfg.solo)] || defaultPrompt(S.cfg.told, S.cfg.solo);
+  saveCfg(); show("setup");
+}
+// told the answer, or not (swarm_play.PROMPT_UNTOLD), and a team or one agent alone (swarm_play.SYSTEM_SOLO,
+// PROMPT_SOLO: no Slack, no partners): the first message becomes the one last written here for the problem that
+// way, or its default; a budget left at one way's default becomes the other's. The system prompt is kept apart
+// for a team and for a lone agent, and a lone agent's run is one agent whatever "Agents" holds.
+const promptKey = (p, told, solo) => (solo ? "s" : "") + (told === false ? "u" : "") + p;
+const defaultPrompt = (told, solo) => S.defaults["prompt" + (told === false ? "_untold" : "") + (solo ? "_solo" : "")];
+const defaultBudget = told => told === false ? S.defaults.budget_untold : S.defaults.budget;
+const sysKey = () => S.cfg.solo ? "system_solo" : "system";
+const agentsN = () => S.cfg.solo ? 1 : S.cfg.n;
+function pickMode(told, solo) {
+  S.cfg.prompts = {...(S.cfg.prompts || {}), [promptKey(S.cfg.problem, S.cfg.told, S.cfg.solo)]: S.cfg.prompt};
+  if (S.cfg.budget === defaultBudget(S.cfg.told)) S.cfg.budget = defaultBudget(told);
+  S.cfg.told = told; S.cfg.solo = solo;
+  S.cfg.prompt = S.cfg.prompts[promptKey(S.cfg.problem, told, solo)] || defaultPrompt(told, solo);
+  saveCfg(); show("setup");
+}
+
+/* ---------- the channel ---------- */
+let SLACK = null;
+function slackEl() {
+  if (!SLACK) {
+    SLACK = document.createElement("div");
+    SLACK.innerHTML = `<div class="msgs"></div>
+      <div class="compose"><div class="card"><textarea placeholder="Post as lead · @agent_2 wakes one agent, @channel everyone" spellcheck="false"></textarea>
+      <div class="row">${avatar("lead", "sm")}<span class="where chip">${icon("hash", "sm")}proof</span><button class="icon-btn clear" hidden title="post in the channel">${icon("x", "sm")}</button><span class="err no"></span>
+      <span style="margin-left:auto" class="quiet">⌘↵</span><button class="btn primary sm post">${icon("send", "sm")}Post</button></div></div></div>`;
+    SLACK.querySelector(".post").onclick = postHuman;
+    SLACK.querySelector(".clear").onclick = () => setThread(null);
+    SLACK.querySelector("textarea").addEventListener("keydown", e => { if (e.key === "Enter" && (e.metaKey || e.ctrlKey)) { e.preventDefault(); postHuman(); } });
+    SLACK.addEventListener("click", e => {
+      const b = e.target.closest("[data-reply]"); if (b) setThread(+b.dataset.reply);
+      const w = e.target.closest("[data-agent]"); if (w) { show(w.dataset.agent); scrollTo(0, 0); }
+    });
+  }
+  SLACK.querySelector(".compose").hidden = !S.run || S.ended;
+  SLACK.querySelector("textarea").placeholder = S.solo ? "Write to the agent as lead · it gets it as a user message, and is woken if it had stopped" : "Post as lead · @agent_2 wakes one agent, @channel everyone";
+  SLACK.querySelector(".where").hidden = S.solo;
+  drawSlack();
+  return SLACK;
+}
+let THREAD = null;
+function setThread(id) {
+  THREAD = id;
+  SLACK.querySelector(".where").innerHTML = id ? `${icon("reply", "sm")}#${id}` : `${icon("hash", "sm")}proof`;
+  SLACK.querySelector(".clear").hidden = !id;
+  SLACK.querySelector("textarea").focus();
+}
+function msgHtml(m, replies) {
+  return `<div class="m">${avatar(m.sender)}<div><div class="line1"><span class="who" style="color:${agentColor(m.sender)}" ${S.agents[m.sender] ? `data-agent="${esc(m.sender)}"` : ""}>${esc(m.sender)}</span><span class="meta num">#${m.id} · ${new Date(m.created * 1000).toLocaleTimeString([], {hour12: false})}</span>`
+    + (m.thread == null && S.run && !S.ended && !S.solo ? `<span class="acts"><button class="icon-btn" data-reply="${m.id}" title="reply in thread">${icon("reply", "sm")}</button></span>` : "")
+    + `</div><div class="body">${tagged(md(m.body))}</div></div>`
+    + (replies?.length ? `<div></div><div class="replies">${replies.map(r => msgHtml(r)).join("")}</div>` : "") + `</div>`;
+}
+function drawSlack() {
+  if (!SLACK) return;
+  const box = SLACK.querySelector(".msgs"), follow = atBottom();
+  if (!S.slack.length) { box.innerHTML = `<div class="empty-state">${icon(S.solo ? "inbox" : "hash")}<span>${S.solo ? "The agent hasn't stopped yet: what it writes each time it stops comes here" : "Nothing posted yet"}</span></div>`; return; }
+  const replies = {};
+  S.slack.forEach(m => { if (m.thread != null) (replies[m.thread] ||= []).push(m); });
+  box.innerHTML = S.slack.filter(m => m.thread == null).map(m => msgHtml(m, replies[m.id])).join("");
+  if (follow && SLACK.isConnected) scrollTo(0, document.body.scrollHeight);
+}
+async function postHuman() {
+  const ta = SLACK.querySelector("textarea"), err = SLACK.querySelector(".err");
+  if (!S.run || S.ended) return err.textContent = "this run isn't going";
+  if (!ta.value.trim()) return;
+  const r = await fetch("/api/swarm/post", {method: "POST", body: JSON.stringify({id: S.run, text: ta.value, thread: THREAD})});
+  const j = await r.json();
+  if (j.error) return err.textContent = j.error;
+  err.textContent = j.unknown?.length ? `no agent named ${j.unknown.map(u => "@" + u).join(", ")}` : "";
+  ta.value = ""; setThread(null);
+}
+
+/* ---------- agents ---------- */
+function agentOf(a) {
+  if (!S.agents[a]) { S.agents[a] = Object.assign(makeStream(), {state: "working", n: 0, cost: 0}); S.order.push(a); }
+  return S.agents[a];
+}
+function onAgent(ag, e) {
+  ag.on(e);
+  if (e.k === "response") ag.n = e.n;
+  else if (e.k === "cost") { ag.cost = e.cost; S.total = e.total; }
+  else if (e.k === "state") { ag.state = e.state; if (e.n != null) ag.n = e.n; if (e.cost != null) ag.cost = e.cost; }
+  if (/^(response|cost|state)$/.test(e.k)) headSoon();
+}
+let headTimer = null;
+function headSoon() {  // the agent's header, the tabs and the sidebar's cost, at most 4 times a second
+  if (headTimer) return;
+  headTimer = setTimeout(() => { headTimer = null; agentHead(); renderTabs(); renderNav(); }, 250);
+}
+
+/* ---------- events ---------- */
+function onEvent(e) {
+  if (e.a) onAgent(agentOf(e.a), e);
+  else if (e.k === "start") { S.folder = e.folder; S.budget = e.budget; e.agents.forEach(agentOf); headSoon(); }
+  else if (e.k === "slack") {
+    S.slack.push(e);
+    if (S.tab === "slack") { S.slackSeen = S.slack.length; drawSlackSoon(); }
+    headSoon();
+  } else if (e.k === "end") {
+    S.ended = true; S.total = e.cost; S.reason = e.reason;
+    S.follower?.close(); S.follower = null;
+    if (SLACK) SLACK.querySelector(".compose").hidden = true;
+    if (S.run) setTimeout(loadRuns, 500);
+    drawSlackSoon(); headSoon();
+  }
+}
+let slackTimer = null;
+const drawSlackSoon = () => { if (!slackTimer) slackTimer = setTimeout(() => { slackTimer = null; drawSlack(); }, 120); };
+
+/* ---------- run ---------- */
+function reset() {
+  S.follower?.close(); S.follower = null;
+  S.agents = {}; S.order = []; S.slack = []; S.slackSeen = 0; S.total = 0; S.file = null; S.reason = ""; S.status = "";
+  if (SLACK) SLACK.querySelector(".msgs").innerHTML = "";
+}
+function connect(id, key, keepTab) {
+  reset();
+  S.run = id; S.ended = false;
+  S.follower = follow("swarm", id, evs => evs.forEach(onEvent), {
+    onGone: () => { S.run = null; loadSaved(key, S.tab); },  // the server no longer holds it: from disk
+    onLost: () => { S.status = '<span class="quiet">reconnecting</span>'; renderActions(); },
+    onBack: () => { S.status = ""; renderActions(); },
+  });
+}
+async function start() {
+  const c = S.cfg, n = agentsN();
+  const r = await fetch("/api/swarm/run", {method: "POST", body: JSON.stringify({problem: c.problem, system: c[sysKey()] ?? S.defaults[sysKey()],
+    prompt: c.prompt, notes: c.notes.slice(0, n), n, budget: c.budget, max_responses: c.max_responses,
+    run_minutes: c.run_minutes, told: c.told !== false, solo: !!c.solo})});
+  const j = await r.json();
+  if (!j.id) { S.status = `<span class="no">${esc(j.error || "could not start")}</span>`; return renderActions(); }
+  S.key = j.key; S.kind = "swarm"; S.solo = !!c.solo; saveCfg();
+  connect(j.id, j.key);
+  show("slack");
+  setTimeout(loadRuns, 800);
+}
+function stop() { fetch("/api/swarm/stop", {method: "POST", body: JSON.stringify({id: S.run})}); S.status = '<span class="quiet">stopping</span>'; renderActions(); }
+
+/* ---------- files ---------- */
+async function renderFiles(page) {
+  if (!page.querySelector(".files")) page.innerHTML = `<div class="files"><div class="card list"><div class="quiet" style="padding:8px">Loading</div></div><div class="view"></div></div>`;
+  const r = await fetch(`/api/swarm/files?run=${encodeURIComponent(S.key)}`);
+  const files = r.ok ? await r.json() : [];
+  if (S.tab !== "files") return;
+  const dirs = {};
+  files.forEach(f => { const i = f.path.lastIndexOf("/"); (dirs[i < 0 ? "" : f.path.slice(0, i)] ||= []).push(f); });
+  page.querySelector(".list").innerHTML = `<button class="btn ghost sm refresh">${icon("refresh", "sm")}Refresh</button>`
+    + (files.length ? Object.entries(dirs).map(([d, fs]) => (d ? `<div class="dir">${icon("folder", "sm")}${esc(d)}</div>` : "")
+      + fs.map(f => `<button title="${esc(f.path)}" class="f ${f.path === S.file ? "on" : ""}" data-file="${esc(f.path)}">${icon("file", "sm")}<span class="n">${esc(f.path.slice(d ? d.length + 1 : 0))}</span><span class="z">${bytes(f.size)}</span></button>`).join("")).join("")
+      : '<div class="quiet" style="padding:8px">No files yet</div>');
+  page.querySelector(".refresh").onclick = () => renderFiles(page);
+  page.querySelectorAll("[data-file]").forEach(b => b.onclick = () => { S.file = b.dataset.file; renderFiles(page); });
+  const view = page.querySelector(".view");
+  if (!S.file) { view.innerHTML = `<div class="empty-state">${icon("file")}</div>`; return; }
+  const f = await (await fetch(`/api/swarm/file?run=${encodeURIComponent(S.key)}&path=${encodeURIComponent(S.file)}`)).json();
+  if (S.tab !== "files") return;
+  const text = f.text ?? f.error, isMd = /\.md$/i.test(S.file);
+  view.innerHTML = `<div class="card"><div class="hd">${icon("file", "sm")}<span style="font-family:var(--mono);font-weight:500">${esc(S.file)}</span>${isMd ? `<span class="right"><button class="btn ghost sm raw">${icon("code", "sm")}</button></span>` : ""}</div>`
+    + (isMd && f.text != null ? `<div class="bd md-body">${md(text)}</div>` : `<pre>${esc(text)}</pre>`) + `</div>`;
+  view.querySelector(".raw")?.addEventListener("click", ev => {
+    const bd = view.querySelector(".md-body, pre");
+    bd.outerHTML = bd.tagName === "PRE" ? `<div class="bd md-body">${md(text)}</div>` : `<pre>${esc(text)}</pre>`;
+  });
+}
+
+/* ---------- a run's prompts ---------- */
+async function renderInfo(page) {
+  page.innerHTML = '<div class="quiet">Loading</div>';
+  const i = await (await fetch(`/api/swarm/info?run=${encodeURIComponent(S.key)}`)).json();
+  if (S.tab !== "info") return;
+  const notes = Object.entries(i.settings?.notes || {}).filter(([, v]) => v);
+  const s = {...(i.settings || {})}; delete s.notes;
+  const sum = i.summary || {}, agents = sum.agents || {};
+  const kv = o => Object.entries(o).filter(([, v]) => v != null && typeof v !== "object").map(([k, v]) => `<dt>${esc(k)}</dt><dd>${esc(v)}</dd>`).join("")
+    + Object.entries(o.limits || {}).map(([k, v]) => `<dt>${esc(k)}</dt><dd>${esc(v)}</dd>`).join("");
+  page.innerHTML = (i.summary ? `<div class="card"><div class="hd">${icon("flask", "sm")}Outcome ${pill(`<span class="state ${runState(sum.reason)}"></span>${esc(sum.reason || "")}`)}<span class="right num">${money(sum.cost)}${sum.messages != null ? ` · ${sum.messages} messages` : ""}</span></div>`
+      + (Object.keys(agents).length ? `<div class="bd flush"><table class="tbl"><tr><th>Agent</th><th>State</th><th>Responses</th><th>Compactions</th><th>Cost</th></tr>${Object.entries(agents).map(([a, x]) => `<tr><td>${avatar(a, "sm")} ${esc(a)}</td><td><span class="dot ${x.state}" style="display:inline-block"></span> ${esc(x.state)}</td><td class="num">${x.responses}</td><td class="num">${x.compactions ?? 0}</td><td class="num">${money(x.cost)}</td></tr>`).join("")}</table></div>` : "") + `</div>` : "")
+    + (i.settings ? `<div class="card"><div class="hd">${icon("sliders", "sm")}Settings<span class="right quiet" style="font-family:var(--mono)">${esc(S.folder)}</span></div><div class="bd"><dl class="kv">${kv(s)}</dl></div></div>` : "")
+    + `<div class="section-title">${icon("book", "sm")}Prompts<span class="line"></span>${S.kind === "swarm" && i.system && !EMBED.get("embed") ? `<button class="btn sm reuse">${icon("copy", "sm")}Use for a new swarm</button>` : ""}</div>`
+    + (i.system ? fold("System prompt", `<pre style="margin:0;border:0;border-radius:0">${esc(i.system)}</pre>`, {ico: "code", meta: `${i.system.split("\n").length} lines`}) : "")
+    + (i.prompt ? fold(S.kind === "swarm" ? "First message" : "Message", `<pre style="margin:0;border:0;border-radius:0">${esc(i.prompt)}</pre>`, {ico: "inbox", meta: `${i.prompt.split("\n").length} lines`}) : "")
+    + notes.map(([a, v]) => fold(`${avatar(a, "sm")} ${esc(a)}`, `<pre style="margin:0;border:0;border-radius:0">${esc(v)}</pre>`, {meta: "note"})).join("");
+  const reuse = page.querySelector(".reuse");
+  if (reuse) reuse.onclick = () => {
+    const names = Object.keys(i.settings?.notes || {});
+    // the prompts only: the budget and limits stay the page's (an old run's were lower)
+    const system = (S.defaults.superseded || []).includes(i.system) ? S.defaults.system : i.system;
+    S.defaults = defaultsOf(i.settings?.problem ?? S.cfg.problem);
+    const solo = !!i.settings?.solo;
+    S.cfg = {...S.cfg, problem: S.defaults.problem, told: i.settings?.told !== false, solo, [solo ? "system_solo" : "system"]: system,
+             prompt: i.prompt, n: solo ? S.cfg.n : i.settings?.n || S.cfg.n, notes: names.map(a => i.settings.notes[a] || "")};
+    saveCfg();
+    document.querySelector("[data-new]").click();
+  };
+}
+
+/* ---------- a not-told run's reading (swarm_untold.py): the team's answer, the verifier, the grade ---------- */
+const STAGES = [["answer", "the team's answer"], ["contract", "definite?"], ["verify", "verifier"], ["grade", "graded"]];
+const readingOf = key => S.runs.find(r => r.key === key)?.reading;
+const whose = () => S.solo ? "the agent's answer" : "the team's answer";
+// an answer as written: LaTeX inside \( \) or $ $ (a final period left out), bare LaTeX, or plain text
+function answerHtml(a) {
+  const s = String(a ?? "").trim().replace(/\.$/, ""), m = s.match(/^\\\(([\s\S]*)\\\)$/) || s.match(/^\$([\s\S]*)\$$/);
+  return m ? tex(m[1]) : /\\[a-zA-Z]/.test(s) ? tex(s) : esc(s);
+}
+function readingWord(rd) {
+  if (!rd) return "";
+  if (rd.state === "reading") return rd.stage === "verify" ? "verifying…" : "reading…";
+  if (rd.state === "interrupted") return "reading cut off";
+  if (rd.solved) return "solved";
+  if (rd.stop) return "stop on a wrong answer";
+  return rd.verdict ? rd.verdict + (rd.acknowledged ? ", gap acknowledged" : "") : rd.answer ? "not definite" : "no answer";
+}
+function readingPill(rd) {
+  if (!rd) return "";
+  if (rd.state === "reading") return pill(`<span class="state live"></span>${esc(readingWord(rd))}`, "violet", `reading the run: ${rd.stage}`);
+  if (rd.state === "interrupted") return pill(esc(readingWord(rd)), "warn", `its reader stopped at: ${rd.stage}`);
+  const cls = rd.solved ? "good" : rd.stop || rd.verdict === "false" ? "bad" : rd.verdict === "gap" ? "warn" : "";
+  return pill(`${rd.solved ? icon("check", "sm") : ""}${esc(readingWord(rd))}`, cls, rd.answer ? `${whose()}: ${rd.answer}` : "");
+}
+let verifierTimer = null;
+async function renderVerifier(page, again = false) {
+  clearTimeout(verifierTimer);
+  const key = S.key;
+  if (!again) { page.innerHTML = '<div class="quiet">Loading</div>'; delete page.dataset.sig; }
+  let d;
+  try { d = await (await fetch(`/api/swarm/verifier?run=${encodeURIComponent(key)}`)).json(); } catch { d = null; }
+  if (S.tab !== "verifier" || S.key !== key) return;
+  if (d) {
+    const sig = JSON.stringify([d.state?.state, d.state?.stage, d.steps?.length, d.steps?.at(-1)?.calls.map(c => c.result != null), !!d.reading]);
+    if (page.dataset.sig !== sig) {
+      const open = [...page.querySelectorAll("details[data-k]")].filter(x => x.open).map(x => x.dataset.k);
+      page.dataset.sig = sig;
+      page.innerHTML = verifierHtml(d);
+      page.querySelectorAll("details[data-k]").forEach(x => { if (open.includes(x.dataset.k)) x.open = true; });
+    }
+  }
+  if (!d || d.state?.state === "reading") verifierTimer = setTimeout(() => renderVerifier(page, true), 3000);
+}
+function verifierHtml(d) {
+  const st = d.state || {}, r = d.reading, v = r?.verify || {}, rev = v.review || {};
+  let html = "";
+  if (st.state === "reading") {
+    const at = STAGES.findIndex(([k]) => k === st.stage);
+    html += `<div class="card"><div class="hd">${icon("shield", "sm")}Reading the run ${readingPill(st)}<span class="right quiet num">${st.started ? `${Math.max(0, Math.round((Date.now() / 1000 - st.started) / 60))} min` : ""}</span></div>`
+      + `<div class="bd"><div class="stages">${STAGES.map(([k, l], i) => `<span class="${i < at ? "done" : i === at ? "now" : ""}">${i < at ? icon("check", "sm") : i === at ? '<span class="state live"></span>' : "·"}${esc(k === "answer" ? whose() : l)}</span>`).join("")}</div>`
+      + (st.answer ? `<p style="margin:10px 0 0">${S.solo ? "The agent's answer" : "The team's answer"}, as read: ${answerHtml(st.answer)}</p>` : "") + `</div></div>`;
+  } else if (st.state === "interrupted") {
+    html += `<div class="card"><div class="hd">${icon("shield", "sm")}Reading ${readingPill(st)}</div><div class="bd">Its reader stopped at "${esc(st.stage || "")}" and is gone. To read it again: <code>op-env uv run python swarm_untold.py read --run ${esc(S.key.split("/").pop())} --again</code></div></div>`;
+  }
+  if (r) {
+    const rows = [[whose(), r.answer ? answerHtml(r.answer) : "none"], ["claims a complete proof", r.claims_proof ? "yes" : "no"],
+      ["where", esc(r.where || "")], ["definite", r.answer ? `${r.definite ? "yes" : "no"}${r.definite_reason ? ` · <span class="quiet">${esc(r.definite_reason)}</span>` : ""}` : ""],
+      ["right", r.correct == null ? "not graded" : `${r.correct ? "yes" : r.restated ? "no, it restates the question as a computation (MathArena's judge alone: yes)" : "no"} · <span class="quiet">the reference: ${answerHtml(r.reference)}</span>`],
+      ["reading cost", money(r.cost)]];
+    html += `<div class="card"><div class="hd">${icon("check", "sm")}Outcome ${readingPill({...r, state: "read", verdict: v.verdict, acknowledged: v.acknowledged})}</div>`
+      + `<div class="bd"><dl class="kv">${rows.filter(([, x]) => x !== "").map(([k, x]) => `<dt>${esc(k)}</dt><dd>${x}</dd>`).join("")}</dl></div></div>`;
+    if (r.verify) {
+      const steps = (rev.decisive_steps || []).map(x => `<li><b>${esc(x.basis || "")}</b> · ${esc(x.step || "")}<div class="quiet">${esc(x.checked || "")}</div></li>`).join("");
+      const cls = v.verdict === "sound" && !v.acknowledged ? "good" : v.verdict === "false" ? "bad" : v.verdict === "gap" || v.acknowledged ? "warn" : "";
+      html += `<div class="card verdict"><div class="hd">${icon("shield", "sm")}Verifier ${pill(esc((v.verdict || "no verdict") + (v.acknowledged ? ", gap acknowledged" : "")), cls)}<span class="right quiet num">${money(v.cost)} · ${v.responses} responses · ${v.runs} runs</span></div><div class="bd">`
+        + (rev.claimed ? `<p><b>Claimed</b> · ${esc(rev.claimed)}</p>` : "")
+        + (rev.reason ? `<p>${esc(rev.reason)}</p>` : "")
+        + (rev.acknowledged_where ? `<p><b>Acknowledged</b> · ${esc(rev.acknowledged_where)}</p>` : "")
+        + (rev.failing_step ? `<p><b>${v.verdict === "sound" ? "Hardest step" : "Failing step"}</b> · ${esc(rev.failing_step)}</p>` : "")
+        + (steps ? fold("Decisive steps", `<div class="body"><ul>${steps}</ul></div>`, {meta: `${rev.decisive_steps.length}`, open: true, attrs: 'data-k="decisive"'}) : "")
+        + `</div></div>`;
+    }
+  }
+  if (d.steps?.length || d.task) {
+    html += `<div class="section-title">${icon("shield", "sm")}The verifier's review<span class="line"></span><span class="quiet">${d.steps.length} response${d.steps.length === 1 ? "" : "s"}</span></div>`
+      + (d.task ? fold("Its task", `<div class="body md-body">${md(d.task)}</div>`, {ico: "inbox", attrs: 'data-k="task"'}) : "")
+      + `<div class="card"><div class="bd">${d.steps.map(vstepHtml).join("") || '<div class="quiet">Its first response is on the way</div>'}</div></div>`;
+  } else if (st.state === "reading") {
+    html += `<div class="quiet" style="margin-top:12px">${st.stage === "verify" ? "The verifier's first response is on the way." : "The verifier starts once the answer is read and found definite."}</div>`;
+  }
+  return html || `<div class="empty-state">${icon("shield")}<div>This run hasn't been read.</div></div>`;
+}
+function vstepHtml(x, i) {
+  return `<div class="vstep"><div class="vnum">${i + 1}</div><div class="vbody">`
+    + (x.thinking.trim() ? `<div class="think md-body">${md(x.thinking)}</div>` : "")
+    + (x.text.trim() ? `<div class="md-body">${md(x.text)}</div>` : "")
+    + x.calls.map((c, j) => vcallHtml(c, `${i}.${j}`)).join("") + `</div></div>`;
+}
+function vcallHtml(c, k) {
+  const a = c.input || {};
+  if (c.name === "give_verdict") return `<div>${icon("shield", "sm")} <b>give_verdict</b> ${pill(esc(a.verdict || ""))}${a.team_acknowledged_gap ? pill("gap acknowledged", "warn") : ""}</div>`;
+  const what = c.name === "grep" ? `/${a.pattern ?? ""}/ ${a.path ?? ""}` : (a.path ?? "");
+  const lines = a.start_line ? ` <span class="quiet">lines ${a.start_line}–${a.end_line ?? ""}</span>` : "";
+  const label = `<span style="font-family:var(--mono)">${esc(c.name)}</span> ${esc(what)}${lines}`;
+  const body = (a.content != null ? `<pre>${esc(a.content)}</pre>` : "")
+    + (c.result != null ? `<pre class="${c.error ? "err" : ""}">${esc(c.result)}</pre>` : '<div class="quiet" style="padding:8px 12px">running…</div>');
+  const ico = {run_python: "run", write_file: "edit", grep: "search", list_files: "folder"}[c.name] || "read";
+  return fold(label, body, {ico, meta: c.result == null ? "running" : c.error ? "error" : "", attrs: `data-k="${k}"`});
+}
+
+/* ---------- clicks ---------- */
+document.addEventListener("click", e => {
+  const b = e.target.closest("button");
+  if (!b) return;
+  if (b.dataset.run) { openRun(b.dataset.run); scrollTo(0, 0); }
+  else if (b.dataset.new) { reset(); S.key = null; S.run = null; S.ended = true; saveCfg(); renderNav(); show("setup"); }
+  else if (b.dataset.tab) { show(b.dataset.tab); scrollTo(0, b.dataset.tab === "slack" ? document.body.scrollHeight : 0); }
+  else if (b.classList.contains("go")) S.key ? stop() : start();
+});
+
+addEventListener("DOMContentLoaded", async () => {
+  if (EMBED.get("embed")) {
+    document.body.classList.add("embed");
+    const key = EMBED.get("run"), live = EMBED.get("live");
+    S.all = []; S.defaults = {}; S.cfg = {};
+    return openRun(key, {key, kind: "swarm", live: live || null});
+  }
+  sidebar({active: "swarm", newLabel: "New swarm", filterKey: "swarm-filter"});
+  if (!location.protocol.startsWith("http")) {
+    document.getElementById("page").innerHTML = `<div class="empty-state">${icon("alert")}<span>Open from the server: <code>http://127.0.0.1:8765/swarm.html</code></span></div>`;
+    return;
+  }
+  try {
+    const r = await fetch("/api/swarm/defaults");
+    if (!r.ok) throw new Error(`the server answered ${r.status}`);
+    S.all = await r.json();
+  } catch (e) {
+    document.getElementById("page").innerHTML = `<div class="empty-state">${icon("alert")}<span>No server: <code>op-env uv run python explorer/serve.py</code></span></div>`;
+    Server.start(() => location.reload());
+    return;
+  }
+  Server.start(async () => { await loadRuns(); if (S.key) { const r = S.runs.find(x => x.key === S.key); if (r) openRun(S.key); } });
+  const kept = store.get(KEY, {});
+  S.defaults = defaultsOf(kept.cfg?.problem ?? S.all[0].problem);
+  S.cfg = kept.cfg && kept.cfg.system ? {...fresh(), ...kept.cfg, problem: S.defaults.problem} : fresh();
+  // a stored system prompt that is an earlier default, unedited, becomes today's; so do the old default limits
+  if ((S.defaults.superseded || []).includes(S.cfg.system)) S.cfg.system = S.defaults.system;
+  if (S.cfg.told !== false && [40, 50].includes(S.cfg.budget)) S.cfg.budget = S.defaults.budget;  // earlier default budgets
+  await loadRuns();
+  const hash = decodeURIComponent(location.hash.slice(1));
+  if (kept.key && S.runs.some(r => r.key === kept.key)) { S.tab = hash; S.key = kept.key; await openRun(kept.key); }  // the run this page last showed
+  else { S.key = null; saveCfg(); renderNav(); show("setup"); }
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,198 @@
+FINAL GLOBAL INTEGRATION: COMPLETE SPECTRUM, NO COARSE K INPUT
+
+Status: mathematical exclusion and inclusion halves COMPLETE, using explicitly
+stated classical strict Kasami--Tokura normalforms and Kasami--Tokura--Azumi
+NUMERICAL low-weight theorems. The former unverified STRUCTURAL assertion K
+is NOT used anywhere in this final dependency chain. Old conditional files
+are historical only and must not be confused with this proof.
+
+N=2^m. The33 maximal even intervals are
+[0,0], [128,128], [192,192], [224,224], [240,240], [248,248],
+[252,256], [272,272], [288,288], [296,296], [304,304], [308,308],
+[312,320], [324,324], [328,328], [332,332], [336,N-336],
+[N-332,N-332], [N-328,N-328], [N-324,N-324], [N-320,N-312],
+[N-308,N-308], [N-304,N-304], [N-296,N-296], [N-288,N-288],
+[N-272,N-272], [N-256,N-252], [N-248,N-248], [N-240,N-240],
+[N-224,N-224], [N-192,N-192], [N-128,N-128], [N,N].
+Every bracket has step2. Every endpoint is alpha*N+beta with alpha0or1
+and the literal integer beta displayed here.
+
+I. INCLUSION, ALLm>=14.
+An affine7-flat indicator inF2^m has degree m-7. XORs are still codewords.
+
+All21 positive exceptional weights below336 have literal7-flat witnesses
+in agent3_verify_low.py (318 is its explicit noncoordinate construction).
+Each witness is checked by a FULL16384-point truth table and independent
+FULL Boolean Mobius ANF transform, plus an intersection arithmetic check.
+They have degree<=7 inF14. Multiply by product_{i=15}^m(1+x_i) to keep the
+same weight and raise degree by m-14. Thus all21 occur for everym>=14.
+Zero and allones occur; adding1 gives every reflected exceptional weight.
+
+Central base m14: agent2_verify_central.py gives64 literal witnesses for
+ALL evenw336..462. Each is an XOR of4or5 affine7-flats, and is independently
+truth-table/ANF checked. Let B be the coordinate7-space on coordinates1..7.
+The union of flats in each witness meets at most43 of its128 B-cosets
+(verified literally). In particular at least64 cosets are empty. Toggle
+j=0..64 distinct empty B-cosets; this adds128j to weight, preservingdegree.
+The exact resulting seed set is every even integer336..8654. Complements
+give7730..16048. The intervals overlap, establishing[336,16384-336]_2.
+
+Induction: if central C=[336,N-336]_2 occurs in mvariables, use
+f(x,z)=(1+z)u(x)+zv(x), which is in RM((m+1)-7,m+1) and has weight
+wt(u)+wt(v). The sums0+C, C+C, N+C give respectively
+ [336,N-336], [672,2N-672], [N+336,2N-336], all step2.
+They overlap for everyN>=16384 (indeedN>=1006 suffices). Thus they give
+[336,2N-336]_2. This proves every central weight for allm>=14.
+
+II. CLASSICAL INPUTS AND REDUCTION TO FOUR SMALL TARGETS.
+All weights are even because degree m-7<m. Classical KTA's NUMERICAL
+low-weight theorem specializes in codimension7 to: the positiveweights
+STRICTLYbelow320 are exactly
+128,192,224,240,248,252,254,256,272,288,296,304,308,312,314,316,318
+for m>=14. This is a weight-enumerator theorem, not a decomposition claim.
+In particular the interval(256,272) contains no weights. In codimension6,
+all q1(weight2mod4) weights are>=126 and the next after126 is>=154; the
+q0 words have minimum64,next96,next112. These are the only additional
+KTA numerical specializations used in the structural contradiction.
+
+Consequently the only still-possible forbidden positive even weights below336
+are322,326,330,334. By complement symmetry and inclusion of the complete
+central interval it suffices to exclude these four, uniformly in m.
+
+III. BASIC GROUP-ALGEBRA/PROJECTION FACTS.
+For SsubsetF2^n let A=sum_{s in S}X^s in binarygroupalgebra, I augmentation
+ideal. Writing Yi=1+X^{e_i}, the generatorsY_T have support the coordinate
+|T|-flat and correspond to ANF monomials product_{i notinT}(1+x_i).
+Thus support words RM(n-c,n) are exactlyI^c.
+For an even set define
+ Q(A)=sum_{unordered distinct{s,t}subsetS}X^{s+t}+(|S|/2 mod2)X^0.
+Then Q(A+B)=Q(A)+Q(B)+AB. SinceQ(Y_T)=0 for|T|>=2, it follows by expansion
+that Q(I^c)subsetI^(2c), c>=2. At a nonzero directiona its coefficient is
+p_S(a) mod2, the unordered directional pair count; at0 it is|S|/2 mod2.
+These identities are proved analytically and checked exhaustively in small
+ambient dimensions in agent1_final_certificate.py/agent4_group_algebra.py.
+
+Parityprojection along a t-dimensional kernel K is the t-fold reduced
+derivative: its degree decreases by t, so codimension7 is preserved.
+If there is a directiona missing from S-S, projection along a is injective
+on S and preserves its weight. For any targetw<=334,
+ C(w,2)<=C(334,2)=55611<65535=2^16-1.
+Hence in ambient dimension>=16 some nonzero difference is missing.
+Repeated injective parityprojection reduces any target to ambient15.
+
+In ambient15, Q(A)inI14 is an affine Boolean function of directions; its
+valueat0 is1, sincew/2odd. If nonconstant, writeQ(a)=1+ell(a). For each
+of the16384 directions ell(a)=1, the pair countp_S(a) is even. If none is
+missing, allthese counts>=2 and there are at least32768 crossing pairs
+between S cap{ell0} and S cap{ell1}. But their number is at mostw^2/4,
+which is<=334^2/4=27889<32768. Contradiction. Thus a missing direction
+projects injectively to ambient14, already excluded below.
+The only remaining ambient15 case isQ(A)=J15, dealt with inV.
+
+IV. AMBIENT14 EXCLUSION (DERIVATIVE BOOTSTRAP, NO K).
+Complete proofs of the ingredients are in
+ agent4_punctured_odd_gaps.txt (universal minimumfirstderivative gap),
+ agent3_aperiodic_derivatives.txt (aperiodicity/exterior lemma),
+ agent3_smallspan_derivative.txt (smallspan obstruction),
+ agent2_constantQ15_unconditional_proof.txt, LemmasE,F (shared min256
+ antiderivative lemma and full derivative bootstrap).
+The complete consolidated proof, including the odd-puncture moment proof,
+is agent4_m14_unconditional_proof.txt; its independent arithmetic checker
+is agent4_verify_m14_unconditional.py.
+
+For a hypotheticaltargetf RM7,14, Qf=J14. The relative moment-gap lemma
+says: fordeg(t)<=7 inF13, outside ANY7-flat, an oddweight<105 can onlybe
+63,93,95. A minimum128 firstderivative would writef=y1_D+t and have
+wtf=128+2outsidewt(t), withoutside97,99,101,103, impossible.
+
+If any firstderivative were periodic, zero mixedsecondderivative gives
+f=a*u+b*v+t on12basevariables. The two-dimensional coefficientcode has
+odd union<=167, and quadraticq(c)=wt(c)/2mod2 is nonsingular. Threeq1
+words would total>=378>334; with oneq1, a q0 minimum64 gives the excluded
+minimum128firstderivative. Otherwise the only numeric triples are
+(96,96,126),(96,112,126). Their leading moment6forms would have
+ alpha=volU6+volV6, ess12; beta ess8; gamma=alpha+beta ess<=9.
+The elementary crossstar contractionlemma proves this impossible. Hence
+ALLfirstderivatives are aperiodic. StrictKT below256 then implies all
+firstderivativeweights>=256. A firstderivative of span<=11 is impossible:
+its lifted spanU<=12 leaves<=78outside supportpoints; isolate a64flat
+hyperplanesection, then the othersection's outsideU puncture<32 vanishes;
+restrictQf tothat hyperplane to contradict its allones value.
+
+The bootstrap inVI below gives a zero3rdderivative. Since allsecondderivs
+are nonzero (otherwise a firstderivative is periodic), expansion along
+that3kernel gives a3D coefficientcode of min64,next96, supportunion<=167,
+average4*167/7<96. Some coefficientisminimum64, producing a minimum128
+SECONDderivativeD7. The three parentfirstderivatives have thatminimum
+firstderivative and average<=128+(2/3)*(w-128)<272. They are all>=256;
+by the numericalgap(256,272), one weighs256. SharedLemmaE says such a
+word is periodic OR span<=11, both excluded. Thus no target existsinF14.
+
+V. CONSTANT-Q AMBIENT15 EXCLUSION.
+The complete independently audited proof is
+agent2_constantQ15_unconditional_proof.txt, with checker
+agent2_verify_bootstrap15.py.
+
+A minimum128firstderivativef=yD+t would give t(t+D)=J14 from the
+outside-hyperplane partofQfJ15. Since|t|even,t^2=0, so tD=J14.
+EveryDdirectioncoset hasodd t-parity; the127outsidecosets force
+wtf>=128+2*127=382, contradiction. Thus no minimumfirstderivative.
+
+The same2D coefficientcode argument above gives allfirstderivatives
+aperiodic. The exteriorlemma is ambient-independent: ifalphaess12 liesin
+E, betaess8,gammaess<=9 andalpha=beta+gamma, an externalcommoncontraction
+is a nonzero5form and forces dim(essbeta intersect essgamma)>=5. Their sum
+then hasdim<=12, yet containsE12andanexternalvector, impossible. Thusboth
+lieE andthe original12Dcrossstarlemmaapplies.
+Allpaircountsp_S(a)odd givesfirstderivativeweightsDIVISIBLE4. StrictKT
+below256 inF14 has onlyonepossiblyaperiodicexception254; DIV4 excludesit.
+Thereforeallfirstderivativesweigh>=256. Thesame smallspan obstruction
+works: U<=12,outside<=78, isolate64flatF6 onH14's opposite side, remaining
+outsideU<=14<puncture32, andQf restrictedH wouldbeallones supportedproperU.
+
+The sharedbootstrapagain giveszero3rd; the min64coefficientcode argument
+producesminimum128secondderivative; a parentfirstderivativeweighs256.
+SharedLemmaE isvalidalsoinF14 and saysperiodicor span<=11, contradiction.
+Thusno constant-Q targetinF15. TogetherIII/IV allm>=14targetsareexcluded.
+
+VI. THE NEW BOOTSTRAP AND MIN256 LEMMA (CORE OF THE COVERAGE FIX).
+These statements replace ALL unproved coarseK alternatives formerly used.
+For m14or15 choose randomK ofdim m-10. The expected cubic10projectionweight
+is at most
+ w-2C(w,2)*(2^(m-10)-1)/(2^m-1)
+ +4C(w,3)*(2^(m-10)-1)*(2^(m-10)-2)/((2^m-1)*(2^m-2))<256.
+This is the fiber inequality parity(j)<=j-2C(j,2)+4C(j,3).
+StrictKT cubic10wordsbelow256areperiodic, giving a zero derivative of
+order<=m-9. Suppose allkthderivativesnonzero butsome(k+1)stzero, k>=3.
+Thek+1topcoefficientcodehasmin64,next96, union<=167, dimensionk+1
+(allnonzerok-vectorsindimk+1decomposable), average2^k*167/(2^(k+1)-1)<96.
+It has a64word, so some kthderivative is the min128D7. For its2^k-1parent
+(k-1)kernels the weightsare128+2e_ell, withsume=2^(k-1)L and
+2L<=w-128. Someparentthereforeweighs
+ 128+[2^(k-1)/(2^k-1)]*(w-128)<256 (k3,4,5).
+StrictKTperiodicitygiveszero kthderivative, contradiction. Descending
+giveszero3rd. All8rationalbounds/allPlueckerhyperplanes/fiberidentitiesare
+checkedexactlybyagent2_verify_bootstrap15.py andagent1_final_certificate.py.
+
+The min256lemma: g=yD7+t, wtg256 =>outsidewt(t)=64. AddD timesaffinelinear
+function andsheary toarrange insidewt(t)<64, so totalwt(t)<128. StrictKT
+forcodim6 applies. Minimum/two-minimumcases liftto g XOR<=3minimum7flats;
+every suchsum ofweight256inambient<=14isperiodic, byelementaryintersection
+powers. InremainingquadraticKTcase, t'ssupportspanL8 and wt96/112/120 imply
+insideDwt32/48/56, hence dim(DintersectL)>=5. So gspan<=7+8-5+1=11.
+This provesLemmaEwithoutANYKTAstructuralcoverageclaim.
+
+VII. MAXIMALITY AND EXECUTABLE CERTIFICATES.
+With all inclusion and exclusion steps, preciselythe33displayedintervals
+occur. Their successive endpoint differencesare>=4, whileeachinterval
+contains everyeveninteger betweenits endpoints. So eachintervalismaximal.
+SinceN>=16384, central/noncentral endpointsarestrictlyordereduniformly.
+
+Freshindependentbatchaudit: agent3_final_audit_manifest.json recordsSHA256,
+stdout, statusandtimingfor9corecertificates, allPASS. Mostconvenientuser
+scriptisagent1_final_certificate.py: singlefile, standardlibraryonly,
+ALLlow/middlefulltruth+ANFchecksandallfinitebootstrap/groupringarithmetic.
+Theuniversaloddrelativegap'sanalyticproof/finitechecksareseparateasabove.
+Thefinitecheckers DONOTpretendtoenumeratethehugeRMcode. ClassicalstrictKT
+andKTAnumericallistsremainexplicitstandardexternaltheorems; everyNEW
+coverage/exclusionstepisprovedhereandinitscrossreferencedartifact.

@@ -1,0 +1,78 @@
+GLOBAL m14 EXCLUSION, CONDITIONAL ONLY ON COARSE KTA INPUT K
+
+K(r,n): Every RM(r,n) word of weight< (5/2)*2^(n-r) is either the XOR of
+atmost3 minimumweightwords, or its support has affine span<=n-r+4.
+WARNING: THIS INPUT HAS NOT BEEN VERIFIED/PROVED BY OUR TEAM.
+This document proves that K(6,13) and K(5,12), togetherwith classicalKT
+below2d andthe independentlyproved lemmas, exclude322/326/330/334 inRM7,14.
+
+Let S support a hypothetical targetword f. Thegroup-algebra quadratic
+refinement satisfiesQ(S)∈I14, Q(S)(0)=wt(S)/2=1 mod2, soQ(S)=J14.
+Consequently every nonzero direction has ODD unordered pair multiplicity
+p(a)>=1. Theglobalaperiodic-derivativelemma (agent3_aperiodic_derivatives.txt)
+proves EVERY reduced firstderivative g_a∈RM6,13 isaperiodic. Its weightis
+ wt(g_a)=wt(f)-2p(a).
+ClassicalKT below2d implies every nonzero RM6,13word ofweight<256 isperiodic:
+KT quadraticfamily has4affinefactors, atmostrank8 quadratic on9remaining
+variables, henceatleast1freevariable; KT two-productfamily withparameter
+mu<=6 has13-6-mu>=1freevariable. Thuswt(g_a)>=256.
+
+CASE1. P=max_a p(a)>=9. Choose a attaining P; write g=g_a.
+Then256<=wt(g)=w-2P<=316, soK(6,13) applies. Ifg isnotatmost3 minimumwords,
+K gives span<=11; the small-span derivative obstruction
+(agent3_smallspan_derivative.txt) applies sincew-wt(g)<=78.
+So g is XOR<=3 indicators of affine7-flats.
+
+For every nonzero quotient direction b, select one original point in each
+odd a-fiber. Each g-pair gives one original pair in one of the two lifted
+directions, so p_g(b)<=2P. On the other hand, any two 7-flat direction
+spaces in F2^13 intersect nontrivially. Along one common nonzero direction,
+the derivative of the triple word is0 or the derivative of one minimum
+flat, and its reduced weight is0 or128. Thus for some b,
+ p_g(b)>= (wt(g)-128)/2.
+Combining gives wt(g)<=128+4P. With P=(w-wt(g))/2 this yields
+ 3wt(g)<=2w+128<=796.
+Since g is doubly even, wt(g)<=264. The elementary three-flat weight
+arithmetic excludes every integer strictly between256 and272, hence
+wt(g)=256. This is impossible by the following direct period argument.
+
+Atweight256 allsuchwordsin13vars areperiodic: ifapairintersection>=64,
+itsXORcollapses toa7-flat orzero, leavingatmost2flats; weight256thenmeans
+twodisjoint7-flatswhosecommondirectionhasdimension>=2. Otherwiseallpair
+intersectionssizes<=32. Iftriplesizet>0, weight256forcespairpowers
+(32,32,r)withr=2t, andthetwo5-dimensionalintersectionsinsidea7-flat
+force triple-directiondimension>=3. If t=0, pairpowersare(32,32,0)or
+(32,16,16); thecorrespondingpair-intersectionaffineflatsinsideone7-flat
+aredisjoint, so theirdirectionscannotspanall7dimensions. Theircommon
+directiondimensionisatleast4or3,respectively,andiscommontoallthreeflats. Thusperiodexists.
+This contradicts aperiodicity and closes Case1. No canonical312/316
+normalforms or antiderivative footprints are required in this argument.
+Those independently verified certificates remain valid but redundant.
+
+CASE2. Allp(a)<=7. Choosea2-dimensionalparityprojectiong∈RM5,12 ofweight
+<=300,304,308,312 respectively (agent3_projection12.py). Itsweightis>=w-42,
+becauseeachkernel's3directionscontribute<=21within-fiberpairs, andparity
+weight>=w-2*#pairs. Thuswt(g)>=280>256. It hasFULLAFFINESPAN12: otherwise
+foutsidepreimageofitsproperflatwouldweigh<=42<64, againpunctureimpossible.
+For EVERY nonzero direction b in F2^12 we have p_g(b)<=28: select one
+original supportpoint in each odd fiber of the kernel K2. Every unordered
+g-pair at difference b gives a distinct original pair whose difference
+belongs to b+K. These are four nonzero original directions, each with at
+most7 pairs. This proves p_g(b)<=sum_{k in K}p_f(b+k)<=28.
+
+Now K(5,12) forces g to be XOR<=3 minimum7-flats (otherbranchspan<=11).
+But EVERY such triple-word has some pair multiplicity>=76: choose two
+of its seven-dimensional direction spaces U,V. Their intersection has
+dimension>=2 in F2^12; select a!=0 in it. Those first two flat indicators
+are a-periodic. The third is either also a-periodic, giving Delta_a g=0,
+or its a-translate is disjoint, giving full derivative weight256.
+(The one-/two-term cases simply have a nonzero common period.) Hence
+ p_g(a)=wt(g)/2, or p_g(a)=(wt(g)-128)/2.
+Since wt(g)>=280, either value is>=76>28, contradiction.
+This closes Case2 WITHOUT any primitive308 geometry, orbit table, or
+lift footprint compiler. The older independent compiler remains valid
+but is unnecessary here.
+
+
+ThereforeK(6,13)andK(5,12) implythefourm14exclusions. Theonlyunprovedinput
+inthiscoverageargumentisthecoarseKTAalternativeK, notanyfiniteorbitcheck.

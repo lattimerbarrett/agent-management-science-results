@@ -1,0 +1,1 @@
+print(open('workspace/agent3_countercycle_comparison.md').read())

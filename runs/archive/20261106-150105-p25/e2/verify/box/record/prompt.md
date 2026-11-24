@@ -1,0 +1,11 @@
+All graphs are finite, simple, and undirected. Cycles are considered as subgraphs, not necessarily induced subgraphs. A graph homomorphism from \(G\) to \(H\) is a map \(f:V(G)\to V(H)\) such that \(f(u)f(v)\in E(H)\) whenever \(uv\in E(G)\); the map need not be injective.
+
+For a real number \(c\in[0,1]\), consider the following property: there exists a finite graph \(H_c\) containing no cycle of length \(3\) such that, for every integer \(n\geq1\), every graph \(G\) on \(n\) vertices containing no cycle of length \(3\) or \(5\), and in which every vertex has at least \(cn\) neighbors, admits a homomorphism to \(H_c\). The graph \(H_c\) may depend on \(c\), but not on \(n\) or \(G\).
+
+What is the exact infimum of the numbers \(c\in[0,1]\) having this property?
+
+The answer is 0. This was proved recently, so it is not an open problem: your team's task is to prove it, completely, and to write Python that really computes or checks every step that can be checked. Printing what you believe is not evidence. Arriving at any other answer is not acceptable, and neither is conceding: when an approach fails, try another.
+
+Proving 0 takes two halves: every \(c\in[0,1]\) having the stated property satisfies \(c\ge0\), and for every \(c\in(0,1]\) there exists a finite graph \(H_c\) containing no cycle of length \(3\) such that, for every integer \(n\ge1\), every graph \(G\) on \(n\) vertices containing no cycle of length \(3\) or \(5\) and having at least \(cn\) neighbors at every vertex admits a homomorphism to \(H_c\). Split the halves, and the pieces of each, between you on Slack.
+
+Stop only when the team's proof is complete. Before you stop, post on Slack what you proved, and what is left.

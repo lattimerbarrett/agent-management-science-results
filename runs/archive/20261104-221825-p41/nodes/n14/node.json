@@ -1,0 +1,105 @@
+{
+ "id": "n14",
+ "parent": "n2",
+ "depth": 2,
+ "option": {
+  "branch": "c0b0",
+  "counterfactual": "No additional vertices are necessary: b(d,k)=0 for every d\u22653 and k\u22651.",
+  "approach": "Try induction on a k-decomposition, treating the deletion and link separately. Identify a way to interleave their facet additions that preserves the original shedding face.",
+  "p": 0.0938
+ },
+ "status": "member",
+ "belief": {
+  "answer": "\\(\\boxed{b(d,k)=0\\quad\\text{for every }d\\ge3\\text{ and }k\\ge1.}\\)",
+  "confidence": 1.0
+ },
+ "judge": {
+  "claim": true,
+  "same_as": "e4",
+  "answer": "b(d,k)=0\\quad\\text{for every }d\\ge3\\text{ and }k\\ge1.",
+  "reason": "It claims an exact value for all parameters in the problem, identical to e4.",
+  "experiment": false
+ },
+ "experiment": null,
+ "options": [
+  {
+   "branch": "c0b0",
+   "counterfactual": "Some pure k-decomposable complex cannot be completed on its original vertex set while keeping every intermediate complex k-decomposable, so b(d,k) is positive for at least one pair of parameters.",
+   "approach": "Search small facet families computationally, testing recursive k-decomposability and reachability of the full skeleton through admissible facet additions. A family with no completion path would provide a concrete counterexample to the claimed zero value.",
+   "p": 0.0354,
+   "child": null
+  },
+  {
+   "branch": "c0b1",
+   "counterfactual": "Some pure k-decomposable complex cannot be completed on its original vertex set while keeping every intermediate complex k-decomposable, so b(d,k) is positive for at least one pair of parameters.",
+   "approach": "Examine known obstructions to extending shellings and verify whether they are k-decomposable for the required parameters. Prove that every possible first added facet violates a necessary link-connectivity condition.",
+   "p": 0.0303,
+   "child": null
+  },
+  {
+   "branch": "c0b2",
+   "counterfactual": "Some pure k-decomposable complex cannot be completed on its original vertex set while keeping every intermediate complex k-decomposable, so b(d,k) is positive for at least one pair of parameters.",
+   "approach": "Develop a completion construction using additional vertices and compare its vertex requirement with an explicit obstruction. Matching upper and lower bounds could determine the exact value even when zero is impossible.",
+   "p": 0.0253,
+   "child": null
+  },
+  {
+   "branch": "c1b0",
+   "counterfactual": "The general exact value of b(d,k) has not been established, and asserting b(d,k)=0 for every allowed pair goes beyond the available proof.",
+   "approach": "Audit the claimed zero-value argument and distinguish established lemmas from the missing completion theorem. Give only conclusions supported by those lemmas, explicitly correcting any unsupported numerical assertion.",
+   "p": 0.2333,
+   "child": null
+  },
+  {
+   "branch": "c1b1",
+   "counterfactual": "The general exact value of b(d,k) has not been established, and asserting b(d,k)=0 for every allowed pair goes beyond the available proof.",
+   "approach": "Reprove the equivalence between b(d,k)=0 for k at least d and extendable shellability of the d-skeleton of a simplex. Carefully handle prescribed shelling orders and vertices absent from the initial partial shelling.",
+   "p": 0.1555,
+   "child": null
+  },
+  {
+   "branch": "c1b2",
+   "counterfactual": "The general exact value of b(d,k) has not been established, and asserting b(d,k)=0 for every allowed pair goes beyond the available proof.",
+   "approach": "Investigate rigorous positive-vertex upper bounds by adjoining vertices and adding facets of truncated cones. Such bounds could yield useful information without resolving whether zero vertices always suffice.",
+   "p": 0.1037,
+   "child": null
+  },
+  {
+   "branch": "c2b0",
+   "counterfactual": "Even when a completion on the original vertex set exists, it may be impossible to keep the initially chosen shedding face as a shedding face throughout the completion.",
+   "approach": "Search for a small example where unrestricted completion succeeds but every completion preserving a specified shedding face fails. Compare the two searches using recursive decomposability tests on the deletion and link.",
+   "p": 0.162,
+   "child": null
+  },
+  {
+   "branch": "c2b1",
+   "counterfactual": "Even when a completion on the original vertex set exists, it may be impossible to keep the initially chosen shedding face as a shedding face throughout the completion.",
+   "approach": "Replace the fixed-shedding-face induction with an invariant that permits changing shedding faces after selected additions. Analyze precisely when an added facet supplies a new valid decomposition.",
+   "p": 0.1389,
+   "child": null
+  },
+  {
+   "branch": "c2b2",
+   "counterfactual": "Even when a completion on the original vertex set exists, it may be impossible to keep the initially chosen shedding face as a shedding face throughout the completion.",
+   "approach": "Study the deletion separately as a completion problem whose allowable facets must avoid the chosen shedding face. Identify whether this restricted target creates an obstruction that is absent from the unrestricted completion problem.",
+   "p": 0.1157,
+   "child": null
+  },
+  {
+   "branch": "own",
+   "counterfactual": null,
+   "approach": null,
+   "p": null,
+   "child": null
+  }
+ ],
+ "cost": 0.0805,
+ "responses": 1,
+ "step_from": 11,
+ "known": [
+  "e1"
+ ],
+ "created": 1793849439.311743,
+ "seen": "be5003dcb13ced66140058ce446e6fcb58e71208be511dbb35c5a053b24c9561",
+ "take_at": 11
+}

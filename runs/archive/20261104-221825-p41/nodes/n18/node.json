@@ -1,0 +1,108 @@
+{
+ "id": "n18",
+ "parent": "n6",
+ "depth": 4,
+ "option": {
+  "branch": "e4/c0b2",
+  "counterfactual": "There is a pure k-decomposable complex that cannot be completed on its existing vertex set while keeping every intermediate complex k-decomposable, so b(d,k) is positive for some parameters.",
+  "approach": "Investigate whether one new vertex always removes the obstruction by supplying missing lower-dimensional faces through mixed facets. Combine that construction with the counterexample to establish an exact value of one in a parameter range.",
+  "p": 0.0543
+ },
+ "status": "member",
+ "belief": {
+  "answer": "\\(\\boxed{b(d,k)=\\max\\{1,\\min\\{d-2,k-1\\}\\}}\\)",
+  "confidence": 0.3
+ },
+ "judge": {
+  "claim": true,
+  "same_as": "e5",
+  "answer": "b(d,k)=\\max\\{1,\\min\\{d-2,k-1\\}\\}",
+  "reason": "It asserts an exact formula that a team could try to prove, and that formula is identical to e5.",
+  "experiment": false
+ },
+ "experiment": null,
+ "options": [
+  {
+   "branch": "c0b0",
+   "counterfactual": "One additional vertex suffices for every d and k; the reported examples requiring multiple additional vertices contain an error.",
+   "approach": "Audit the claimed multiple-vertex obstruction directly, checking the first-exit argument against facets containing auxiliary vertices. Look for boundary faces introduced by earlier mixed facets that the obstruction overlooks.",
+   "p": 0.0571,
+   "child": null
+  },
+  {
+   "branch": "c0b1",
+   "counterfactual": "One additional vertex suffices for every d and k; the reported examples requiring multiple additional vertices contain an error.",
+   "approach": "Attempt to complete the ridge skeleton of the original complex on its existing vertices. If this can always be done while preserving k-decomposability, cone those additions through one new vertex and then fill the remaining original facets.",
+   "p": 0.0444,
+   "child": null
+  },
+  {
+   "branch": "c0b2",
+   "counterfactual": "One additional vertex suffices for every d and k; the reported examples requiring multiple additional vertices contain an error.",
+   "approach": "Examine the universal symbolic shelling certificate underlying the lower bound. Verify that it proves the required decomposition parameter and covers every clone multiplicity rather than only a restricted family.",
+   "p": 0.0254,
+   "child": null
+  },
+  {
+   "branch": "c1b0",
+   "counterfactual": "The number of additional vertices needed can grow with d even when k=1; edge-decomposability does not impose a dimension-independent completion bound.",
+   "approach": "Try to generalize the certified three-dimensional edge-decomposable obstruction by replacing vertices with clone sets. Construct explicit edge-decomposition certificates and test whether a first-exit obstruction survives several auxiliary vertices.",
+   "p": 0.1786,
+   "child": "n30"
+  },
+  {
+   "branch": "c1b1",
+   "counterfactual": "The number of additional vertices needed can grow with d even when k=1; edge-decomposability does not impose a dimension-independent completion bound.",
+   "approach": "Study joins of independently obstructed complexes. Determine whether a completion must spend separate auxiliary vertices on different factors, rather than allowing the same auxiliary vertex to repair every factor.",
+   "p": 0.0992,
+   "child": "n27"
+  },
+  {
+   "branch": "c1b2",
+   "counterfactual": "The number of additional vertices needed can grow with d even when k=1; edge-decomposability does not impose a dimension-independent completion bound.",
+   "approach": "Search for higher-dimensional edge-decomposable examples whose missing lower-dimensional faces cannot be introduced using a small auxiliary set. Use such examples to identify an invariant that yields a quantitative lower bound.",
+   "p": 0.119,
+   "child": null
+  },
+  {
+   "branch": "c2b0",
+   "counterfactual": "The sharp upper bound depends on the decomposition parameter: for k at least 2, k-1 additional vertices always suffice, regardless of dimension.",
+   "approach": "Revisit completion along a decomposition tree, assigning auxiliary vertices to the vertices of each shedding face. Try to prove that a buffer of k-1 vertices guarantees purity and enough capacity in every recursive target.",
+   "p": 0.1905,
+   "child": null
+  },
+  {
+   "branch": "c2b1",
+   "counterfactual": "The sharp upper bound depends on the decomposition parameter: for k at least 2, k-1 additional vertices always suffice, regardless of dimension.",
+   "approach": "Test whether taking a proper skeleton reduces the required decomposition parameter from k to max(1,k-1). A valid reduction, together with a one-vertex construction for edge-decomposable complexes, could yield the claimed bound.",
+   "p": 0.1429,
+   "child": null
+  },
+  {
+   "branch": "c2b2",
+   "counterfactual": "The sharp upper bound depends on the decomposition parameter: for k at least 2, k-1 additional vertices always suffice, regardless of dimension.",
+   "approach": "Investigate completion inside a skeleton with one forbidden face, using the bound on shedding-face size. Prove a relative completion lemma that allows the deletion and link completion orders to be synchronized with only k-1 auxiliary vertices.",
+   "p": 0.1429,
+   "child": null
+  },
+  {
+   "branch": "own",
+   "counterfactual": null,
+   "approach": null,
+   "p": null,
+   "child": null
+  }
+ ],
+ "cost": 0.0512,
+ "responses": 3,
+ "step_from": 25,
+ "known": [
+  "e1",
+  "e4",
+  "e2",
+  "e3"
+ ],
+ "created": 1793858121.765353,
+ "seen": "1825c3f7f2a0c53b7ccca9ab9a4d2507e260b95445c964bb939c98d1d78f4c23",
+ "take_at": 25
+}

@@ -1,0 +1,13 @@
+import sympy as s
+c,t,eta=s.symbols('c t eta', positive=True)
+print('Affine transform b_n=c*a_n+t*1: gap =', c*eta)
+print('Upper bounds transform bijectively: UB(b)=c*UB(a)+t*1.')
+print('A cofinal subsequence of an increasing sequence has exactly the same upper bounds.')
+epsilon=s.symbols('epsilon', positive=True)
+r=s.symbols('r', integer=True, nonnegative=True)
+print('Interpolation toward cofinal targets, with weights theta_n >= epsilon:')
+print('For a fixed target a_j, after r later steps b >= (1-epsilon)**r*b_initial + (1-(1-epsilon)**r)*a_j.')
+print('Residual coefficient:', (1-epsilon)**r)
+print('For 0<epsilon<=1 it tends to zero, so UB(b)=UB(a).')
+print('Verified input: bounded increasing constant-positive-gap sequences have least upper bounds.')
+print('Therefore none of them can be a witness requiring no least upper bound. No exhaustion or projection-packing claim is used.')

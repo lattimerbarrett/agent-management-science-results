@@ -1,0 +1,179 @@
+{
+ "id": "n10",
+ "parent": "n8",
+ "depth": 4,
+ "option": {
+  "branch": "c0b0",
+  "counterfactual": "For some integer r\u22652, the infimum of S_r is strictly smaller than 1/(2r). Thus requiring an embedding into a complete r-partite graph with an internal matching does not prevent edge and cycle maximizers from separating.",
+  "approach": "Investigate forbidden graphs that embed both into an internal-matching construction and into a universal-vertex construction. Look for two permitted bounded internal configurations whose edge counts and cycle counts favor different choices.",
+  "p": 0.0772
+ },
+ "status": "member",
+ "belief": {
+  "answer": "\\(\\boxed{\\mathcal S_2=[0,\\infty),\\qquad \\mathcal S_r=[1/r,\\infty)\\ \\text{for }r\\ge3.}\\)",
+  "confidence": 0.03
+ },
+ "judge": {
+  "claim": true,
+  "same_as": null,
+  "answer": "\\mathcal S_2=[0,\\infty),\\qquad \\mathcal S_r=[1/r,\\infty)\\ \\text{for }r\\ge3.",
+  "reason": "It states explicit sets for every r, so it is a provable mathematical claim. It differs from e2 at r=2, from e5 for r\u22653, and from each other listed answer.",
+  "experiment": true,
+  "n": 12,
+  "definite": true,
+  "gate": "It explicitly describes the set for every integer r\u22652 and specifies boundary membership through closed interval notation."
+ },
+ "experiment": "e6",
+ "options": [
+  {
+   "branch": "c0b0",
+   "counterfactual": "For every r\u22652, there is a fixed graph H with \u03c7(H)=r+1 and ex(n,H)=t_r(n)+O(1) for which edge and cycle maximizers separate at infinitely many orders. Thus S_r=[0,\u221e) for every r.",
+   "approach": "Investigate whether a bounded-surplus counterexample for r=2 can be extended to larger r by joining H to a complete multipartite graph. Track whether the competing constructions retain their cycle-count inequality after the additional parts are introduced.",
+   "p": 0.0614,
+   "child": null
+  },
+  {
+   "branch": "c0b1",
+   "counterfactual": "For every r\u22652, there is a fixed graph H with \u03c7(H)=r+1 and ex(n,H)=t_r(n)+O(1) for which edge and cycle maximizers separate at infinitely many orders. Thus S_r=[0,\u221e) for every r.",
+   "approach": "Recalculate the first-order effect of adding internal edges and deleting cross edges in balanced complete r-partite graphs. Look for an overlooked difference that permits a graph with fewer edges to have more cycles even when r\u22653.",
+   "p": 0.0477,
+   "child": null
+  },
+  {
+   "branch": "c0b2",
+   "counterfactual": "For every r\u22652, there is a fixed graph H with \u03c7(H)=r+1 and ex(n,H)=t_r(n)+O(1) for which edge and cycle maximizers separate at infinitely many orders. Thus S_r=[0,\u221e) for every r.",
+   "approach": "Search for bounded exceptional configurations that force edge-extremal graphs to have less favorable part sizes. Compare their cycle counts with balanced constructions having slightly fewer edges.",
+   "p": 0.0273,
+   "child": null
+  },
+  {
+   "branch": "c1b0",
+   "counterfactual": "No forbidden graph satisfying ex(n,H)=t_r(n)+O(1) can separate edge and cycle maximizers at infinitely many orders, even when r=2.",
+   "approach": "Examine a structural theorem for bounded-surplus extremal graphs and identify whether it guarantees a simultaneous edge and cycle maximizer. Distinguish carefully between the existence of one structured edge-extremal graph and a classification of all edge-extremal graphs.",
+   "p": 0.0818,
+   "child": null
+  },
+  {
+   "branch": "c1b1",
+   "counterfactual": "No forbidden graph satisfying ex(n,H)=t_r(n)+O(1) can separate edge and cycle maximizers at infinitely many orders, even when r=2.",
+   "approach": "Test whether any two proposed bounded internal configurations can genuinely arise as competing H-free extremal constructions for a single graph H. Search for an additional permitted configuration that repairs the apparent edge-versus-cycle conflict.",
+   "p": 0.0716,
+   "child": null
+  },
+  {
+   "branch": "c1b2",
+   "counterfactual": "No forbidden graph satisfying ex(n,H)=t_r(n)+O(1) can separate edge and cycle maximizers at infinitely many orders, even when r=2.",
+   "approach": "Return to positive linear surplus and analyze the equality cases of the matching construction. Seek counterexamples whose surplus coefficient is below 1/(2r) without assuming that their remaining extremal error is bounded.",
+   "p": 0.0511,
+   "child": null
+  },
+  {
+   "branch": "c2b0",
+   "counterfactual": "The bounded-surplus counterexample sought for r=2 cannot be found among complete bipartite graphs with internal edges alone; a successful construction requires deleting some cross edges.",
+   "approach": "Enumerate bounded internal configurations together with a bounded set of missing cross edges. Compare total edge gains with the leading cycle contributions at odd orders, where the two bipartite parts have different marginal contributions.",
+   "p": 0.3295,
+   "child": null
+  },
+  {
+   "branch": "c2b1",
+   "counterfactual": "The bounded-surplus counterexample sought for r=2 cannot be found among complete bipartite graphs with internal edges alone; a successful construction requires deleting some cross edges.",
+   "approach": "Construct forbidden graphs with two distinct embedding mechanisms, so that deleting a few cross edges allows substantially more internal edges. Try to make the edge-optimal configuration lose cycles relative to a configuration with all cross edges present.",
+   "p": 0.1977,
+   "child": null
+  },
+  {
+   "branch": "c2b2",
+   "counterfactual": "The bounded-surplus counterexample sought for r=2 cannot be found among complete bipartite graphs with internal edges alone; a successful construction requires deleting some cross edges.",
+   "approach": "Derive an asymptotic cycle-count formula for an arbitrary fixed modification of K_{m+1,m}. Use its edge weights to identify promising finite configurations before searching for a forbidden graph that realizes them.",
+   "p": 0.1318,
+   "child": null
+  },
+  {
+   "branch": "own",
+   "counterfactual": null,
+   "approach": null,
+   "p": null,
+   "child": "n22"
+  },
+  {
+   "branch": "e6/c0b0",
+   "counterfactual": "For some r\u22653, there is a fixed graph H with ex(n,H)=t_r(n)+O(1) for which edge and cycle maximizers fail to coincide at infinitely many orders. Thus 0 belongs to S_r.",
+   "approach": "Derive the first-order cycle expansion for complete r-partite graphs with bounded internal additions and missing cross-edges. Check whether an imbalance or a finite exceptional configuration can overturn the apparent priority of gaining one edge.",
+   "p": 0.0529,
+   "child": null
+  },
+  {
+   "branch": "e6/c0b1",
+   "counterfactual": "For some r\u22653, there is a fixed graph H with ex(n,H)=t_r(n)+O(1) for which edge and cycle maximizers fail to coincide at infinitely many orders. Thus 0 belongs to S_r.",
+   "approach": "Use the renderer construction to prescribe two bounded internal configurations, one maximizing edges and the other maximizing cycles. Search for configurations whose asymptotic cycle comparison favors the graph with fewer edges.",
+   "p": 0.0412,
+   "child": null
+  },
+  {
+   "branch": "e6/c0b2",
+   "counterfactual": "For some r\u22653, there is a fixed graph H with ex(n,H)=t_r(n)+O(1) for which edge and cycle maximizers fail to coincide at infinitely many orders. Thus 0 belongs to S_r.",
+   "approach": "Examine whether a bounded-surplus counterexample for r=2 can be transferred to higher chromatic number by joining additional independent parts. Calculate whether the cycle advantage survives the additional parts.",
+   "p": 0.0235,
+   "child": null
+  },
+  {
+   "branch": "e6/c1b0",
+   "counterfactual": "The reported construction establishing 10/33\u2208S_3 has a gap: either its forbidden graph embeds in one of the proposed admissible graphs, or its claimed edge-extremal classification omits another graph.",
+   "approach": "Audit the renderer's embedding characterization, especially the passage from bounded monochromatic degree to an exact coordinate projection. Verify that the root and every payload behave as claimed under all relevant projections.",
+   "p": 0.1059,
+   "child": null
+  },
+  {
+   "branch": "e6/c1b1",
+   "counterfactual": "The reported construction establishing 10/33\u2208S_3 has a gap: either its forbidden graph embeds in one of the proposed admissible graphs, or its claimed edge-extremal classification omits another graph.",
+   "approach": "Audit the direct extremal classification, focusing on replacements that purportedly preserve H-freeness. Identify whether a newly created copy of H can always be transferred back using fresh vertices.",
+   "p": 0.1765,
+   "child": null
+  },
+  {
+   "branch": "e6/c1b2",
+   "counterfactual": "The reported construction establishing 10/33\u2208S_3 has a gap: either its forbidden graph embeds in one of the proposed admissible graphs, or its claimed edge-extremal classification omits another graph.",
+   "approach": "Independently enumerate the forests permitted by the stated payloads and optimize their edge counts across nearby tripartition sizes. Look for an omitted extremal forest or an unbalanced graph tying the proposed unique maximizer.",
+   "p": 0.0706,
+   "child": null
+  },
+  {
+   "branch": "e6/c2b0",
+   "counterfactual": "The smallest coefficients in S_r are not approached optimally by forests made from stars and paths. Internal components containing cycles yield counterexamples at smaller coefficients.",
+   "approach": "Extend the cycle expansion beyond forests and identify the first asymptotic terms contributed by internal cycles. Compare their influence with the edge count and the degree statistic sum_v binom(d(v),2).",
+   "p": 0.2118,
+   "child": null
+  },
+  {
+   "branch": "e6/c2b1",
+   "counterfactual": "The smallest coefficients in S_r are not approached optimally by forests made from stars and paths. Internal components containing cycles yield counterexamples at smaller coefficients.",
+   "approach": "Search bounded connected graphs with cycles for pairs of equal edge density but substantially different cycle-expansion coefficients. Use the renderer to test whether a finite obstruction family can separate the two resulting configurations.",
+   "p": 0.1853,
+   "child": null
+  },
+  {
+   "branch": "e6/c2b2",
+   "counterfactual": "The smallest coefficients in S_r are not approached optimally by forests made from stars and paths. Internal components containing cycles yield counterexamples at smaller coefficients.",
+   "approach": "Establish a numerical restriction on cyclic components below a candidate coefficient threshold. Determine whether permitting arbitrarily many copies of any cyclic component already forces an extremal surplus too large to improve on the forest constructions.",
+   "p": 0.1324,
+   "child": null
+  },
+  {
+   "branch": "e6/own",
+   "counterfactual": null,
+   "approach": null,
+   "p": null,
+   "child": null
+  }
+ ],
+ "cost": 0.3689,
+ "responses": 5,
+ "step_from": 37,
+ "known": [
+  "e1",
+  "e6"
+ ],
+ "created": 1795426482.92513,
+ "seen": "ef3a1caf53a101898baed883d5ca90665a1d3c8ca6defab4952f44ffc8fb95bf",
+ "take_at": 37
+}

@@ -1,0 +1,30 @@
+Exact initial Johnson calculation for n=3 base witness.
+
+Write X=X1,Y=X2,Z=X3 in free Lie ring L(X,Y,Z), with usual bracket.
+Let D=D1(K12), A=D1(C1;23), B=D1(C3;12), where K12 conjugates
+x1 by x2 and C_i;jk multiplies xi by [xj,xk] on either chosen side.
+Then
+ D(X)=[Y,X], D(Y)=D(Z)=0;
+ A(X)=[Y,Z], A(Y)=A(Z)=0;
+ B(Z)=[X,Y], B(X)=B(Y)=0.
+Set E=[A,B]. By direct derivation rule,
+ E(X)=-[Y,[X,Y]]=[Y,[Y,X]]=ad_Y^2(X),
+ E(Y)=0,
+ E(Z)=[[Y,Z],Y]=-[Y,[Y,Z]]=-ad_Y^2(Z).
+Therefore
+ [D,E](X)=ad_Y^3(X)-ad_Y(ad_Y^2(X))=0,
+ [D,E](Y)=0,
+ [D,E](Z)=0.
+Thus [D,[A,B]]=0 identically over Z, not just modulo a prime.
+The graded Johnson map is a Lie homomorphism, so for the actual
+commutator w=[K12,[C1;23,C3;12]] we have w in gamma3(IA3) intersect A4.
+
+For the D_infinity quotient rho supplied by agent3, rho(K12)=a,
+rho(C1;23)=a,rho(C3;12)=ab with a^2=b^2=1.
+Exact reduction gives rho(w)=[a,[a,ab]]=(ab)^4.
+Let T=ab. Since gamma_c(D_infinity)=<T^(2^(c-1))> for every c>=2,
+rho(w) lies outside gamma4(D_infinity).
+Define w3=w and w_{c+1}=[K12,w_c]. Then w_c belongs to gamma_c(IA3)
+intersect A_{c+1}, by strong centrality, while rho(w_c)=T^(4*(-2)^(c-3)).
+This generates gamma_c(D_infinity), hence lies outside gamma_{c+1}.
+Consequently strictness holds for n=3 and every c>=3.

@@ -1,0 +1,181 @@
+{
+ "id": "n26",
+ "parent": "n20",
+ "depth": 5,
+ "option": {
+  "branch": "own",
+  "counterfactual": null,
+  "approach": null,
+  "p": null
+ },
+ "status": "member",
+ "belief": {
+  "answer": "Let N=2^m. Then\n\\[\n\\boxed{\\begin{aligned}\n\\mathcal W_m={}&[0,0]_2\\cup[128,128]_2\\cup[192,192]_2\\cup[224,224]_2\\cup[240,240]_2\\cup[248,248]_2\\\\\n&\\cup[252,256]_2\\cup[272,272]_2\\cup[288,288]_2\\cup[296,296]_2\\cup[304,304]_2\\\\\n&\\cup[308,320]_2\\cup[324,324]_2\\cup[328,328]_2\\cup[332,332]_2\\\\\n&\\cup[336,N-336]_2\\\\\n&\\cup[N-332,N-332]_2\\cup[N-328,N-328]_2\\cup[N-324,N-324]_2\\cup[N-320,N-308]_2\\\\\n&\\cup[N-304,N-304]_2\\cup[N-296,N-296]_2\\cup[N-288,N-288]_2\\cup[N-272,N-272]_2\\\\\n&\\cup[N-256,N-252]_2\\cup[N-248,N-248]_2\\cup[N-240,N-240]_2\\cup[N-224,N-224]_2\\\\\n&\\cup[N-192,N-192]_2\\cup[N-128,N-128]_2\\cup[N,N]_2.\n\\end{aligned}}\n\\]\nEvery constant endpoint b denotes 0\\cdot2^m+b, and every endpoint N-b denotes 1\\cdot2^m-b.",
+  "confidence": 0.24
+ },
+ "judge": {
+  "claim": true,
+  "same_as": null,
+  "answer": "Let N=2^m. Then\n\\[\n\\boxed{\\begin{aligned}\n\\mathcal W_m={}&[0,0]_2\\cup[128,128]_2\\cup[192,192]_2\\cup[224,224]_2\\cup[240,240]_2\\cup[248,248]_2\\\\\n&\\cup[252,256]_2\\cup[272,272]_2\\cup[288,288]_2\\cup[296,296]_2\\cup[304,304]_2\\\\\n&\\cup[308,320]_2\\cup[324,324]_2\\cup[328,328]_2\\cup[332,332]_2\\\\\n&\\cup[336,N-336]_2\\\\\n&\\cup[N-332,N-332]_2\\cup[N-328,N-328]_2\\cup[N-324,N-324]_2\\cup[N-320,N-308]_2\\\\\n&\\cup[N-304,N-304]_2\\cup[N-296,N-296]_2\\cup[N-288,N-288]_2\\cup[N-272,N-272]_2\\\\\n&\\cup[N-256,N-252]_2\\cup[N-248,N-248]_2\\cup[N-240,N-240]_2\\cup[N-224,N-224]_2\\\\\n&\\cup[N-192,N-192]_2\\cup[N-128,N-128]_2\\cup[N,N]_2.\n\\end{aligned}}\n\\]\nEvery constant endpoint b denotes 0\\cdot2^m+b, and every endpoint N-b denotes 1\\cdot2^m-b.",
+  "reason": "It asserts an explicit complete spectrum. It differs from e1 and e3 by including 310, from e4 by excluding 322, 326, 330, and 334, and from e2 by asserting that a fixed finite interval list exists.",
+  "experiment": true,
+  "n": 27,
+  "definite": true,
+  "gate": "The proposed answer gives a fixed finite list of ordered intervals for every m \u2265 14, with all endpoints explicitly of the required form. The intervals are separated by missing even integers, so they are maximal in the asserted union. If true, the stated equality determines the complete spectrum.",
+  "procedure": false
+ },
+ "experiment": "e5",
+ "options": [
+  {
+   "branch": "c0b0",
+   "counterfactual": "Weight 310 is absent from RM(7,14) but occurs in RM(8,15), despite the withdrawal of that proposed distinction.",
+   "approach": "Seek an explicit degree-at-most-eight polynomial on fifteen variables of weight 310, and independently verify its degree and weight. A concrete witness would settle the attainability half without relying on an interpretation of a classification theorem.",
+   "p": 0.0356,
+   "child": null
+  },
+  {
+   "branch": "c0b1",
+   "counterfactual": "Weight 310 is absent from RM(7,14) but occurs in RM(8,15), despite the withdrawal of that proposed distinction.",
+   "approach": "Inspect the precise degree and dimension restrictions in the low-weight classification for weight 310. Establishing a necessary degree of eight would distinguish the two codes directly.",
+   "p": 0.0511,
+   "child": null
+  },
+  {
+   "branch": "c0b2",
+   "counterfactual": "Weight 310 is absent from RM(7,14) but occurs in RM(8,15), despite the withdrawal of that proposed distinction.",
+   "approach": "Audit the existing projection and collision arguments specifically for weight 310. Combine a rigorous exclusion at dimension fourteen with a verified lift to dimension fifteen, then apply the bounded-fringe argument to the requested endpoint format.",
+   "p": 0.0244,
+   "child": null
+  },
+  {
+   "branch": "c1b0",
+   "counterfactual": "Weight 310 already occurs in RM(7,14), and its structural family also supplies the unresolved weights 322, 326, 330, and 334.",
+   "approach": "Identify an explicit weight-310 representative from the omitted low-weight family and verify its truth table and polynomial degree. Then examine its intersections with affine seven-dimensional flats to construct the four additional weights.",
+   "p": 0.1792,
+   "child": null
+  },
+  {
+   "branch": "c1b1",
+   "counterfactual": "Weight 310 already occurs in RM(7,14), and its structural family also supplies the unresolved weights 322, 326, 330, and 334.",
+   "approach": "Analyze degree-preserving modifications of a weight-310 word. Adding a minimum-weight word changes its weight by 128 minus twice the intersection size, so intersections of sizes 58, 56, 54, and 52 would supply the four missing weights.",
+   "p": 0.1458,
+   "child": null
+  },
+  {
+   "branch": "c1b2",
+   "counterfactual": "Weight 310 already occurs in RM(7,14), and its structural family also supplies the unresolved weights 322, 326, 330, and 334.",
+   "approach": "Use the structural description of the weight-310 family to derive parameterized weights rather than search isolated examples. Combine the resulting witnesses with the existing central-interval constructions and then authenticate all fringe exclusions.",
+   "p": 0.0917,
+   "child": null
+  },
+  {
+   "branch": "c2b0",
+   "counterfactual": "At least one of the weights 322, 326, 330, and 334 first occurs at dimension fifteen, even though weight 310 already occurs at dimension fourteen.",
+   "approach": "Search for a dimension-fifteen witness using the projection-and-lift characterization of supports. Focus on degree-five closure defects of words whose weights are two less than the target weights.",
+   "p": 0.17,
+   "child": null
+  },
+  {
+   "branch": "c2b1",
+   "counterfactual": "At least one of the weights 322, 326, 330, and 334 first occurs at dimension fifteen, even though weight 310 already occurs at dimension fourteen.",
+   "approach": "Develop an unrestricted exclusion argument at dimension fourteen using pair-difference parity and the possible lower-weight quotients. This would replace the existing exclusions for only a few minimum-word summands.",
+   "p": 0.1889,
+   "child": null
+  },
+  {
+   "branch": "c2b2",
+   "counterfactual": "At least one of the weights 322, 326, 330, and 334 first occurs at dimension fifteen, even though weight 310 already occurs at dimension fourteen.",
+   "approach": "Investigate whether full affine span forces a stronger weight restriction in RM(7,14) than in RM(8,15). Apply any such restriction to the four candidate weights and pair it with an explicit construction in the larger dimension.",
+   "p": 0.1133,
+   "child": null
+  },
+  {
+   "branch": "own",
+   "counterfactual": null,
+   "approach": null,
+   "p": null,
+   "child": null
+  },
+  {
+   "branch": "e5/c0b0",
+   "counterfactual": "Weight 310 is impossible in every code RM(m\u22127,m), not merely difficult to construct at m=14.",
+   "approach": "Analyze projections of a hypothetical 310-point support. Use the resulting smaller weights and collision sets to seek a contradiction from minimum-distance and moment-parity constraints.",
+   "p": 0.2,
+   "child": null
+  },
+  {
+   "branch": "e5/c0b1",
+   "counterfactual": "Weight 310 is impossible in every code RM(m\u22127,m), not merely difficult to construct at m=14.",
+   "approach": "Examine the exact low-weight classification and its parameter restrictions, rather than assuming the tentative list is complete. Determine whether its canonical forms exclude 310 in every ambient dimension.",
+   "p": 0.175,
+   "child": null
+  },
+  {
+   "branch": "e5/c0b2",
+   "counterfactual": "Weight 310 is impossible in every code RM(m\u22127,m), not merely difficult to construct at m=14.",
+   "approach": "Audit the existing exclusion arguments for weights through 306 and identify which additional support configurations arise at 310. Attempt to extend the finite orbit reductions to those configurations.",
+   "p": 0.125,
+   "child": null
+  },
+  {
+   "branch": "e5/c1b0",
+   "counterfactual": "A weight among 310, 322, 326, 330, and 334 first occurs at m=15, so no fixed interval list of the requested form exists.",
+   "approach": "Search for a dimension-15 construction using a dimension-14 support whose degree-five evaluation vectors admit an additional closure point. Verify any resulting word by its full truth table and polynomial degree.",
+   "p": 0.1111,
+   "child": null
+  },
+  {
+   "branch": "e5/c1b1",
+   "counterfactual": "A weight among 310, 322, 326, 330, and 334 first occurs at m=15, so no fixed interval list of the requested form exists.",
+   "approach": "Investigate parameter-dependent canonical families of low-weight words that require degree eight or affine span fifteen. Seek an explicit witness together with a classification-based obstruction in dimension fourteen.",
+   "p": 0.0972,
+   "child": null
+  },
+  {
+   "branch": "e5/c1b2",
+   "counterfactual": "A weight among 310, 322, 326, 330, and 334 first occurs at m=15, so no fixed interval list of the requested form exists.",
+   "approach": "Use the established central interval to formalize endpoint rigidity, reducing nonexistence of a fixed list to one verified change in low-weight membership. Then concentrate construction and exclusion efforts on the most tractable candidate.",
+   "p": 0.0694,
+   "child": null
+  },
+  {
+   "branch": "e5/c2b0",
+   "counterfactual": "The four weights 322, 326, 330, and 334 all occur already in RM(7,14), despite their absence from the proposed spectrum.",
+   "approach": "Search beyond sums of a few minimum-weight words by using mixed-degree concatenation constructions with cancellation of their highest-degree terms. Independently verify the degree and weight of every candidate.",
+   "p": 0.0889,
+   "child": null
+  },
+  {
+   "branch": "e5/c2b1",
+   "counterfactual": "The four weights 322, 326, 330, and 334 all occur already in RM(7,14), despite their absence from the proposed spectrum.",
+   "approach": "Apply degree-preserving support switches to the certified words near weight 320. Look for new affine configurations permitting a minimum-flat toggle that produces one of the four missing weights.",
+   "p": 0.0778,
+   "child": null
+  },
+  {
+   "branch": "e5/c2b2",
+   "counterfactual": "The four weights 322, 326, 330, and 334 all occur already in RM(7,14), despite their absence from the proposed spectrum.",
+   "approach": "Inspect the existing tensor-construction obstructions and deliberately leave their hypotheses, using unequal factor degrees or shared variables. A witness for one missing weight may reveal a parameterized construction for the others.",
+   "p": 0.0556,
+   "child": null
+  },
+  {
+   "branch": "e5/own",
+   "counterfactual": null,
+   "approach": null,
+   "p": null,
+   "child": null
+  }
+ ],
+ "cost": 0.2187,
+ "responses": 1,
+ "step_from": 85,
+ "known": [
+  "e1",
+  "e2",
+  "e5"
+ ],
+ "created": 1795490000.34303,
+ "seen": "3e379f2f143f7f2d5ad91815ea52e6ef4fe2e498709c21657206a01b29b0bd98",
+ "take_at": null
+}

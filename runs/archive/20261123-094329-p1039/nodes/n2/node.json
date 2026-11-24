@@ -1,0 +1,178 @@
+{
+ "id": "n2",
+ "parent": "n0",
+ "depth": 1,
+ "option": {
+  "branch": "c1b2",
+  "counterfactual": "The asserted dimension-two obstruction is invalid: an Oka complement can have a strongly pseudoconvex boundary point, so the previous justification for membership in N fails.",
+  "approach": "Look for an explicit Oka domain with a smooth strongly pseudoconvex boundary point and compact complement. If such a domain exists, use it directly to test the claimed necessity implication.",
+  "p": 0.0375
+ },
+ "status": "member",
+ "belief": {
+  "answer": "\\boxed{(S,N)=(\\mathbb Z_{\\ge2},\\varnothing)}",
+  "confidence": 0.16
+ },
+ "judge": {
+  "claim": true,
+  "same_as": null,
+  "answer": "(S,N)=(\\mathbb Z_{\\ge2},\\varnothing)",
+  "reason": "It asserts an exact ordered pair of sets, which is a concrete claim a team could try to prove. There are no previous answers to match.",
+  "experiment": true,
+  "n": 2,
+  "definite": true,
+  "gate": "It specifies the exact ordered pair: every integer n\u22652 belongs to S, and no integer n\u22652 belongs to N, leaving no membership unresolved."
+ },
+ "experiment": "e1",
+ "options": [
+  {
+   "branch": "c0b0",
+   "counterfactual": "For every n \u2265 2, the complement of every smoothly bounded bounded pseudoconvex domain in C^n is Oka, even without polynomial convexity or a Stein neighbourhood basis.",
+   "approach": "Identify the precise general Oka-complement theorem and check its hypotheses against the defining-function convention in the question. If they match, conclude that S contains every dimension under consideration.",
+   "p": 0.1129,
+   "child": null
+  },
+  {
+   "branch": "c0b1",
+   "counterfactual": "For every n \u2265 2, the complement of every smoothly bounded bounded pseudoconvex domain in C^n is Oka, even without polynomial convexity or a Stein neighbourhood basis.",
+   "approach": "Examine how the theorem handles smoothly bounded pseudoconvex domains without Stein neighbourhood bases. This would distinguish the required result from the more familiar polynomially convex complement theorem.",
+   "p": 0.0677,
+   "child": null
+  },
+  {
+   "branch": "c0b2",
+   "counterfactual": "For every n \u2265 2, the complement of every smoothly bounded bounded pseudoconvex domain in C^n is Oka, even without polynomial convexity or a Stein neighbourhood basis.",
+   "approach": "Treat the sufficiency implication as settled and concentrate on explicit Oka complements whose compact obstacles have negative Levi directions. Such examples would determine which dimensions fail to belong to N.",
+   "p": 0.0452,
+   "child": "n4"
+  },
+  {
+   "branch": "c1b0",
+   "counterfactual": "Despite the previous retraction, an Oka domain cannot have a strongly pseudoconvex boundary point when the defining function is oriented toward that domain.",
+   "approach": "Audit the proposed construction of a bounded plurisubharmonic function from a local boundary peak function, checking the gluing inequality on the artificial boundary. Determine whether the construction genuinely works or fails at that step.",
+   "p": 0.2323,
+   "child": "n7"
+  },
+  {
+   "branch": "c1b1",
+   "counterfactual": "Despite the previous retraction, an Oka domain cannot have a strongly pseudoconvex boundary point when the defining function is oriented toward that domain.",
+   "approach": "Derive directly from convex approximation that every bounded-above plurisubharmonic function on a connected Oka domain is constant. Then determine whether a strongly pseudoconvex boundary point necessarily contradicts this property.",
+   "p": 0.1548,
+   "child": "n12"
+  },
+  {
+   "branch": "c1b2",
+   "counterfactual": "Despite the previous retraction, an Oka domain cannot have a strongly pseudoconvex boundary point when the defining function is oriented toward that domain.",
+   "approach": "Use the fact that the complex tangent space has dimension one in C^2 to test the necessity implication there. Separately examine whether mixed Levi signatures in higher dimensions prevent the same argument from extending.",
+   "p": 0.129,
+   "child": "n3"
+  },
+  {
+   "branch": "c2b0",
+   "counterfactual": "The requested exact pair is already known, and the essential distinction is between dimension two and dimensions at least three rather than between polynomial convexity and pseudoconvexity.",
+   "approach": "Investigate compact obstacles whose slices in C^(n\u22121) are balls, so that their complements have exterior-ball fibres. Determine whether an applicable Oka theorem requires fibre dimension at least two.",
+   "p": 0.1032,
+   "child": null
+  },
+  {
+   "branch": "c2b1",
+   "counterfactual": "The requested exact pair is already known, and the essential distinction is between dimension two and dimensions at least three rather than between polynomial convexity and pseudoconvexity.",
+   "approach": "Construct a smooth compact obstacle with a mixed-sign Levi form in dimensions at least three. Seek an independent Oka-complement criterion for that particular obstacle rather than inferring Oka flexibility from its Levi signature.",
+   "p": 0.0903,
+   "child": "n36"
+  },
+  {
+   "branch": "c2b2",
+   "counterfactual": "The requested exact pair is already known, and the essential distinction is between dimension two and dimensions at least three rather than between polynomial convexity and pseudoconvexity.",
+   "approach": "Organize the solution into separate sufficiency and necessity theorems, explicitly listing their dimension restrictions. Check that each theorem applies to smooth closures of bounded connected domains rather than to a narrower class of compact sets.",
+   "p": 0.0645,
+   "child": null
+  },
+  {
+   "branch": "own",
+   "counterfactual": null,
+   "approach": null,
+   "p": null,
+   "child": null
+  },
+  {
+   "branch": "e1/c0b0",
+   "counterfactual": "An Oka domain in complex dimension two can have a smooth strictly pseudoconvex boundary point, so the proposed proof that 2 belongs to N has a hidden error.",
+   "approach": "Audit the construction of the bounded plurisubharmonic function, checking the local supporting function, the inequality on the artificial sphere, and the collar needed for gluing. This isolates the precise step that must fail if such an Oka domain exists.",
+   "p": 0.0009,
+   "child": null
+  },
+  {
+   "branch": "e1/c0b1",
+   "counterfactual": "An Oka domain in complex dimension two can have a smooth strictly pseudoconvex boundary point, so the proposed proof that 2 belongs to N has a hidden error.",
+   "approach": "Recheck the consequence of convex approximation for bounded continuous plurisubharmonic functions using only affine discs and subharmonic Liouville. This tests the obstruction independently of any stronger characterization of Oka manifolds.",
+   "p": 0.0005,
+   "child": null
+  },
+  {
+   "branch": "e1/c0b2",
+   "counterfactual": "An Oka domain in complex dimension two can have a smooth strictly pseudoconvex boundary point, so the proposed proof that 2 belongs to N has a hidden error.",
+   "approach": "Seek an explicit purported counterexample and compute its boundary Levi form using a defining function negative on the Oka domain. This distinguishes an actual counterexample from confusion between the orientations of the compact set and its exterior.",
+   "p": 0.0004,
+   "child": null
+  },
+  {
+   "branch": "e1/c1b0",
+   "counterfactual": "Every smoothly bounded pseudoconvex compact domain in every complex dimension at least two has an Oka complement, even without polynomial convexity or a Stein neighbourhood basis.",
+   "approach": "Inspect the available workspace for an applicable general complement theorem and verify its exact hypotheses. In particular, check whether it genuinely covers weakly pseudoconvex domains whose closures lack Stein neighbourhood bases.",
+   "p": 0.245,
+   "child": null
+  },
+  {
+   "branch": "e1/c1b1",
+   "counterfactual": "Every smoothly bounded pseudoconvex compact domain in every complex dimension at least two has an Oka complement, even without polynomial convexity or a Stein neighbourhood basis.",
+   "approach": "Investigate whether the Oka approximation problem can be localized near the compact boundary and then combined with the known polynomially convex complement theorem. The central issue is whether local pseudoconvexity supplies the necessary global approximation mechanism.",
+   "p": 0.1906,
+   "child": null
+  },
+  {
+   "branch": "e1/c1b2",
+   "counterfactual": "Every smoothly bounded pseudoconvex compact domain in every complex dimension at least two has an Oka complement, even without polynomial convexity or a Stein neighbourhood basis.",
+   "approach": "Test how a proposed proof handles smooth pseudoconvex worm domains. These domains would expose any unnoticed reliance on polynomial convexity, outward pseudoconvex approximation, or Stein neighbourhood bases.",
+   "p": 0.1089,
+   "child": null
+  },
+  {
+   "branch": "e1/c2b0",
+   "counterfactual": "The necessary implication holds in every dimension: an Oka complement of a smooth compact domain always forces that domain to have pseudoconvex boundary.",
+   "approach": "Try to generalize the dimension-two obstruction from a negative tangential Levi eigenvalue of the compact domain to a bounded plurisubharmonic function on its exterior. The challenge is to handle exterior boundary points with mixed Levi signature rather than positive-definite Levi form.",
+   "p": 0.1815,
+   "child": null
+  },
+  {
+   "branch": "e1/c2b1",
+   "counterfactual": "The necessary implication holds in every dimension: an Oka complement of a smooth compact domain always forces that domain to have pseudoconvex boundary.",
+   "approach": "Examine whether a two-dimensional complex slice through a negative Levi direction inherits enough approximation from the ambient Oka complement to yield a contradiction. Explicitly check the missing requirement that approximating entire maps remain in the slice.",
+   "p": 0.1361,
+   "child": null
+  },
+  {
+   "branch": "e1/c2b2",
+   "counterfactual": "The necessary implication holds in every dimension: an Oka complement of a smooth compact domain always forces that domain to have pseudoconvex boundary.",
+   "approach": "Analyze compact domains with ball-shaped fibers and mixed boundary Levi signature as potential counterexamples. Determine whether any claimed Oka theorem for their complements actually applies, rather than inferring the Oka property merely from their fibers.",
+   "p": 0.1361,
+   "child": null
+  },
+  {
+   "branch": "e1/own",
+   "counterfactual": null,
+   "approach": null,
+   "p": null,
+   "child": null
+  }
+ ],
+ "cost": 0.0812,
+ "responses": 3,
+ "step_from": 3,
+ "known": [
+  "e1"
+ ],
+ "created": 1795445253.537305,
+ "seen": "ef17120ada895db3acb3a2386d28f1dcf45684df1f249c0dd29e9262ab209a81",
+ "take_at": 3
+}

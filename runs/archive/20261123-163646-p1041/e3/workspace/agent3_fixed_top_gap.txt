@@ -1,0 +1,30 @@
+Fixed-top L=124 gap lemma (checked deduction; no classification theorem required).
+
+Statement. Let B be a Boolean polynomial on F2^12, degree <=6, whose homogeneous
+sixth-degree part is GL-equivalent to
+ z*(x1*x2*x3*x4*x5 + y1*y2*y3*y4*y5),
+where the twelfth variable t is unused. Then wt(B) is neither136 nor144.
+
+Proof. Write B=u(t-free)+t*v(t-free). Because its degree6 part is independent
+of t, deg(v)<=4 on11 variables. If v is nonzero, minimum RM(4,11) weight is128.
+Moreover wt(v)<=wt(B)<=144, and the second RM(4,11) weight is192, so wt(v)=128.
+Thus v is the indicator of an affine7-flat D. The exact fiber weight formula is
+ wt(B)=128+2*wt(u outside D).
+The outside weight is4 or8. For ANY nonzero polynomial of degree<=6 outside a
+proper affine flat D in11 variables, take an affine hyperplane H containing D
+but excluding an outside1 point. The restriction to H-complement is nonzero,
+has degree<=6 on10 variables, and hence weight>=16. Contradiction.
+Therefore v=0 and B is independent of t.
+
+Divide its weight by2: the resulting polynomial b on11 variables has weight68
+or72 and degree6 part z*(product x + product y). Its two z-slices b0,b1 have
+degree<=5 on10 variables, and their homogeneous fifth-degree parts sum to
+product x + product y. A nonzero slice has weight at least32 and, unless
+minimum, at least48. If both slices are nonzero, totalweight68 or72 is impossible:
+the smaller slice must32, and the other36 or40, below the secondweight48.
+If one slice is zero, the other has degree5 part equal to cross-star, so
+wt/2 modulo2 equals1 by the complementary-monomial quadratic weight formula.
+Its weight is therefore2 modulo4, contrary to68 or72. QED.
+
+All numbers used are elementary minimum/second weight Reed-Muller facts.
+The missing global exclusion problem is NOT solved by this lemma.

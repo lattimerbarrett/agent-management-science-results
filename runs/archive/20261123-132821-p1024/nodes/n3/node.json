@@ -1,0 +1,107 @@
+{
+ "id": "n3",
+ "parent": "n0",
+ "depth": 1,
+ "option": {
+  "branch": "c1b0",
+  "counterfactual": "The invariant is independent of the entire nonzero coefficient vector, even though the gluing depends on that vector.",
+  "approach": "Compute the invariant for small genera using vectors with different supports and compare the results. These examples could reveal a common value and suggest which rank changes cancel.",
+  "p": 0.096
+ },
+ "status": "member",
+ "belief": {
+  "answer": "\\(\\boxed{\\Delta_b=0\\quad\\text{for every }g\\ge2\\text{ and every }b\\in\\mathbb C^r\\setminus\\{0\\}.}\\)",
+  "confidence": 0.8
+ },
+ "judge": {
+  "claim": true,
+  "same_as": null,
+  "answer": "\\Delta_b=0\\quad\\text{for every }g\\ge2\\text{ and every }b\\in\\mathbb C^r\\setminus\\{0\\}.",
+  "reason": "It asserts a precise universal value for the invariant, which a team could attempt to prove. No previous answers were listed.",
+  "experiment": true,
+  "n": 3,
+  "definite": true,
+  "gate": "The proposed answer gives an exact value for \u0394_b for every allowed genus and every nonzero coefficient vector, including vectors with vanishing components.",
+  "procedure": false
+ },
+ "experiment": "e1",
+ "options": [
+  {
+   "branch": "c0b0",
+   "counterfactual": "The invariant \u0394_b is independent of the nonzero vector b; apparent differences between coefficient vectors come from an error in the cohomology computation.",
+   "approach": "Recheck the logarithmic tangent transition matrix directly by differentiating the gluing and then independently invert it. This would test whether a missing factor or incorrect transpose explains the apparent dependence on b.",
+   "p": 0.0645,
+   "child": null
+  },
+  {
+   "branch": "c0b1",
+   "counterfactual": "The invariant \u0394_b is independent of the nonzero vector b; apparent differences between coefficient vectors come from an error in the cohomology computation.",
+   "approach": "Compute the three cohomology dimensions independently for genus 4 and the vectors (1,0) and (0,1), using successive extensions along the exceptional curve. Their alternating sums would provide a check that does not rely on the Laurent matrix implementation.",
+   "p": 0.0565,
+   "child": "n6"
+  },
+  {
+   "branch": "c0b2",
+   "counterfactual": "The invariant \u0394_b is independent of the nonzero vector b; apparent differences between coefficient vectors come from an error in the cohomology computation.",
+   "approach": "Look for an exact sequence or a complex whose Euler characteristic is \u0394_b and whose cohomology is unchanged by varying b. Such a construction could explain cancellation of all coefficient-dependent rank changes.",
+   "p": 0.0403,
+   "child": null
+  },
+  {
+   "branch": "c1b0",
+   "counterfactual": "Vectors with the same last nonzero component can have different values of \u0394_b because special algebraic relations among their coefficients matter.",
+   "approach": "Compare vectors with the same support but different coefficient ratios in genera where r is at least 3. Include deliberately chosen coefficients satisfying simple polynomial relations to look for exceptional rank drops.",
+   "p": 0.2581,
+   "child": null
+  },
+  {
+   "branch": "c1b1",
+   "counterfactual": "Vectors with the same last nonzero component can have different values of \u0394_b because special algebraic relations among their coefficients matter.",
+   "approach": "Reduce the cohomology matrices symbolically in the first genus with three coefficients and extract the minors controlling their ranks. This would identify explicit equations for exceptional coefficient vectors.",
+   "p": 0.2258,
+   "child": null
+  },
+  {
+   "branch": "c1b2",
+   "counterfactual": "Vectors with the same last nonzero component can have different values of \u0394_b because special algebraic relations among their coefficients matter.",
+   "approach": "Express the obstruction maps through multiplication and differentiation of the polynomial formed from b. Their kernels could reveal dependence on repeated roots or other relations invisible to the support alone.",
+   "p": 0.1613,
+   "child": null
+  },
+  {
+   "branch": "c2b0",
+   "counterfactual": "The finite matrix-rank formula does not compute the analytic invariant because the chosen finite neighborhood omits contributions to H\u00b9.",
+   "approach": "Repeat selected computations with progressively thicker neighborhoods of the exceptional curve. Failure of stabilization at the claimed cutoff would directly expose the missing contributions.",
+   "p": 0.0774,
+   "child": null
+  },
+  {
+   "branch": "c2b1",
+   "counterfactual": "The finite matrix-rank formula does not compute the analytic invariant because the chosen finite neighborhood omits contributions to H\u00b9.",
+   "approach": "Reprove the comparison with finite neighborhoods using the filtration by powers of the exceptional ideal and the theorem on formal functions. In particular, check whether vanishing of the graded H\u00b9 groups really gives the asserted stabilization.",
+   "p": 0.0774,
+   "child": null
+  },
+  {
+   "branch": "c2b2",
+   "counterfactual": "The finite matrix-rank formula does not compute the analytic invariant because the chosen finite neighborhood omits contributions to H\u00b9.",
+   "approach": "Derive a separate analytic \u010cech description on the two gluing charts and compare its obstruction spaces with those of the truncated bundles. This would test whether formal truncation loses analytic conditions.",
+   "p": 0.0387,
+   "child": null
+  },
+  {
+   "branch": "own",
+   "counterfactual": null,
+   "approach": null,
+   "p": null,
+   "child": null
+  }
+ ],
+ "cost": 0.0467,
+ "responses": 5,
+ "step_from": 3,
+ "known": [],
+ "created": 1795458807.665589,
+ "seen": "724f337090a6a04ad4f279bb360e0a55424d5a21a14b9a0b8f256686b1937832",
+ "take_at": 3
+}

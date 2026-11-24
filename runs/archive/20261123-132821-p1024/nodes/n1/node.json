@@ -1,0 +1,109 @@
+{
+ "id": "n1",
+ "parent": "n0",
+ "depth": 1,
+ "option": {
+  "branch": "c2b1",
+  "counterfactual": "A matrix-rank expression does not provide the requested formula adequately; an explicit classification of the possible values and their coefficient conditions is necessary.",
+  "approach": "Analyze the filtration by powers of the exceptional-curve ideal and compute its connecting maps explicitly. Use the hyperelliptic gap sequence to identify the coefficient conditions under which their ranks change.",
+  "p": 0.21
+ },
+ "status": "member",
+ "belief": {
+  "answer": "\\(\\displaystyle \\boxed{\\Delta_b=-\\max\\{j\\in\\{0,\\ldots,r-1\\}:b_j\\ne0\\}}\\).",
+  "confidence": 0.12
+ },
+ "judge": {
+  "claim": true,
+  "same_as": null,
+  "answer": "\\displaystyle \\boxed{\\Delta_b=-\\max\\{j\\in\\{0,\\ldots,r-1\\}:b_j\\ne0\\}}",
+  "reason": "It asserts an explicit formula for every allowed vector. Unlike e1, it gives negative values when a nonzero component has index greater than zero.",
+  "experiment": true,
+  "n": 4,
+  "definite": true,
+  "gate": "The formula determines a unique integer from g and b for every allowed nonzero vector, including vectors with vanishing components, since the set of indices with nonzero coefficients is nonempty.",
+  "procedure": false
+ },
+ "experiment": "e2",
+ "options": [
+  {
+   "branch": "c0b0",
+   "counterfactual": "The value of \u0394_b is not determined by the largest index j for which b_j is nonzero; vectors with the same nonzero components can give different values.",
+   "approach": "Compare coefficient vectors with the same support but different coefficient ratios. Look for polynomial conditions on those ratios where the cohomology dimensions change.",
+   "p": 0.18,
+   "child": null
+  },
+  {
+   "branch": "c0b1",
+   "counterfactual": "The value of \u0394_b is not determined by the largest index j for which b_j is nonzero; vectors with the same nonzero components can give different values.",
+   "approach": "Compute the connecting maps symbolically for the first genera with several independent coefficients. Factor their relevant minors to identify exceptional coefficient conditions.",
+   "p": 0.108,
+   "child": null
+  },
+  {
+   "branch": "c0b2",
+   "counterfactual": "The value of \u0394_b is not determined by the largest index j for which b_j is nonzero; vectors with the same nonzero components can give different values.",
+   "approach": "Associate a polynomial to the coefficient vector and investigate whether repeated roots or common factors with its derivative govern the exceptional values.",
+   "p": 0.072,
+   "child": null
+  },
+  {
+   "branch": "c1b0",
+   "counterfactual": "The connecting homomorphism from global horizontal vector fields to the first cohomology of vertical logarithmic vector fields is nonzero for some allowed nonzero vectors b.",
+   "approach": "Derive that connecting homomorphism directly from the coordinate change. Track the lowest fiber orders at which a horizontal vector field can produce a nontrivial vertical cohomology class.",
+   "p": 0.09,
+   "child": null
+  },
+  {
+   "branch": "c1b1",
+   "counterfactual": "The connecting homomorphism from global horizontal vector fields to the first cohomology of vertical logarithmic vector fields is nonzero for some allowed nonzero vectors b.",
+   "approach": "Compute the logarithmic tangent cohomology directly in small genera, without decomposing it into horizontal and vertical contributions, and compare the results.",
+   "p": 0.07,
+   "child": null
+  },
+  {
+   "branch": "c1b2",
+   "counterfactual": "The connecting homomorphism from global horizontal vector fields to the first cohomology of vertical logarithmic vector fields is nonzero for some allowed nonzero vectors b.",
+   "approach": "Use Serre duality to test whether the proposed vertical obstruction classes survive, pairing them with explicitly written holomorphic differentials on the curve.",
+   "p": 0.04,
+   "child": null
+  },
+  {
+   "branch": "c2b0",
+   "counterfactual": "Higher-order terms in the expansion of z at infinity change the answer; retaining only its leading pole misses coefficient conditions relevant to \u0394_b.",
+   "approach": "Recompute small examples using enough terms of the square-root expansion to include every term that can contribute to an obstruction. Compare against computations using only the leading pole.",
+   "p": 0.198,
+   "child": null
+  },
+  {
+   "branch": "c2b1",
+   "counterfactual": "Higher-order terms in the expansion of z at infinity change the answer; retaining only its leading pole misses coefficient conditions relevant to \u0394_b.",
+   "approach": "Bound the pole orders appearing at each fiber order and determine exactly when a correction term from the square-root expansion can enter a hyperelliptic gap.",
+   "p": 0.154,
+   "child": null
+  },
+  {
+   "branch": "c2b2",
+   "counterfactual": "Higher-order terms in the expansion of z at infinity change the answer; retaining only its leading pole misses coefficient conditions relevant to \u0394_b.",
+   "approach": "Perform reductions using exact functions in the coordinate ring defined by z\u00b2 = x^(2g+1) \u2212 1, using Laurent expansions only to impose regularity at infinity.",
+   "p": 0.088,
+   "child": null
+  },
+  {
+   "branch": "own",
+   "counterfactual": null,
+   "approach": null,
+   "p": null,
+   "child": null
+  }
+ ],
+ "cost": 0.1264,
+ "responses": 5,
+ "step_from": 3,
+ "known": [
+  "e2"
+ ],
+ "created": 1795458738.101113,
+ "seen": "96f4eba219853cfd88f919d5afb2c0b9796c58c8a1bc20a33ab8b23a4124c5ca",
+ "take_at": 3
+}

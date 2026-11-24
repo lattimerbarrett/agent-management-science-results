@@ -1,0 +1,73 @@
+SATURATED GLOBAL-MINIMUM-GROUND NORMALIZATION
+(Refinement of agent_3's generalized rank-budget normalization.)
+
+A generalized configuration consists of t disjoint nonempty cores X_i
+and t nonempty colored subfamilies of an intersecting family H with
+tau(H)=t, where every member of class i contains X_i and has at most d_i
+points outside it. Uniformity is not imposed. Its cost is sum_i d_i.
+The minimum possible cost equals b(t).
+
+For the nontrivial direction, choose K>=max_i(|X_i|+d_i). Adjoin private
+points to each core until its size is K-d_i. This leaves tau unchanged:
+a cover using a new private point can replace it by any old point of the
+same nonempty core, and old covers still cover. Pad each short residual
+P of class i to size d_i by ALL choices of the requisite number of
+points from a fresh common reservoir R, with |R|>t+max_i d_i. Rank becomes
+K. Intersections persist. A proposed cover of size<t misses enough
+reservoir points to choose a padding disjoint from it, so it must cover
+every unpadded old member. Thus tau stays t. Deduplicate source classes
+arbitrarily; no class can vanish when tau=t, since representatives of
+the remaining cores would be a (t-1)-cover. This gives a valid original
+uniform configuration of cost sum_i d_i.
+
+Among generalized configurations of optimal cost b(t), choose one with
+minimum total ground size n=|V|. On this fixed ground, choose one with
+maximum number of distinct family members. Such choices exist by integer
+well-ordering and finiteness of 2^V. We may discard isolated vertices,
+so V is precisely the union of all members.
+
+NORMALIZATION A. Every pair of distinct points of V belongs together
+to some minimum t-cover of H.
+
+Proof: If points are in different cores, choose them and one arbitrary
+representative of each other core. This is a t-cover. Every other pair
+can be identified while maintaining disjoint nonempty cores and without
+increasing any residual rank budget. Identification preserves
+intersection. As in the core-identification lemma, its new covering
+number is t-1 iff the old points co-occur in a minimum t-cover, and is t
+otherwise. In the latter case deduplicate source classes; if any class
+vanished, fewer than t core representatives would cover. Thus a missing
+co-occurrence pair would yield a valid configuration of no greater cost
+on n-1 points; if cost dropped this contradicts optimal b(t), otherwise
+it contradicts minimal n. This proves A.
+
+NORMALIZATION B. If a set E subseteq V contains some full core X_i,
+|E minus X_i|<=d_i, and intersects every old member, then E already
+belongs to H (possibly assigned to another class).
+
+Proof: Otherwise add E to class i. This does not increase any budget;
+intersection persists; old H still forces tau>=t, while core
+representatives still give tau<=t. Ground size is unchanged. Thus this
+would contradict maximality of the number of members.
+
+NORMALIZATION C. Every minimum t-cover C that contains a whole core
+belongs to H. In particular any two core-exhausting minimum covers
+intersect.
+
+Proof: For each class i, any one of its members is a cover of H, hence
+has cardinality at least t. Since its size is at most |X_i|+d_i,
+|X_i|+d_i>=t. If C contains X_i, then |C minus X_i|=t-|X_i|<=d_i, and C
+intersects every old member by definition. Apply B. Intersecting follows
+since C is an actual member.
+
+The pair-cooccurrence property A persists after every permitted edge
+addition: otherwise a subsequent pair-identification would give a
+smaller-ground optimal-cost configuration. Equivalently it follows
+anew from the global minimality of n. This is why maximal allowed
+saturation can be used instead of edge-critical pruning.
+
+IMPORTANT LIMITATION: A says minimum covers have complete 2-shadow;
+it does NOT say these covers are pairwise intersecting. Only the
+core-exhausting covers in C are forced into H. Thus this normalization
+does not yet prove the conjectured O(d^3) ground-size bound, and is not
+a proof of the target logarithmic limit.

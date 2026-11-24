@@ -1,0 +1,108 @@
+{
+ "id": "n28",
+ "parent": "n0",
+ "depth": 1,
+ "option": {
+  "branch": "c2b1",
+  "counterfactual": "The first counterexamples already occur at the smallest possible positive linear surplus, and S_r is exactly [1/(2r), infinity) for every r.",
+  "approach": "Try to prove that an extremal bound with coefficient strictly below 1/(2r) forces bounded rather than genuinely linear surplus. Then isolate the additional structural argument needed to show that bounded surplus guarantees a common edge and cycle maximizer.",
+  "p": 0.15
+ },
+ "status": "member",
+ "belief": {
+  "answer": "\\(\\boxed{\\mathcal S_r=[1/(2r),\\infty)\\text{ for every integer }r\\ge2.}\\) In particular, the boundary point \\(1/(2r)\\) belongs to \\(\\mathcal S_r\\).",
+  "confidence": 1.0
+ },
+ "judge": {
+  "claim": true,
+  "same_as": "e12",
+  "answer": "\\(\\mathcal S_r=[1/(2r),\\infty)\\) for every integer \\(r\\ge2\\). In particular, the boundary point \\(1/(2r)\\) belongs to \\(\\mathcal S_r\\).",
+  "reason": "It claims an explicit formula for every set and includes the endpoint. This is exactly the claim in e12.",
+  "experiment": false,
+  "n": 29
+ },
+ "experiment": null,
+ "options": [
+  {
+   "branch": "c0b0",
+   "counterfactual": "The coefficient 1/(2r) does not belong to the set for at least one integer r\u22652, so the asserted inclusion of the boundary is false.",
+   "approach": "Analyze graphs satisfying the extremal bound with coefficient exactly 1/(2r). Determine whether their large-scale structure must be a complete r-partite graph with a matching in one part, and whether that structure guarantees a common edge-and-cycle maximizer.",
+   "p": 0.1712,
+   "child": null
+  },
+  {
+   "branch": "c0b1",
+   "counterfactual": "The coefficient 1/(2r) does not belong to the set for at least one integer r\u22652, so the asserted inclusion of the boundary is false.",
+   "approach": "Seek an explicit forbidden graph witnessing boundary inclusion rather than relying on an unnamed sharpness theorem. Check its extremal number and characterize every edge-extremizer before comparing cycle counts.",
+   "p": 0.1332,
+   "child": null
+  },
+  {
+   "branch": "c0b2",
+   "counterfactual": "The coefficient 1/(2r) does not belong to the set for at least one integer r\u22652, so the asserted inclusion of the boundary is false.",
+   "approach": "Combine the supplied surplus-gap theorem with an exclusion theorem at the boundary. This would exclude the entire interval from 1/(2r) up to 2/(3r), and identify the next coefficient at which counterexamples need investigation.",
+   "p": 0.0761,
+   "child": null
+  },
+  {
+   "branch": "c1b0",
+   "counterfactual": "Bounded surplus above the Tur\u00e1n number does not always guarantee a common edge-and-cycle maximizer; a fixed forbidden graph with ex(n,H)=t_r(n)+O(1) can fail this property at infinitely many orders.",
+   "approach": "Search for forbidden graphs whose extremizers differ only on a bounded set of vertices. Compare complete cycle counts for competing finite modifications of balanced complete multipartite graphs.",
+   "p": 0.0522,
+   "child": null
+  },
+  {
+   "branch": "c1b1",
+   "counterfactual": "Bounded surplus above the Tur\u00e1n number does not always guarantee a common edge-and-cycle maximizer; a fixed forbidden graph with ex(n,H)=t_r(n)+O(1) can fail this property at infinitely many orders.",
+   "approach": "Investigate odd-order graphs when r=2, where internal edges in the two parts can have different effects on cycle counts. Look for an edge-extremal finite modification that loses to a modification with fewer edges.",
+   "p": 0.0522,
+   "child": null
+  },
+  {
+   "branch": "c1b2",
+   "counterfactual": "Bounded surplus above the Tur\u00e1n number does not always guarantee a common edge-and-cycle maximizer; a fixed forbidden graph with ex(n,H)=t_r(n)+O(1) can fail this property at infinitely many orders.",
+   "approach": "Audit the claimed bounded-surplus common-extremizer theorem and identify its exact hypotheses. Determine whether an omitted condition concerning connectivity, critical edges, or uniqueness prevents its application here.",
+   "p": 0.0261,
+   "child": null
+  },
+  {
+   "branch": "c2b0",
+   "counterfactual": "The threshold for membership depends on r in a way not captured by the formula 1/(2r), and the case r=2 has a different mechanism from cases r\u22653.",
+   "approach": "Extend the supplied eight-vertex example to higher chromatic number by adjoining complete multipartite graphs. Check whether its exact extremal classification and edge\u2013cycle separation survive this operation.",
+   "p": 0.1467,
+   "child": null
+  },
+  {
+   "branch": "c2b1",
+   "counterfactual": "The threshold for membership depends on r in a way not captured by the formula 1/(2r), and the case r=2 has a different mechanism from cases r\u22653.",
+   "approach": "Derive cycle-count asymptotics for complete r-partite graphs with bounded-size tree components inside one part. Compare the effects of edge count, part imbalance, and internal degree distribution to identify candidate thresholds.",
+   "p": 0.2201,
+   "child": null
+  },
+  {
+   "branch": "c2b2",
+   "counterfactual": "The threshold for membership depends on r in a way not captured by the formula 1/(2r), and the case r=2 has a different mechanism from cases r\u22653.",
+   "approach": "Treat r=2 independently using exact path-block generating functions, while using multipartite stability for r\u22653. Establish rigorous upper and lower bounds for each spectrum before attempting a single formula.",
+   "p": 0.1223,
+   "child": null
+  },
+  {
+   "branch": "own",
+   "counterfactual": null,
+   "approach": null,
+   "p": null,
+   "child": null
+  }
+ ],
+ "cost": 0.1057,
+ "responses": 4,
+ "step_from": 16,
+ "known": [
+  "e1",
+  "e2",
+  "e4"
+ ],
+ "created": 1795429996.270553,
+ "seen": "af608a22030f1b05568bb5f7df195cf49e4e26f155e6c8ca9ed973d077a1e138",
+ "take_at": 16
+}

@@ -1,0 +1,53 @@
+FIXED-BUDGET VERSION OF THE STRONG NORMAL FORM
+
+The strong normal form of agent2_strong_compatible_normal_form.txt does
+not require global optimality for sum deficits. Fix t and upper bounds
+d_1,...,d_t for residual ranks, and suppose a generalized configuration
+exists. Choose one on the minimum possible ground size n among ALL
+configurations satisfying these same bounds. Then every point pair
+co-occurs in a minimum t-cover (compatible identifications stay within
+all bounds; different-core pairs have canonical core-representative
+covers). This global minimality is always maintained by any allowed
+operation that preserves tau and intersection without increasing bounds.
+
+Saturate by all intersecting allowed members on the existing ground.
+Every core-exhausting minimum t-cover becomes an actual rank-t member.
+Now alternate:
+  - deletion of inclusion-redundant members;
+  - removal of a residual occurrence whenever intersection survives;
+  - enlargement of cores to their full class intersections.
+No operation increases a residual-rank bound. All preserve tau=t:
+shrinking can only increase tau and core representatives bound it above;
+redundant deletion leaves covers unchanged; enlargement does not change
+the family. Class intersections are disjoint, because overlap would give
+a (t-1)-cover. Deduplicate members by retaining an existing source class;
+none of the t classes can vanish if tau stays t.
+
+The core-exhausting-mincover property persists. Shrinking only removes
+covers; redundant deletion does not change covers; core enlargement only
+makes the condition 'contains a whole core' more selective. A rank-t
+member can neither be shrunk while preserving intersection nor be
+properly superseded by a smaller member, since every member is itself
+a cover and tau=t. Hence all relevant actual minimum-cover members are
+protected.
+
+Termination: sum core sizes increases at each strict enlargement and is
+bounded by n. Between enlargements, total cardinality of the distinct
+family members strictly decreases at a shrink or redundant deletion;
+when a shrink creates a duplicate retain the existing member and delete
+the replaced one. These are nonnegative integers, so only finitely many
+steps occur. The result has simultaneously:
+ (i) full common cores;
+ (ii) every point pair co-occurs in a minimum t-cover;
+ (iii) every core-exhausting minimum t-cover is an actual member;
+ (iv) every residual occurrence has a singleton private-intersection
+      witness;
+ (v) the family is an inclusion antichain.
+
+This applies directly to the at-least-half subset of classes whose
+original deficits are bounded by 2D/t, without replacing it by an
+unconstrained sum-optimal family whose maximum deficit might increase.
+
+STILL MISSING: a cubic total-ground bound O(d^3), or any other mechanism
+yielding t=O(d^(3/2+o(1))), from properties (i)--(v). No such bound is
+proved in this note.

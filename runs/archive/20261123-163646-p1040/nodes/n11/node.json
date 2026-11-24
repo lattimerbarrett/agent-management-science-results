@@ -1,0 +1,180 @@
+{
+ "id": "n11",
+ "parent": "n7",
+ "depth": 3,
+ "option": {
+  "branch": "c0b1",
+  "counterfactual": "A complete classification of the pairs (n,c) in the question is known, rather than being an open problem.",
+  "approach": "Investigate whether known kernel elements propagate under increasing the rank or taking commutators. Such propagation, together with injectivity in the remaining degrees, could give explicit conditions on n and c.",
+  "p": 0.1077
+ },
+ "status": "member",
+ "belief": {
+  "answer": "\\(\\boxed{\\mathcal D=\\{(n,c)\\in\\mathbb Z_{\\ge2}\\times\\mathbb Z_{\\ge1}:n\\ge3,\\ c\\ge3\\}}\\)",
+  "confidence": 0.2
+ },
+ "judge": {
+  "claim": true,
+  "same_as": null,
+  "answer": "\\mathcal D=\\{(n,c)\\in\\mathbb Z_{\\ge2}\\times\\mathbb Z_{\\ge1}:n\\ge3,\\ c\\ge3\\}",
+  "reason": "It asserts an explicit complete classification. It differs from e1, which requires c\u22656 rather than c\u22653.",
+  "experiment": true,
+  "n": 11,
+  "definite": true,
+  "gate": "The proposed answer gives an explicit necessary-and-sufficient condition, n \u2265 3 and c \u2265 3, classifying every pair in the specified domain.",
+  "procedure": false
+ },
+ "experiment": "e2",
+ "options": [
+  {
+   "branch": "c0b0",
+   "counterfactual": "The proposed explicit element at (n,c)=(3,4) actually belongs to \u03b3\u2085(IA\u2083), despite the reported computational certificate.",
+   "approach": "Audit the conjugation operators in the finite-action certificate, checking composition order and whether they implement conjugation by each Magnus generator or its inverse. An incorrect operator could make the asserted space containing the image of \u03b3\u2085 too small.",
+   "p": 0.1672,
+   "child": null
+  },
+  {
+   "branch": "c0b1",
+   "counterfactual": "The proposed explicit element at (n,c)=(3,4) actually belongs to \u03b3\u2085(IA\u2083), despite the reported computational certificate.",
+   "approach": "Execute the compact separating-functional certificate from scratch and independently verify its normal-generation argument. This separates a reproducible numerical assertion from the group-theoretic claim needed to prove nonmembership in \u03b3\u2085.",
+   "p": 0.13,
+   "child": null
+  },
+  {
+   "branch": "c0b2",
+   "counterfactual": "The proposed explicit element at (n,c)=(3,4) actually belongs to \u03b3\u2085(IA\u2083), despite the reported computational certificate.",
+   "approach": "Rewrite the proposed element using exact identities among Magnus generators and seek an expression as a product of weight-five commutators. Such an expression would directly refute the claimed counterexample.",
+   "p": 0.0557,
+   "child": null
+  },
+  {
+   "branch": "c1b0",
+   "counterfactual": "A complete explicit classification of the requested pairs is already known, rather than being an unresolved version of the Andreadakis problem.",
+   "approach": "Look for a precise theorem in the available materials identifying the kernels of the restricted Johnson homomorphisms, rather than merely comparing the two filtrations. Match its indexing and integral coefficients carefully to the quotient in the question.",
+   "p": 0.1238,
+   "child": null
+  },
+  {
+   "branch": "c1b1",
+   "counterfactual": "A complete explicit classification of the requested pairs is already known, rather than being an unresolved version of the Andreadakis problem.",
+   "approach": "Investigate whether one explicit kernel element generates nonzero kernel elements in every higher degree under commutators. Combine a valid propagation theorem with injectivity results in the remaining low degrees.",
+   "p": 0.1084,
+   "child": "n21"
+  },
+  {
+   "branch": "c1b2",
+   "counterfactual": "A complete explicit classification of the requested pairs is already known, rather than being an unresolved version of the Andreadakis problem.",
+   "approach": "Investigate stabilization in rank, distinguishing the inclusion of IA\u2083 into IA\u2099 from injectivity on lower-central quotients. A detection map or suitable retraction could extend verified rank-three examples to larger ranks.",
+   "p": 0.0619,
+   "child": null
+  },
+  {
+   "branch": "c2b0",
+   "counterfactual": "There is already a nonzero Johnson kernel in degree three for IA\u2083, and the reported degree-four example is a commutator consequence of that earlier failure.",
+   "approach": "Turn the available candidate degree-three torsion representatives into explicit words in Magnus generators. Check their integral Andreadakis membership and seek a genuine finite-action detector for nonmembership in \u03b3\u2084.",
+   "p": 0.1672,
+   "child": "n45"
+  },
+  {
+   "branch": "c2b1",
+   "counterfactual": "There is already a nonzero Johnson kernel in degree three for IA\u2083, and the reported degree-four example is a commutator consequence of that earlier failure.",
+   "approach": "Express the degree-four witness modulo \u03b3\u2085 as brackets of degree-three candidates with degree-one generators. A detected nonzero bracket would establish that at least one corresponding degree-three class is nonzero.",
+   "p": 0.1115,
+   "child": null
+  },
+  {
+   "branch": "c2b2",
+   "counterfactual": "There is already a nonzero Johnson kernel in degree three for IA\u2083, and the reported degree-four example is a commutator consequence of that earlier failure.",
+   "approach": "Compute the image of \u03b3\u2083 and \u03b3\u2084 in a sufficiently deep finite Magnus action, retaining the nonlinear group law for \u03b3\u2083. Compare this genuine quotient with the candidate torsion from incomplete presentation-based computations.",
+   "p": 0.0743,
+   "child": null
+  },
+  {
+   "branch": "own",
+   "counterfactual": null,
+   "approach": null,
+   "p": null,
+   "child": null
+  },
+  {
+   "branch": "e2/c0b0",
+   "counterfactual": "The proposed set is correct: the strict inclusion holds exactly when n\u22653 and c\u22653, so the requested classification is not open.",
+   "approach": "Read the final metaplectic argument and isolate its precise filtration lemma. Check that the resulting homomorphism is defined on all of IA_n and that its target has nilpotency class at most c while detecting the proposed witness.",
+   "p": 0.2826,
+   "child": null
+  },
+  {
+   "branch": "e2/c0b1",
+   "counterfactual": "The proposed set is correct: the strict inclusion holds exactly when n\u22653 and c\u22653, so the requested classification is not open.",
+   "approach": "Verify the proposed witnesses directly in degree three before addressing general degrees. Compute their Johnson images and Alexander matrices, then check the smallest local-field detector in full detail.",
+   "p": 0.1696,
+   "child": null
+  },
+  {
+   "branch": "e2/c0b2",
+   "counterfactual": "The proposed set is correct: the strict inclusion holds exactly when n\u22653 and c\u22653, so the requested classification is not open.",
+   "approach": "Assemble a proof separating the equality cases from strictness, using the supplied structural theorems only after checking their exact hypotheses. State explicitly which results establish nonmembership in the next lower central subgroup.",
+   "p": 0.113,
+   "child": null
+  },
+  {
+   "branch": "e2/c1b0",
+   "counterfactual": "The claimed stable metaplectic detector does not define the required nilpotent quotient, even though its matrix identities and individual Hilbert-symbol evaluations are correct.",
+   "approach": "Audit the claimed splitting over deep congruence subgroups and its compatibility with conjugation. A nontrivial central symbol detects the witness only if the quotient construction preserves that symbol and kills every commutator of weight c+1.",
+   "p": 0.1304,
+   "child": null
+  },
+  {
+   "branch": "e2/c1b1",
+   "counterfactual": "The claimed stable metaplectic detector does not define the required nilpotent quotient, even though its matrix identities and individual Hilbert-symbol evaluations are correct.",
+   "approach": "Inspect how the stable elementary-matrix cover descends through K_2 and how the Alexander representation enters it. Look for a failure of lifting, determinant balancing, or compatibility between the chosen filtration and the whole image of IA_n.",
+   "p": 0.0783,
+   "child": null
+  },
+  {
+   "branch": "e2/c1b2",
+   "counterfactual": "The claimed stable metaplectic detector does not define the required nilpotent quotient, even though its matrix identities and individual Hilbert-symbol evaluations are correct.",
+   "approach": "Return to the finite-action certificate for degree four and verify it independently. This would preserve a concrete partial result without relying on the disputed uniform detector.",
+   "p": 0.0522,
+   "child": null
+  },
+  {
+   "branch": "e2/c2b0",
+   "counterfactual": "The proposed witnesses actually belong to the next lower central subgroup in at least one rank or degree, despite having vanishing Johnson images.",
+   "approach": "Search for an exact commutator identity expressing the degree-three witness as a product of weight-four commutators. Such an identity would directly test the simplest claimed strictness case.",
+   "p": 0.0696,
+   "child": null
+  },
+  {
+   "branch": "e2/c2b1",
+   "counterfactual": "The proposed witnesses actually belong to the next lower central subgroup in at least one rank or degree, despite having vanishing Johnson images.",
+   "approach": "Compare the witnesses under stabilization from rank three to rank four. Determine whether additional Magnus generators create relations that kill their lower-central classes.",
+   "p": 0.0609,
+   "child": null
+  },
+  {
+   "branch": "e2/c2b2",
+   "counterfactual": "The proposed witnesses actually belong to the next lower central subgroup in at least one rank or degree, despite having vanishing Johnson images.",
+   "approach": "Separate Johnson cancellation from lower-central nonvanishing throughout the proposed proof. Retain the verified cancellation calculations, but require an independent quotient or structural theorem for every asserted nonzero class.",
+   "p": 0.0435,
+   "child": null
+  },
+  {
+   "branch": "e2/own",
+   "counterfactual": null,
+   "approach": null,
+   "p": null,
+   "child": null
+  }
+ ],
+ "cost": 0.195,
+ "responses": 5,
+ "step_from": 16,
+ "known": [
+  "e1",
+  "e2"
+ ],
+ "created": 1795476840.5128498,
+ "seen": "cdfe3faee7c882aa543cda73f154871f2331b03a6c2822f706ffb7bbcb7171aa",
+ "take_at": 16
+}

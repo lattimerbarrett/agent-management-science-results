@@ -1,0 +1,107 @@
+{
+ "id": "n27",
+ "parent": "n0",
+ "depth": 1,
+ "option": {
+  "branch": "e1/c1b2",
+  "counterfactual": "The proposed interval list is correct, and the four missing weights have a common compact construction that does not resemble a sum of a few affine flats.",
+  "approach": "Explore structured polynomials outside the homogeneous tensor families already excluded, using shared variables and mixed degrees. Look for one construction whose adjustable component changes the weight by four while preserving the degree bound.",
+  "p": 0.0598
+ },
+ "status": "member",
+ "belief": {
+  "answer": "Let \\(N=2^m\\). Then\n\\[\n\\boxed{\\begin{aligned}\n\\mathcal W_m={}&[0,0]_2\\cup[128,128]_2\\cup[192,192]_2\\cup[224,224]_2\\cup[240,240]_2\\cup[248,248]_2\\\\\n&\\cup[252,256]_2\\cup[272,272]_2\\cup[288,288]_2\\cup[296,296]_2\\cup[304,304]_2\\cup[308,308]_2\\\\\n&\\cup[312,N-312]_2\\\\\n&\\cup[N-308,N-308]_2\\cup[N-304,N-304]_2\\cup[N-296,N-296]_2\\\\\n&\\cup[N-288,N-288]_2\\cup[N-272,N-272]_2\\cup[N-256,N-252]_2\\\\\n&\\cup[N-248,N-248]_2\\cup[N-240,N-240]_2\\cup[N-224,N-224]_2\\\\\n&\\cup[N-192,N-192]_2\\cup[N-128,N-128]_2\\cup[N,N]_2.\n\\end{aligned}}\n\\]\nEvery constant endpoint \\(b\\) denotes \\(0\\cdot2^m+b\\), and every endpoint \\(N-b\\) denotes \\(1\\cdot2^m-b\\).",
+  "confidence": 1.0
+ },
+ "judge": {
+  "claim": true,
+  "same_as": "e1",
+  "answer": "Let \\(N=2^m\\). Then\n\\[\n\\boxed{\\begin{aligned}\n\\mathcal W_m={}&[0,0]_2\\cup[128,128]_2\\cup[192,192]_2\\cup[224,224]_2\\cup[240,240]_2\\cup[248,248]_2\\\\\n&\\cup[252,256]_2\\cup[272,272]_2\\cup[288,288]_2\\cup[296,296]_2\\cup[304,304]_2\\cup[308,308]_2\\\\\n&\\cup[312,N-312]_2\\\\\n&\\cup[N-308,N-308]_2\\cup[N-304,N-304]_2\\cup[N-296,N-296]_2\\\\\n&\\cup[N-288,N-288]_2\\cup[N-272,N-272]_2\\cup[N-256,N-252]_2\\\\\n&\\cup[N-248,N-248]_2\\cup[N-240,N-240]_2\\cup[N-224,N-224]_2\\\\\n&\\cup[N-192,N-192]_2\\cup[N-128,N-128]_2\\cup[N,N]_2.\n\\end{aligned}}\n\\]\nEvery constant endpoint \\(b\\) denotes \\(0\\cdot2^m+b\\), and every endpoint \\(N-b\\) denotes \\(1\\cdot2^m-b\\).",
+  "reason": "It asserts an explicit complete weight spectrum, which is a provable mathematical claim. Its interval list and endpoint conventions are identical to e1.",
+  "experiment": false,
+  "n": 30
+ },
+ "experiment": null,
+ "options": [
+  {
+   "branch": "c0b0",
+   "counterfactual": "The weights 322, 326, 330, and 334 are all absent from RM(7,14), so the proposed central interval is incorrect.",
+   "approach": "Study projection along a direction containing a pair of support points. Use the classified smaller projected supports and their degree-five evaluation relations to seek a global obstruction to lifting them to these four weights.",
+   "p": 0.29,
+   "child": null
+  },
+  {
+   "branch": "c0b1",
+   "counterfactual": "The weights 322, 326, 330, and 334 are all absent from RM(7,14), so the proposed central interval is incorrect.",
+   "approach": "Seek a weight-dependent divisibility theorem for codewords below weight 336. A theorem forcing weights above 320 and below 336 to be divisible by four would exclude precisely the four disputed weights in that range.",
+   "p": 0.2255,
+   "child": null
+  },
+  {
+   "branch": "c0b2",
+   "counterfactual": "The weights 322, 326, 330, and 334 are all absent from RM(7,14), so the proposed central interval is incorrect.",
+   "approach": "Examine the existing central-interval certificate and formulate a corrected candidate spectrum retaining these four holes and their complements. Then identify the exact structural classification needed to prove those additional exclusions.",
+   "p": 0.1853,
+   "child": null
+  },
+  {
+   "branch": "c1b0",
+   "counterfactual": "At least one unresolved weight occurs in RM(8,15) but not in RM(7,14), so no fixed interval list with the requested integer-affine endpoints exists.",
+   "approach": "Search for fifteen-dimensional supports that cannot be projected injectively to fourteen dimensions, using the necessary odd pair-count condition in every nonzero direction. This targets genuinely new codewords rather than embeddings of known fourteen-dimensional examples.",
+   "p": 0.0914,
+   "child": null
+  },
+  {
+   "branch": "c1b1",
+   "counterfactual": "At least one unresolved weight occurs in RM(8,15) but not in RM(7,14), so no fixed interval list with the requested integer-affine endpoints exists.",
+   "approach": "Apply the degree-five closure lifting criterion to aperiodic, indecomposable supports of weights 320, 324, 328, and 332. An outside closure point could provide an explicit fifteen-dimensional witness at one of the disputed weights.",
+   "p": 0.1085,
+   "child": null
+  },
+  {
+   "branch": "c1b2",
+   "counterfactual": "At least one unresolved weight occurs in RM(8,15) but not in RM(7,14), so no fixed interval list with the requested integer-affine endpoints exists.",
+   "approach": "Develop a fourteen-dimensional exclusion for one disputed weight before attempting all five comparisons. Combine that exclusion with a separately verified fifteen-dimensional witness and the endpoint-rigidity argument to disprove the requested representation.",
+   "p": 0.0628,
+   "child": null
+  },
+  {
+   "branch": "c2b0",
+   "counterfactual": "Weight 310 is attainable, so the proposed low-weight exclusions are incorrect even if the four disputed weights above 320 are attainable.",
+   "approach": "Audit the numerical specialization of the classical classification below 2.5 times the minimum distance. Determine whether a canonical family was omitted or whether an endpoint was incorrectly treated as strict.",
+   "p": 0.0169,
+   "child": null
+  },
+  {
+   "branch": "c2b1",
+   "counterfactual": "Weight 310 is attainable, so the proposed low-weight exclusions are incorrect even if the four disputed weights above 320 are attainable.",
+   "approach": "Inspect the existing analyses of supports of weights 296 and 304 and their possible projections and lifts. Look specifically for a missing collision configuration or an omitted nonaffine lift that could yield weight 310.",
+   "p": 0.0122,
+   "child": null
+  },
+  {
+   "branch": "c2b2",
+   "counterfactual": "Weight 310 is attainable, so the proposed low-weight exclusions are incorrect even if the four disputed weights above 320 are attainable.",
+   "approach": "Search directly for a weight-310 support using a reduced moment-parity model, and independently verify any witness by its full truth table and Boolean M\u00f6bius transform. A verified witness would replace reliance on the unauthenticated exclusion statement.",
+   "p": 0.0075,
+   "child": null
+  },
+  {
+   "branch": "own",
+   "counterfactual": null,
+   "approach": null,
+   "p": null,
+   "child": null
+  }
+ ],
+ "cost": 0.3167,
+ "responses": 5,
+ "step_from": 43,
+ "known": [
+  "e1",
+  "e2"
+ ],
+ "created": 1795490043.272108,
+ "seen": "af621d2e50cceb0401fad43bf6986c1b15cf9ba4cb3d316faebec762579a0816",
+ "take_at": 43
+}

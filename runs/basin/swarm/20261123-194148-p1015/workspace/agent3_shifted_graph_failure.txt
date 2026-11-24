@@ -1,0 +1,25 @@
+Audit of candidate #245: its skip is total (agent_3).
+
+Assume H=0' and g(j) is the last-change stage of H restricted to a computable initial segment B(j). Consider the proposed partial function h with odd rows
+ h(2j+1)=g(j)+phi_j^H(j)
+when the computation converges, and the additional even core. Let D=graph(h), A=complement(D). Then D is c.e. in H, hence D<=_e H-total.
+
+We show H-total<=_e A, so A is literally self-total and its skip is total. This uses the new hyperimmune self-dual graph construction, not an unjustified bounded-output decoding of the shifted universal graph.
+
+Uniform tree lemma. For any computable sequence of block endpoints b(k), strictly increasing and unbounded, the frontier construction in agent2_hi_cototal.md produces a total H-computable function f_b(n), n>=1, whose values are the true-branch token labels at level n. The graph of f_b has the same enumeration degree as H-total, and its complement also has this degree. Deleting the finitely many initial levels does not change these degrees. A true level-n token is created only after H_s restricted to b(n-1) has settled; its numeric label is at least that creation stage. Thus, if b(n-1)>=B(j), then f_b(n)>=g(j).
+
+Apply the parameterized recursion theorem with injective padding to obtain a computable injection r(n), n>=1, such that
+ phi_{r(n)}^H(r(n))=max(f_b(n)-g(r(n)),0),
+where b(k) is computed from r by
+ b(k)>=max({k+1} union {B(r(n)):1<=n<=k+1}),
+and is made strictly increasing. This is a legitimate recursion-theorem application: for a proposed program parameter, s-m-n computes the padded indices r; those numerical indices compute the ordinary tree program and b; the true-branch token function is uniformly total computable in H. No oracle output is required to compute b. One may use max with zero in the program before proving nonnegativity.
+
+The token-stage inequality gives f_b(n)>=g(r(n)) for every n>=1. Consequently
+ h(2r(n)+1)=g(r(n))+phi_{r(n)}^H(r(n))=f_b(n).
+The row map n -> 2r(n)+1 is a computable injection. Therefore the complement of graph(f_b) is many-one reducible to A by
+ (n,v) -> (2r(n)+1,v).
+But complement(graph(f_b)) has total enumeration degree H. Hence H-total<=_e A.
+
+We already have complement(A)=D<=_e H-total<=_e A. Thus A is literally self-total. In particular its enumeration degree is cototal, and A^diamond is literally self-total by the established cototal-input lemma. The proposed shifted-universal-partial-graph construction cannot be a witness to the question.
+
+Scope: this argument assumes the proposed g has the stipulated computable-prefix settling-modulus form. It has not been proved here for an arbitrary H-computable shift g.

@@ -1,0 +1,59 @@
+COMPATIBLE STRONG NORMAL FORM: SATURATION OF CORE-EXHAUSTING
+MINIMUM COVERS AND RESIDUAL-POINT PRIVATE INTERSECTIONS
+
+Work in the generalized rank-budget model (same optimum b(t)). Choose
+an optimal-cost configuration on the minimum possible total number of
+points. Thus every pair of distinct points co-occurs in a minimum
+t-cover, by the global merge lemma. All cores are already their full
+class intersections: otherwise enlargement by one common point would
+reduce that class's maximum residual rank and lower the optimal cost;
+common intersections of different classes cannot overlap since tau=t.
+
+First add allowed intersecting members on the existing ground until
+saturated. By the previous lemma, every minimum t-cover C containing
+an entire core is now itself a family member. Global optimal cost and
+minimum ground size remain in force, so every pair still co-occurs in
+a minimum t-cover. Every rank budget stays the same: if an operation
+permitted a strict decrease, it would contradict optimal b(t).
+
+Now repeatedly perform either of these operations:
+ (a) delete a member containing a different member (inclusion redundancy);
+ (b) delete a residual point p from a member F whenever doing so preserves
+     intersection with every other member.
+Both operations preserve tau=t: (a) does not change covers, and (b)
+can only increase the covering number, while core representatives still
+cover with t points. Intersection and the source core condition hold.
+Any duplicate members can be assigned to an arbitrary source class;
+none can empty when tau=t. Cost and minimum ground size remain optimal.
+Operation (b) strictly decreases total member size, and (a) decreases
+member count/total size, so the process terminates.
+
+The core-exhausting-minimum-cover property survives. Indeed deletion
+of inclusion-redundant edges leaves the whole cover family unchanged;
+shrinking a member can only REMOVE covers, never create a new cover.
+Hence every final minimum t-cover C that exhausts a core was already
+a minimum cover immediately after saturation, and so was an actual
+rank-t member then. Such a member can never be shrunk while preserving
+intersection, since a smaller intersecting member would itself be an
+all-family cover of size<t. Nor can it be inclusion-redundant under a
+smaller member, for the same reason. Thus C persists as an actual edge.
+
+At termination every residual point p of every edge F has another
+edge E with F intersect E={p}; otherwise p could be deleted. The witness
+cannot be F itself: another member must become disjoint when p is
+removed. If a residual point were essential only to self-intersection,
+then F minus {p} would remain nonempty because it contains a nonempty
+core, and self-intersection would persist as well.
+
+Consequently an optimal minimum-ground generalized configuration can
+be chosen satisfying simultaneously:
+ 1. every class core equals its whole common intersection;
+ 2. every point pair co-occurs in some minimum t-cover;
+ 3. every core-exhausting minimum t-cover is an actual family member
+    (so such covers form an intersecting family);
+ 4. every residual occurrence has a private singleton intersection witness;
+ 5. no member properly contains another.
+
+CAVEAT: ordinary tau-edge-critical pruning is NOT included, because
+it can create new minimum covers which need not be actual members.
+This normal form does not yet bound the ground size by O(d^3).

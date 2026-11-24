@@ -1,0 +1,38 @@
+COMPLETE CYCLE-LIMIT PROOF FOR H8 COUNTERCHECK
+Let m run through multiples of 3. Let F_m be m/3 disjoint copies of P3.
+Let G_m=K_{m,m} with F_m inserted in its first part.
+Let J_m=K_{m+1,m-1} with F_m plus one isolated vertex inserted in its first part.
+Normalize by B_m=m!(m-1)!/2, and set w=4/3, sigma=1+w=7/3.
+Then
+ c(G_m)/B_m -> A=sum_{t>=0} sigma^t/(t!)^2,
+ c(J_m)/B_m -> D=sum_{t>=0} sigma^(t+2)/(t!(t+2)!).
+We prove these limits directly and rigorously.
+
+Let a,b denote the two host part sizes. For s,i>=0, let N_a(s,i) count pairs consisting of s omitted first-part vertices and an edge subset of F on the remaining vertices which is a linear forest with i edges, weighted by 2 to the number of nontrivial path components. All remaining first-part vertices are selected, including isolated vertices. The number of path components is k=a-s-i. A cycle meeting both parts corresponds to a cyclic ordering of these k paths and k distinct second-part vertices, with independent orientations of each nontrivial path, counted modulo reversal. Hence its exact contribution is
+ N_a(s,i) (b)_k (k-1)!/2,
+provided 1<=k<=b and (a-s)+k>=3. (For k=1 the length condition excludes the false 2-cycle.) This is an exact nonnegative decomposition by the cycle's internal edge set. There are no internal-only cycles because F is a forest.
+
+For every fixed s,i, since F has e=2m/3 edges and maximum degree 2,
+ N_a(s,i) ~ ((2e)^i/i!) (m^s/s!) = w^i m^(i+s)/(i!s!).
+Indeed all but O(m^(i-1)) i-edge subsets are matchings; their orientation weight is 2^i. Choosing s omitted vertices avoiding the O(i) chosen endpoints gives m^s/s!*(1+O(1/m)). Nonmatching edge subsets are lower order. This works equally for a=m and a=m+1 with its extra isolate.
+
+Put t=b-k. For the balanced graph t=s+i and factorial cancellation in the normalized contribution gives
+ N_m(s,i) (m-t-1)!/((m-1)!t!) -> w^i/(i!s!t!).
+Summing over i+s=t gives sigma^t/(t!)^2.
+For the shifted graph t=s+i-2, and the normalized contribution is
+ N_{m+1}(s,i) (m-t-2)!/(m!(t!)) -> w^i/(i!s!t!),
+where i+s=t+2. Summing gives sigma^(t+2)/((t+2)!t!).
+
+DOMINATION. Always
+ N_a(s,i) <= 2^i binom(e,i) binom(a,s) <= (2e)^i a!/(i!s!(a-s)!).
+Writing a-s=k+i, the normalized summand is at most
+ [a!b!/(m!(m-1)!)] * (2e)^i (k-1)!/((k+i)! i!s!t!).
+The bracket is m in the balanced case and m+1 in the shifted case. If k>=m/2, this is at most 3*4^i/(i!s!t!) because e<=m and (k-1)!/(k+i)!<=k^(-i-1). Grouping by t gives the summable majorant
+ 3*5^(t+nu)/((t+nu)!t!), nu=0 or 2.
+Thus dominated convergence applies in this range. If k<m/2, then the original cycle length is 2k+i<=a+k<=3m/2+1. The total number of all cycles this short in any 2m-vertex graph is at most (2m)^(3m/2+3), which is o(B_m) by Stirling. This proves both limits.
+
+STRICT INEQUALITY WITHOUT NUMERICAL ASSUMPTIONS. For sigma=7/3,
+ D >= sigma^2/2 + sigma^3/6 + sigma^4/48 = 21217/3888.
+For A, after terms t=0,1,2 the next term is sigma^3/36 and subsequent term ratios are <=sigma/16=7/48. Consequently
+ A <= 1+sigma+sigma^2/4 + (sigma^3/36)/(1-7/48) = 67849/13284.
+The strict rational inequality 21217/3888 > 67849/13284 follows by cross multiplication: 281846628 > 263796912. Therefore D>A, and c(J_m)>c(G_m) for all sufficiently large multiples m of 3.

@@ -1,0 +1,68 @@
+{
+ "run": "20261122-181106-p1009",
+ "problem": 1009,
+ "told": false,
+ "solo": true,
+ "answer": "(\\alpha,C)=\\left(\\frac14,\\frac{2^{1/4}e\\,\\Gamma(3/4)}{\\sqrt{\\pi}}\\right)",
+ "claims_proof": true,
+ "where": "Reply #1",
+ "answer_reason": "The agent explicitly boxes this ordered pair and concludes that its asymptotic formula and uniqueness have been proved.",
+ "definite": true,
+ "verify": {
+  "verdict": "sound",
+  "acknowledged": false,
+  "review": {
+   "claimed": "The team claims a complete proof that P_n is asymptotic to (2^{1/4} e Gamma(3/4)/sqrt(pi)) n^{-1/4}, and hence that the requested pair is unique.",
+   "verdict": "sound",
+   "team_acknowledged_gap": false,
+   "decisive_steps": [
+    {
+     "step": "Finite stable-permutation inclusion\u2013exclusion, equations (1)\u2013(3).",
+     "basis": "citation",
+     "checked": "The stated finite stable-permutation sieve applies to strict complete preference profiles, as here. Its successor/predecessor convention is consistent with the displayed stability integral; a two-cycle permutation is precisely a matching. The integral correctly separates successor constraints from nonadjacent blocking-pair constraints. The finite checks were treated as supplements, not as a proof of the general sieve."
+    },
+    {
+     "step": "Uniform estimate p(sigma)/I(n,m) = exp(mu(n,m)) + O(1/n).",
+     "basis": "argument",
+     "checked": "Checked the radial-simplex normalization and exact even-degree moments. The cube-restricted exponential-moment estimate follows by the stated subset expansion, uniformly for the bounded-degree monomials used. The logarithmic remainder has weighted expectation O(1/n); the discarded maximum-coordinate event has weighted probability O(1/n^2). The bounded-degree adjacency graph gives the asserted variances. Since H is bounded above, the second-order Taylor estimate remains valid even when H is very negative. These establish the required uniform error."
+    },
+    {
+     "step": "Cycle enumeration and summation of uniform errors, equations (15)\u2013(24).",
+     "basis": "argument",
+     "checked": "Verified the signed and unsigned exponential generating functions and the gamma/product expression for A_{N,k}. Both global bounds on A follow directly from its product. Nonnegativity and the coefficient bound for a_k also follow from its exponential generating function with nonnegative logarithmic coefficients. Thus absolute summation of the uniform errors is O(N^{-3/4}), and the signed replacement of exp(mu) by exp(1/2) has that same smaller order."
+    },
+    {
+     "step": "Cancellation and the limiting constant, equations (21)\u2013(29).",
+     "basis": "argument",
+     "checked": "Verified b_k<0 for k>=2, the k^{-3/2} coefficient asymptotic, and the absolutely convergent identity sum b_k=0. The product expansion gives A_{N,floor(x sqrt(N))} -> exp(-x^2). The stated small- and large-index bounds justify the Riemann-sum limit. Integration by parts gives 2 Gamma(3/4), producing e Gamma(3/4)/sqrt(pi) in N units and the additional factor 2^{1/4} in n units."
+    },
+    {
+     "step": "Executable finite and algebraic checks.",
+     "basis": "computation",
+     "checked": "Read the team's scratchpad and final code, then reran both successfully. Reproduced all 1296 four-participant profiles, the sampled six- and eight-participant sieve checks, exact P4=26/27 and P6=181431847/194400000, symbolic identities, product bounds, the limiting integral, and the reported scaled model sums. The code computes the claimed finite objects and does not substitute numerical evidence for the uniform asymptotic arguments."
+    }
+   ],
+   "failing_step": "Hardest step checked: the uniform O(1/n) relative reference-integral estimate, including the exponential weighting and control outside the logarithmic-expansion event.",
+   "reason": "The proof retains the cancellation in the exact finite sieve while controlling its errors by the unsigned cycle sum. The resulting error is smaller than the N^{-1/4} main term, and the remaining one-dimensional sum has the claimed rigorously justified limit. No unresolved objection or conditional step is acknowledged in the final proof."
+  },
+  "responses": 12,
+  "runs": 2,
+  "cost": 0.1987
+ },
+ "stop": true,
+ "contract": {
+  "form": "A complete answer must give the exact ordered pair of positive constants (\u03b1, C) and establish that n^\u03b1 P_n converges to C as n tends to infinity through even integers.",
+  "not_enough": "Bounds, numerical estimates, conjectured constants, a conditional result, or a decay exponent without the exact positive limiting constant do not settle the question; neither does a limit proved only along a proper subsequence of even integers."
+ },
+ "definite_reason": "The proposed answer gives an exact ordered pair of positive constants, which in context asserts the requested limit over all even integers. Its proof is outside the scope of this form-only assessment.",
+ "reference": "\\(\\displaystyle \\left(\\frac14,\\frac{e\\,2^{1/4}\\Gamma(3/4)}{\\sqrt{\\pi}}\\right)\\)",
+ "correct": true,
+ "graded_by": "judge",
+ "solved": true,
+ "cost": 0.2208,
+ "read_at": 1795389774.112214,
+ "matharena": true,
+ "restated": false,
+ "grade_note": "The model\u2019s ordered pair exactly matches the ground truth; the factors in the constant are merely reordered.",
+ "graded_at": 1795396402.32488
+}

@@ -1,0 +1,42 @@
+LOCAL POLYNOMIAL CONVEXITY -- ARGUMENT VIA DOCQUIER-GRAUERT
+
+Standard theorem used: if a Stein open subset D of a Stein manifold X is
+semicontinuously holomorphically extendible to X through an increasing
+family of Stein open sets, then (D,X) is a Runge pair (Docquier-Grauert).
+The needed continuity conditions are union_{s<t} D_s=D_t and D_t equal to
+the union of components of the interior of intersection_{s>t} D_s.
+
+Let K=closure(Ω), q in ∂Ω, and assume Ω has pseudoconvex smooth boundary
+near q. Translate and rotate so q=0 and the outward real normal is e in
+the Re z_n direction. On a fixed coordinate cylinder P, the domain is
+{x<h(ξ)}, where x=Re z_n, ξ=(z',Im z_n), h(0)=0, and h is smooth. Shrink P
+so |Dh|<=1. All domains below stay inside P; choose R sufficiently small
+and let T=3R, with B_R-[0,T]e contained in P.
+
+Define D_t=B_R intersect {x<h(ξ)+t}, for 0<=t<=T. Each D_t is pseudoconvex:
+it is B_R intersect the holomorphic translate Ω+t e (within P), with
+pseudoconvex artificial truncations outside the relevant region. Thus
+D_t is Stein by the Levi problem. The family is increasing. The graph
+inequalities imply union_{s<t} D_s=D_t, and
+interior(intersection_{s>t} D_s)=D_t. Since |h(ξ)|<=|ξ|<=R on B_R,
+h(ξ)+T>=2R>x throughout B_R. Consequently D_T=B_R.
+
+The Docquier-Grauert criterion gives D_0 Runge in B_R. Since the ball is
+Runge in C^n, D_0 is Runge in C^n. The same reasoning works starting from
+any positive t (and ending at T), so every outward translated local domain
+D_t, t>=0 small, is Runge in C^n.
+
+Now fix 0<r<R small and set C=K intersect closed(B_r). For all sufficiently
+small ε>0 and δ>0, C is contained in
+U_{ε,δ}=B_{r+δ} intersect {x<h(ξ)+ε}.
+These are Runge Stein domains by the preceding argument. Their intersection
+as ε,δ decrease to zero is precisely C. If a compact C is contained in a
+Runge Stein domain U in C^n, its polynomial hull is contained in U:
+Runge approximation identifies its polynomial hull with its O(U)-hull,
+which is compact in U by Stein holomorphic convexity. Thus hull(C) is
+contained in every U_{ε,δ}, and hence contained in C. Therefore C is
+polynomially convex.
+
+This proves local polynomial convexity of a smooth pseudoconvex closure.
+It does NOT by itself prove its complement Oka: localization from this
+local polynomial convexity remains a substantive separate step.

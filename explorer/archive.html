@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Prover archive</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/marked@12.0.2/marked.min.js"></script>
+<link rel="stylesheet" href="ui.css">
+<script src="ui.js"></script>
+<style>
+.map { overflow: auto; padding: 8px 4px; }
+.map svg text { font: 12px -apple-system, sans-serif; fill: var(--ink-2); }
+.map svg .n { cursor: pointer; }
+.map svg .n:hover circle.dot { stroke: var(--ink); stroke-width: 2.5; }
+.legend { display: flex; flex-wrap: wrap; gap: 8px; margin: 0 0 14px; }
+.legend > button { display: inline-flex; align-items: center; gap: 7px; padding: 5px 10px; border: 1px solid var(--line); border-radius: 8px; background: var(--surface); font-size: 13px; box-shadow: var(--shadow); }
+.legend > button:hover { border-color: var(--ink-4); }
+.answer { display: flex; align-items: baseline; gap: 10px; font-size: 17px; margin: 12px 0 4px; flex-wrap: wrap; }
+.answer .lab { font-size: 11px; color: var(--ink-3); text-transform: uppercase; letter-spacing: .05em; font-weight: 600; }
+.nodehead .row { display: flex; align-items: center; flex-wrap: wrap; gap: 8px; }
+.nodehead .judge { display: flex; align-items: baseline; gap: 8px; margin-top: 10px; font-size: 13px; color: var(--ink-2); }
+.opt { display: grid; grid-template-columns: 56px 64px 1fr auto; gap: 14px; padding: 12px 16px; border-bottom: 1px solid var(--line); font-size: 13px; align-items: start; }
+.opt:last-child { border-bottom: 0; }
+.opt.used { opacity: .55; }
+.opt .cf { padding: 6px 10px; border-left: 3px solid var(--warn); background: var(--warn-soft); border-radius: 0 6px 6px 0; margin-bottom: 6px; }
+.opt .ap { padding: 6px 10px; border-left: 3px solid var(--accent); background: var(--accent-soft); border-radius: 0 6px 6px 0; }
+.opt .cf > :first-child, .opt .ap > :first-child { margin-top: 0; } .opt .cf > :last-child, .opt .ap > :last-child { margin-bottom: 0; }
+.opt .pbar { height: 5px; border-radius: 3px; background: var(--surface-3); overflow: hidden; margin-top: 6px; }
+.opt .pbar > i { display: block; height: 100%; background: var(--violet); }
+.msg { margin: 6px 0; }
+.msg .kindrow { display: flex; align-items: center; gap: 6px; margin-bottom: 4px; }
+.grp > summary .sw { margin: 0; }
+iframe.swarm { width: 100%; height: calc(100vh - 49px); border: 0; display: block; border-top: 1px solid var(--line); }
+.exphead { padding: 22px 32px 6px; max-width: 980px; }
+.verdict p { margin: 6px 0; }
+</style>
+</head>
+<body>
+<nav id="nav"></nav>
+<main><div class="topbar"><div class="tabs" id="tabs"></div><div class="actions" id="actions"></div></div><div class="page" id="page"></div></main>
+<script>
+const PALETTE = ["#2a6fdb", "#d9822b", "#1f9d6b", "#b5468a", "#7a5cd6", "#b8941f", "#2b9fb5", "#c4352f"];
+
+/* ---------- state ---------- */
+const KEY = "prover-archive";
+const S = {
+  defaults: null, cfg: null, runs: [], key: null, live: false, ended: true, follower: null, reason: "",
+  tab: "map", open: [], nodes: {}, exps: {}, streams: {}, total: 0, settings: {}, folder: "", sel: null, file: null,
+};
+const saveCfg = () => store.set(KEY, {cfg: S.cfg, key: S.key, open: S.open, tab: S.tab});
+
+/* ---------- the sidebar ---------- */
+let runsTimer = null;
+async function loadRuns() {
+  clearTimeout(runsTimer);
+  try { S.runs = await (await fetch("/api/archive/runs")).json(); } catch {}
+  renderNav();
+  runsTimer = setTimeout(loadRuns, S.runs.some(r => r.live) ? 4000 : 20000);
+}
+function renderNav() {
+  sideRuns(S.runs.length ? `<div class="head"><span>Archives</span><span>${S.runs.length}</span></div>` + S.runs.map(r => {
+    const mine = r.id === S.key && S.live && !S.ended;  // the open run: its cost as this page has it
+    const cost = mine ? S.total : r.spent;
+    return runRow({key: r.id, on: r.id === S.key, state: runState(r.reason, r.live), title: `p${r.problem} · ${when(r.id)}`,
+      sub: `${r.nodes} agents · ${r.experiments} exp${r.reason && !r.live ? ` · ${shortReason(r.reason)}` : ""}`, cost, budget: r.budget, tooltip: r.reason || "live"});
+  }).join("") : '<div class="empty quiet">No archives yet</div>');
+}
+
+/* ---------- top bar ---------- */
+function renderTabs() {
+  const {color} = clusters();
+  const base = S.key ? [["map", `${icon("tree", "sm")}Map`], ["exps", `${icon("flask", "sm")}Experiments${Object.keys(S.exps).length ? ` <span class="quiet num">${Object.keys(S.exps).length}</span>` : ""}`], ["prompts", `${icon("book", "sm")}Prompts`]]
+    : [["setup", `${icon("sliders", "sm")}Setup`]];
+  const opened = S.open.map(t => {
+    const x = S.exps[t], n = S.nodes[t], c = x ? color[t] : (n && nodeCluster(n) ? color[nodeCluster(n)] : null);
+    const lead = x ? `<span class="sw" style="background:${c};margin:0"></span>` : `<span class="dot" style="${c ? `background:${c}` : ""}"></span>`;
+    return [t, `${lead}${esc(t)}<span class="x" data-close="${esc(t)}">${icon("x", "sm")}</span>`];
+  });
+  document.getElementById("tabs").innerHTML = base.map(([k, l]) => `<button class="${S.tab === k ? "on" : ""}" data-tab="${k}">${l}</button>`).join("")
+    + (opened.length ? '<span class="sep"></span>' : "") + opened.map(([k, l]) => `<button class="${S.tab === k ? "on" : ""}" data-tab="${esc(k)}">${l}</button>`).join("");
+  renderActions();
+}
+function renderActions() {
+  const box = document.getElementById("actions");
+  let html;
+  if (!S.key) html = `<button class="btn primary go">${icon("play", "sm")}Run archive</button>`;
+  else if (S.live && !S.ended) {
+    const xs = Object.values(S.exps), running = xs.filter(x => x.status === "running").length;
+    html = `<span class="status"><span class="state live"></span><span class="num">${Object.keys(S.nodes).length} agents · ${running} proving</span>${meter(S.total, S.settings.budget)}<span class="num">${money(S.total)} <span class="quiet">/ ${money(S.settings.budget)}</span></span></span>`
+      + `<button class="btn danger sm go">${icon("stop", "sm")}Stop</button>`;
+  } else if (S.status) html = `<span class="status">${S.status}</span>`;
+  else html = `<span class="status">${pill(`<span class="state ${runState(S.reason)}"></span>${S.reason ? reasonHtml(S.reason) : "saved"}`, "", S.reason)}<span class="num">${money(S.total)}</span></span>`;
+  if (box.dataset.html !== html) { box.dataset.html = html; box.innerHTML = html; }
+}
+function openTab(t) { if (!S.open.includes(t)) S.open.push(t); show(t); scrollTo(0, 0); }
+function show(tab) {
+  S.tab = tab; saveCfg();
+  renderTabs();
+  const page = document.getElementById("page");
+  page.className = "page" + (tab === "map" ? " wide" : "") + (S.exps[tab] ? " frame" : "");
+  page.innerHTML = "";
+  delete page.dataset.live;
+  if (tab === "setup") page.appendChild(setupEl());
+  else if (tab === "map") renderMap(page);
+  else if (tab === "exps") renderExps(page);
+  else if (tab === "prompts") renderPrompts(page);
+  else if (S.nodes[tab]) renderNode(page, tab);
+  else if (S.exps[tab]) renderExp(page, tab);
+  else page.innerHTML = `<div class="empty-state">${icon("alert")}<span>Not in this run</span></div>`;
+}
+let redrawTimer = null;
+function redrawSoon() {  // the page after a node or experiment changed
+  if (redrawTimer) return;
+  redrawTimer = setTimeout(() => {
+    redrawTimer = null;
+    renderTabs(); renderNav();
+    const page = document.getElementById("page");
+    if (S.tab === "map") renderMap(page);
+    else if (S.tab === "exps") renderExps(page);
+    else if (S.nodes[S.tab]) renderNodeParts(S.tab);
+    else if (S.exps[S.tab]) renderExpHead(S.tab);
+  }, 300);
+}
+
+/* the stop decision: the verifier's (since 2026-11-06) or the manager's */
+function verdictWord(x) {
+  if (x.manager?.by !== "verify") return x.manager.new ? "new" : "not new";
+  if (x.manager.new) return "proved: stop";
+  const v = x.verify || {};
+  return v.definite === false ? "not definite" : (v.verdict || "no verdict") + (v.acknowledged ? ", gap acknowledged" : "");
+}
+function verdictPill(x) {
+  if (!x.manager) return "";
+  const w = verdictWord(x), v = x.verify?.verdict;
+  const cls = x.manager.new ? "good" : v === "false" ? "bad" : v === "gap" ? "warn" : "";
+  return pill(`${x.manager.new ? icon("check", "sm") : ""}${esc(w)}`, cls, x.manager.reason || "");
+}
+const REPORT_CLS = {proved: "good", partial: "warn", contradicted: "bad", none: ""};
+const reportPill = x => x.report?.status ? pill(esc(x.report.status.toLowerCase()), REPORT_CLS[x.report.status.toLowerCase()] ?? "") : "";
+function statusPill(st) {
+  const cls = {running: "accent", queued: "outline", reading: "violet", verifying: "violet", ended: ""}[st] ?? "";
+  return pill(`${st === "running" ? '<span class="state live"></span>' : ""}${esc(st)}`, cls);
+}
+function verifierEl(x) {
+  const v = x.verify, r = v.review || {};
+  const steps = (r.decisive_steps || []).map(s => `<li><b>${esc(s.basis || "")}</b> · ${esc(s.step || "")}<div class="quiet">${esc(s.checked || "")}</div></li>`).join("");
+  return `<div class="card verdict"><div class="hd">${icon("shield", "sm")}Verifier ${verdictPill(x)}<span class="right quiet num">${v.cost != null ? `${money(v.cost)} · ${v.responses} responses · ${v.runs} runs` : ""}</span></div><div class="bd">`
+    + (v.definite === false ? `<p class="quiet">${esc(v.definite_reason || "")}</p>` : "")
+    + (r.claimed ? `<p><b>Claimed</b> · ${esc(r.claimed)}</p>` : "")
+    + (r.reason || v.summary ? `<p>${esc(r.reason || v.summary)}</p>` : "")
+    + (r.acknowledged_where ? `<p><b>Acknowledged</b> · ${esc(r.acknowledged_where)}</p>` : "")
+    + (r.failing_step ? `<p><b>${x.manager?.new ? "Hardest step" : "Failing step"}</b> · ${esc(r.failing_step)}</p>` : "")
+    + (steps ? fold("Decisive steps", `<div class="body"><ul>${steps}</ul></div>`, {meta: `${r.decisive_steps.length}`}) : "")
+    + `</div></div>`;
+}
+
+/* ---------- setup ---------- */
+const GROUPS = [
+  ["Budget", "dollar", [["budget", "Archive", "$"], ["exp_budget", "Each experiment", "$"]]],
+  ["Swarms", "users", [["agents", "Agents"], ["max_experiments", "At once"], ["run_minutes", "Longest run", "", "min"]]],
+  ["Tree", "tree", [["workers", "Rollouts at once"], ["wait_rollouts", "Rollouts while proving"], ["seed_turns", "Seed turns"], ["step_turns", "Rollout turns"],
+    ["n", "Counterfactuals"], ["k", "Approaches each"], ["seed", "Seed"]]],
+];
+function setupEl() {
+  const el = document.createElement("div");
+  const v = S.cfg.settings;
+  const field = ([k, l, pre, post]) => `<label class="field">${l}<span class="adorn">${pre ? `<span>${pre}</span>` : ""}<input type="number" name="${k}" value="${v[k]}" step="any">${post ? `<span>${post}</span>` : ""}</span></label>`;
+  el.innerHTML = `<div class="card"><div class="hd">${icon("target", "sm")}Problem<span class="right"><button class="btn ghost sm reset" title="Defaults">${icon("refresh", "sm")}Defaults</button></span></div><div class="bd grid-fields">
+      <label class="field">Problem<select name="problem">${S.defaults.problems.map(p => `<option value="${p}" ${p === S.cfg.problem ? "selected" : ""}>p${p}</option>`).join("")}</select></label>
+      <label class="field">Stop rule<select name="stop_rule">${[["verify", "Verifier"], ["manager", "Manager (old)"]].map(([x, l]) => `<option value="${x}" ${x === (v.stop_rule || "verify") ? "selected" : ""}>${l}</option>`).join("")}</select></label>
+      <label class="field">A swarm for<select name="gate">${[["definite", "Definite answers only"], ["claim", "Any new claim (old)"]].map(([x, l]) => `<option value="${x}" ${x === (v.gate || "definite") ? "selected" : ""}>${l}</option>`).join("")}</select></label>
+    </div></div>`
+    + GROUPS.map(([t, ic, fs]) => `<div class="card"><div class="hd">${icon(ic, "sm")}${t}</div><div class="bd grid-fields">${fs.map(field).join("")}</div></div>`).join("")
+    + `<button class="btn primary go">${icon("play", "sm")}Run archive</button>`;
+  el.addEventListener("input", e => {
+    const t = e.target;
+    if (t.name === "problem") S.cfg.problem = +t.value;
+    else if (t.name === "stop_rule" || t.name === "gate") S.cfg.settings[t.name] = t.value;
+    else if (t.name) S.cfg.settings[t.name] = +t.value;
+    saveCfg();
+  });
+  el.querySelector(".reset").onclick = () => { S.cfg = fresh(); saveCfg(); show("setup"); };
+  return el;
+}
+const fresh = () => ({problem: S.defaults.problems[0], settings: {...S.defaults.defaults}});
+
+/* ---------- the map ---------- */
+function clusters() {
+  // each experiment's answer a color, in order; a node takes its experiment's, or the one the judge matched
+  const order = Object.keys(S.exps).sort((a, b) => +a.slice(1) - +b.slice(1));
+  const color = {};
+  order.forEach((e, i) => color[e] = PALETTE[i % PALETTE.length]);
+  return {order, color};
+}
+function nodeCluster(n) { return n.experiment || n.judge?.same_as || null; }
+function layout() {
+  const kids = {}, nodes = Object.values(S.nodes).sort((a, b) => +a.id.slice(1) - +b.id.slice(1));
+  nodes.forEach(n => { if (n.parent) (kids[n.parent] ||= []).push(n.id); });
+  const pos = {};
+  let row = 0;
+  const place = id => {
+    const ch = kids[id] || [];
+    ch.forEach(place);
+    pos[id] = {x: S.nodes[id].depth, y: ch.length ? (pos[ch[0]].y + pos[ch[ch.length - 1]].y) / 2 : row++};
+  };
+  nodes.filter(n => !n.parent || !S.nodes[n.parent]).forEach(n => place(n.id));
+  return {pos, rows: Math.max(row, 1), depth: Math.max(0, ...nodes.map(n => n.depth))};
+}
+function stat(k, v, ic, extra = "") { return `<div class="stat"><div class="k">${icon(ic, "sm")}${k}</div><div class="v">${v}</div>${extra}</div>`; }
+function renderMap(page) {
+  const ns = Object.values(S.nodes), xs = Object.values(S.exps);
+  const proved = xs.find(x => x.manager?.new);
+  const stats = `<div class="stats">${stat("Agents", ns.length, "bot")}${stat("Experiments", `${xs.length}${xs.some(x => x.status === "running") ? ` <span class="quiet">${xs.filter(x => x.status === "running").length} proving</span>` : ""}`, "flask")}`
+    + stat("Spent", `${money(S.total)} <span class="quiet">/ ${money(S.settings.budget)}</span>`, "dollar", meter(S.total, S.settings.budget))
+    + (proved ? stat("Proved", `<span class="ok">${ans(proved.answer)}</span>`, "check") : "") + `</div>`;
+  if (!ns.length) { page.innerHTML = stats + `<div class="empty-state">${icon("tree")}<span>${S.live && !S.ended ? "Starting" : "Empty"}</span></div>`; return; }
+  const {order, color} = clusters(), {pos, rows, depth} = layout();
+  const DX = 170, DY = 44, PX = 50, PY = 36;
+  const W = PX * 2 + depth * DX + 160, H = PY * 2 + (rows - 1) * DY + 10;
+  const xy = id => [PX + pos[id].x * DX, PY + pos[id].y * DY];
+  let edges = "", dots = "";
+  ns.forEach(n => {
+    if (!n.parent || !pos[n.parent]) return;
+    const [x1, y1] = xy(n.parent), [x2, y2] = xy(n.id), mx = (x1 + x2) / 2;
+    edges += `<path d="M${x1},${y1} C${mx},${y1} ${mx},${y2} ${x2},${y2}" fill="none" stroke="var(--line-2)" stroke-width="1.5" ${n.option && !n.option.counterfactual ? 'stroke-dasharray="4 3"' : ""}/>`;
+  });
+  ns.forEach(n => {
+    const [x, y] = xy(n.id), c = nodeCluster(n), col = c ? color[c] : null;
+    const pending = !["member", "stopped", "failed"].includes(n.status);
+    const fill = n.judge ? (col || "var(--ink-3)") : "var(--surface)";
+    const e = n.experiment ? S.exps[n.experiment] : null;
+    const tipText = `${n.id}${n.option ? ` · ${n.option.branch}` : ""} · ${n.belief?.answer ?? n.status}`;
+    dots += `<g class="n" data-node="${n.id}"><title>${esc(tipText)}</title>`
+      + (e ? `<circle cx="${x}" cy="${y}" r="14" fill="none" stroke="${col}" stroke-width="2"/>` : "")
+      + `<circle class="dot" cx="${x}" cy="${y}" r="8" fill="${fill}" stroke="${n.id === S.sel ? "var(--ink)" : (col || "var(--ink-3)")}" stroke-width="${n.id === S.sel ? 2.5 : 1.5}" ${pending ? 'stroke-dasharray="3 2"' : ""}/>`
+      + `<text x="${x}" y="${y - (e ? 19 : 13)}" text-anchor="middle">${n.id}${e ? ` · ${e.id}${e.manager?.new ? " ✓" : ""}` : ""}${n.status === "failed" ? " ✗" : ""}</text></g>`;
+  });
+  const legend = order.map(e => {
+    const x = S.exps[e];
+    return `<button data-exp="${e}"><span class="sw" style="background:${color[e]};margin:0"></span><b>${e}</b> ${ans(x.answer)} ${x.status === "ended" ? (x.manager ? verdictPill(x) : reportPill(x)) : statusPill(x.status)}</button>`;
+  }).join("");
+  const keep = page.querySelector(".map")?.scrollLeft;
+  page.innerHTML = stats + (legend ? `<div class="legend">${legend}</div>` : "") + `<div class="card"><div class="map"><svg width="${W}" height="${H}">${edges}${dots}</svg></div></div>`;
+  if (keep) page.querySelector(".map").scrollLeft = keep;
+}
+
+/* ---------- an agent ---------- */
+function streamOf(a) { return S.streams[a] ||= makeStream({first: "Problem"}); }
+function renderNode(page, id) {
+  S.sel = id;
+  page.innerHTML = `<div class="card nodehead"><div class="bd"></div></div>`
+    + `<div class="pwrap">${fold("Prompt", `<div class="body pbody quiet">Loading</div>`, {ico: "book", cls: "prompt"})}</div>`
+    + `<div class="section-title">${icon("msg", "sm")}Step<span class="line"></span></div><div class="nstream"></div><div class="nfoot"></div>`;
+  page.querySelector(".nstream").appendChild(streamOf(id).el);
+  const pd = page.querySelector("details.prompt");
+  pd.addEventListener("toggle", () => { if (pd.open && !pd.dataset.loaded) { pd.dataset.loaded = 1; renderPrompt(pd.querySelector(".pbody"), id, "step"); } });
+  renderNodeParts(id);
+}
+const NODE_CLS = {running: "accent", judging: "violet", experiment: "warn", options: "violet", member: "good", stopped: "", failed: "bad"};
+function renderNodeParts(id) {
+  const page = document.getElementById("page"), n = S.nodes[id];
+  const head = page.querySelector(".nodehead .bd");
+  if (!n || !head) return;
+  const e = n.experiment ? S.exps[n.experiment] : null, o = n.option, sig = JSON.stringify([n, e, S.ended]);
+  if (head.dataset.sig === sig) return;
+  head.dataset.sig = sig;
+  const {color} = clusters(), c = nodeCluster(n);
+  const judge = n.judge ? (n.judge.same_as ? `${`<button class="pill outline" data-open="${esc(n.judge.same_as)}"><span class="sw" style="background:${color[n.judge.same_as]};margin:0"></span>same as ${esc(n.judge.same_as)}</button>`}`
+    : e ? `<button class="pill warn" data-open="${e.id}">${icon("flask", "sm")}new → ${esc(e.id)}</button>` : n.judge.claim === false ? pill("no claim") : n.judge.definite === false ? pill("not definite") : pill(`new${n.judge.skipped ? ` · ${esc(n.judge.skipped)}` : ""}`, "accent")) : "";
+  head.innerHTML = `<div class="row"><span class="chip" style="font-size:13px">${c ? `<span class="sw" style="background:${color[c]};margin:0"></span>` : ""}${n.id}</span>${pill(esc(n.status), NODE_CLS[n.status] ?? "")}`
+    + (n.parent ? `<span class="crumbs">${icon("reply", "sm")}<button class="chip" data-open="${n.parent}">${n.parent}</button></span>` : "")
+    + (o ? `<span class="chip" title="option">${icon("branch", "sm")}${esc(o.branch)}</span>${o.p != null ? `<span class="quiet num" title="its probability">p ${o.p.toFixed(2)}</span>` : ""}` : "")
+    + `<span style="margin-left:auto" class="quiet num">depth ${n.depth} · ${n.responses} responses · ${money(n.cost)}</span></div>`
+    + (n.belief ? `<div class="answer"><span class="lab">Answer</span>${ans(n.belief.answer)}${n.belief.confidence != null ? pill(`${Math.round(100 * n.belief.confidence)}%`, "outline", "its confidence") : ""}</div>` : "")
+    + (n.judge ? `<div class="judge">${icon("shield", "sm")}${judge}<span>${esc(n.judge.reason || "")}</span></div>` : "")
+    + (!n.parent && e ? `<div class="judge">${icon("flask", "sm")}<button class="chip" data-open="${e.id}">${e.id}</button></div>` : "");
+  const foot = page.querySelector(".nfoot");
+  const opts = n.options || [];
+  const canRoll = S.live && !S.ended && n.status === "member";
+  foot.innerHTML = (opts.length ? `<div class="section-title">${icon("branch", "sm")}Options<span class="line"></span><span>${opts.filter(x => x.child).length} / ${opts.length}</span></div><div class="card"><div class="bd flush">${opts.map(x => `<div class="opt ${x.child ? "used" : ""}">
+      <div><span class="chip">${esc(x.branch)}</span></div>
+      <div class="num quiet">${x.p != null ? `${x.p.toFixed(2)}<div class="pbar"><i style="width:${(x.p * 100).toFixed(0)}%"></i></div>` : ""}</div>
+      <div>${x.counterfactual ? `<div class="cf">${md(x.counterfactual)}</div><div class="ap">${md(x.approach)}</div>` : `<span class="pill outline">${icon("arrow", "sm")}continue</span>`}</div>
+      <div>${x.child ? `<button class="chip" data-open="${x.child}">${icon("arrow", "sm")}${x.child}</button>` : (canRoll ? `<button class="btn sm" data-roll="${esc(x.branch)}">${icon("play", "sm")}Roll out</button>` : "")}</div></div>`).join("")}</div></div>` : "")
+    + `<div class="section-title">${icon("folder", "sm")}Scratch<span class="line"></span></div><div class="files" data-scratch="${esc(id)}"><div class="card list"><button class="btn ghost sm" data-files="1">${icon("refresh", "sm")}Load files</button></div><div class="view"></div></div>`;
+}
+function filesHtml(files, on) {
+  if (!files.length) return '<div class="quiet" style="padding:8px">None</div>';
+  const dirs = {};
+  files.forEach(f => { const i = f.path.lastIndexOf("/"); (dirs[i < 0 ? "" : f.path.slice(0, i)] ||= []).push(f); });
+  return Object.entries(dirs).map(([d, fs]) => (d ? `<div class="dir">${icon("folder", "sm")}${esc(d)}</div>` : "")
+    + fs.map(f => `<button title="${esc(f.path)}" class="f ${f.path === on ? "on" : ""}" data-file="${esc(f.path)}">${icon("file", "sm")}<span class="n">${esc(f.path.slice(d ? d.length + 1 : 0))}</span><span class="z">${bytes(f.size)}</span></button>`).join("")).join("");
+}
+function fileView(path, text) {
+  const isMd = /\.md$/i.test(path);
+  return `<div class="card"><div class="hd">${icon("file", "sm")}<span style="font-family:var(--mono);font-weight:500">${esc(path)}</span></div>${isMd && text != null ? `<div class="bd md-body">${md(text)}</div>` : `<pre>${esc(text)}</pre>`}</div>`;
+}
+async function renderFiles(id) {
+  const box = document.querySelector(`.files[data-scratch="${CSS.escape(id)}"]`);
+  if (!box) return;
+  const files = await (await fetch(`/api/archive/files?run=${encodeURIComponent(S.key)}&node=${id}`)).json();
+  box.querySelector(".list").innerHTML = `<button class="btn ghost sm" data-files="1">${icon("refresh", "sm")}Refresh</button>` + filesHtml(files, S.file);
+  if (S.file && files.some(f => f.path === S.file)) {
+    const f = await (await fetch(`/api/archive/file?run=${encodeURIComponent(S.key)}&node=${id}&path=${encodeURIComponent(S.file)}`)).json();
+    box.querySelector(".view").innerHTML = fileView(S.file, f.text ?? f.error);
+  }
+}
+
+/* ---------- an agent's prompt ---------- */
+const KINDS = {problem: ["problem", "", "the problem"], assumption: ["assumption", "outline", "an earlier step's option, relabelled as an assumption"],
+  verified: ["verified", "good", "its option, told as verified"], news: ["news", "warn", "news of experiments"], experiment: ["experiment", "warn", "its own experiment's result"],
+  cfvs: ["cfvs", "violet", "the CFVS question"], nudge: ["nudge", "", ""], user: ["user", "accent", ""], system: ["system", "", ""]};
+function blocksHtml(content) {
+  return content.map(b => {
+    if (b.type === "thinking") return b.thinking ? `<div class="ev think">${md(b.thinking)}</div>` : "";
+    if (b.type === "text") return b.text ? `<div class="ev">${md(b.text)}</div>` : "";
+    if (b.type === "tool_use") {
+      const i = b.input || {}, body = i.content ?? i.code ?? i.new_string ?? JSON.stringify(i, null, 1);
+      return `<details class="call"><summary>${icon("chev", "sm chev")}${toolChip(b.name)}<span class="first">${esc(i.filename || i.path || "")}</span></summary><pre class="code">${esc(body)}</pre></details>`;
+    }
+    return "";
+  }).join("");
+}
+function msgHtml(m) {
+  const c = m.content, num = `<span class="chip">#${m.i}</span>`;
+  if (m.kind === "assistant") {
+    const text = c.filter(b => b.type === "text" && b.text).map(b => b.text).join(" ");
+    const calls = c.filter(b => b.type === "tool_use");
+    return fold(`${num} ${pill(`${icon("msg", "sm")}response`, "accent")} ${calls.map(b => toolChip(b.name)).join(" ")} <span class="quiet">${esc(firstLine(text))}</span>`,
+      `<div class="body">${blocksHtml(c)}</div>`, {cls: "flat msg"});
+  }
+  if (m.kind === "tool_result") return c.map(r => {
+    const out = typeof r.content === "string" ? r.content : JSON.stringify(r.content, null, 1);
+    return fold(`${num} ${pill(`<span class="res" style="width:7px;height:7px;border-radius:50%;background:var(--${r.is_error ? "bad" : "good"})"></span>result`, "")} <span class="quiet" style="font-family:var(--mono)">${esc(firstLine(out))}</span>`,
+      `<pre class="${r.is_error ? "err" : ""}">${esc(out)}</pre>`, {cls: "flat msg"});
+  }).join("");
+  if (m.kind === "nudge") return `<div class="msg">${noteHtml(c)}</div>`;
+  const [label, cls, title] = KINDS[m.kind] || [m.kind, "", ""];
+  const body = md(typeof c === "string" ? c : JSON.stringify(c));
+  if (m.kind === "problem") return fold(`${num} ${pill(`${icon("inbox", "sm")}problem`)}`, `<div class="body"><div class="told problem">${body}</div></div>`, {cls: "flat msg"});
+  return `<div class="msg"><div class="kindrow">${num}${pill(esc(label), cls, title)}<span class="quiet">${esc(m.role)}</span></div><div class="told ${m.kind}">${body}</div></div>`;
+}
+async function renderPrompt(box, id, which) {
+  const r = await fetch(`/api/archive/prompt?run=${encodeURIComponent(S.key)}&node=${id}&which=${encodeURIComponent(which)}`);
+  const j = await r.json();
+  if (!r.ok) { box.textContent = j.error || "not found"; return; }
+  const step = which === "step", last = j.messages.length - 1;
+  const views = [["step", "Step"], ...j.cfvs.map(c => [c.which, c.prefix ? `CFVS · ${c.prefix}` : "CFVS"])];
+  const seg = `<div class="seg">${views.map(([w, l]) => `<button class="${w === which ? "on" : ""}" data-pwhich="${esc(w)}">${esc(l)}</button>`).join("")}</div>`;
+  // where it heard of each experiment: a NEWS message naming it, or the result of its own lineage's experiment
+  const heard = {};
+  j.messages.forEach(m => {
+    if (m.kind === "news") for (const x of String(m.content).matchAll(/^(e\d+): told that the answer is/gm)) heard[x[1]] ||= `${m.owner}'s news, #${m.i}`;
+    if (m.kind === "experiment") { const e = S.nodes[m.owner]?.experiment; if (e) heard[e] ||= `${m.owner}'s own result, #${m.i}`; }
+  });
+  const t0 = j.created, {color} = clusters();
+  const rows = j.experiments.map(e => {
+    let at;
+    if (!e.started || e.started > t0) at = pill(e.started ? `later +${ago(e.started - t0)}` : "never", "outline", "not started at its rollout");
+    else if (!e.read || e.read > t0) at = pill(`<span class="state live"></span>running`, "warn", `started ${ago(t0 - e.started)} before${e.read ? `, read ${ago(e.read - t0)} after` : ""}`);
+    else at = pill(`${icon("check", "sm")}read`, "good", `read ${ago(t0 - e.read)} before`);
+    const told = heard[e.id] || j.known.includes(e.id) ? `<span class="ok" title="${esc(heard[e.id] || "told")}">${icon("check", "sm")}</span>` : `<span class="no" title="not told">${icon("x", "sm")}</span>`;
+    return `<tr><td><button class="chip" data-open="${e.id}"><span class="sw" style="background:${color[e.id] || "var(--ink-4)"};margin:0"></span>${e.id}</button></td><td>${ans(e.answer)}</td><td><button class="chip" data-open="${e.node}">${e.node}</button></td><td class="num quiet">${clock(e.started)}</td><td class="num quiet">${clock(e.ended)}</td><td class="num quiet">${clock(e.read)}</td><td>${e.report ? pill(esc(e.report.toLowerCase()), REPORT_CLS[e.report.toLowerCase()] ?? "") : ""}</td><td>${at}</td><td>${told}</td></tr>`;
+  }).join("");
+  const groups = [];
+  j.messages.forEach(m => { const g = groups[groups.length - 1]; if (g && g.owner === m.owner) g.ms.push(m); else groups.push({owner: m.owner, ms: [m]}); });
+  box.className = "body pbody";
+  box.dataset.node = id;
+  const lineage = `<div class="crumbs">${icon("branch", "sm")}${j.chain.map(n => n === id ? `<span class="chip" style="color:var(--ink);font-weight:600">${n}</span>` : `<button class="chip" data-open="${n}">${n}</button>`).join(icon("chev", "sm"))}`
+    + (step ? `<span style="margin-left:12px" class="crumbs" title="its runs could read these experiments' workspaces">${icon("folder", "sm")}${j.known.length ? j.known.map(k => `<span class="chip">${k}</span>`).join("") : '<span class="quiet">none</span>'}</span>` : "") + `</div>`;
+  const stepTip = `Rolled out (drawn) at ${clock(t0)}; any news is told at once, before its first response. The conversation below is exactly what its first response was sent (#0–#${last}); its step follows it.`;
+  const cfvsTip = `The CFVS call${j.cfvs.length > 1 ? (which === "cfvs" ? " made when it joined, before its experiment's result" : `, asked again once ${which.slice(5)} was read, with the result known`) : ""}: its conversation then (#0–#${last - 1}) and the question as a system message after it (#${last}).`;
+  const replies = j.replies == null ? (step ? "" : `<p class="quiet">${icon("info", "sm")} No CFVS replies kept (before 2026-11-05)</p>`)
+    : j.replies.map((x, i) => fold(`Reply${j.replies.length > 1 ? ` ${i + 1} of ${j.replies.length}` : ""}`, `<pre style="margin:0;border:0;border-radius:0">${esc(x.text)}</pre>`, {open: i === j.replies.length - 1, ico: "msg", meta: `${x.options} options · ${clock(x.time)}`})).join("");
+  box.innerHTML = `<div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap">${seg}<span style="margin-bottom:14px">${tip(step ? stepTip : cfvsTip)}</span></div>`
+    + `<div style="margin-bottom:14px">${lineage}</div>`
+    + (step ? `<div class="card"><div class="hd">${icon("flask", "sm")}Experiments at its rollout<span class="sub num">${clock(t0)}</span><span class="right">${tip("read: its report and verdict were in, so agents drawn from then on hear of it. ended: its swarm stopped (not kept before 2026-11-05).")}</span></div>`
+      + (rows ? `<div class="bd flush" style="overflow-x:auto"><table class="tbl"><tr><th></th><th>Answer</th><th>From</th><th>Started</th><th>Ended</th><th>Read</th><th>Report</th><th>At rollout</th><th>Told</th></tr>${rows}</table></div>` : `<div class="bd quiet">None</div>`) + `</div>`
+      : replies)
+    + `<div class="section-title">${icon("inbox", "sm")}Sent<span class="line"></span></div>`
+    + fold(`System prompt ${j.tools.map(t => toolChip(t)).join(" ")}`, `<pre style="margin:0;border:0;border-radius:0">${esc(j.system)}</pre>`, {ico: "code"})
+    + groups.map(g => {
+      const own = g.owner === id, col = color[nodeCluster(S.nodes[g.owner] || {})];
+      const who = `<span class="chip" ${own ? 'style="color:var(--ink);font-weight:600"' : ""}>${col ? `<span class="sw" style="background:${col};margin:0"></span>` : ""}${esc(g.owner)}</span>`;
+      const kinds = [...new Set(g.ms.map(m => m.kind).filter(k => KINDS[k] && k !== "user" && k !== "system"))].map(k => pill(KINDS[k][0], KINDS[k][1])).join(" ");
+      return fold(`${who} ${own ? pill(step ? "this agent" : "this agent · question", "accent") : ""} ${kinds}`, `<div class="body">${!own ? `<button class="btn ghost sm" data-open="${esc(g.owner)}" style="margin-bottom:6px">${icon("arrow", "sm")}Open ${esc(g.owner)}</button>` : ""}${g.ms.map(msgHtml).join("")}</div>`,
+        {open: own, cls: "grp", meta: `#${g.ms[0].i}–#${g.ms[g.ms.length - 1].i} · ${g.ms.length}`});
+    }).join("");
+}
+
+/* ---------- experiments ---------- */
+function renderExps(page) {
+  const {order, color} = clusters();
+  page.innerHTML = order.length ? `<div class="card"><div class="bd flush" style="overflow-x:auto"><table class="tbl"><tr><th></th><th>Answer</th><th>From</th><th>Status</th><th>Report</th><th>Stop?</th><th>Cost</th></tr>${order.map(id => {
+    const x = S.exps[id];
+    return `<tr class="click" data-exp="${id}"><td><span class="sw" style="background:${color[id]}"></span><b>${id}</b></td><td>${ans(x.answer)}</td><td><span class="chip">${x.node}</span></td><td>${statusPill(x.status)}${x.reason && x.status === "ended" ? `<div class="quiet" style="margin-top:4px">${esc(x.reason)}</div>` : ""}</td><td>${reportPill(x)}</td><td>${verdictPill(x)}</td><td class="num">${money(x.cost)}${x.budget ? `<div style="margin-top:5px">${meter(x.cost, x.budget)}</div>` : ""}</td></tr>`;
+  }).join("")}</table></div></div>` : `<div class="empty-state">${icon("flask")}<span>No experiments yet</span></div>`;
+}
+function renderExp(page, id) {
+  const x = S.exps[id];
+  const live = x.status === "running" && S.live && !S.ended ? x.swarm : "";
+  page.innerHTML = `<div class="exphead"><div class="ehead"></div></div>`
+    + (x.status === "queued" ? "" : `<iframe class="swarm" src="swarm.html?embed=1&run=${encodeURIComponent(x.key)}${live ? `&live=${encodeURIComponent(live)}` : ""}"></iframe>`);
+  page.dataset.live = live;
+  renderExpHead(id);
+}
+function renderExpHead(id) {
+  const box = document.querySelector(".ehead"), x = S.exps[id];
+  if (!box) return;
+  const wasLive = document.getElementById("page").dataset.live;
+  if (wasLive && x.status !== "running") return show(id);  // its swarm ended: reload it saved
+  const {color} = clusters();
+  const html = `<div class="card"><div class="bd"><div class="nodehead"><div class="row"><span class="chip" style="font-size:13px"><span class="sw" style="background:${color[id]};margin:0"></span>${id}</span>${statusPill(x.status)}${reportPill(x)}${verdictPill(x)}`
+    + `<span class="crumbs">${icon("reply", "sm")}<button class="chip" data-open="${x.node}">${x.node}</button></span>`
+    + `<span style="margin-left:auto;display:flex;gap:8px;align-items:center" class="num">${x.budget ? meter(x.cost, x.budget) : ""}${money(x.cost)}${x.budget ? ` <span class="quiet">/ ${money(x.budget)}</span>` : ""}</span></div>`
+    + `<div class="answer"><span class="lab">Told</span>${ans(x.answer)}</div>${x.reason ? `<div class="quiet">${esc(x.reason)}</div>` : ""}</div></div></div>`
+    + (x.halves ? fold("Halves", `<div class="body md-body">${md(x.halves)}</div>`, {ico: "target"}) : "")
+    + (x.verify ? verifierEl(x) : x.manager ? `<div class="card"><div class="hd">${icon("shield", "sm")}Manager ${verdictPill(x)}</div><div class="bd">${esc(x.manager.reason || "")}</div></div>` : "")
+    + (x.report ? fold(`Report ${reportPill(x)}`, `<div class="body md-body">${md(x.report.text)}</div>`, {open: !!x.manager?.new, ico: "file"}) : "");
+  if (box.dataset.html === html) return;
+  const opened = [...box.querySelectorAll("details")].map(d => d.open);
+  box.dataset.html = html;
+  box.innerHTML = html;
+  box.querySelectorAll("details").forEach((d, i) => { if (opened[i] != null) d.open = opened[i]; });
+}
+
+/* ---------- prompts ---------- */
+const PROMPT_NAMES = {system: "Agent system prompt", options: "CFVS options", take: "Take an option", relabel: "Relabel", belief: "Belief",
+  judge: "Judge", halves: "Halves", swarm_system: "Swarm system prompt", swarm_prompt: "Swarm first message", report: "Report", manager: "Manager",
+  experiment: "Experiment result", news: "News", contract: "Answer contract", definite: "Definite", verify_system: "Verifier system prompt", verify: "Verifier"};
+async function renderPrompts(page) {
+  const j = await (await fetch(`/api/archive/prompts?run=${encodeURIComponent(S.key)}`)).json();
+  if (S.tab !== "prompts") return;
+  const s = j.settings || {};
+  const kv = Object.entries(s).filter(([k]) => k !== "limits").map(([k, v]) => `<dt>${esc(k)}</dt><dd>${esc(typeof v === "object" ? JSON.stringify(v) : v)}</dd>`).join("")
+    + Object.entries(s.limits || {}).map(([k, v]) => `<dt>${esc(k)}</dt><dd>${esc(v)}</dd>`).join("");
+  page.innerHTML = `<div class="card"><div class="hd">${icon("sliders", "sm")}Settings<span class="right quiet" style="font-family:var(--mono)">${esc(S.folder)}</span></div><div class="bd"><dl class="kv">${kv}</dl></div></div>`
+    + `<div class="section-title">${icon("book", "sm")}Prompts<span class="line"></span></div>`
+    + Object.entries(j.prompts || {}).map(([k, v]) => fold(`${esc(PROMPT_NAMES[k] || k)} <span class="chip">${esc(k)}</span>`, `<pre style="margin:0;border:0;border-radius:0">${esc(v)}</pre>`, {meta: `${String(v).split("\n").length} lines`})).join("");
+}
+
+/* ---------- events ---------- */
+function onEvent(e) {
+  if (e.a) streamOf(e.a).on(e);
+  else if (e.k === "start") { S.settings = e.settings; S.folder = e.folder; }
+  else if (e.k === "node") { S.nodes[e.node.id] = e.node; redrawSoon(); }
+  else if (e.k === "exp") { S.exps[e.exp.id] = e.exp; redrawSoon(); }
+  else if (e.k === "spent") { S.total = e.total; renderActions(); renderNav(); }
+  else if (e.k === "end") {
+    S.ended = true; S.total = e.cost; S.reason = e.reason;
+    S.follower?.close(); S.follower = null;
+    setTimeout(loadRuns, 500);
+    redrawSoon();
+  }
+  if (S.pendingTab && S.tab === "map" && (S.nodes[S.pendingTab] || S.exps[S.pendingTab])) { const t = S.pendingTab; S.pendingTab = null; setTimeout(() => show(t)); }
+}
+function reset() { S.pendingTab = null; S.follower?.close(); S.follower = null; S.nodes = {}; S.exps = {}; S.streams = {}; S.total = 0; S.sel = null; S.file = null; S.reason = ""; S.status = ""; }
+async function openRun(id, keepTabs = false) {
+  const r = S.runs.find(x => x.id === id);
+  if (!r) return;
+  const tabs = keepTabs ? {open: S.open, tab: S.tab} : null;
+  reset();
+  S.open = tabs?.open || [];
+  S.key = id; saveCfg(); renderNav();
+  S.live = r.live; S.ended = false; S.status = "Loading";
+  renderTabs();
+  if (r.live) {
+    S.follower = follow("archive", id, evs => evs.forEach(onEvent), {
+      onGone: () => loadSaved(id, tabs),  // the server no longer holds it: show it from disk
+      onLost: () => { S.status = `<span class="quiet">reconnecting</span>`; renderActions(); },
+      onBack: () => { S.status = ""; renderActions(); },
+    });
+    S.status = "";
+    S.pendingTab = tabs?.tab;
+    show(tabs && valid(tabs.tab) ? tabs.tab : "map");
+  } else await loadSaved(id, tabs);
+}
+const valid = t => ["map", "exps", "prompts"].includes(t) || S.nodes[t] || S.exps[t];
+async function loadSaved(id, tabs) {
+  const open = S.open;
+  reset();
+  S.open = open; S.live = false; S.ended = false;
+  const events = await (await fetch(`/api/archive/saved?run=${encodeURIComponent(id)}`)).json();
+  if (S.key !== id) return;
+  events.forEach(onEvent);
+  S.open = S.open.filter(valid);
+  show(tabs && valid(tabs.tab) ? tabs.tab : "map");
+}
+async function start() {
+  const r = await fetch("/api/archive/run", {method: "POST", body: JSON.stringify({problem: S.cfg.problem, settings: S.cfg.settings})});
+  const j = await r.json();
+  if (!j.id) { S.status = `<span class="no">${esc(j.error || "could not start")}</span>`; return renderActions(); }
+  await loadRuns();
+  openRun(j.id);
+}
+function stop() { fetch("/api/archive/stop", {method: "POST", body: JSON.stringify({id: S.key})}); S.status = `<span class="quiet">stopping</span>`; renderActions(); }
+
+document.addEventListener("click", async e => {
+  const t = e.target.closest("[data-close],[data-node],[data-exp],button");
+  if (!t) return;
+  if (t.dataset.close) { S.open = S.open.filter(x => x !== t.dataset.close); show(S.tab === t.dataset.close ? "map" : S.tab); e.stopPropagation(); return; }
+  if (t.dataset.node) return openTab(t.dataset.node);
+  if (t.dataset.exp) return openTab(t.dataset.exp);
+  if (t.dataset.open) return openTab(t.dataset.open);
+  if (t.dataset.run) { scrollTo(0, 0); return openRun(t.dataset.run); }
+  if (t.dataset.new) { reset(); S.key = null; S.ended = true; S.open = []; saveCfg(); renderNav(); return show("setup"); }
+  if (t.dataset.tab) return show(t.dataset.tab);
+  if (t.dataset.pwhich) { const box = t.closest(".pbody"); return renderPrompt(box, box.dataset.node, t.dataset.pwhich); }
+  if (t.dataset.files) return renderFiles(S.tab);
+  if (t.dataset.file) { S.file = t.dataset.file; return renderFiles(S.tab); }
+  if (t.dataset.roll) {
+    const r = await (await fetch("/api/archive/rollout", {method: "POST", body: JSON.stringify({id: S.key, node: S.tab, branch: t.dataset.roll})})).json();
+    t.replaceWith(Object.assign(document.createElement("span"), {className: "pill " + (r.error ? "bad" : "accent"), textContent: r.error || "queued"}));
+    return;
+  }
+  if (t.classList.contains("go")) return S.key ? stop() : start();
+});
+
+addEventListener("DOMContentLoaded", async () => {
+  sidebar({active: "archive", newLabel: "New archive", filterKey: "archive-filter"});
+  if (!location.protocol.startsWith("http")) {
+    document.getElementById("page").innerHTML = `<div class="empty-state">${icon("alert")}<span>Open from the server: <code>http://127.0.0.1:8765/archive.html</code></span></div>`;
+    return;
+  }
+  try {
+    const r = await fetch("/api/archive/defaults");
+    if (!r.ok) throw new Error(r.status);
+    S.defaults = await r.json();
+  } catch (e) {
+    document.getElementById("page").innerHTML = `<div class="empty-state">${icon("alert")}<span>No server: <code>op-env uv run python explorer/serve.py</code></span></div>`;
+    Server.start(() => location.reload());
+    return;
+  }
+  Server.start(async () => { await loadRuns(); if (S.key) openRun(S.key, true); });  // the server restarted: back where we were
+  const kept = store.get(KEY, {});
+  S.cfg = kept.cfg?.settings ? {...fresh(), ...kept.cfg, settings: {...S.defaults.defaults, ...kept.cfg.settings}} : fresh();
+  await loadRuns();
+  if (kept.key && S.runs.some(r => r.id === kept.key)) { S.open = kept.open || []; S.tab = kept.tab; openRun(kept.key, true); }
+  else { S.key = null; renderNav(); show("setup"); }
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,116 @@
+FIXED-FACTOR CANONICAL-FIBER SUBCLASS OF COARSE K
+This is an unconditional restricted theorem, NOT arbitrary low-word coverage.
+
+Theorem (c>=4). Let f in RM(r,c+r), wt(f)<(5/2)2^c. Suppose after
+an affine normalization, each fiber over x in F2^c is either {0} or a
+three-point set {u,v,u+v}, and every resulting two-plane contains one
+fixed nonzero vector e. Then f is XOR of at most three affine c-flats,
+or its support has affine span at most c+4.
+
+1. Put e=e1 in the fiber coordinates y=(y1,z), z in F2^(r-1).
+Every fiber is uniquely {e1} XOR ({z=a(x)} x F2_y1), for a map a.
+Indeed a=0 yields singleton0; a!=0 yields the three nonzero points of
+the plane spanned by e1 and (0,a). Thus f=A+G, where A is the affine
+c-flat y=e1 and G is the graph indicator of a with the y1 coordinate free.
+Second fiber moments equal the coordinates a_j, so degree(f)<=r implies
+deg(a_j)<=2 (sum y1*z_j*f over the r fiber variables has degree<=2).
+Also deg(G)<=r, and G=product_j(z_j+a_j(x)). The coefficient of the
+z monomial omitting i,j is a_i*a_j and must have degree<=3.
+Writing q_i for the homogeneous squarefree quadratic part of a_i gives
+q_i wedge q_j=0. Finally wt(f)=d+2|{x:a(x)!=0}|, d=2^c, so a has
+strictly more than d/4 common zeros.
+
+2. Let W=span(q_i) in Lambda^2(base dual). Pairwise wedges vanish.
+The following elementary classification suffices:
+(A) dim W<=2; or
+(B) all q in W have one common linear factor; or
+(C) dim W=3, and W is supported on a four-dimensional space.
+Proof: if W contains q of rank>=6, the kernel of multiplication
+q wedge - on Lambda^2 is just span(q), so dimW=1. This follows by writing
+q=e12+e34+...: coefficients on mixed pairs force all mixed coefficients
+zero, and coefficients on pairs of symplectic blocks force all diagonal
+pair coefficients equal. External variables contribute injectively.
+If q has rank4, the same block argument forces every p with p wedge q=0
+to be supported in the same four-space. W is totally isotropic in the
+nondegenerate alternating six-space Lambda^2(F2^4), hence dimW<=3.
+If all nonzero q have rank2, their planes pairwise meet. A family of
+pairwise-intersecting two-planes either shares a line, or lies in one
+three-space: choose two planes meeting in L and a third not containing L;
+the third and then every other plane must lie in their three-dimensional
+sum. This gives (B) or dimW<=3 supported on a three-space.
+
+3. In case(B), write q_i=l*b_i for linear forms b_i. On each affine
+hyperplane l=0 or1, every a_i is affine. Hence each half of G is an affine
+c-flat (there are c-1 free base coordinates and free y1). Along with A,
+this is a sum of at most three minimum words.
+
+4. Let P be the span of the coordinate functions a_i. Its quadratic-top
+map has image W; write s=dim(P intersect RM(1,c)). Since the common zero
+set has size>d/4, s<=1: otherwise two independent affine constraints give
+at most d/4 zeros. A constant1 constraint is impossible. Thus if dimW<=2,
+dimP<=3. After a linear change of z coordinates, a has at most three
+nonzero coordinates, so support(f) lies in a linear(c+4)-space.
+The only remaining case is dimW=3,s=1,dimP=4.
+
+5. Four-dimensional reduction in that remaining case. Let U be the
+quadratic-essential linear coordinates of W, dim(U)<=4, and let t be the
+unique nonzero affine function in P. The common zeros lie in t=0 and
+have conditional density>1/2 there. Apart from t choose three coordinates
+of a with quadratic tops a basis of W. If t involves any variable outside
+U, then on t=0 these remaining coordinates have tops W unchanged. Any
+further nonzero linear dependence on external variables makes the
+conditional common-zero density<=1/2; otherwise the three equations reduce
+to affine perturbations of W on U. The finite check in step6 shows these
+also have density<=1/2. Thus t depends only on U. The same conditional
+argument then eliminates every external linear variable from the other
+three coordinates. So a depends on at most four base coordinates.
+Choose four (adding unused coordinates if needed; c>=4), and add back the
+remaining c-4 free coordinates after the finite verification below.
+
+6. Exact finite check, executable in agent3_fixedfactor_graph_check.py.
+Three-dimensional pairwise-wedge-null subspaces of Lambda^2(F2^4) are
+its135 Lagrangians. The GL4 orbits have sizes15,15,105, represented by
+ <12,13,14> (common factor, already done),
+ <12,13,23>, and <12,13,14+23>.
+The checker explicitly enumerates all135 subspaces and computes stabilizer
+orders1344,1344,192 by enumerating all20160 elements of GL4. The first
+orbit has a common factor; the second is all-rank2 with no common factor;
+the third has rank4 members. They are disjoint and their sizes sum135.
+For each of the latter two W representatives, EVERY affine perturbation
+of its three basis forms is checked (32^3 possibilities). The maximum
+number of common zeros out of16 is8 and7 respectively. This establishes
+the finite zero-density bound used in step5, also when U has dimension3.
+
+For the remaining four-dimensional P on four base variables, the kernel
+of quadratic-top is spanned by an affine nonconstant function t (30
+choices). Choose ANY complement to <t> in the five-dimensional affine
+space; all triples of lifts of the chosen three basis forms of W are
+then enumerated (16^3 choices). This covers every P, possibly repeatedly.
+Keep only those P with >4 common zeros. There are exactly56 and104 P's.
+The full affine-input action preserving W is generated explicitly:
+all GL4 stabilizers are enumerated, a generating set is found by direct
+group closure, and four translations are added. The retained P's form
+one orbit of size56 and two orbits totaling104 respectively.
+For each of these THREE orbit representatives, the checker constructs
+its complete support in F2^9 (four base, one y1, four z coordinates),
+finds explicit affine4-flats whose XOR is this support, and VERIFIES
+all512 support bits and flat ranks exactly. Randomness is used only to
+find a witness; a failed search raises an error, and every found witness
+is verified by exact equality, so no probabilistic inference is used.
+The input/output affine equivalence preserves the extra flat A: input
+changes preserve {all x,y=e1}; an output GL4 change of z fixes z=0.
+Hence the three witnesses cover EVERY retained P. Multiplying by free
+base F2^(c-4), and by delta0 on any unused fiber coordinates, gives affine
+c-flat witnesses in the original ambient dimension. This proves the
+restricted theorem.
+
+Files:
+  agent3_fixedfactor_graph_check.py: complete standalone verifier
+  agent3_fixedfactor_graph_check.json: three explicit decompositions
+Executed successfully: all135 Lagrangians, all2*32768 affine-lift triples,
+all2*30*4096 hard candidates, all finite group closure, all support checks.
+
+WHAT THIS DOES NOT PROVE: arbitrary normalized fibers may have five or
+more points; rank2 moments need not have a fixed common factor; moments
+may have rank4 or higher. None of those cases is covered. In particular
+this is NOT a proof of K or of the full spectrum exclusions.

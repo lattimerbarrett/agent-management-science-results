@@ -1,0 +1,11 @@
+import sympy as s
+n=s.symbols('n', integer=True, positive=True)
+a=(n-1)/(n-2)
+p=(n+2)/(n-2)
+pN=(n+3)/(n-1)
+bn=(n-2)/(2*(n-1)); bN=(n-1)/(2*n)
+print('power mismatch if lift unchanged:',s.factor(p-pN))
+print('matching powers after v=A*u^a:',s.simplify(a-1+p-a*pN))
+print('extra gradient coefficient:',s.factor(a*(a-1)))
+print('remaining Robin coefficient:',s.factor(bN-a*bn))
+print('remaining Robin after no power:',s.factor(bN-bn))

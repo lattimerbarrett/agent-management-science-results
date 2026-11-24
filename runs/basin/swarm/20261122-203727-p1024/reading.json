@@ -1,0 +1,67 @@
+{
+ "run": "20261122-203727-p1024",
+ "problem": 1024,
+ "told": false,
+ "solo": true,
+ "answer": "An exact finite determinantal formula is\n\\[\n\\boxed{\\Delta_b=\\operatorname{rank}A_S-\\operatorname{rank}B_S-\\operatorname{rank}A_O+\\operatorname{rank}B_O-\\operatorname{rank}A_L+\\operatorname{rank}B_L,}\n\\]\nwith all ranks evaluated after substituting the given vector \\(b\\), and matrices defined as follows.\n\nSet\n\\[\nN=4g-3,\\quad J=\\left\\lfloor\\frac{N-1}{k}\\right\\rfloor,\\quad D=N+J(2g-1),\\quad M=D+2g-1,\\quad K=M+D,\\quad P=M+2D.\n\\]\nWorking modulo \\(q^N\\), put\n\\[\ns=(1-t^{4g+2})^{1/2},\\quad v=-t^{2-2g}s,\\quad B=1-kt^k\\phi_b(t)q^k,\n\\]\n\\[\nQ_n=t^nq^nB^{-n/k},\\qquad R_n=t^nq^nB^{1-n/k}\\qquad(0\\le n<N).\n\\]\nThe columns of the \\(N\\times N\\) matrices \\(T_O,T_L\\), indexed by \\(n\\), are respectively \\(Q_n\\) and \\(vR_n\\), in the basis \\(1,q,\\ldots,q^{N-1}\\). The columns \\(2n,2n+1\\) of the \\(2N\\times2N\\) matrix \\(T_S\\) are\n\\[\n\\begin{pmatrix}vQ_n\\\\-v(t^{-1}+t^k\\phi_b'(t)q^k)Q_n\\end{pmatrix},\\qquad\n\\begin{pmatrix}0\\\\R_n\\end{pmatrix},\n\\]\nin the ordered basis \\((1,0),(0,1),(q,0),(0,q),\\ldots\\).\n\nLet\n\\[\n\\mathcal H_K=\\{(m,0):0\\le m\\le K,\\ m\\text{ even}\\}\\cup\\{(m,1):2g+1\\le m\\le K,\\ m\\text{ odd}\\}.\n\\]\nFor \\(F\\in\\{O,S,L\\}\\), let \\(d\\) be the size of \\(T_F\\). Define \\(A_F\\) with rows \\((i,e)\\), where \\(0\\le i<d\\) and \\(-P\\le e\\le-1\\), and columns \\((j,m,\\epsilon)\\), where \\(0\\le j<d\\) and \\((m,\\epsilon)\\in\\mathcal H_K\\), by\n\\[\n(A_F)_{(i,e),(j,m,\\epsilon)}=[t^e]\\bigl((T_F)_{ij}(t)t^{-m}s^\\epsilon\\bigr).\n\\]\nLet \\(B_F\\) be the submatrix consisting of the rows with \\(-P\\le e<-M\\). This formula applies to every allowed nonzero complex vector \\(b\\), including vectors with vanishing components.",
+ "claims_proof": true,
+ "where": "Reply #1",
+ "answer_reason": "The agent explicitly gives this rank formula as its answer and concludes that its proof covers every allowed vector, with no unresolved cases.",
+ "definite": true,
+ "verify": {
+  "verdict": "sound",
+  "acknowledged": false,
+  "review": {
+   "claimed": "The six-rank determinantal formula in the final reply computes \u0394_b for every g\u22652 and every allowed nonzero complex coefficient vector b.",
+   "verdict": "sound",
+   "team_acknowledged_gap": false,
+   "decisive_steps": [
+    {
+     "step": "Reduction to F_N=F/I_E^N F with N=4g\u22123 (final reply \u00a72.1).",
+     "basis": "argument",
+     "checked": "Checked the graded pieces: O(np), extensions of O(np) and T_C(np), and T_C(np). Their H\u00b9 vanishes for n\u22654g\u22123, so the infinitesimal H\u00b9 groups stabilize. Formal functions applies to the proper resolution; R\u00b9f_*F is coherent and supported at the singular point, and the maximal-ideal and E-adic filtrations are cofinal. This identifies the stabilized group with H\u00b9(X_b,F)."
+    },
+    {
+     "step": "The stated transition matrices and inverse formulas (final reply \u00a7\u00a72.2\u20132.3).",
+     "basis": "argument",
+     "checked": "Independently differentiated q=t\u207b\u00b9u(1+k\u03c6u^k)^(\u22121/k). This gives u\u2202u=Bq\u2202q and the stated horizontal shear. Substitution yields Q_n and R_n, the determinant gives T_L, and reversing the coordinate change gives exactly the displayed inverse columns."
+    },
+    {
+     "step": "Uniform pole bound D and vanishing after twisting by Mp (final reply \u00a72.3).",
+     "basis": "argument",
+     "checked": "Checked the pole estimates, including both derivative terms. Writing a=2g\u22121, an inverse derivative term has pole at most n+\u2113a+a+1, with n+(\u2113+1)k<N; this is bounded by D=N+Ja. The forward derivative terms and all other entries also satisfy the stated bound. Thus O(\u2212Dp)^d\u2282F_N\u2282O(Dp)^d. The torsion quotient and M\u2212D=2g\u22121 imply H\u00b9(F_N(Mp))=0."
+    },
+    {
+     "step": "Finite principal-parts calculation and cancellation (final reply \u00a72.4).",
+     "basis": "argument",
+     "checked": "The functions indexed by H_K form the indicated basis of H\u2070(O(Kp)). The pole bounds show that all global sections of F_N(Mp) occur among these vectors and that B_F imposes precisely the forbidden principal coefficients. Hence the image in the dM-dimensional principal-parts space has dimension rank A_F\u2212rank B_F. This proves h\u00b9(F)=dM\u2212rank A_F+rank B_F; the dM terms cancel in O\u2212S+L."
+    },
+    {
+     "step": "Exact implementation and reported checks.",
+     "basis": "computation",
+     "checked": "Read and reran both the archived scratchpad and the code printed in the final reply. All transition tests, pole checks, zero-vector checks for g=2,\u2026,8, and six reported nonzero examples passed exactly. Also checked the individual pole-exponent inequalities computationally through g=500. These tests support, rather than replace, the uniform arguments."
+    }
+   ],
+   "failing_step": "No failing step found. The most delicate step is the passage from analytic cohomology to the finite infinitesimal neighborhood using stabilization and formal functions.",
+   "reason": "The proof supplies a valid finite principal-parts computation of each of the three cohomology dimensions. The matrix bounds and rank identity hold after every specialization of b, without assuming any coefficient is nonzero individually or imposing genericity. The final record contains no acknowledged unresolved gap."
+  },
+  "responses": 6,
+  "runs": 1,
+  "cost": 0.129
+ },
+ "stop": true,
+ "contract": {
+  "form": "A complete answer is an exact, unconditional formula or finite explicit rule for the integer \u0394_b in terms of g and the full nonzero coefficient vector b, valid for every integer g \u2265 2 and every allowed b, including all patterns of vanishing components. Any case distinctions must cover all allowed inputs and determine a unique value in each case.",
+  "not_enough": "Bounds, a range of possible values, an assertion that the value is unknown or undetermined, a conjecture-dependent formula, or a result only for generic b or selected cases would not settle the question. Nor would a formula depending on additional quantities whose values are left unspecified."
+ },
+ "definite_reason": "The proposed answer gives a finite, explicit rule using ranks of fully specified matrices determined by g and the entire vector b. It assigns a unique integer to every allowed input, including all patterns of vanishing components, without leaving additional quantities unspecified.",
+ "reference": "\\[\\boxed{\\displaystyle \\Delta_b=-\\max\\left\\{j\\in\\mathbb Z:0\\leq j<\\left\\lfloor\\frac{g+2}{3}\\right\\rfloor,\\ b_j\\neq0\\right\\}.}\\]",
+ "correct": false,
+ "graded_by": "judge",
+ "matharena": true,
+ "restated": true,
+ "grade_note": "The response gives a rank computation using large matrices constructed from \\(g\\) and \\(b\\), rather than the explicit negative largest index with \\(b_j\\ne0\\). Establishing agreement requires evaluating those ranks or proving their reduction to the ground-truth formula, not routine algebra.",
+ "solved": false,
+ "cost": 0.1628,
+ "read_at": 1795398361.642517
+}

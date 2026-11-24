@@ -1,0 +1,522 @@
+DETAILED PROOF APPENDIX FOR d=5
+
+No classification of uniform bundles is assumed. Finite Chern-class eliminations are certified by the standalone Python suite; all reconstructions are geometric arguments given below.
+
+
+
+============================================================
+agent2_lower_proof.txt
+============================================================
+SELF-CONTAINED LOWER BOUND FOR P2 AND P3
+
+Notation. Put V=C^(n+1), Q=(V O)/O(-1), and I=Fl(1,2;V),
+p:I->P(V), q:I->Gr(2,V). Write x=c1(p O(1)), y=c1 of the
+dual of the tautological relative line on I=P(Q); set s=x+y,t=xy.
+The Chow ring over Q is Q[x,y]/(x^(n+1),h_n(x,y)), with
+h_n=sum_{j=0}^n x^j y^(n-j). In particular the q-pulled Chern
+classes are symmetric in x,y. This ring follows twice from the
+projective-bundle formula, not any uniform-bundle classification.
+
+For a uniform bundle E, relative evaluation on q's P1 fibers, successively
+at the largest remaining degree, gives subbundles A_i of p*E whose
+successive quotients are p O(a_i) tensor q F_i. The a_i are strictly
+decreasing, rank F_i=m_i, and F_i are bundles on Gr(2,V). This follows
+from base change since the splitting type on every q fiber is constant.
+
+Geometric lemmas:
+(1) A bundle trivial on all lines is trivial. Pull back to Bl_z Pn, a P1
+bundle over P^(n-1); by base change it comes from the base, and restriction
+to the exceptional section proves this base bundle trivial.
+(2) If any gap a_i-a_(i+1)>=2, A_i descends under p. Its second fundamental
+form into (p*E/A_i) tensor Omega_p vanishes: on each q fiber all Hom degrees
+are negative since Omega_p restricts as O(1)^(n-1). A zero second fundamental
+form means that the Grassmann map on each p fiber is constant (char zero),
+so A_i=p*E'. Both E' and E/E' are uniform, with the corresponding separated
+types. Induction and the extension vanishing below split E.
+(3) For any partial A_i, if the sum of the c1(F_j) is zero, A_i descends:
+on every p fiber it is a subbundle of a trivial bundle, and the Pluecker
+map has degree zero. Apply the same induction.
+(4) If m1=m2=1 and n=3, the first Grassmann map P2->P^(r-1) is constant.
+Its derivative factors through Hom(first block,second block), of rank1;
+all nonadjacent components vanish on q fibers by the same degree argument.
+But a nonconstant morphism from P2 given by O(d), d>0, is finite onto a
+surface, so its generic differential has rank2. Contradiction. The dual
+statement applies at the other end.
+(5) For n=3, suppose m1>=2 and c2(F1)=0, c1(F1)=-d s, d>0. Put A=first
+HN block and a=a1. On p fiber P2, A* is globally generated with c1=d,c2=0,
+hence A*=O(d)+O^(m1-1): use m1-1 general sections, whose degeneracy cycle
+has degree c2=0, then H1(P2,O(-d))=0. Thus B=p_*A has rank m1-1 and its
+evaluation is a subbundle. Write c1(B)=b x. The xy coefficient of c2(A)
+is -(m1-1)ad. Factoring off p*B shows it is -bd, hence b=(m1-1)a. Since
+B injects in E, every summand of B|L has degree<=a; the sum forces every
+degree equal to a. Lemma(1) gives B=O(a)^(m1-1). The quotient E/B is uniform
+(the injection lies entirely in the top-degree part on every line).
+Induction and extension vanishing split off these lines. The dual applies
+to the last block. If d=0, use lemma(3) instead.
+
+Numerical finite step. By lemma(2), an indecomposable counterexample has
+consecutive a_i, hence normalize a_i=k-i for k blocks. For n=3,
+c(F_i)=1+A_i s+(B_i s^2+C_i t)+D_i st+F_i t^2,
+with terms above rank(F_i) zero. The Grassmannian relations are
+s^3=2st and s^4=2t^2, s^2t=t^2; degrees>4 vanish. For n=2,
+c(F_i)=1+A_i s+B_i s^2 with higher terms zero.
+The Chern-polynomial identity
+  product_i sum_j c_j(F_i) (T+a_i x)^(m_i-j) = p*c_T(E)
+holds in the flag Chow ring. Thus every coefficient containing y must
+vanish. These are finite polynomial systems for every composition of
+r<=5 (n=3), respectively r<=3 (n=2). The scripts
+agent2_p3_chow.py and agent2_p2_chow.py construct and solve them exactly.
+No numerical approximations or restriction to integer roots is made.
+
+Their roots are exhausted by these geometric cases:
+P3: a partial sum of A_i is zero (lemma3); an edge pair is (1,1)
+(lemma4); top or dual-top rank>=2 has c2=0 (lemma5); top rank1 has
+c1=-s (or its dual); or composition(1,2,2), its reversal, with
+c(F1)=1-2s, c(F2)=1, c(F3)=1+2s+4(s^2-t).
+P2: a partial sum A_i=0; top rank1 has c1=-s (or its dual); or
+composition(1,1,1), (A1,A2,A3)=(-2,0,2).
+The separate certificate agent2_lower_certificate.py checks these exhaustive
+case assertions against every exact solution. Repeating ranks inductively
+also handles descended lower ranks, with no classification assumption.
+
+Recognition of c1=-s top line. Its inclusion is
+p O(a-1) tensor O_p(-1) -> p*E, adjoint to Q(a-1)->E.
+On each p fiber every nonzero vector maps to the corresponding top line,
+so the adjoint has no kernel anywhere. In the remaining numerical cases,
+the quotient is trivial on every line, hence trivial by lemma1. Extensions
+split since H1(Q(t))=0 at the twists in question. Dual handles the other end.
+For n=3 this only occurs in two-degree cases once the partial-sum descents
+have been made. For n=2 it also gives Q(1)+O in the three-degree case.
+
+P2 last case. The first line on a p fiber P1 is O(-2), and the middle
+line is O. Thus the quadratic morphism phi:P1->P2 defined by the top line
+has differential factoring O(-2) tensor T_P1 =O -> O. This map is nonzero
+and hence nowhere zero. Its three quadrics must span dimension3: span2
+would be a degree2 map to P1, necessarily ramified (Riemann-Hurwitz).
+Adjunction therefore gives a fiberwise isomorphism Sym^2 Q -> E.
+This is homogeneous.
+
+P3 last case (1,2,2). On every p fiber P2, the first line A is O(-2),
+and the middle rank2 block B has determinant O. The quadratic morphism
+phi:P2->P4 defined by A has differential factoring A tensor T_P2 -> B,
+with B a subbundle of O^5/A. Its determinant is a nonzero section of O(1),
+so rank-drop locus is precisely a line D. Let W be the span of the image
+of phi. It has dimension>=3 by finiteness. If dim W=3, generic derivatives
+span W/A and lie in B, hence B is a subbundle of W/A and these two rank2
+subbundles coincide, contrary to c1(B)=0 and c1(W/A)=2. If dim W=5,
+ker(Sym^2 C3->W) has dimension1; a fixed nonzero symmetric tensor belongs
+to v*C3 for at most two projective vectors v unless it has rank1 (which
+basepoint-freeness excludes). Thus differential can drop rank only at
+finitely many points, contrary to D. Hence dim W=4, kernel K dimension2.
+For every v in D, K contains v*w for some w; these give infinitely many
+projective tensors of rank<=2, so det vanishes identically on pencil K.
+K has no rank1 tensor by basepoint-freeness. Elementary pencil lemma below
+gives K=L*H for a line L and plane H with L not in H. The derivative then
+drops rank on P(H), and has rank zero at [L] outside P(H), impossible for
+a rank2-to-rank2 map whose determinant vanishes on just one line.
+
+Pencil lemma: take one rank2 tensor as matrix A=[[0,1,0],[1,0,0],[0,0,0]]
+and another B=[[a,b,c],[b,d,e],[c,e,f]]. det(A+u B)=0 identically gives
+f=0, ce=0, a e^2+c^2 d=0. If c!=0, then e=d=0 and all pencil tensors
+share factor e1, with other factors spanning a plane not containing e1.
+Case e!=0 is symmetric. If c=e=0, the pencil lies in Sym^2 C2 and meets
+the rank1 conic over C, a contradiction. These determinant coefficients
+are checked exactly by agent2_lower_certificate.py.
+
+Extension audit. For n=3, the only nonline blocks produced are Q(a) and
+Q*(a), rank3; two such blocks cannot occur in total rank<=5. Euler and
+dual Euler show H1(Q(t))=0 for every t and H1(Q*(t)) is zero except t=-1,
+where its unique nontrivial extension is Euler. The separated splitting
+types in every descent exclude that exceptional twist. For n=2 the same
+argument applies, with H1(Q(t)) possibly nonzero only at t=-2 and
+H1(Q*(t)) only at t=-1; separated types exclude both. All line-line
+extensions vanish. In the top-line recognition cases, quotient lines have
+lower/equal allowable degrees and direct Euler cohomology gives zero.
+Thus every descent/peeling really splits. This proves inductively that
+all ranks<4 on P2 and all ranks<6 on P3 are homogeneous, without invoking
+any published uniform-bundle classification theorem.
+
+
+============================================================
+agent2_compact_tables.txt
+============================================================
+COMPACT FINITE TABLES FOR THE FINAL PROOF
+
+Entries are total Chern classes c(F_i) of the q-HN blocks, ordered from
+largest to smallest splitting degree. All unprinted higher classes vanish.
+Set s=x+y, t=xy and use the following abbreviations:
+ Z=1, P=1-s, R=1+s, P2=1-2s, R2=1+2s.
+For P3 additionally set u=s^2-t, M=1+s+u, N=1-s+u.
+Dualizing E and twisting reverses the multiplicities and replaces each
+F by its dual (changes signs on odd Chern classes), so only one orientation
+of a composition needs to be printed.
+
+P2, ranks <=3:
+ multiplicities       complete tuples
+ (1,m), m=1,2         (Z,Z), (P,R)
+ (1,1,1)              (Z,Z,Z), (P,R,Z), (Z,P,R), (P2,Z,R2).
+The reversed (2,1) is covered by duality. A constant splitting degree is
+already trivial after twist. The last tuple gives Sym^2 Q; the others
+descend or recognize Q. These are 4 full systems and 10 roots when both
+orientations are counted.
+
+P3, ranks <=5:
+ multiplicities       complete tuples AFTER the edge-product reduction
+ (1,m), m=2,3,4       (Z,Z), (P,M)
+ (2,m), m=2,3         (Z,Z), (P,M), (N,R)
+ (1,m,1), m=2,3       (Z,Z,Z), (P,M,Z), (Z,N,R)
+ (1,2,2)              (Z,Z,Z), (P,M,Z), (Z,N,R), (Z,P,M),
+                      (P2,Z,R2+4u)
+ (2,1,2)              (Z,Z,Z), (Z,P,M), (N,R,Z),
+                      (P2,Z,R2+4u), (P2+4u,Z,R2).
+All reversed compositions are covered by duality. Edge-product reduction
+means: if either first or last adjacent multiplicity product is <2,
+that extremal HN block descends (a nonconstant P2 Grassmann map has rank2
+differential). Every composition with >=4 blocks has such an edge since
+otherwise disjoint edge pairs have rank sum >=3+3=6. Three-block positive
+compositions of rank<=5 with both products>=2 are exactly 121,131,122,221,212.
+Two-block 11 likewise descends. Thus the displayed table covers every
+non-descended possibility.
+
+How the table is used:
+- A proper initial sum of c1 coefficients equal to zero gives descent.
+- In two-step (P,M), first rank1 is Q-recognition; first rank>=2 has c2=0
+  and peels extremal line summands. (N,R) is the dual situation.
+- In 212, its final two tuples have c2=0 in respectively the first or
+  last rank2 block, so peel a top or bottom line and use induction.
+- The sole remaining tuple in 122 is the quadratic-morphism obstruction
+  of agent2_lower_proof.txt. Its dual covers221.
+
+Full unpruned computation: 26 systems, 74 distinct complex roots, categorized
+as 52 partial descents, 3 Q recognitions, 3 dual Q recognitions,
+6 edge-differential contradictions, 4 top peelings, 4 bottom peelings,
+2 quadratic obstructions. The table itself is independently recomputed
+and checked by agent2_compact_tables.py (20.4s); all root-completeness
+certificates are in agent2_lower_certificate.py (35s), using exact ideal
+membership and finite Cartesian enumeration, with no integrality assumption.
+
+
+============================================================
+agent3_twostep_nonwedge.txt
+============================================================
+P4 two-step reconstruction, non-wedge cases (complete).
+
+Let E have type (1^m,0^(r-m)), r<=7, and let
+0 -> pO(1) qF -> pE -> qG -> 0
+be its two-step q-relative HN filtration on I=P(Q). The numerical
+Chern table can be found at rank7 by padding E with O's (duality first
+if necessary). Padding is used ONLY for necessary Chern constraints;
+the following geometric reconstruction works directly on the originalE,
+so no rank-induction or cancellation circularity occurs.
+
+Case I: c1F=0. Put A=qF. On each p-fiber P3, A* is globallygenerated
+with det trivial, so its Plucker classifying map isconstant; A is trivial
+on thatfiber. Grauert/evaluation gives A=pB. Then c1B=0. The inclusion
+B->E(-1) is a subbundle. Each splitting degree of B|L is<=0; their sum
+is0, hence B is trivial on everyline and therefore B=O^m. Thus O(1)^m
+is a subbundle of E, with quotient trivial on everyline, hence trivial.
+H1O(1)=0 splits the extension: E=O(1)^m+O^(r-m).
+
+Case II: c1F=-s and c2F=0. On every p-fiber A*=O(1)+O^(m-1), by the
+globallygenerated c2zero lemma. Therefore B=p_*A has rankm-1 and its
+evaluation pB->A is a subbundle with line quotient. Write c1B=b x,
+s=x+y. In c2A=c2(pB)+c1(pB)c1(A/pB), the xy coefficient is-b;
+but c2A=0, so b=0. Again B injects into E(-1), so it is trivial on
+alllines and B=O^(m-1). This gives O(1)^(m-1) as a subbundle of E.
+Its quotient H is uniform of type(1,0,...,0). Its firstHN line equals
+qO_G(-1) (because quotient of qF by the trivial q-subbundle has detO_G(-1)).
+
+The inclusion pO(1)qO_G(-1)=O_p(-1)->pH adjoints to psi:Q->H.
+For every pointx and nonzero v inQ_x, psi_x(v) is precisely the topHN
+line inclusion at(x,[v]); hence psi_x(v)!=0. Thus psi is a subbundle
+injection. Along any base line, its positiveO1 part maps isomorphically
+onto H's positiveO1 part, and its other O^3 parts form a constant full-rank
+matrix into H's trivialpart. The quotient is consequently trivial on all
+lines, so H=Q+O^(rankH-4), using H1Q=0. Finally the extension defining E
+splits: Ext1(Q,O1)=H1Q*(1)=H1Omega1(2)=0, and line-lineExt1=0.
+Therefore E=Q+O1^(m-1)+O^(r-m-3).
+
+Case III: the remaining nonwedge numerical datum has
+cF=1-s+(s^2-t)+(-s^3+2st), rankF=3,
+and cG=1+s. For the dual normalized bundle E*(1), its topHN bundle
+is G*, with c1=-s,c2=0, so CaseII applies. Thus E is Omega1(2) plus
+appropriate line summands.
+
+These cases require NO uniform lower-rank classification. If the displayed
+rank counts become negative the purported datum cannot occur, since the
+constructed fiberwise injection Q->H would exceed rankH.
+
+Globallygenerated c2zero lemma used above: for a gg bundleB onP3, r-1
+general sections have smooth expected codim2 degeneracy locus of classc2B.
+If c2B=0 it is empty; so0->O^(r-1)->B->O(c1B)->0, and H1O(-c1B)=0
+splits it. The rank1 case is immediate.
+
+All-line-triviality: pull back to blowup of a point, descend along its
+P1 ruling toP2 orP3, then restrict to exceptional section. This proves
+B trivial without a splitting-classification theorem.
+
+
+============================================================
+agent3_hn_recognition.txt
+============================================================
+WEDGE HN RECOGNITION ON P4 (detailed proof)
+
+Notation: V=C5, Q on P(V) rank4, I=P(Q) with p:I->P4,
+q:I->G(2,V). On G, S rank2 tautological, R=V/S rank3;
+s=c1(S*), t=c2(S*). On I use x=c1 p*O(1), y=s-x.
+Assume E has rank6 or7, uniform type (1,1,1,0,...,0), and
+A=q*F is its first HN piece after twisting by p*O(-1), with
+c(F)=(1,-2s,2s^2-t,-st).
+Claim F=det(S) tensor R and E=Lambda^2 Q (+ O if rank7).
+
+1. On a p-fiber P3, A is a subbundle of a trivial bundle.
+Thus A* is globally generated, rank3, c=(1,2h,2h^2,0).
+For any gg rank3 B with these Chern classes, two general sections
+have smooth codimension2 dependency C (transversality for globally
+generated bundles); Thom-Porteous and the standard genus formula
+c3(B)=2pa(C)-2+(4-c1(B))*deg(C) give deg C=2, pa=-1.
+Hence C consists of two skew lines. We have
+0 -> O^2 -> B -> I_C(2) -> 0.
+Ext^1(I_C(2),O)=H0(omega_C(2))=C^2 (local duality).
+An extension by O^2 is a 2x2 matrix; local freeness requires each
+column nonzero. Rank2 gives one isomorphism class, namely Omega^1(2),
+as is checked by applying the same argument to that gg bundle.
+Rank1 gives H+O, where H is locally free rank2 in
+0 -> O -> H -> I_C(2) -> 0. No identification of H is needed.
+
+2. In the first case A=Omega^2(2)=T(-2), and its cohomology at twists
+0,-1,-2,-3 is respectively 0,0,H2=C,0.
+In the second case A=H(-2)+O since det H=O(2), giving cohomology
+(h0,h1)=(1,1) at twist0, zero at twists -1,-3, and H2=C at twist -2.
+These follow from the displayed sequence and cohomology of two skew
+lines. At twist -2 the relevant C^2->C map is onto by local freeness;
+at twist -3 Serre duality reduces to acyclicity of H(-1).
+
+3. The generic fiber cannot be of the second type. Otherwise every
+fiber is of that type by semicontinuity, and p_*A=O(b) is a line bundle
+whose evaluation is everywhere a subbundle of A. Its quotient has rank2.
+The identity c3(A)=b x*(c2(A)-b x*(c1(A)-b x)) has xy^2 coefficient
+-1=2b, impossible for integer b. Degrees <=3 have no Chow relations.
+Thus p_*A=0, and R1p_*A=T is torsion. Moreover R2p_*A(-2)=L is a
+line bundle, while all other direct images of A(-2), A(-1), A(-3)
+vanish. Relative Beilinson gives
+0 -> A -> p*L tensor Omega_p^2(2) -> p*T -> 0.
+Here relative twists refer to O_p(1); note A(-i) above also does so.
+There is no twist discrepancy: the fiber computation involves exactly
+these relative twists. Omega_p^2(2)=Lambda^2(qR*)=q*(detS tensor R).
+Writing L=O(ell), equality of Chern characters gives
+p*ch(T)=(exp(ell*x)-1)*ch(A).
+The degree2 xy coefficient on the right is -2ell, hence ell=0.
+Consequently ch(T)=0, and a nonzero torsion sheaf on P4 cannot have
+zero Chern character (its Hilbert polynomial would vanish). Thus T=0
+and A=q*(detS tensor R), as claimed. Descent by q_*O=O identifies F.
+
+4. The original HN inclusion is p*O(1) tensor A -> p*E.
+But p*O(1) tensor A = O_p(-1) tensor (p*Q/O_p(-1)), canonically a
+subbundle of p*Lambda^2 Q. Relative adjunction (or the relative Euler
+sequence) gives a map psi:Lambda^2 Q -> E inducing this inclusion.
+On each line L, psi is an isomorphism on the positive O(1)^3 parts.
+In splitting bases its matrix is [invertible constant, linear;0,constant].
+Hence its rank is constant along L, and therefore globally constant.
+At each point its kernel contains no decomposable bivector because
+those lie in v wedge Q for some nonzero v, where the HN inclusion
+is injective. Any projective line in P(Lambda^2 C4) meets the Plucker
+quadric, so the kernel has dimension <=1. If it has dimension1,
+it is a line bundle K=O(k) consisting everywhere of nondegenerate
+bivectors. Squaring gives K^2=det Q=O(1), contradiction 2k=1.
+Thus psi is injective. Its quotient restricts trivially to every line,
+so is zero (rank6) or O (rank7). Finally H1(Lambda^2 Q)=0 by Euler's
+exterior-power sequence, so the rank7 extension splits.
+
+Arithmetic checks: agent3_hn_recognition.py.
+Geometric ingredients used and proved/sketched above: transversality
+for general sections, local duality, relative Beilinson, line-bundle
+cohomology, standard Chern genus formula. This lemma does not itself
+prove that every uniform E has the stipulated splitting/Chern data.
+
+
+============================================================
+agent2_p4_lower_proof.txt
+============================================================
+P4 THREE-DEGREE CASES IN RANKS AT MOST SIX
+
+Use the notation and gap/descend/peeling lemmas of agent2_lower_proof.txt,
+now with p-fiber P3. The first Grassmann map has derivative factoring
+through Hom(first HN block, second HN block), of rank m1*m2. A nonconstant
+Grassmann map P3->Grass has ample Pluecker pullback and is finite onto a
+three-dimensional image. Thus m1*m2<3 forces the first HN block to descend.
+The dual applies at the other end. If there are >=4 distinct degrees,
+the first two and last two multiplicities have sum at least4 each,
+contradicting total rank<=7. Hence only three degrees remain.
+
+At rank<=4 there are no positive triples with ab>=3 and bc>=3.
+At rank5 only (1,3,1) remains.
+At rank6 only (1,4,1),(1,3,2),(2,3,1),(2,2,2) remain.
+This list is directly checked by enumerating positive triples.
+
+workspace/agent2_p4_lower_certificate.py constructs the flag-Chow equations
+and computes exact QQ Groebner bases, plus independent coordinate-power
+membership and finite-grid completeness certificates. It proves:
+- (1,3,1): exactly three roots; in every root first or last c1=0.
+- (1,4,1): exactly three roots; in every root first or last c1=0.
+- (1,3,2): exactly three roots; either an extremal c1=0, or q-Chern c1
+  coefficients are (-1,0,1) and last rank2 block has c2=0.
+- (2,2,2): unique root, first c1=0.
+The reversed (2,3,1) follows by duality/twist.
+
+A zero extremal c1 makes that block descend, splitting into one-degree
+and two-degree uniform bundles. The two-degree cases of every rank<=7
+are reconstructed explicitly in agent3_hn_recognition.txt and the
+agent4 two-step computation (no induction on unproved larger ranks).
+The unique remaining (1,3,2) root has last block rank2 with c1=s,c2=0.
+Dualize and twist: the first block is rank2, c1=-s,c2=0. The standard
+peeling lemma (valid identically on p-fiber P3, since generated c1=1,c2=0
+splits O1+O) supplies an extremal quotient O0 of E. Its kernel is uniform
+rank5 with three-degree multiplicities (1,3,1), already handled. The
+extension splits by Euler cohomology, since all constituents have rank
+sum<=6 and at most one nonline block can occur. Thus E is homogeneous.
+Alternatively, the induced (1,3,1) Chern coefficients (-1,0,1) contradict
+the computed (1,3,1) numerical roots, so that exceptional root cannot occur.
+
+Consequently the induction for P4 rank7 gap descents is fully noncircular:
+all smaller ranks have now been classified using only the two-degree
+recognition theorem and these four explicit finite systems.
+
+
+============================================================
+agent4_133142_proof.txt
+============================================================
+Exact incidence Chern-character calculation yields six roots for composition (1,3,3), with top HN line qO(b), b=0,-1,-2; only three roots for (1,4,2), with b=0,-1. Coefficient b=0 descends the top line, while b=-1 recognizes Q(1) by adjunction, leaving at most three line summands. These are homogeneous by the earlier gap/recognition lemmas.
+
+The exceptional (133) root b=-2 has middle Chern character restricting to its rank on every p-fiber. Let H be the first TWO relative HN blocks in p*E, rank4. On each p-fiber P3, H* is globally generated with c1=2,c2=0; therefore H*=O(2)+O^3 (three general sections have empty expected codimension2 degeneracy cycle, and H1O(-2)=0 splits). Put B=p_*H, rank3 by Grauert; evaluation p*B -> H is a subbundle with line quotient C restricting to O(-2). The top HN line A restricts to O(-2). The map A -> C cannot vanish on any p-fiber: otherwise A would inject into O^3 there, giving three basepointfree quadrics on P3, impossible by the projective dimension theorem (three positive-degree hypersurfaces have common zero). Thus A -> C is everywhere an isomorphism, and H=A direct-sum p*B. On every q-line H=O(2)+O(1)^3 and A=O(2), so B restricts as O(1)^3. Hence B=O(1)^3. The quotient E/B is uniform of type (2,0,0,0); the gap lemma and already-established smaller rank classification split it into lines. All extensions of those line bundles by O(1)^3 vanish on P4, so E splits into line bundles. This contradicts the nonzero q-Chern class b=-2, and excludes the exceptional numerical root.
+
+
+============================================================
+agent4_313_proof.txt
+============================================================
+For composition (3,1,3) with splitting degrees (2,1,0), exact Chow ring equations have six solutions. Three have top or bottom q-HN Chern polynomial trivial, so descent applies. Two dual solutions have top Chern data (-2s,0,0). On each p-fiber P3, A* is globally generated rank3 with c1=2,c2=0, hence O(2)+O^2: a general section of a globally generated rank3 bundle has zero length c3=0, splits off O, and the resulting rank2 globally generated bundle has c2=0, so a nowherezero general section splits again because H1(O(-2))=0. Thus B=p_*A has rank2 and the evaluation p*B -> A is a subbundle with line quotient. Writing c1B=k h, the hx coefficient of c2A is -2k, so k=0. Since B embeds in E(-2), every line summand of B has degree <=0; their total is zero, hence B is trivial. This peels two O(2) summands after induction and extension vanishing. The quotient has rank5, so the already-established smaller-rank classification forces the original E homogeneous (or, using topHN Chern data, yields a contradiction).
+
+The last solution has middle q-HN line trivial and top Chern polynomial c(A)=1-4s+4(2s^2-p)-8sp. On a p-fiber P3, c(A*)=1+4x+8x^2. Its induced Grassmannian morphism has ample Pluecker pullback O(4), hence is finite onto its image and has generic differential rank3. The second fundamental form factors that differential through Hom(A,B)=A*, because the middle block B is trivial on this fiber and nonadjacent components vanish. Thus the induced map TP3 -> A* has generic rank3. Its determinant section has degree 4-4=0 and is therefore everywhere nonzero. This would identify TP3 and A*, contradicting c2(TP3)=6 !=8=c2(A*). No exceptional solution survives.
+
+
+============================================================
+agent2_223_proof.txt
+============================================================
+P4 RANK7 WIDTH-THREE MULTIPLICITIES (2,2,3)
+
+Normalize splitting degrees to (2,1,0). Write s=x+y,t=xy for the
+Grassmannian tautological-root generators. Let q-HN bundles have
+additive characters ch1(F1)=a*s,ch2(F1)=b*s^2+c*t,
+ch1(F2)=d*s,ch2(F2)=e*s^2+(another coefficient)*t.
+The additive Chern-character incidence constraints are linear in all
+ch_j(F_i). Solve them exactly, then impose Newton c_j(F_i)=0 above each
+block's rank through degree6 (the Grassmannian dimension). Elimination
+leaves these five variables. The self-regenerating exact certificate
+workspace/agent2_223_certificate.py computes the QQ Groebner basis and
+verifies the ideal contains
+ d+2e, d(d+1), ad, a^2+2a+6c, a^2-2b, a^2(a+2).
+It also certifies the full complex root list by coordinate-power ideal
+membership and exhaustive grid testing. There are exactly three roots:
+ (a,b,c,d,e)=(0,0,0,0,0),(0,0,0,-1,1/2),(-2,2,0,0,0).
+
+If a=0, the first HN subbundle restricted to any p-fiber is a subbundle
+of a trivial bundle with Pluecker degree0, hence constant; it descends to
+E' on P4. Its restriction to every line is O(2)^2, so E'=O(2)^2. The
+quotient is a two-degree uniform bundle of rank5, already reconstructed
+without low-rank classification. The extension splits by Euler
+cohomology: the lower bundle has only line and at most one Q/Q* block,
+and the unique Euler H1 exception is incompatible with the separated
+top degree2. Thus E is homogeneous.
+
+If a=-2,b=2,c=0, then c1(F1)=-2s and
+ c2(F1)=(a^2/2-b)s^2-c*t=0.
+The first HN block A restricts on p-fiber P3 to a subbundle of O^7 with
+A*=O(2)+O (gg,c1=2,c2=0). Hence B=p_*A is a line bundle and evaluation
+p*B->A is a subbundle. Comparing xy coefficients in c2(A), as in the
+standard peeling lemma, gives B=O(2). It injects in E entirely within
+the top O(2)^2 part along every line, so E/B is uniform rank6 with
+multiplicities (1,2,3), degrees(2,1,0). The first Grassmann map for E/B
+has derivative through Hom(rank1,rank2), of rank2<dim p-fiber3. It must
+be constant, so its top line descends and splits from E/B, leaving a
+two-degree rank5 bundle. All these bundles and extensions are classified
+by the preceding two-degree recognition and elementary Ext vanishing.
+Finally the extension by B=O(2) splits for the same Euler-cohomology
+reason. Therefore E is homogeneous.
+
+The reversed multiplicities (3,2,2) follow by dualizing and twisting.
+No published uniform-bundle classification is invoked.
+
+
+============================================================
+agent3_232_proof.txt
+============================================================
+P4 width-three composition (2,3,2): exact elimination and geometric conclusion.
+
+Normalize E|line=O(2)^2+O(1)^3+O^2. On I=P(Q), the q-relative
+HN graded pieces are p*O(2) q*F0, p*O(1) q*F1, q*F2 of ranks2,3,2.
+Let h=c1p*O(1), x be the second root of q*S*; s=h+x,t=hx.
+The flag Chow ring is Q[h,x]/(h^5,h^4+h^3x+h^2x^2+hx^3+x^4).
+The q-Chow bases in degrees1..6 are computed by symmetric polynomials
+in h,x with dimensions1,2,2,2,1,1 (degree7 iszero).
+
+Write ch_j(Fi) independently in these bases. Necessarily
+sum_i exp((2-i)h) ch(Fi) = p*ch(E).
+After reduction, the coefficients involving x must vanish. These are15
+linear equations in27 ch coefficients. Exact linear elimination leaves12
+parameters. Rank conditions are imposed by Newton identities:
+c_k=(1/k)sum_{j=1}^k (-1)^(j-1) j! ch_j c_{k-j},
+requiring c_k(Fi)=0 for k>rankFi throughk=6. Eliminating variables that
+occur linearly with constant nonzero coefficients leaves9 equations in
+five parameters a,b,c,d,e. Here a is c1(F0)/s and d is c1(F1)/s;
+by the degree1 additive relation c1(F2)/s=-a-d.
+The generator agent3_chgeneral.py produces these equations without
+an assumed integral bound or numerical approximation.
+
+The self-regenerating agent3_232_certificate.py ran successfully79s.
+It computes a Groebner basis over QQ and verifies EXACTLY that
+f=a(a+d) belongs to the resulting ideal. It additionally checks the
+returned polynomial-division identity term by term. Therefore every
+complex solution, in particular every possible actual HN Chern datum,
+has c1(F0)=0 or c1(F2)=0. This is an ideal-membership argument; no
+assertion of completeness based solely on root printing is used.
+
+If c1(F0)=0: A=q*F0 is a subbundle of p*E(-2). On each p-fiberP3,
+A* is globallygenerated with c1=0, hence trivial: its classifying map to
+a Grassmannian has trivial Plucker pullback and isconstant. Thus Grauert
+and evaluation give A=p*B for a rank2 B onP4. Since c1A=0, c1B=0.
+The inclusion B->E(-2) is a subbundle, so on any line all degrees of
+B are <=0. Their sum is0, hence B restricts trivially to everyline.
+A vector bundle trivial on every line ofPn is trivial: blow up a point,
+descend along the ruling toP^(n-1), and restrict to the exceptional
+section, on which the pullback is trivial. Therefore B=O^2, and the
+original top HN block descends to O(2)^2 inside E.
+The rank5 quotient is uniform with remaining splitting (1^3,0^2),
+classified by the already proved lower-rank/two-step arguments. It
+is a sum oflines and at most one Q or Q* twist; ordered-slope Euler
+cohomology shows Ext^1(quotient,O(2)^2)=0. Hence E is homogeneous.
+
+If c1(F2)=0, apply exactly the same argument to E*(2), whose top block
+is q*F2*. This proves the desired decomposition in all cases.
+
+The lower-rank classification used here is noncircular: P4 ranks<=3
+split by edge-product descent; two-step cases in all ranks<=7 are
+reconstructed directly from their explicit Chern candidates; width3
+ranks<=6 are separately checked in agent2_p4_lower_certificate.py.
+
+
+============================================================
+agent4_p5_proof.txt
+============================================================
+Let V=C^6 and Q be the rank-five universal quotient bundle on P(V). Put F=Lambda^2 Q. A nondegenerate bivector omega=e1 wedge e2+e3 wedge e4+e5 wedge e6 defines a nowhere-zero section of F, since at l its vanishing would imply omega in l wedge V, a space of bivectors of rank at most two. Let E_omega be its rank-nine locally free cokernel.
+
+For a line P(U), choose V=U+W. Q restricts as O(1)+W O, so F restricts as O(1)^4+O^6. The component of the section in the trivial summands is the projection of omega to Lambda^2(V/U). It is nonzero: otherwise omega lies in U wedge V; in a basis adapted to U its skew matrix has zero lower-right 4x4 block and has rank at most four. A nonzero constant trivial component allows an automorphism of O(1)^4+O^6 to send the section to a trivial basis vector (first use GL6 on the trivial terms, then a shear). Thus E_omega restricts to O(1)^4+O^5 on every line.
+
+We prove E_omega and E_eta are isomorphic only if omega and eta are proportional. First H^0(F)=Lambda^2 V: use 0 -> Q(-1) -> Lambda^2 V O -> F -> 0 and 0 -> O(-2) -> V O(-1) -> Q(-1) -> 0; line-bundle cohomology gives H^0(Q(-1))=H^1(Q(-1))=0. Every endomorphism of F therefore induces A in End(Lambda^2 V) preserving l wedge V for every l. Since (ei wedge V) intersect (ej wedge V)=C(ei wedge ej), all coordinate bivectors are eigenvectors. Preserving (ei+ej) wedge V shows the eigenvalues on ei wedge ek and ej wedge ek coincide for distinct i,j,k. All eigenvalues agree, proving End(F)=C.
+
+Next H^0(F*)=H^1(F*)=0. Use 0 -> F* -> Lambda^2 V* O -> Q*(1) -> 0. By 0 -> Q*(1) -> V* O(1) -> O(2) -> 0, H^0(Q*(1)) is the kernel of V* tensor V* -> Sym^2 V*, hence Lambda^2 V*. The map from H^0(Lambda^2 V* O) to this kernel is the canonical antisymmetrization isomorphism. Since H^1(O)=0, both claimed vanishings follow.
+
+Dualizing 0 -> O -> F -> E_omega -> 0 now yields H^1(E_omega*)=C, so Ext^1(E_omega,O)=C. Its defining extension is nonsplit, since H^0(F*)=0 rules out a retraction F -> O. Given an isomorphism E_omega -> E_eta, the corresponding nonzero extension classes agree up to scalar, so it lifts (after scaling O) to an automorphism of F taking the injection omega to the injection eta up to scalar. Simplicity of F forces omega proportional to eta.
+
+Finally g induced by diag(2,1,1,1,1,1) transforms omega to a nonproportional nondegenerate bivector (or its inverse transform, depending on pullback convention). Naturality of Q identifies g*E_omega with the cokernel corresponding to that transformed bivector. Thus g*E_omega is not isomorphic to E_omega. This proves E_omega is uniform, nonhomogeneous, rank9<10, and hence d<=5.
+
+P4 MULTIPLICITIES (1,5,1): let a,b denote coefficients of s in the two extremal rank-one q-HN factors. The exact Chern-factorization ideal contains (ab)^3, as independently certified by agent1_151_certificate.py. Therefore a=0 or b=0 over C; the corresponding extremal HN line descends, and lower-rank induction with ordered Ext vanishing splits the extension.

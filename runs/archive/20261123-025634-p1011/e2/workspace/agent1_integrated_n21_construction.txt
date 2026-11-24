@@ -1,0 +1,649 @@
+INTEGRATED DIMENSION-21 CONSTRUCTION UNDER THE EXPLICIT AMBIENT-LCF DEFINITION
+
+The finite lemma gives a degree-six polynomial f in dimension20 with strict full
+shape-norm maximum. The uniform graph theorem applies because21>17 and yields
+one fixed smooth graph F and exact nonnegative finite-energy solutions. The
+geometry/regularity lemma compactifies this to one fixed smooth compact connected
+(M^21,g), locally conformally flat in the explicit ambient sense, positive Yamabe
+type, nonhemisphere, with smooth strictly positive solutions and boundary suprema
+tending to infinity. Thus the COMPOSITION asserts21 in D, contrary to the stated
+D={n>=25}. All three complete proof pieces and code are included below so a
+concrete error can be identified rather than concealed by a false compactness lemma.
+
+FINITE n=21 PROFILE LEMMA, WITH COMPLETE COEFFICIENT DERIVATION
+Agent 2. All assertions in the final interval calculation are exact rational
+assertions in agent2_n21_standalone_certificate.py.
+
+STATEMENT. Put m=20, A=diag(I_10,-I_10), P(y)=y^T A y on R^20.
+There exists zeta in (-425186/10^6,-425185/10^6) such that, for
+ f(y)=P(y)[1+zeta|y|^2+(7/150)|y|^4],
+the sphere shape norm associated with f has a strict, nondegenerate
+maximum at bubble scale 1 and tangential centre 0, in ALL 21 parameters.
+This is the finite profile lemma needed by the uniform graph LS theorem.
+No PDE/gluing assertion is part of this lemma.
+
+1. SHAPE NORM AND ITS SPECTRUM.
+On the boundary unit sphere S^20 let Pi_L denote harmonic projection of
+total degree L. Define J_L=(L-1)(L+20), and, for L>=2,
+ D_L=2 Gamma((L+22)/2)Gamma(L/2)/
+         [Gamma((L+21)/2)Gamma((L-1)/2)] >0.
+Define B(phi,psi)=SUM_(L>=2) J_L^2/D_L <Pi_L phi,Pi_L psi>.
+The degree0 and degree1 pieces contribute zero. For the Jacobi equation
+(Delta_{S^21}+21)v=0 on the hemisphere, this is the positive quadratic
+form of the boundary flux Jphi, up to the fixed positive Robin factor.
+The degree0 flux is solved by the normal coordinate, whose boundary
+trace is zero. Degree1 is the Neumann kernel, annihilated by J.
+For L>=2, separation of variables gives
+ v(theta,omega)=(sin theta)^L
+  2F1((L-1)/2,(L+21)/2;L+21/2;sin^2 theta) Y_L(omega).
+The ODE is verified all-symbolically in agent2_dtn_ode_check.py.
+The endpoint coefficients can be obtained without a continuation theorem.
+Write a=(L-1)/2,b=(L+21)/2,c=L+21/2, so c-b=a+1/2. The regular
+hypergeometric factor has Euler integral
+ Gamma(c)/[Gamma(b)Gamma(c-b)] *
+ INT_0^1 u^(b-1)(1-u)^(c-b-1)(1-z u)^(-a)du.
+Differentiation and integration by parts verify its Gauss ODE; at z=0 it
+is1, so it is the regular factor. At z=1 its beta integral value is
+ A0=Gamma(c)Gamma(1/2)/[Gamma(c-a)Gamma(c-b)].
+For z=1-h^2, subtract the z=1 integral and scale 1-u=h^2 v near u=1.
+Dominated convergence (splitting v<1 and v>1) gives linear coefficient
+ Gamma(c)/[Gamma(b)Gamma(c-b)] times
+ INT_0^infty v^(a-1/2)[(1+v)^(-a)-v^(-a)]dv.
+The last integral equals -2a B(a+1/2,1/2): write the bracket as
+ -a INT_0^1(v+s)^(-a-1)ds, use Tonelli, then scale v=s w.
+Thus the linear coefficient is
+ B0=-2Gamma(c)Gamma(1/2)/[Gamma(a)Gamma(b)].
+Since h=cos theta and the outward derivative is partial_theta, the
+Dirichlet-to-Neumann value is -B0/A0, precisely D_L above. All integrals
+converge for L>=2. Hence no hypergeometric summation/continuation theorem
+is needed for any coefficient of this finite lemma.
+
+For eps>0,xi in R^20, put f_(eps,xi)(y)=f(eps y+xi)/eps and
+ phi_(eps,xi)(y)=2 f_(eps,xi)(y)/(1+|y|^2), viewed by stereography on S^20.
+Our norm is N(eps,xi)=B(phi_(eps,xi),phi_(eps,xi))/||P||^2_(S^19).
+It is finite and C-infinity near(1,0), as the coefficient formulas below
+show (all required gamma moment sums converge strictly).
+
+2. EXACT GRAMS.
+For a homogeneous harmonic P_l=r^l Y_l, define G_l(i,j) to be B applied
+to 2P_l r^(2i)/(1+r^2) and 2P_l r^(2j)/(1+r^2), divided by ||Y_l||^2.
+We need l=1,2,3 only; i,j<=2 for l1,2, and i,j<=1 for l3.
+Set x=(21-2)/2=19/2, a=x+l. Use t=(r^2-1)/(r^2+1).
+Then exactly
+ 2P_l r^(2j)/(1+r^2)
+  =(1-t^2)^(l/2) [(1+t)^j/(1-t)^(l+j-1)]Y_l.
+The separated boundary harmonic basis is
+ (1-t^2)^(l/2) C_k^a(t)Y_l, total degree L=k+l.
+Its radial norm is
+ h_k=pi*2^(1-2a)Gamma(k+2a)/[k!(k+a)Gamma(a)^2].
+
+For an integer v>=1 Rodrigues' formula and k integrations by parts give
+ I_v(k)=INT_-1^1(1-t^2)^(a-1/2) C_k^a(t)(1-t)^(-v)dt
+ =2^(2a-v)B(a+1/2-v,a+1/2)
+   (2a)_k(v)_k/[k!(2a+1-v)_k].
+Boundary terms vanish since a+1/2>v in every required case.
+In particular I_1 is independent of k and equals
+ sqrt(pi)Gamma(a-1/2)/Gamma(a).
+Writing Z=(k+a)^2, define R_0=0 (effective degree1-kernel convention),
+ R_v(Z)=2^(1-v) PRODUCT_(u=0)^(v-2)[Z-(a-1-u)^2]/
+         [(v-1)!(a+1/2-v)_(v-1)] for v>=1.
+Gamma recurrence shows R_v=I_v/I_1. Expanding(1+t)^j gives the normalized
+coefficient polynomial
+ b_lj(Z)=SUM_(r=0)^j (-1)^(j-r) binom(j,r)2^r R_(l-1+r)(Z).
+R_0 can be set0 since I_0 has only k=0 coefficient; for l1 this is exactly
+the degree1 source annihilated by J. Thus no nonzero norm is dropped.
+
+Gamma duplication gives the following EXACT simplification:
+ J_(k+l)^2/[h_k D_(k+l)]
+ =2^(2l-1)Gamma(a)^2/pi * (k+a) F_l(Z)
+   [Gamma((k+l+1)/2)/Gamma((k+2a-l+1)/2)]^2,
+where F_1=Z-a^2, F_2=1, F_3=1/[Z-(a-1)^2].
+For l3 all b_lj are divisible by Z-(a-1)^2, so
+p_ij(Z)=F_l(Z)b_li(Z)b_lj(Z) is a polynomial for every required pair.
+Expand it in the monic basis
+ T_r(Z)=PRODUCT_(u=0)^(r-1)[Z-(a-l-1-2u)^2], T_0=1,
+ say p_ij=SUM_r d_ijr T_r. This is unique finite polynomial division.
+
+3. ELEMENTARY MOMENTS (NO SPECIAL SUMMATION THEOREM).
+Let beta=(l+1)/2. The exact moment is
+ S_r=SUM_(k>=0)(k+a)[Gamma((k+l+1)/2)/
+                    Gamma((k+2a-l+1)/2)]^2 T_r((k+a)^2)
+ =4^r/(a-l-1-r) *{
+ Gamma(beta)Gamma(beta+r)/[Gamma(a-beta)Gamma(a-beta-r)]
+ +Gamma(beta+1/2)Gamma(beta+1/2+r)/
+       [Gamma(a+1/2-beta)Gamma(a+1/2-beta-r)]}.
+It converges when a>l+1+r, true in every required case.
+Proof: for arbitrary B,C,V with V>B+C, set
+ W_j=Gamma(j+B)Gamma(j+C)/[Gamma(j+V-B)Gamma(j+V-C)].
+Gamma recurrence gives the telescoper
+ W_j-W_(j+1)=(V-B-C)(2j+V)
+ Gamma(j+B)Gamma(j+C)/[Gamma(j+V-B+1)Gamma(j+V-C+1)].
+W_j tends0 by the gamma-ratio asymptotic. Sum this identity. For even k
+use V=a,B=beta,C=beta+r; for odd k use
+V=a+1,B=beta+1/2,C=beta+1/2+r. The factor4^r comes from the paired
+linear factors defining T_r. This proves the displayed formula.
+Consequently the exact Gram is
+ G_l(i,j)=2^(2l-1)Gamma(a-1/2)^2 SUM_r d_ijr S_r.
+The standalone program computes precisely this finite polynomial formula.
+
+For rational arithmetic it factors G_l/pi using
+ q=Gamma(x+3/2)^2/[pi Gamma(x+1)^2].
+For each S_r after multiplication by the common Gram prefactor and
+division by pi, the two base coefficients are
+ l=1: E=2q x^2/(x+1/2)^2, O=1/2;
+ l=2: E=2(x+1/2)^2, O=8q;
+ l=3: E=32(x+3/2)^2 q, O=18(x+3/2)^2.
+The r-th moment in these scaled units is exactly
+ 4^r/(a-l-1-r) [E(beta)_r(a-beta-r)_r
+                +O(beta+1/2)_r(a+1/2-beta-r)_r].
+This is the implementation symbolic_gram(l,J). Every entry is rational
+in x,q; at x=19/2 only q is nonrational.
+
+4. FULL CENTRE HESSIAN.
+All Gram matrices above use unnormalized angular functions; the required
+relative angular factors follow from the sphere moment identity
+ E[omega_(i1)...omega_(i2r)] = SUM_pairings delta /
+                   [m(m+2)...(m+2r-2)].
+For general tracefree symmetric A, P=y^TAy, L_k=(Ay)_k,
+ H_3k=P y_k-2 L_k r^2/(m+2), and f_j=P r^(2j), one has
+ partial_k f_j=(2+4j/(m+2))L_k r^(2j)+2j H_3k r^(2j-2).
+H_3k is harmonic because Delta(P y_k)=4L_k and
+Delta(L_k r^2)=2(m+2)L_k. With a_k=(A^2)kk/tr(A^2),
+ ||L_k||^2/||P||^2=a_k(m+2)/2,
+ ||H_3k||^2/||P||^2=1/(m+4)+2m a_k/[(m+4)(m+2)],
+and the angular projection of partial_kk f_j onto P is
+ [2j+8j a_k+4j(j-1)(1+4a_k)/(m+4)]P r^(2j-2).
+These follow from
+ E[P^2]=2tr(A^2)/[m(m+2)],
+ E[P^2 omega_k^2]=[2tr(A^2)+8(A^2)kk]/[m(m+2)(m+4)],
+ E[P omega_k(Aomega)_k]=2(A^2)kk/[m(m+2)].
+Exact independent polynomial integrations are in agent2_center_decomposition.py.
+Here A^2=I,m=20, so a_k=1/20 for EVERY axis, and the factors become
+ ||L_k||^2/||P||^2=11/20, ||H_3k||^2/||P||^2=1/22,
+ projection coefficient e_j=2j+j(j+1)/5.
+
+Put c=(1,z,7/150). Then at(eps,xi)=(1,0),
+ partial_eps N = H(z)=SUM_ij 2(i+j+1)G_2(i,j)c_i c_j,
+ partial_eps,eps N = K(z)=SUM_ij 2(i+j+1)(2i+2j+1)G_2(i,j)c_i c_j.
+All first centre derivatives and all mixed Hessian entries vanish by
+coordinate reflection symmetry. Each diagonal centre entry is 2C(z),
+where C(z)=SUM_ij c_i c_j T_ij and
+ T_ij=(2+2i/11)(2+2j/11)*(11/20)*G_1(i,j)
+       +(2ij/11)*G_3(i-1,j-1)
+       +[2j+j(j+1)/5]*G_2(i,j-1).
+Terms with negative indices are0. Thus K<0,C<0 at a root of H proves a
+FULL negative definite Hessian, including all20 centre directions.
+No symmetry-restricted PDE space is being used.
+
+5. EXACT INTERVAL CERTIFICATE.
+At x=19/2,
+ q=4^20(10!)^4/[(20!)^2 pi^2].
+The program computes rational lower/upper pi bounds by alternating series
+for Machin's identity pi=16atan(1/5)-4atan(1/239). It also checks the exact
+rational tangent identity underlying Machin. These bounds give rational
+q_-<q<q_+. Every G, and H,K,C, is affine in q. For both q endpoints, the
+program proves with EXACT RATIONAL ARITHMETIC:
+ H(-425186/10^6)<0, H(-425185/10^6)>0;
+ -K(z)>0 and -C(z)>0 throughout the same closed z interval.
+For the last inequalities it substitutes z=left+(right-left)v and
+expresses each degree2 polynomial in Bernstein basis on0<=v<=1:
+ B_k=SUM_(j<=k) power_coefficient_j binom(k,j)/binom(2,j).
+Every one of the12 rational Bernstein coefficients is strictly positive.
+Linearity in q proves all signs for the actual q. The intermediate value
+theorem gives zeta in the interval with H(zeta)=0, and K,C<0 there.
+Reflection symmetry gives every other gradient entry0 and mixed Hessian
+entry0. The Hessian is therefore negative definite. This proves the lemma.
+
+REPRODUCIBILITY. Run agent2_n21_standalone_certificate.py with SymPy.
+It recomputes every coefficient above and ASSERTS each rational sign.
+No workspace imports, floating quadrature, evalf, or unchecked printed
+belief enters this certificate. agent2_verification_manifest.json lists
+six exact-check scripts and their SHA256 hashes, all rerun successfully.
+
+
+UNIFORM GRAPH LYAPUNOV--SCHMIDT THEOREM, WITH PROOF
+Agent4, full analytical piece for team integration.
+
+Theorem. Let n>17, d=n-1, a=(n-2)/2, p=(n+2)/(n-2), q=p+1,
+c=(n-2)/(4(n-1)), and alpha=2c. Let f:R^d->R be a real polynomial
+of degree at most6. For eps>0, xi in R^d put
+ U_b(y,z)=[eps/(eps^2+|y-xi|^2+z^2)]^a, b=(eps,xi).
+On H=D^{1,2}(R^n_+) define the Jacobi form
+ A_b(v,w)=int Dv.Dw-n(n+2)int U_b^(p-1)vw.
+Let K_b=span{partial_eps U_b,partial_xik U_b}, and let B_b be the inverse
+of A_b on K_b-perp, with orthogonality in H. Define a boundary functional
+ r_(f,b)(v)=int_{R^d}[Df.D_yU_b-f U_b,nn+alpha Delta f U_b] v0,
+and Q_f(b)=r_(f,b)(B_b r_(f,b)). These definitions are legitimate below;
+in particular r_(f,b) annihilates K_b.
+If Q_f has a strict local maximum at b*, then there is one fixed smooth
+compactly supported function F on R^d such that the critical equation
+ -Delta u=n(n-2)(u_+)^p in {z>F(y)},
+ partial_nu u+alpha H u=0 on its boundary
+has infinitely many nonzero weak finite-energy solutions concentrating
+at distinct boundary points with scales tending to0. Their pullbacks to
+R^n_+ differ from the standard bubbles by o(1) in H. The quadratic form
+of the conformal Laplacian/Robin operator is coercive. The solutions are
+nonnegative by testing negative parts. Compactification, smoothness, and
+strict positivity are treated separately by agent3's geometric lemma.
+
+Proof.
+I. Exact functional and small-form estimates.
+For any smooth compactly supported h, T_h(y,z)=(y,z+h(y)) maps R^n_+
+to its epigraph with determinant1. Its inverse metric is
+ G_h=[[I,-Dh],[-Dh^t,1+|Dh|^2]]. With the outward normal, mean curvature
+density on the boundary is
+ b_h=Delta h-Dh^t D2h Dh/(1+|Dh|^2).
+Thus the exact pulled-back functional is
+ E_h(v)=1/2 int G_h Dv.Dv+c int b_h v0^2-(n-2)^2/2 int(v_+)^q.
+Its critical points give precisely the asserted weak PDE and Robin
+condition, since q(n-2)^2/2=n(n-2) and alpha=2c.
+
+The Sobolev and trace inequalities are
+ ||v||Lq+||v0||Lb <= C_n||v||H,  b=2d/(n-2).
+Holder uses 1/d+2/b=1. Therefore, writing
+ eta(h)=||Dh||infty+||D2h||Ld and assuming eta(h)<=1,
+ |(a_h-a_0)(v,w)|<=C_n eta(h)||v||H||w||H,
+where a_h is the quadratic form of E_h. Consequently a_h is coercive
+if eta(h) is sufficiently small. All estimates here and below allow
+constants depending on n,f,a fixed compact parameter neighborhood, and
+a fixed cutoff, but never on the bump index i.
+
+II. Flat inverse and projected nonlinear equation.
+The kernel of A_b is exactly K_b, of dimension n. To check this and the
+inverse bound, conformally map to the unit round hemisphere: the H inner
+product becomes C(v,w)=int(Dv.Dw+n(n-2)vw/4), and A becomes
+int(Dv.Dw-nvw). Neumann spherical harmonics of degree k have eigenvalue
+mu_k=k(k+n-1). The C-Riesz eigenvalues are
+ (mu_k-n)/(mu_k+n(n-2)/4).
+For k0 this is -4/(n-2), for k1 it is0 with multiplicity n, and for k>=2
+it is at least4/(n+4), since the rational function is increasing in mu.
+Thus ||B_b||<= (n+4)/4, uniformly in b by conformal isometry of H.
+The inverse here is not claimed positive: its one negative mode is kept.
+
+Let P_b be orthogonal projection onto K_b-perp. The projected Hessian
+ P_b E_h''(U_b) P_b differs from P_b A_b P_b by at most C_n eta(h).
+Choose eta0 so small that the Neumann-series perturbation criterion
+holds, uniformly b. Its inverse then has norm at most(n+4)/2.
+For n>17, 1<p<2. The Nemytskii remainder satisfies, uniformly b,
+ ||N_b(w)||H* <= C||w||H^p,
+ ||N_b(w)-N_b(v)||H* <= C(||w||+||v||)^(p-1)||w-v||,
+where N_b(w) is the nonlinear part of E_h'(U_b+w)-E_h'(U_b)-E_h''(U_b)w.
+These inequalities follow from the scalar Holder estimate for
+(t_+)^(p-1), Holder with q=p+1, and the Sobolev embedding; N_b is
+independent of h because det DT_h=1.
+Hence if R_h,b=E_h'(U_b) is small, the contraction
+ w=-[P_b E_h''(U_b)P_b]^-1 P_b[R_h,b+N_b(w)]
+has a unique solution in K_b-perp with ||w||<=C||R_h,b||. On any compact
+parameter set where the residual tends uniformly to0, this holds uniformly.
+The solution is C1 in b by the ordinary Banach implicit-function theorem:
+the positive-part nonlinearity is C1, and the finite-rank projections
+are smooth. One may trivialize K_b-perp locally and glue branches by
+uniqueness. No parameter derivative remainder estimate is required.
+
+III. One fixed smooth graph.
+Choose centers p_i=(2^-i,0,...,0), radii rho_i=2^(-i-4),
+mu_i=2^(-i^2), lambda_i=exp(-(i+10)^4), i>=1. Let chi=1 on B1 and be
+supported in B2. The sets B_(2rho_i)(p_i) are pairwise disjoint. Set
+ F_i(y)=tau mu_i lambda_i^6 chi((y-p_i)/rho_i) f((y-p_i)/lambda_i),
+ F=sum_i F_i, beta_i=tau mu_i, t_i=beta_i lambda_i^5.
+Since lambda_i<rho_i, polynomial scaling gives
+ ||D^k F_i||infty<=C_k beta_i rho_i^(6-k) for every fixed k.
+These bounds, divided by any power of |p_i|, tend to0. Thus F is smooth
+and flat at0. It is compactly supported. Disjoint supports give
+ eta(F)<=C tau, using ||D2F_i||Ld<=C beta_i rho_i^5.
+Fix tau>0 so small that eta(F)<eta0. This fixes one graph once and for all.
+
+The H-isometric bubble rescaling is
+ (S_i v)(y,z)=lambda_i^-a v((y-p_i)/lambda_i,z/lambda_i).
+Exactly E_F(S_i v)=E_(h_i)(v), where
+ h_i(y)=F(p_i+lambda_i y)/lambda_i.
+Write R_i=rho_i/lambda_i. The local bump of h_i is
+ t_i f_(R_i), f_R=chi(y/R)f(y), and all other bumps are outside a ball
+of radius cR_i. The local form norm is at most
+ delta_i=C beta_i rho_i^5 ->0. The global form norm stays below eta0.
+
+IV. Uniform source and direct energy asymptotics.
+Fix a compact parameter neighborhood D around b*, with eps bounded
+away from0. Bubbles and derivatives satisfy uniformly there
+ |U_b(x)|<=C(1+|x|)^(2-n), |DU_b(x)|<=C(1+|x|)^(1-n).
+For R large, direct polar integration gives
+ ||DU_b||L2(|x|>R)+||U_b,0||Lb(|y|>R)<=CR^-a.
+Thus remote graph contributions to the residual are bounded by
+ C eta0 R_i^-a; remote quadratic/cubic direct energies are bounded by
+ C(eta0^2+eta0^3)R_i^-2a. Indeed use Cauchy--Schwarz for bulk terms
+and Holder (d,b,b) for the curvature term; only the global norms enter.
+The ratios of these bounds to t_i and t_i^2 tend to0, since
+ lambda_i^((n-12)/2) rho_i^-N /mu_i ->0 for each fixed N (n>12).
+
+The linear graph residual at U_b is the functional
+ ell_(f,b)(v)=-int Df.(D_yU_b v_n+U_b,n D_yv)
+              +alpha int Delta f U_b,0 v0.
+The bulk coefficients Df DU_b are O(r^(6-n)), with square radial
+power11-n. Boundary D2f U_b,0 is O(r^(6-n)), in L^{2d/n} precisely
+when n>12. These estimates also hold for derivatives of the cutoff.
+Consequently
+ ||ell_(f_R,b)-ell_(f,b)||H*<=CR^(-(n-12)/2).
+The nonlinear local metric residual has bound C delta_i t_i; the
+nonlinear local curvature residual has bound C delta_i^2 t_i. Combining
+these with the remote estimates proves, uniformly b in D,
+ R_(h_i,b)/t_i ->ell_(f,b) strongly in H*.
+
+The first energy variation of every graph is identically0 at every
+bubble on the boundary plane:
+ -int Dh.D_yU_b U_b,n+c int Delta h U_b,0^2=0.
+This follows by integrating the first term in z and the second in y;
+for f_R it is ordinary integration by parts, and the stated integrable
+bounds pass to f. Thus exactly
+ E_h(U_b)-E_0(U_b)=1/2 int|Dh|^2 U_b,n^2
+ -c int[Dh^t D2h Dh/(1+|Dh|^2)]U_b,0^2.
+Put K_f(b)=1/2 int|Df|^2 U_b,n^2. It is finite for n>12, and its
+cutoff error is O(R^(12-n)). The local cubic curvature integral has
+absolute bound Ct_i^3: its radial integrand is O(r^(16-n)), integrable
+for n>17. Remote direct energy was estimated above. Therefore
+ E_(h_i)(U_b)=E_0(U)+t_i^2 K_f(b)+o(t_i^2)
+uniformly on D. This is the only place n>17, rather than n>12, is used.
+
+V. Strong inverse convergence and reduced action.
+For each fixed v in H, E_(h_i)''(U_b)v-A_b v tends to0 in H*, uniformly
+for b in compact sets after finite-net approximation. For the bulk
+part use bounded coefficients, local Dh_i->0, and dominated convergence
+on Dv. For the boundary part choose R with small trace Lb tail of v;
+on the tail use the uniform Ld curvature bound, while on the ball use
+local D2h_i->0. This proves strong convergence. Fixed-source inverse
+convergence follows from the resolvent identity and the uniform inverse
+bound in II. The varying finite-rank projections cause no difficulty:
+they are smooth in b; equivalently conjugate by the bubble H-isometry.
+Uniformity on compact families follows by a finite net, since the limit
+source family and its flat inverse images are compact in H* and H.
+
+By II and IV, w_i(b) exists with ||w_i||<=Ct_i. Divide its projected
+equation by t_i. The nonlinear error is O(t_i^(p-1))->0. Consequently
+ w_i/t_i ->v_b=-B_b ell_(f,b) strongly in H, uniformly b in D.
+Here ell annihilates K_b: the identically-zero linear graph energy at
+U_b, differentiated in each bubble parameter, gives ell_(f,b)(Z)=0.
+The differentiation is justified by the same integrable polynomial
+bounds (or first for f_R and then by strong source convergence).
+
+Taylor's theorem for the scalar positive-part power gives an action
+remainder O(||w_i||^q), q>2, uniformly. Testing the projected equation
+against w_i eliminates the linear term. Thus the reduced action
+ j_i(b)=E_(h_i)(U_b+w_i(b))
+satisfies uniformly on D
+ j_i(b)=E_0(U)+t_i^2[K_f(b)-A_b(v_b,v_b)/2]+o(t_i^2).
+
+VI. Exact gauge identity, with no noncompact-shape differentiability.
+Set q_b=f U_b,n. It has zero trace and belongs H for n>12; its gradient
+is O(r^(6-n)). By the interior Jacobi equation for U_b,n and integration
+by parts with compact cutoffs, then H-convergence,
+ A_b(q_b,q_b)=int|Df|^2 U_b,n^2=2K_f(b).
+A direct integration by parts also gives
+ ell_(f,b)=r_(f,b)-A_b q_b.
+The functional r depends only on the boundary trace, so r(q_b)=0.
+Since ell annihilates K_b and A_b does also, r annihilates K_b. Therefore
+all projected inverse expressions are legitimate. Replacing q_b by its
+projection off K_b changes neither A_b q_b nor r(q_b). Expanding the
+quadratic expression yields the exact identity
+ ell B_b ell = r B_b r +2K_f(b).
+Hence the reduced action limit is
+ (j_i(b)-E_0(U))/t_i^2 -> -Q_f(b)/2
+uniformly on D.
+
+VII. Actual critical points and concentration.
+Choose D to be a small closed parameter ball around the strict maximum
+b* with Q_f(b*)>sup_(boundary D) Q_f. Uniform convergence in VI ensures
+j_i(b*)<inf_(boundary D)j_i for all large i. Thus j_i has a minimum at
+an interior b_i. Because w_i is C1, j_i'(b_i)=0.
+Let Z_k=partial_(b_k)U_b. The projected equation means E'(U_b+w_i)
+is in the H-Riesz span of the Z_k. The parameter derivative matrix is
+ <Z_k,partial_(b_l)(U_b+w_i)>H
+ =<Z_k,Z_l>H-<partial_(b_l)Z_k,w_i>H.
+The flat Gram is uniformly positive definite on D, and the second term
+is O(t_i), since the Z derivatives are uniformly bounded in H there.
+Thus the matrix is invertible for large i. The vanishing of j_i' forces
+all residual coefficients to vanish: U_(b_i)+w_i(b_i) is an exact weak
+critical point of E_(h_i), not merely a projected solution.
+
+Its physical pullback S_i[U_(b_i)+w_i] is an exact critical point of E_F.
+Testing its equation against the negative part gives minus a_F(u_-,u_-)
+on the left and0 on the right; coercivity forces u_-=0. The solution is
+nonzero because its rescaled H distance from a nonzero bubble tends to0.
+Finally b_i stays in D, and w_i->0 in H, hence in boundary Lb. On one
+fixed boundary ball, the trace of U_(b_i) has a uniform positive Lb norm.
+Thus the physical boundary supremum is at least C lambda_i^-a, diverging
+to infinity. Smooth compactification and strict positivity complete the
+geometric conclusion as in agent3's independent lemma. This proves the
+theorem, using only the usual Sobolev/trace inequalities, explicit sphere
+spectrum, contraction/IFT, and finite-dimensional minimization.
+
+
+COMPACTIFICATION, POSITIVITY, REGULARITY, AND BOUNDARY BLOWUP
+Agent 3. Full proof of the geometric/regularity part of the graph construction.
+
+Notation. n>=3, m=n-1, a=(n-2)/2, p=(n+2)/(n-2),
+q=p+1=2n/(n-2), r=2m/(n-2), alpha=(n-2)/(2m)=2c_n.
+Let F in C_c^infinity(R^m), let Omega_F={(y,z):z>F(y)}, and
+T_F(y,z)=(y,z+F(y)) from the upper half-space H. Put
+ b_F=Delta F - F_j F_k F_jk/(1+|DF|^2),
+ A_F=[[I,-DF],[-DF^t,1+|DF|^2]].
+The exact pulled-back conformal energy is
+ a_F(w,w)=int_H A_F Dw.Dw + alpha int_R^m b_F w(y,0)^2.
+Assume delta=||DF||infinity+||D2F||_Lm is sufficiently small depending
+only on n. Suppose w_i are nonzero critical points of
+ E_F(w)=a_F(w,w)/2 - n(n-2)/q int_H (w_+)^q.
+The conclusions below hold whenever these critical points have the
+bubble convergence stated in Section 6. Their existence is a separate
+Lyapunov--Schmidt theorem; no such theorem is assumed proved here.
+
+1. Fixed smooth graphs used in the construction.
+Choose p_i=2^{-i}e_1, rho_i=2^{-i-4}, mu_i=2^{-i^2},
+lambda_i=exp(-(i+10)^4), and chi in C_c^infinity(B_2), chi=1 on B_1.
+Let A be a nonzero symmetric tracefree m by m matrix, P2(y)=y^t A y,
+and choose fixed a0!=0,a1,a2. Define
+ F_i(y)=tau mu_i chi((y-p_i)/rho_i) P2(y-p_i)
+          [a0 lambda_i^4+a1 lambda_i^2|y-p_i|^2+a2|y-p_i|^4],
+ F=sum_{i>=1}F_i.
+The supports B_{2rho_i}(p_i) are pairwise disjoint: adjacent distance
+is 2^{-i-1}, while the sum of their radii is 3*2^{-i-4}.
+For every integer k>=0, the product rule and lambda_i<=rho_i give
+ ||D^k F_i||infinity <= C_k tau mu_i rho_i^{6-k}.
+On this support |y| is comparable to 2^{-i}. Therefore for all k,N,
+ ||D^k F_i||infinity / |p_i|^N ->0.
+All derivatives, extended by zero at the unique accumulation point 0,
+are continuous and vanish there; induction on k proves F is smooth
+and flat to infinite order at 0. It has compact support. Disjointness
+also gives ||DF||infinity<=C tau and
+ ||D2F||_Lm^m=sum_i ||D2F_i||_Lm^m
+               <=C tau^m sum_i (mu_i rho_i^5)^m.
+Thus delta<=C tau, and can be as small as required.
+
+2. Compact smooth manifold and nonhemisphere condition.
+Use inverse stereographic projection sigma^{-1}:R^n->S^n\{N} and set
+ M=closure in S^n of sigma^{-1}(Omega_F), with restricted round metric g.
+There is a full Euclidean ball outside which Omega_F agrees with the
+upper half-space: if y is outside supp F the inequalities agree exactly;
+if y is in supp F but |(y,z)| is sufficiently large, then |z|>||F||infinity
+and z,z-F(y) have the same sign. Consequently near N the set M is
+exactly a round hemisphere, so its boundary and metric are smooth there.
+Everywhere else smoothness follows because the boundary is the graph F.
+The domain is connected and has nonempty smooth boundary, and M is compact.
+The round metric is locally conformally flat in the explicit ambient
+sense of the problem, including all boundary points.
+At p_i, DF=0 and D2F=2 tau mu_i a0 lambda_i^4 A. The outward normal
+of the epigraph is (DF,-1)/sqrt(1+|DF|^2); hence II_flat at p_i equals
+D2F. Its tracefree part is nonzero. Under a conformal change ghat=e^{2h}g,
+ IIhat=e^h(II+(nu h)g_boundary), so IIhat^circ=e^h II^circ.
+Thus the restricted round metric also has a nonumbilic boundary point.
+Every metric conformally diffeomorphic to the round hemisphere has
+II^circ identically zero; our metric cannot be conformally equivalent
+to that hemisphere.
+
+3. Quantitative positive Yamabe type.
+Write S_n,T_n for half-space Sobolev and trace-Sobolev constants:
+ ||w||_Lq(H)<=S_n||Dw||_2,
+ ||w_0||_Lr(R^m)<=T_n||Dw||_2.
+For delta<=1, ||A_F-I||infinity<=3||DF||infinity and
+ ||b_F||_Lm<=C_n||D2F||_Lm. Holder and trace Sobolev therefore give
+ |a_F(w,w)-||Dw||_2^2| <= C_n delta ||Dw||_2^2.
+Choose tau so C_n delta<=1/2. Then a_F>=||Dw||_2^2/2.
+Let Omega(x)=2/(1+|x|^2), chi0=Omega^a. On the punctured compactified
+domain, g=chi0^{4/(n-2)}delta. For smooth compact u, v=chi0 u is a
+finite-Dirichlet-energy function on Omega_F; w=v o T_F belongs to D1(H).
+Conformal covariance, or direct integration by parts, gives
+ Q_g(u):=int_M(|Du|_g^2+c_n R_g u^2)+alpha int_boundaryM H_g u^2
+        =int_OmegaF |Dv|^2+alpha int_boundaryOmegaF H_flat v^2
+        =a_F(w,w).
+Also int_M |u|^q=int_OmegaF |v|^q=int_H |w|^q since det DT_F=1.
+It follows that
+ Q_g(u)>=1/(2S_n^2)||u||_Lq(g)^2
+       >=[Vol_g(M)^(-2/n)/(2S_n^2)]||u||_L2(g)^2.
+The variational first eigenvalue of (-L_g,B_g) is therefore at least
+Vol_g(M)^(-2/n)/(2S_n^2)>0, proving precisely the required Yamabe type.
+
+4. The energy-space transfer and absence of a puncture defect.
+The conformal transform above identifies smooth functions supported
+away from N with smooth finite-energy functions on Omega_F supported
+away from infinity. T_F is globally bi-Lipschitz because DF is bounded.
+(The vertical flattening need not extend smoothly through N; no such
+claim is used.) Smooth compactly supported functions up to the flat
+boundary are dense in D1(H). Functions on M vanishing near N are dense
+in H1(M): take cutoffs that vanish in a ball of radius epsilon around N
+and equal one outside radius 2epsilon; their Dirichlet cost is
+O(epsilon^{n-2}) and their L2 cost is O(epsilon^n). Multiply a smooth
+function by these cutoffs and then use smooth density in H1.
+The norm Q_g is equivalent to H1: its L2 coercivity was proved above;
+trace interpolation gives Q_g(u)>=1/2||Du||_2^2-C||u||_2^2, which
+combined with that coercivity yields ||u||_H1^2<=C Q_g(u).
+The reverse inequality follows bounded coefficients and the trace theorem.
+Consequently the conformal transformation extends by completion to an
+isomorphism D1(H)->H1(M), preserving Q and the critical nonlinear integral.
+Thus each critical point w_i gives an H1 weak solution u_i on all of M,
+not merely on M\{N}, of
+ Q_g(u_i,phi)=n(n-2) int_M (u_i)_+^p phi
+for every phi in H1(M). This also proves removability at N directly;
+there is no untested distribution supported at the compactification point.
+
+5. Positivity and smoothness.
+Let u be one of the nonzero weak solutions. Testing with u^-=max(-u,0)
+gives -Q_g(u^-,u^-)=0 because (u_+)^p u^-=0. Positivity of Q_g forces
+u^-=0, so u>=0. All finite L^s integrability follows by the usual
+Brezis--Kato truncation argument, whose relevant estimates are as follows.
+Write -Delta_g u=a(x)u with a=n(n-2)u^{p-1}-c_nR_g in L^{n/2}; the
+Robin coefficient alpha H_g is smooth and bounded. For beta>=1 and
+u_L=min(u,L), test the equation with u u_L^{2beta-2}; put
+W=u u_L^{beta-1}. Gradient comparison yields
+ ||DW||_2^2<=C beta^2 int |a|W^2+C beta int_boundary |alpha H_g|W^2.
+Trace interpolation absorbs the boundary-gradient term and leaves
+C_beta||W||_2^2. Split |a| into its bounded part and an L^{n/2} tail
+of norm smaller than the required multiple of beta^{-2}. Holder and
+Sobolev absorb the tail, giving
+ ||W||_Lq^2<=C_beta ||W||_2^2.
+Let L tend to infinity. Starting from u in Lq and iterating exponents
+by q/2>1 proves u in every finite L^s; the same tests and trace Sobolev
+also give every finite boundary L^s norm. Standard global Robin W^{2,s}
+regularity now applies since the interior right-hand side belongs to
+all finite L^s and the Robin coefficient is smooth. In particular u
+is C^{1,theta} for some theta>0, and then C^{2,theta'} by Schauder theory.
+On our round domain R_g=n(n-1)>0. Since L_g u=-n(n-2)u^p<=0,
+the strong maximum principle gives u>0 in the interior. If u vanished
+at a boundary point, Hopf's lemma would give partial_nu u<0 there,
+whereas Robin gives partial_nu u=-alpha H_g u=0, a contradiction.
+Hence u>0 on the closed compact domain. It has a positive minimum;
+the map t->t^p is smooth on its range. Ordinary elliptic bootstrap with
+smooth Robin coefficients therefore gives u in C^infinity(M).
+
+6. Boundary blowup follows from energy-space bubble convergence.
+Suppose the LS construction gives scales lambda_i->0, centers p_i->0,
+and functions W_i(y,z)=lambda_i^a w_i(p_i+lambda_i y,lambda_i z)
+such that ||W_i-U_{s_i,xi_i}||_D1(H)->0, with (s_i,xi_i) in a fixed
+compact set K contained in (0,infinity) x R^m. By trace Sobolev the
+same convergence holds in L^r of the boundary. Choose R large and c>0
+so inf_{(s,xi) in K} int_{B_R} U_{s,xi}(y,0)^r dy>=2c.
+For large i, int_{B_R} W_i(y,0)^r dy>=c. Critical trace scaling ar=m
+gives int_{B_{Rlambda_i}(p_i)} w_i(y,0)^r dy>=c, whence
+ sup_{boundaryH} w_i >=[c/(|B_R|lambda_i^m)]^{1/r}
+                         =C lambda_i^{-a}->infinity.
+In physical coordinates v_i(y,F(y))=w_i(y,0), and compact u_i=v_i/chi0.
+The factor chi0 is bounded above and below near the p_i, uniformly in i.
+Therefore max_boundaryM u_i>=C'lambda_i^{-a}->infinity.
+
+This proves all geometric, positivity, transfer, regularity and blowup
+claims for the SINGLE fixed F, conditional only on the existence and
+bubble convergence supplied by the separate uniform LS theorem.
+No low-dimensional compactness claim and no dimension25 threshold is
+used in this lemma; it applies in every n>=3 where those LS inputs hold.
+
+
+STANDALONE EXACT FINITE CERTIFICATE
+
+import sympy as s
+from pathlib import Path
+x,z,q=s.symbols('x z q')
+
+def symbolic_gram(l,J):
+ a=x+l
+ def R(v):
+  if v==0:return s.Integer(0)
+  return 2**s.Integer(1-v)*s.prod(z-(a-1-t)**2 for t in range(v-1))/(s.factorial(v-1)*s.rf(a+s.Rational(1,2)-v,v-1))
+ b=[s.expand(sum((-1)**(j-r)*s.binomial(j,r)*2**r*R(l-1+r) for r in range(j+1))) for j in range(J+1)]
+ maxr=2*J+l-2
+ U=[s.prod(z-(a-l-1-2*t)**2 for t in range(r)) for r in range(maxr+1)]
+ # Output is exact shape Gram / pi, with q=Gamma(x+3/2)^2/(pi Gamma(x+1)^2).
+ preE={1:2*q*x*x/(x+s.Rational(1,2))**2,2:2*(x+s.Rational(1,2))**2,3:32*(x+s.Rational(3,2))**2*q}[l]
+ preO={1:s.Rational(1,2),2:8*q,3:18*(x+s.Rational(3,2))**2}[l]
+ beta=s.Rational(l+1,2)
+ moments=[s.factor(4**r*(preE*s.rf(beta,r)*s.rf(a-beta-r,r)+preO*s.rf(beta+s.Rational(1,2),r)*s.rf(a+s.Rational(1,2)-beta-r,r))/(a-l-1-r)) for r in range(maxr+1)]
+ G=s.zeros(J+1)
+ for i in range(J+1):
+  for j in range(i,J+1):
+   p=b[i]*b[j]
+   if l==1:p*=z-a*a
+   if l==3:p=s.cancel(p/(z-(a-1)**2))
+   p=s.Poly(s.expand(p),z);v=0
+   for r in range(p.degree() if not p.is_zero else -1,-1,-1):
+    c=p.nth(r);v+=c*moments[r];p=s.Poly(p.as_expr()-c*U[r],z)
+   assert p.is_zero
+   G[i,j]=G[j,i]=s.factor(v)
+ return G
+
+def atan_bounds(inv,N):
+ sums=sum((-1)**k*s.Rational(1,(2*k+1)*inv**(2*k+1)) for k in range(N))
+ nxt=(-1)**N*s.Rational(1,(2*N+1)*inv**(2*N+1))
+ return min(sums,sums+nxt),max(sums,sums+nxt)
+# Exact rational tangent check for Machin: 4 atan(1/5)-atan(1/239)=pi/4.
+# The angle is in (0,pi/2), so tangent=1 identifies it uniquely.
+tan2=2*s.Rational(1,5)/(1-s.Rational(1,25))
+tan4=2*tan2/(1-tan2**2)
+assert s.cancel((tan4-s.Rational(1,239))/(1+tan4/s.Integer(239)))==1
+a,b=atan_bounds(5,15);c,d=atan_bounds(239,5)
+pilo,pihi=16*a-4*d,16*b-4*c
+assert pilo>s.Rational(333,106) and pihi<s.Rational(22,7)
+xx=s.Rational(19,2);m=20
+qq=s.simplify(s.gamma(xx+s.Rational(3,2))**2/s.gamma(xx+1)**2/s.pi)
+C=s.simplify(qq*s.pi**2);assert C.is_Rational
+qlo=C/pihi**2;qhi=C/pilo**2
+G=symbolic_gram(2,2).subs(x,xx);G1=symbolic_gram(1,2).subs(x,xx);G3=symbolic_gram(3,1).subs(x,xx)
+z,v=s.symbols('z v');co=[1,z,s.Rational(7,150)]
+H=sum(2*(i+j+1)*G[i,j]*co[i]*co[j] for i in range(3) for j in range(3))
+K=sum(2*(i+j+1)*(2*i+2*j+1)*G[i,j]*co[i]*co[j] for i in range(3) for j in range(3))
+T=s.zeros(3)
+for i in range(3):
+ for j in range(3):
+  T[i,j]=(2+s.Rational(4*i,m+2))*(2+s.Rational(4*j,m+2))*s.Rational(m+2,2*m)*G1[i,j]
+  if i*j:T[i,j]+=s.Rational(4*i*j,m+2)*G3[i-1,j-1]
+  if j:T[i,j]+=(2*j+s.Rational(4*j*(j+1),m))*G[i,j-1]
+Center=sum(T[i,j]*co[i]*co[j] for i in range(3) for j in range(3))
+left=-s.Rational(425186,10**6);right=-s.Rational(425185,10**6)
+
+def bern(e):
+ p=s.Poly(s.expand(e.subs(z,left+(right-left)*v)),v);dd=p.degree()
+ bs=[sum(p.nth(j)*s.binomial(k,j)/s.binomial(dd,j) for j in range(k+1)) for k in range(dd+1)]
+ assert all(t>0 for t in bs)
+ return bs
+cert=[]
+for qt in [qlo,qhi]:
+ h=H.subs(q,qt)
+ assert h.subs(z,left)<0 and h.subs(z,right)>0
+ cert.extend(bern(-K.subs(q,qt)))
+ cert.extend(bern(-Center.subs(q,qt)))
+print('EXACT rational certificates: scale root in',left,right,'; scale and every center direction negative.')
+print('Verified',len(cert),'strict-positive rational Bernstein coefficients, with exact Machin pi bounds.')

@@ -1,0 +1,12 @@
+import sympy as s
+u,v,b,d=s.symbols('u v b d',real=True)
+h=s.cos(b)*s.cos(u-v)-s.cos(d)*s.cos(u+v)
+print('Along the joining arc, dh/dv =',s.simplify(s.diff(h,v).subs({v:0,b:0,d:0})))
+print('Transverse (b,d) Hessian along arc:')
+print(s.hessian(h,(b,d)).subs({v:0,b:0,d:0}))
+Q=s.diag(-1,1)
+R=s.Matrix([[0,-1],[1,0]])
+print('A quarter-turn has determinant',R.det(),'and transforms Q to',R.T*Q*R)
+print('Residual quadratic form changes sign between the two endpoints.')
+print('A constant transverse framing therefore cannot produce a fixed st term at both endpoints.')
+print('An interpolating moving framing must be analyzed jointly with the normal coordinate v; triviality of the bundle alone does not verify the asserted exact normal form or the collar extension.')

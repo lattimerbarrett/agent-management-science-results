@@ -1,0 +1,44 @@
+Filtered metaplectic-cover lemma (root-calculus proof outline).
+
+Let K be a nonarchimedean local field of characteristic zero containing mu_p,
+O its integer ring, pi a uniformizer, e=v(p), C=pe/(p-1) an integer.
+Write U_r=1+pi^r O and Gamma_r=ker(SL_N(O)->SL_N(O/pi^r)), N>=3.
+Use the mu_p central extension of SL_N(K) obtained by pushing Matsumoto's
+Steinberg extension through the p-th Hilbert symbol. It has standard root
+lifts x_ij(a) and torus lifts h_ij(u).
+The Hilbert unit theorem gives (U_i,U_j)_p=1 if i+j>C and U_{C+1}
+subset (K^*)^p. The latter also annihilates symbols with arbitrary second argument.
+
+Each g in Gamma_r has unique ordered LDU decomposition: root parameters
+belong to pi^r O, diagonal parameters belong to U_r. Define sigma(g) by
+using standard root lifts and a fixed ordered choice of torus lifts.
+For r>C the map sigma restricted to Gamma_r is a homomorphism.
+For g in Gamma_i and h in Gamma_j with i+j>C one has
+ [sigma(g),sigma(h)] = sigma([g,h]).
+
+Root-calculus verification: collect ordered root and torus factors. Root
+addition has no central discrepancy. Nonopposite roots contribute a root
+parameter ab, of valuation at least i+j. Torus/root interchange contributes
+(u^k-1)a, likewise of valuation at least i+j. Torus/torus interchange
+has discrepancy (u,v)_p raised to an integral Cartan coefficient,
+u in U_i,v in U_j, hence is trivial beyond C. Opposite-root collection
+uses the two-by-two Gaussian identity; its new diagonal unit is 1+ab in
+U_{i+j}, and its central corrections are symbols involving 1+ab and a
+or b (or their inverses). They vanish if i+j>C since U_{C+1} consists
+of p-th powers. Subsequent collection of the new level-(i+j) factors has
+no central errors by the same argument. This verifies the displayed identities.
+For products wholly at level r>C, the identical calculation establishes
+multiplicativity of sigma. In these assertions all roots and tori appearing
+in original LDU factors retain their indicated valuation bounds.
+
+Set F_r=the full preimage of Gamma_r when 1<=r<=C and
+F_r=sigma(Gamma_r) for r>C. Then [F_i,F_j] subset F_{i+j}:
+for i+j<=C it follows from matrix congruences; above C it follows from
+root calculus. In particular sigma(Gamma_{C+1}) is normal in F_1,
+F_1/sigma(Gamma_{C+1}) is nilpotent of class at most C, and mu_p embeds
+in this quotient (sigma sends identity to identity).
+
+The only inputs are Matsumoto's extension and the standard local Hilbert
+unit-filtration theorem, plus the listed elementary Steinberg collection
+relations. Any final proof should spell out the opposite-root lifted
+Gaussian identity or cite its usual Steinberg-symbol version explicitly.

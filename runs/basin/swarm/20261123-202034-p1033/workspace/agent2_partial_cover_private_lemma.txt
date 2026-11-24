@@ -1,0 +1,40 @@
+PARTIALLY REPEATED CORE POINTS HAVE THREE-OWNER PRIVATE PAIRS
+
+Use the fully saturated generalized fixed-budget normal form: every
+set containing a full core, within that class's residual rank budget,
+and intersecting all old members is already an actual family member.
+Let C be a minimum t-cover. Suppose a core X_i is partially met by C,
+with 2<=|C intersect X_i|<|X_i|.
+
+Then for EVERY v in C intersect X_i, every private cover-witness edge
+E with E intersect C={v}, and every u in X_i minus C, there is another
+edge G such that E intersect G={v}, u notin G, and the owner classes of
+X_i,E,G are three distinct classes.
+
+Proof. A private witness E exists because C is a minimum (hence
+irredundant) cover. Its owner j differs from i, since an edge of class i
+contains all of C intersect X_i, which has at least two points. Hence v
+is residual in E. Put E'=(E minus {v}) union {u}. This contains X_j and
+is within the residual budget of class j, even if u was already in E;
+moreover E' is disjoint from C. If E' intersected every actual edge,
+saturation would force E' itself to be an actual edge, contradicting
+that C covers the family. Thus some G is disjoint from E'. Since the
+original family is intersecting and E minus E' is contained in {v},
+E intersect G={v}. Owner(G) cannot be i, because every class-i member
+contains u; nor can it be j, because every class-j member contains the
+nonempty X_j subset E'. This proves the assertion.
+
+Thus, if a point v in a core X_i is never the unique intersection of
+two edges BOTH owned outside i, it cannot appear in a partially repeated
+nonexhausted core part of a minimum cover. Every minimum cover containing
+v and another X_i point must exhaust X_i. This is an exact restricted
+version of the conjectural partial-core classification.
+
+ACTUAL CHECK: applied to agent_4's saturated rank4 tau4 family on9
+points, cores (3,2,2,2). Enumerated ALL52 minimum4-covers, all partially
+repeated core parts, every private witness E, and every permitted u.
+All29 resulting cases have explicit G certificates with three distinct
+owners. Files workspace/agent2_partial_cover_private_checks.py/.json.
+
+MISSING: No bound is proved on the number of these three-owner-private
+exceptional core points in a minimum-ground configuration.

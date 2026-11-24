@@ -1,0 +1,52 @@
+P4 width-three composition (2,3,2): exact elimination and geometric conclusion.
+
+Normalize E|line=O(2)^2+O(1)^3+O^2. On I=P(Q), the q-relative
+HN graded pieces are p*O(2) q*F0, p*O(1) q*F1, q*F2 of ranks2,3,2.
+Let h=c1p*O(1), x be the second root of q*S*; s=h+x,t=hx.
+The flag Chow ring is Q[h,x]/(h^5,h^4+h^3x+h^2x^2+hx^3+x^4).
+The q-Chow bases in degrees1..6 are computed by symmetric polynomials
+in h,x with dimensions1,2,2,2,1,1 (degree7 iszero).
+
+Write ch_j(Fi) independently in these bases. Necessarily
+sum_i exp((2-i)h) ch(Fi) = p*ch(E).
+After reduction, the coefficients involving x must vanish. These are15
+linear equations in27 ch coefficients. Exact linear elimination leaves12
+parameters. Rank conditions are imposed by Newton identities:
+c_k=(1/k)sum_{j=1}^k (-1)^(j-1) j! ch_j c_{k-j},
+requiring c_k(Fi)=0 for k>rankFi throughk=6. Eliminating variables that
+occur linearly with constant nonzero coefficients leaves9 equations in
+five parameters a,b,c,d,e. Here a is c1(F0)/s and d is c1(F1)/s;
+by the degree1 additive relation c1(F2)/s=-a-d.
+The generator agent3_chgeneral.py produces these equations without
+an assumed integral bound or numerical approximation.
+
+The self-regenerating agent3_232_certificate.py ran successfully79s.
+It computes a Groebner basis over QQ and verifies EXACTLY that
+f=a(a+d) belongs to the resulting ideal. It additionally checks the
+returned polynomial-division identity term by term. Therefore every
+complex solution, in particular every possible actual HN Chern datum,
+has c1(F0)=0 or c1(F2)=0. This is an ideal-membership argument; no
+assertion of completeness based solely on root printing is used.
+
+If c1(F0)=0: A=q*F0 is a subbundle of p*E(-2). On each p-fiberP3,
+A* is globallygenerated with c1=0, hence trivial: its classifying map to
+a Grassmannian has trivial Plucker pullback and isconstant. Thus Grauert
+and evaluation give A=p*B for a rank2 B onP4. Since c1A=0, c1B=0.
+The inclusion B->E(-2) is a subbundle, so on any line all degrees of
+B are <=0. Their sum is0, hence B restricts trivially to everyline.
+A vector bundle trivial on every line ofPn is trivial: blow up a point,
+descend along the ruling toP^(n-1), and restrict to the exceptional
+section, on which the pullback is trivial. Therefore B=O^2, and the
+original top HN block descends to O(2)^2 inside E.
+The rank5 quotient is uniform with remaining splitting (1^3,0^2),
+classified by the already proved lower-rank/two-step arguments. It
+is a sum oflines and at most one Q or Q* twist; ordered-slope Euler
+cohomology shows Ext^1(quotient,O(2)^2)=0. Hence E is homogeneous.
+
+If c1(F2)=0, apply exactly the same argument to E*(2), whose top block
+is q*F2*. This proves the desired decomposition in all cases.
+
+The lower-rank classification used here is noncircular: P4 ranks<=3
+split by edge-product descent; two-step cases in all ranks<=7 are
+reconstructed directly from their explicit Chern candidates; width3
+ranks<=6 are separately checked in agent2_p4_lower_certificate.py.

@@ -1,0 +1,69 @@
+COMPATIBLE ALL-CHOICE NORMAL FORM WITH A RANK-t MEMBER IN EVERY CLASS
+
+Pure separated generalized model. Each class i has a disjoint core X_i;
+a base pattern is (P,T), where P is an actual point set disjoint from all
+cores and T is a subset of other class labels. Its full members are
+X_i union P union {x_j:j in T}, for ALL independent choices x_j in X_j.
+Assume |P|+|T|<=d_i<=d, the full family is intersecting, and tau=t.
+Suppose t>2d. Initially core sizes can be arbitrary (the usual factor-2
+normalization may be used to arrange this model with large cores).
+
+THEN, without increasing any residual cap d_i, one can modify this
+model so that all-choice symmetry is retained and:
+ (1) t-d_i<=|X_i|<=t for every class;
+ (2) each class i contains some ACTUAL rank-t members of form
+ C_i=X_i union A_i union {x_j:j in L_i}, for ALL choices x_j in X_j,
+ where |A_i|+|L_i|=t-|X_i|<=d_i.
+The whole resulting family still has covering number t and is
+intersecting. Its other members may have size greater than t.
+
+IRREDUNDANT COVERS. A partially, but not fully, met core contributes
+only to covering its OWN class. Indeed, a foreign base pattern has at
+most one independently chosen point in that core; a choice outside the
+partial cover avoids it. Thus an irredundant cover meets every
+nonexhausted core in at most one point.
+
+SYMMETRIC CORE MERGE. Identify two points a,b of X_i, retaining all
+independent target choices. Intersection is preserved and no residual
+budget increases. The new covering number is either t or t-1, and it
+is t-1 iff some old minimum t-cover contains BOTH a,b: map such a cover
+to the quotient; conversely lift a new cover of size<t, replacing the
+merged point by both preimages if necessary, to get an old cover of
+size at most t. By the preceding fact, an old minimum cover containing
+a,b must EXHAUST X_i.
+
+LOCKING ALGORITHM. Keep some classes locked. To lock an unlocked i,
+merge pairs in X_i while tau remains t, stopping as soon as there is a
+minimum t-cover C exhausting X_i. Such a stop must occur: every class
+has an edge of size at most |X_i|+d_i, and any edge of an intersecting
+family covers it, so throughout |X_i|>=t-d_i>t/2>=1. Hence one cannot
+merge forever, and a first forbidden merge supplies C. This cover
+exhausts NO other core, since all core sizes exceed t/2. Consequently
+irredundancy gives C=X_i union A union one point from each core in L,
+with |A|+|L|=t-|X_i|<=d_i.
+
+ALL CHOICE VARIANTS OF C ARE COVERS. Classes i and those in L are met
+through their own cores. For h outside L union {i}, an actual pattern
+(P,T) must either have i in T or P meet A: otherwise choose its target
+points in every partially met core outside C, giving an old member
+disjoint from C. This contradicts that C is a cover. This condition
+also shows that every alternative choice of the points in L is a cover.
+Add all these variants as members of class i. They meet every old
+member because they are old covers, and meet each other in X_i.
+Their residual size is t-|X_i|<=d_i. Adding members cannot decrease
+tau, and any new rank-t member covers the enlarged intersecting family,
+so tau remains exactly t. Lock i.
+
+Later merges are only in UNLOCKED cores. A previously added rank-t
+member has at most one point in any such foreign core, so its rank
+stays t under a merge; all choices remain available and intersection
+is preserved. Thus its lock persists. Repeat at most t times. The
+finite total ground shrinks between locking steps, proving termination.
+No edge can acquire two owners: a class-h edge has at most d_h<=d
+points outside X_h, while every other core has >t/2>d points.
+
+USEFUL CONSEQUENCE. For every original/current base pattern (P,T) of
+class h outside L_i union {i}, P meets A_i OR i is in T. Thus these
+rank-t seeds give short dual certificates as well as pairwise
+intersecting actual members. They do NOT by themselves make all old
+members rank t, nor prove a binomial or 5/3 lower bound.

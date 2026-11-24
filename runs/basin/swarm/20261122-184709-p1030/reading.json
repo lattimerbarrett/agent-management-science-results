@@ -1,0 +1,69 @@
+{
+ "run": "20261122-184709-p1030",
+ "problem": 1030,
+ "told": false,
+ "solo": true,
+ "answer": "\\(Q_{h,s}(t)=t^{\\frac{(1+4h^2)s(s+1)-2hs+h(h-1)}{2}}\\).",
+ "claims_proof": true,
+ "where": "Reply #1",
+ "answer_reason": "The agent explicitly gives this monomial as its answer and concludes that it is proved for every allowed h and s, with nothing remaining to determine.",
+ "definite": true,
+ "verify": {
+  "verdict": "sound",
+  "acknowledged": false,
+  "review": {
+   "claimed": "For every h\u22652 and s\u22651, L=E=((1+4h\u00b2)s(s+1)\u22122hs+h(h\u22121))/2, m_E=1, and all torsion lengths strictly between E\u2212min(h,s+1) and E vanish; hence Q_{h,s}(t)=t^E.",
+   "verdict": "sound",
+   "team_acknowledged_gap": false,
+   "acknowledged_where": "",
+   "decisive_steps": [
+    {
+     "step": "Identify torsion lengths with persistence bars of the Seifert tau path.",
+     "basis": "citation",
+     "checked": "The stated graded-root theorem applies: the displayed normalized Seifert data have Euler number \u22121/(pqr), give a negative-definite plumbing, and have only one bad vertex. The delta formula follows from these data. Orientation reversal and the plus/minus correspondence preserve finite elementary-divisor lengths."
+    },
+    {
+     "step": "Quadratic identity (6) and the global minimum H attained on both sides of c.",
+     "basis": "argument",
+     "checked": "Independently expanded the floor-sum expression using c\u2261p/2 (mod p) and c\u22611 (mod q,r). It gives 8(\u03c4(n)\u2212\u03c4(c))=p(W\u00b2\u22121)+X\u00b2+Y\u00b2\u2212b at p-grid points, exactly (6). Oddness gives the lower bound; the four explicit points satisfy the floor conditions and attain H on both sides."
+    },
+    {
+     "step": "Uniform arithmetic gap lemma (11).",
+     "basis": "argument",
+     "checked": "Checked the orthogonal-decomposition bound, divisibility by 8, the resulting bound |m|<2y, and all five cases for i_0. The negative-e estimate and all four odd-integer inequalities (18) hold. Substitution yields G\u22658 min(h,s+1) in every case."
+    },
+    {
+     "step": "Every noncentral persistence bar has length at most E\u2212d, while the central maximum produces exactly one bar of length E.",
+     "basis": "argument",
+     "checked": "The cell-roof description covers genuine maximum plateaus, including boundary coincidences. A prefix minimum can be chosen at a p-grid point with \u0394=1. Its ordering supplies T(D)\u22652, so the lemma gives the prefix-minimum bound, and reflection gives the suffix version. The persistence merge rule then bounds every noncentral bar. The explicit global minima connect to the two sides of the central maximum below its height, forcing exactly one central bar of length E."
+    },
+    {
+     "step": "Executable verification of the path, identities, roof coverage, and top multiplicities.",
+     "basis": "computation",
+     "checked": "Read the complete scratchpad and reran it unchanged through runpy. All symbolic, arithmetic, and eight case checks passed, including every p-grid identity and slope event in those cases and two independent full semigroup comparisons. The persistence implementation computes ordinary sublevel persistence over exact integer heights; the reported top multiplicities match."
+    }
+   ],
+   "failing_step": "The hardest step was the uniform arithmetic gap lemma and its conversion into the noncentral-bar bound; both check out.",
+   "reason": "The final response supplies a uniform argument rather than extrapolating from finite computations. Its decisive quadratic identity, arithmetic inequality, and persistence argument establish the largest length, its multiplicity one, and the entire required gap. No unresolved objection or acknowledged gap remains in the final proof."
+  },
+  "responses": 9,
+  "runs": 1,
+  "cost": 0.1782
+ },
+ "stop": true,
+ "contract": {
+  "form": "A complete answer is an explicit formula for the polynomial Q_{h,s}(t), valid for every pair of integers h \u2265 2 and s \u2265 1, specifying the exponents and integer coefficients in the d = min{h, s+1} consecutive degree positions ending at the largest torsion exponent L. The formula must determine L and all retained coefficients from h and s, and may use exhaustive cases.",
+  "not_enough": "Bounds on L or the coefficients, a computation of L alone, selected examples, a formula covering only some parameter values, or a conditional or undetermined answer would not settle the question. Nor would a description that leaves the required exponents or multiplicities to an unevaluated Heegaard Floer homology computation."
+ },
+ "definite_reason": "The formula applies to every allowed h and s and explicitly asserts L equals the displayed exponent, with coefficient 1 there and coefficient 0 at every other retained degree. Thus, if true, it completely determines Q.",
+ "reference": "\\(Q_{h,s}(t)=t^{\\frac{(1+4h^2)s(s+1)}{2}-hs+\\frac{h(h-1)}{2}}\\) for every integer \\(h\\ge2\\) and \\(s\\ge1\\).",
+ "correct": true,
+ "graded_by": "judge",
+ "solved": true,
+ "cost": 0.2043,
+ "read_at": 1795392388.3211489,
+ "matharena": true,
+ "restated": false,
+ "grade_note": "The model\u2019s exponent is algebraically identical to the reference exponent, and both give a single monomial with coefficient 1.",
+ "graded_at": 1795396402.582627
+}

@@ -1,0 +1,89 @@
+# Universal odd-weight gaps after deleting a seven-flat
+
+Let D be any affine seven-flat in F2^13. The following hold:
+(A) If deg(t)<=8, then wt(t outside D) is not 33,35,37,39.
+(B) If deg(t)<=7 and wt(t outside D) is odd and <105, its only possible
+    values are 63,93,95.
+These are statements about arbitrary t, not merely sums of minimum words.
+
+Use coordinates x in F2^6, z in F2^7, D={x=0}. Write t_x for the z-fiber,
+and M_J(x)=sum_z t_x(z) product_{j in J} z_j. Summing seven variables gives
+    deg M_J <= deg(t)-7+|J|.
+All sums are in F2. A nonzero polynomial of degree a on b variables has
+weight at least 2^(b-a). Also an even set whose moments through degree a
+vanish has size at least 2^(a+1). An odd set with those moments equal to
+those of {0} has size 1, or at least 2^(a+1)-1.
+
+PROOF OF (A). Suppose e in {33,35,37,39}. Fiber parity C=M_empty has
+ degree<=1. Because sum_{x !=0} C(x)=C(0) for an affine function on six
+variables, C(0)=1. If C=1, all 63 outside fibers are odd, impossible.
+Otherwise normalize C=1+x1. There are 31 odd outside fibers and 32 even
+outside fibers. They supply baseline31 and excess E=e-31<=8.
+
+Each first moment has degree<=2 and on Hc={x1=1} has support among at
+most E/2<=4 nonempty even fibers. A quadratic on five variables has
+minimum weight8, so all first moments vanish on Hc. Thus each first
+moment is (1+x1) times an affine function on H={x1=0}. An affine change
+z_i -> z_i + that affine function makes every first moment zero.
+
+Now a defective odd outside fiber has size>=3 (cost>=2), and a nonempty
+even fiber has size>=4 (cost>=4). A second moment has degree<=3. Its
+restriction to Hc has support <=E/4<=2 <4, the minimum for cubic
+polynomials on five variables. Hence it vanishes there. Factoring
+1+x1 leaves a quadratic on H. Its support off0 is <=E/2<=4, less than
+8-1=7. Therefore all second moments vanish (also at0).
+
+Odd defects now have size>=7 (cost>=6), even defects have size>=8.
+There is at most one defect. Third moments have degree<=4: on Hc their
+minimum weight is2>1; on H, after factoring1+x1, the cubic minimum
+weight off0 is at least4-1=3>1. Thus all third moments vanish. But any
+odd defect would now cost>=14, and any even defect>=16, exceeding E.
+Consequently e=31, contradiction.
+
+PROOF OF (B). Fiber parity is constant; odd outside weight forces it
+identically1. Baseline is63; let E=e-63, an even number<=40. First
+moments are affine and can be made identically zero by affine z-shifts.
+
+If some second moment is nonzero, it is quadratic on six variables.
+Its full weight is at least16; if not of minimum weight, at least24.
+The latter would give >=23 outside fibers of cost>=2, exceeding40.
+Thus every nonzero second moment is the indicator of an affine four-flat.
+Two distinct such supports have union>=24, again too large. Hence all
+second moments are constants times a common four-flat indicator 1_T.
+The alternating moment matrix M has rank2: rank>=4 would cost>=4 on
+at least15 fibers, exceeding40. Indeed for an odd zero-XOR fiber R,
+rank M <= |R|-1. A rank2 alternating matrix identifies a unique plane P,
+and its unique minimum-size odd zero-XOR fiber is P without0.
+
+Use canonical singleton0 fibers offT and canonical P-without0 fibers onT.
+Their outside weight e0 is 63+2*|T without0|, namely93 or95. Every actual
+fiber has size at least the canonical one. Let R=e-e0<=10. Defective
+fibers have excess at least2, so there are <=5. A third-moment error
+(actual minus canonical) has degree<=3; if nonzero its support off0 is
+at least8-1=7. Thus it vanishes. Any defective fiber now differs from
+its canonical fiber by a nonzero null3 set, of size>=16. This costs>=10
+for a canonical triple, >=14 for a canonical singleton. There is at most
+one defect. Fourth-moment errors have degree<=4, with nonzero outside
+support >=4-1=3>1. They vanish; now a defect costs>=32-2*3=26>10.
+Therefore e=e0 in {93,95}.
+
+If all second moments vanish, a nonzero third moment has at least7
+outside points. Their odd fibers cost>=6 each, totaling42>40. Thus all
+third moments vanish. A nonzero fourth moment similarly costs at least
+(4-1)*14=42>40, so all fourth moments vanish. A defective odd fiber now
+costs>=30; thus there is at most one. For this fiber R, the set
+R symmetric-difference {0} is a nonzero null4 set on F2^7 of size<=42.
+It is an RM(2,7) word. The first two nonzero weights of that code are
+32,48 (the elementary quadratic-form rank formula). Thus its size32,
+R has size31 or33, and E=30 or32. Hence e=93 or95. With no defect e=63.
+QED.
+
+CONSEQUENCES.
+1. A constant-Q m15 hypothetical target with a 128-point hyperplane
+section having any nonzero translation period is impossible: project
+opposite B along that period; its parity b is nonzero RM(6,13), weight
+128 or192. For b128 use(A); for b192 use the independently proved
+rank4-quadric/degree8 puncturing argument in agent2_slice128_rank6_proof.
+2. A target word f in RM(7,14) with minimum reduced directional derivative
+weight128 is impossible. Write f=y*1_D+t. Then wt f=128+2 wt(t outsideD),
+forcing excluded values97,99,101,103 by(B).

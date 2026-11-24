@@ -1,0 +1,108 @@
+{
+ "id": "n19",
+ "parent": "n1",
+ "depth": 2,
+ "option": {
+  "branch": "c2b2",
+  "counterfactual": "The extendable-shellability question relevant to b(d,k) has already been resolved, so the claimed open-problem obstruction does not establish that the requested value is unknown.",
+  "approach": "Develop a constructive completion procedure using additional vertices, then examine whether its bound can be matched by examples requiring that many new vertices.",
+  "p": 0.3088
+ },
+ "status": "member",
+ "belief": {
+  "answer": "\\(\\boxed{b(d,k)=\\max\\{1,\\min\\{d-2,k-1\\}\\}}\\)",
+  "confidence": 0.32
+ },
+ "judge": {
+  "claim": true,
+  "same_as": "e5",
+  "answer": "b(d,k)=\\max\\{1,\\min\\{d-2,k-1\\}\\}",
+  "reason": "It claims an exact formula for b(d,k), identical to the formula in e5.",
+  "experiment": false
+ },
+ "experiment": null,
+ "options": [
+  {
+   "branch": "c0b0",
+   "counterfactual": "The reported examples requiring multiple auxiliary vertices contain an error, and one auxiliary vertex suffices for every d and k in the question.",
+   "approach": "Audit the proposed multiple-vertex lower bound, focusing on whether mixed facets containing an auxiliary vertex invalidate its first-exit obstruction. A legal mixed-facet sequence would identify the precise failure.",
+   "p": 0.1385,
+   "child": null
+  },
+  {
+   "branch": "c0b1",
+   "counterfactual": "The reported examples requiring multiple auxiliary vertices contain an error, and one auxiliary vertex suffices for every d and k in the question.",
+   "approach": "Try to complete the ridge skeleton of the given complex on its existing vertices, then lift its additions through a single new apex. This would reduce the one-vertex construction to a lower-dimensional completion lemma.",
+   "p": 0.1077,
+   "child": null
+  },
+  {
+   "branch": "c0b2",
+   "counterfactual": "The reported examples requiring multiple auxiliary vertices contain an error, and one auxiliary vertex suffices for every d and k in the question.",
+   "approach": "Search for a completion invariant that allows the apex link and the old-vertex deletion to grow alternately. Such an invariant could avoid requiring either component to be completed first.",
+   "p": 0.0615,
+   "child": null
+  },
+  {
+   "branch": "c1b0",
+   "counterfactual": "The correct universal bound is b(d,k)=d-2 even when k=1, so restricting shedding faces to edges does not reduce the number of auxiliary vertices sometimes needed.",
+   "approach": "Investigate whether the higher-dimensional lower-bound examples admit edge-based decomposition certificates. If they do, they would match the reported d-2 upper bound for every permitted k.",
+   "p": 0.2821,
+   "child": null
+  },
+  {
+   "branch": "c1b1",
+   "counterfactual": "The correct universal bound is b(d,k)=d-2 even when k=1, so restricting shedding faces to edges does not reduce the number of auxiliary vertices sometimes needed.",
+   "approach": "Try to amplify the three-dimensional edge-decomposable obstruction into higher dimensions while forcing each auxiliary vertex to remove at most one level of obstruction. Ordinary dimension padding only proves that at least one new vertex is needed, so a stronger construction is necessary.",
+   "p": 0.1974,
+   "child": null
+  },
+  {
+   "branch": "c1b2",
+   "counterfactual": "The correct universal bound is b(d,k)=d-2 even when k=1, so restricting shedding faces to edges does not reduce the number of auxiliary vertices sometimes needed.",
+   "approach": "Test four-dimensional edge-decomposable candidates for completion with one auxiliary vertex. A certified failure would distinguish this formula from bounds that depend on k.",
+   "p": 0.0846,
+   "child": null
+  },
+  {
+   "branch": "c2b0",
+   "counterfactual": "The claimed terminal complexes are not actually decomposable under the question's recursive definition, so they do not establish any positive lower bound for b(d,k).",
+   "approach": "Run an independent verifier on a reported decomposition certificate, reconstructing every deletion and link directly from face sets. Check purity, shedding-face size, and simplex leaves without relying on shellability conversions.",
+   "p": 0.0769,
+   "child": null
+  },
+  {
+   "branch": "c2b1",
+   "counterfactual": "The claimed terminal complexes are not actually decomposable under the question's recursive definition, so they do not establish any positive lower bound for b(d,k).",
+   "approach": "Audit the certificate transformations used for full-boundary additions and reordered attachment steps. A transformation that preserves shellability but not the stated decomposition would explain an invalid certificate.",
+   "p": 0.0321,
+   "child": null
+  },
+  {
+   "branch": "c2b2",
+   "counterfactual": "The claimed terminal complexes are not actually decomposable under the question's recursive definition, so they do not establish any positive lower bound for b(d,k).",
+   "approach": "Reconstruct the smallest reported terminal example and independently test every missing facet alongside its decomposition certificate. This would separate a failure of terminality from a failure of the starting hypothesis.",
+   "p": 0.0192,
+   "child": null
+  },
+  {
+   "branch": "own",
+   "counterfactual": null,
+   "approach": null,
+   "p": null,
+   "child": null
+  }
+ ],
+ "cost": 0.0283,
+ "responses": 1,
+ "step_from": 11,
+ "known": [
+  "e1",
+  "e2",
+  "e3",
+  "e4"
+ ],
+ "created": 1793858141.484868,
+ "seen": "4e260d7564aae38cac7d181ed256d76d0de49b78a73c7a11ce74421a4e49f2dd",
+ "take_at": 11
+}

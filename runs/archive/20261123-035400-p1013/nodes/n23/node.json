@@ -1,0 +1,108 @@
+{
+ "id": "n23",
+ "parent": "n12",
+ "depth": 5,
+ "option": {
+  "branch": "c1b2",
+  "counterfactual": "For every r at least three, no coefficient below 1/r belongs to S_r; competing bounded-tree constructions cannot yield counterexamples below that value.",
+  "approach": "Seek a counterexample exactly at coefficient 1/r using exceptional vertices and distributed internal edges. Compare their cycle counts and determine whether a constant edge advantage can force the less cycle-efficient construction to be edge-extremal.",
+  "p": 0.0784
+ },
+ "status": "member",
+ "belief": {
+  "answer": "\\boxed{\\mathcal S_2=[0,\\infty),\\qquad \\mathcal S_r=[1/r,\\infty)\\text{ for every integer }r\\ge3.}",
+  "confidence": 0.93
+ },
+ "judge": {
+  "claim": true,
+  "same_as": "e6",
+  "answer": "\\mathcal S_2=[0,\\infty),\\qquad \\mathcal S_r=[1/r,\\infty)\\text{ for every integer }r\\ge3.",
+  "reason": "It explicitly determines every set and its boundary membership, and is identical to e6.",
+  "experiment": false,
+  "n": 26
+ },
+ "experiment": null,
+ "options": [
+  {
+   "branch": "c0b0",
+   "counterfactual": "For some integer r at least three, the coefficient 1/r does not belong to S_r, even though coefficients larger than 1/r do belong to S_r.",
+   "approach": "Investigate the endpoint separately from larger coefficients. Track constant terms in the extremal edge count, since an upper bound with coefficient 1/r plus an unbounded sublinear error would not establish endpoint membership.",
+   "p": 0.1347,
+   "child": null
+  },
+  {
+   "branch": "c0b1",
+   "counterfactual": "For some integer r at least three, the coefficient 1/r does not belong to S_r, even though coefficients larger than 1/r do belong to S_r.",
+   "approach": "Examine whether every forbidden graph satisfying the exact bound ex(n,H) \u2264 t_r(n)+n/r+O(1) must admit a common edge-and-cycle extremizer eventually. Focus on whether equality in the structural inequalities forces a compatible extremal construction.",
+   "p": 0.101,
+   "child": null
+  },
+  {
+   "branch": "c0b2",
+   "counterfactual": "For some integer r at least three, the coefficient 1/r does not belong to S_r, even though coefficients larger than 1/r do belong to S_r.",
+   "approach": "Search for constructions whose linear coefficients approach 1/r from above while their edge-extremizers remain less cycle-efficient than competing graphs. This would distinguish an open endpoint from a larger threshold.",
+   "p": 0.0673,
+   "child": null
+  },
+  {
+   "branch": "c1b0",
+   "counterfactual": "There is no fixed three-chromatic graph with ex(n,H)=t_2(n)+O(1) that separates edge maximization from cycle maximization at infinitely many orders; in particular, 0 does not belong to S_2.",
+   "approach": "Audit the claimed bounded-surplus counterexample rather than relying on its existence. Obtain an explicit forbidden graph, classify all its edge-extremizers, and verify that the cycle comparison excludes every one of them.",
+   "p": 0.0072,
+   "child": null
+  },
+  {
+   "branch": "c1b1",
+   "counterfactual": "There is no fixed three-chromatic graph with ex(n,H)=t_2(n)+O(1) that separates edge maximization from cycle maximization at infinitely many orders; in particular, 0 does not belong to S_2.",
+   "approach": "Analyze bounded internal configurations in nearly complete bipartite graphs of odd order. Determine whether a cycle-efficient finite configuration with fewer edges can always be replaced by an equally cycle-efficient configuration attaining the extremal edge count.",
+   "p": 0.0048,
+   "child": null
+  },
+  {
+   "branch": "c1b2",
+   "counterfactual": "There is no fixed three-chromatic graph with ex(n,H)=t_2(n)+O(1) that separates edge maximization from cycle maximization at infinitely many orders; in particular, 0 does not belong to S_2.",
+   "approach": "Use the verified coefficient-1/3 counterexample as an upper bound on the threshold and investigate the remaining interval from zero to 1/3. Separate bounded-surplus graphs from graphs whose internal structure contains a linear-sized matching.",
+   "p": 0.0032,
+   "child": null
+  },
+  {
+   "branch": "c2b0",
+   "counterfactual": "Let H_r be obtained from a complete (r+1)-partite graph with two vertices in each part by deleting two edges involving four distinct parts, then attaching a clique K_{r+1} at each vertex of one of those parts. This graph does not have the asserted property that every sufficiently large edge-extremizer consists of an almost-universal vertex and an otherwise almost complete r-partite graph.",
+   "approach": "Audit the structural claim for this explicit graph, distinguishing existence of a conveniently structured extremizer from a classification of all extremizers. Check precisely what Simonovits's decomposition theorem and its uniqueness-transfer clause actually imply.",
+   "p": 0.2871,
+   "child": null
+  },
+  {
+   "branch": "c2b1",
+   "counterfactual": "Let H_r be obtained from a complete (r+1)-partite graph with two vertices in each part by deleting two edges involving four distinct parts, then attaching a clique K_{r+1} at each vertex of one of those parts. This graph does not have the asserted property that every sufficiently large edge-extremizer consists of an almost-universal vertex and an otherwise almost complete r-partite graph.",
+   "approach": "Search for competing edge-extremal templates with several partial star centers or bounded dense internal components. Compare their constant edge corrections with those of the almost-universal-vertex construction, then calculate their leading cycle factors.",
+   "p": 0.2512,
+   "child": null
+  },
+  {
+   "branch": "c2b2",
+   "counterfactual": "Let H_r be obtained from a complete (r+1)-partite graph with two vertices in each part by deleting two edges involving four distinct parts, then attaching a clique K_{r+1} at each vertex of one of those parts. This graph does not have the asserted property that every sufficiently large edge-extremizer consists of an almost-universal vertex and an otherwise almost complete r-partite graph.",
+   "approach": "Modify the attached cliques or add rooted gadgets to force all edge-extremizers into a single exceptional-vertex regime. Preserve freeness of the construction with matchings in two parts and retain the extremal upper bound with coefficient exactly 1/r.",
+   "p": 0.1435,
+   "child": null
+  },
+  {
+   "branch": "own",
+   "counterfactual": null,
+   "approach": null,
+   "p": null,
+   "child": null
+  }
+ ],
+ "cost": 0.6781,
+ "responses": 3,
+ "step_from": 52,
+ "known": [
+  "e1",
+  "e2",
+  "e4"
+ ],
+ "created": 1795429004.201688,
+ "seen": "08045481204eb9c3178e532afce60824bbb775d660f5cff03e23a36c8a25ae30",
+ "take_at": 52
+}

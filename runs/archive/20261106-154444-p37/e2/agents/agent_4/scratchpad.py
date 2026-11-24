@@ -1,0 +1,38 @@
+from fractions import Fraction as F
+from pathlib import Path
+n=2**40;c=n-1;L=320
+assert c//L>=1000
+assert F(640)*F(3,4)**1000<F(1,100)
+assert F(4*(n+1),n+2)>F(399,100)
+assert F(49,100)*F(99,100)*F(399,100)>F(19,10)
+# n^(1/2)=2^20; container fingerprint entropy / central width.
+assert F(40*401*4,2**20)<F(62,1000)
+# outside points / central width <=8/n^(3/2).
+assert F(8,2**60)<F(1,1000)
+assert F(101,100)+F(62,1000)+F(1,1000)<F(11,10)
+# Near r=c: freebits / width >=.49*sqrt(n/2)/4.
+# sqrt(n/2)>2^19.
+assert F(49,100)*F(2**19,4)>2
+# Middle interval: total >=2^c*c^4, N>=2^(c-2)*c^3,
+# freebits >=.49*N, width <=2^(c+1).
+assert F(49,100)*F(c**3,8)>2
+# Valid band b=ceil sqrt(n ln n) <=sqrt(40n)+1<n/6.
+assert 40*n < (n//6-1)**2
+print('All explicit rational numerical margins passed for d=',n+2)
+text='''EXPLICIT COUNTEREXAMPLE PARAMETER d=2^40+2 (agent4)
+Set n=2^40, c=n-1, d=c+3, w=binomial(n,n/2).
+Elementary binomial bounds: 2^n/(4 sqrt(n)) <=w<=2^n/sqrt(n/2+1).
+Lower follows from Chebyshev applied to Bin(n,1/2): >=3/4 of mass lies in fewer than2sqrt(n) levels. Upper follows from w/2^n=prod_{j<=n/2}(1-1/(2j)) <=exp(-H_{n/2}/2)<=1/sqrt(n/2+1).
+
+Explicit Dedekind upper: choose middle band b=ceil sqrt(n ln n), epsilon=.01. Outside band at most2^{n+1}/n^2 points by Chernoff. For a subset U of band larger than1.01w, random-maximal-chain argument gives a comparability-graph vertex of degree >=(n/2-b)/101>=n/400. Greedy container algorithm selects at most400*2^n/n fingerprint vertices; bound fingerprint size by K=ceil(400*2^n/n)<=401*2^n/n. Number of fingerprints has log2 at most K log2(e*2^n/K)<40K. Since 40K/w <=40*401*4/2^20<.062, and outside-band points /w <=8/2^60<.001, total log2 D(n) <(1.01+.062+.001)w<1.1w. Here b<n/6 follows from ln n<40 and the checked integer inequality40n<(n/6-1)^2. All binomial entropy and supersaturation estimates are those of the shared container proof, now with explicit constants.
+
+Explicit grouped crossing capacity for every3<=r<=c: t=c+r, balanced blocks. Set L=320; 8log2(c)<L and L-1<8log2(c).
+Low r<=L: blocksize>=1000; missing/containing a block in a uniform middle subset has probability at most(3/4)^1000 each. Thus noncrossing fraction<=640(3/4)^1000<.01. N>=.99*central(t)>=.99*central(c+3)>.99*3.99w. Even/odd capacity bits B>=.49N>1.9w.
+Middle L<=r<=c-L: at least L blocks have size>=3. Product total T>=2^c*(3/2)^L>=2^c*c^4, since log2(3/2)>1/2 and L>=8log2 c. Therefore middle coefficient N>=T/(t+1)>=2^{c-2}c^3 and capacity bits B>=.49N>2w (even using crude w<=2^{c+1}).
+Near r>c-L: put a=c-r<L. Exact N=2^{c-2a}3^a binomial(a,floor(a/2))>=2^{c-1}. Thus B>=.49N, while w<=2^{c+1}/sqrt(n/2); hence B/w>=.49sqrt(n/2)/4>2.
+For r>c use the r=c construction and add r-c pure chain coordinates.
+
+Thus every r>=3 has grouped suitable family on at least2^{1.9w} vertices in r+c coordinates (allowing pure extra coordinates when r>c). But M_d=lambda(n+1)+1<=D(n)+1<2^{1.11w}. The grouped-grid embedding therefore proves dim(P x Q_d)<=dimP+d-3 for EVERY eligible P at this explicit d. Since dimQ_d=d and choose dimP3, equality F(d)=d-3 holds. In particular the requested assertion F(d)=d-2 fails at d=1099511627778.
+'''
+Path('workspace/agent4_explicit_counterproof.txt').write_text(text)
+Path('workspace/agent4_explicit_constants_checks.py').write_text(Path('scratchpad.py').read_text())

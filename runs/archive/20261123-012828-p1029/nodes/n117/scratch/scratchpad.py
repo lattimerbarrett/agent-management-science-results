@@ -1,0 +1,10 @@
+import sympy as s
+eta=s.symbols('eta', positive=True)
+print('Let a=sup_n a_n and r_n=a-a_n.')
+print('Order reversal gives r_n decreasing to infimum 0.')
+print('r_n-r_(n+1)=a_(n+1)-a_n, so tau(r_n-r_(n+1))=eta.')
+print('By monotonicity, tau(r_n)>=eta for every n.')
+print('Therefore tau is not order-continuous from above on this decreasing sequence.')
+print('There is no justified identity tau(r_n)=tau(a)-tau(a_n) unless a commutes with a_n.')
+print('Continuity on each fixed abelian subalgebra, norm continuity, and projection-normality do not by themselves give order-continuity along this noncommuting sequence.')
+print('The verified supremum-existence result, not exhaustion of quasitrace increments, yields G empty.')

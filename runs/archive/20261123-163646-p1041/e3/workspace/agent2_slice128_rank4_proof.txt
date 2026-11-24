@@ -1,0 +1,62 @@
+# Extension: the balanced rank4 quadratic 128-slice subtype
+
+This extends agent2_slice128_special_proof.txt to
+A=F2^3_y times support(x1*x2+x3*x4+x5) in F2^5_x, with six remaining
+coordinates z fixed zero, again in H=F2^14. No B of weight194,198,202,206
+has A+B in I7 and AB=J.
+
+Base has11 variables; moments in the three y variables of ordersk=0,1,2
+have degree<=k+4. The parity projection b is nonzero (AB=J), degree<=4,
+and weight<=206, hence weight128 or192 by the first two RM(4,11) weights.
+
+If b192, its affine spanD hasdimension9, and its function onD is the
+rank4 quadratic on4vars with5freevars. There are<=7 defectivefibers.
+Each first moment h degree5 vanishes outsideD: otherwise puncturing
+outsideD gives weight>=32, but it is supported on<=7 defectsthere.
+After factoring codimD2, h hasdegree3 onD supported onb, hence equals
+b timesaffine, by the same4var shortened-code calculation as before.
+Affine y shifts normalize firstmomentszero. Secondmomentsdegree6 vanish
+outsideD by punctureminimum16>7, and insideD by factoringD then
+minimum32>7. In3yvariables matching parity,first,secondmoments fixes a
+fiber up to its full8-point set. So B equals baseline B0=delta_y0*b
+plus fullY timesa basefunction t supported on<=2fibers (excess<=14,
+eachflipcost>=6). But degB0<=7,degB<=8, so degt<=8 on11vars, whose
+minimum nonzero weightis8. Thus t=0, contradictionwtB>192.
+
+If b128, normalize b=1_D forD anaffine7-flat in11vars. The entire
+b128 hierarchy of the earlier proof works with first/second degrees5/6
+instead of3/4: their globalminima are64/32 and puncturedoutsideD
+minima32/16, exactly the same numbers. One extra detail proves the
+firstmoment minimumoutsideD classification in codim4:
+
+If deg h<=5 and0<wt(h outsideD)<=39, choosehyperplaneH containingD
+excludinganoutside supportpoint. h onHc hasweight32 (firsttwo weights
+32,48 ofRM(5,10)) and is aminimum5-flat T. h onH outsideD hasweight<=7,
+but puncturing inH hasminimum16, hencezero. Thus alloutsidesupportisT.
+The degree5 tops of h|H,h|Hc agree. The former is divisible by the three
+conormals ofD inH; the latter is decomposable, so T'sdirection isinsideD.
+Choose anaffine6-flatP joiningT to aparallel5-flat insideD. Then h+1_P
+is supportedD anddegree<=5, hence1_D timesaffine. This gives the same
+normalizations and commonT classification used in the earlier proof.
+In the firstoutside-nonzero branch, the halfspace bound kills Yj>=2.
+Fibers then lie in Y1; parity1_D and firstmoment outsideD exactly1_T
+force the entire base projection into D union T, whose affine span is8.
+Thus B lies in anaffine9-flat. In the secondmoment-nonzero branch the
+halfspace bound kills all y coordinates outside the rank2 plane P. An
+outsideD fiber would then lie in P and have zero parity, first, second
+moments, which forces it empty. Thus B lies in D times P, dimension9.
+In bothcaseswtBdivisible4,
+contradiction. (The original proof's halfspace counts<=28<32 remain
+unchanged, since B isstill degree<=8 in14variables.)
+
+In the remaining branch firstandsecondmomentsallzero. Three yvariables
+imply fibers {0}/(Y\{0}) or empty/Y. Hence B=B0+Y*t,degB0=7,degt<=8,
+and weightB=128+6a+8b, wherea=wt(t insideD),b=wt(t outsideD).
+The flipset t hasweight<=13 andbelongs RM(8,11), so weight8or12.
+Its degree8 homogeneouspart equals thatofA, namely six fixed z factors
+times a rank4 quadratic. This isnotdecomposable, rulingoutweight8.
+A weight12 RM(8,11) word is the second-weight rank4quadric6-pointset
+timesafreeline, in affine dimension5. Its intersection with anyproper
+affineflat hasweight<=8. Ifa+b=12, the targetequations require
+(a,b)=(11,1)or(9,3). Sincea>8 thiswouldforce t containedD, impossibleb>0.
+Thus allbranchesareexcluded. QED.

@@ -1,0 +1,45 @@
+Finite-k chart contribution (agent3)
+
+Let k=10^1000, h=1/k. In north/south equal-area coordinates
+ x=(hX sqrt(1-h²|X|²/4),1-h²|X|²/2),
+ y=(hY sqrt(1-h²|Y|²/4),-1+h²|Y|²/2).
+Here k²ω=dX1∧dX2-dY1∧dY2. Set
+ Q=(X1+Y1,X2+Y2), P=((X2-Y2)/2,(Y1-X1)/2).
+Then k²ω=dQ1∧dP1+dQ2∧dP2 exactly.
+
+The explicit analytic chart map is implemented in agent3_chart_formulas.py,
+with all h-poles cancelled. It extends holomorphically to h=0 whenever Q≠0.
+Its limit is
+ Q'=(2P2+4Q2/|Q|²+2,2P1+4Q1/|Q|²+2),
+ P'=(1-Q2/2,1-Q1/2).
+Its type-one generator, with dS=-P dQ+P' dQ', is
+ S=-(Q1 Q2'+Q2 Q1')/2+ΣQ+ΣQ'+log|Q|².
+Thus F0(Q)=S(Q,Q)=-Q1Q2+2(Q1+Q2)+log|Q|².
+
+Quantitative convergence: on real .005≤|Q|≤200, |P|≤3e6,
+complexify the coordinates by radius δ=1e-12 and h by radius h0=1e-20.
+Put v=X sqrt(1-h²X²/4),w=Y sqrt(1-h²Y²/4),S=v+w,
+Z=(Y²-X²)/2,c=sqrt(1+h²),R=S²+h²Z²,D=h²+c²R.
+The rational bounds in agent3_analytic_bound_checks.py give
+ |D-Q_real²|<8.011e-10, |D|>1e-5,
+ scaled bend transverse components <1e20,
+ final unscaled z components within h²1e26 of ±1.
+The equal-area inverse is therefore holomorphic with factor bounded by2.
+Every final scaled chart component is bounded by M=1e30.
+Cauchy in h, then three coordinate derivatives, gives C3 error ≤1e100/k.
+The script uses Fraction arithmetic for each displayed arithmetic inequality.
+
+For the local diagonal inverse near q0=(-1,1), the limiting solution is
+ P∞=((Q2-2)/2-2Q1/|Q|²,(Q1-2)/2-2Q2/|Q|²), |P∞|<10.
+Since Q'_k=2swap P+4swap Q/|Q|²+2+E_k,
+ P=P∞-1/2 swap E_k(Q,P) is a contraction, uniformly on this ball.
+It gives unique P_k(Q), and P'_k(Q). The one-form
+ a_k=(P'_k-P_k)·dQ is closed by the Lagrangian-graph identity.
+Normalize its straight-line primitive F_k at q0 to match F0(q0).
+Implicit differentiation, or Cauchy on complex Q-radius1e-14, gives the
+very conservative bound ||F_k-F0||C3<1e300/k.
+At k=10^1000 this is <10^-700, far below all cutoff margins.
+
+Exact symbolic checks: agent3_finite_chart_checks.py.
+Analytic arithmetic checks: agent3_analytic_bound_checks.py.
+Reproducible evaluation checks: agent3_chart_formulas.py.

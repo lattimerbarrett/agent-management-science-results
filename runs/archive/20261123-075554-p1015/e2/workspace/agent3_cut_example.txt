@@ -1,0 +1,9 @@
+Counterexample to two overstrong auxiliary claims.
+
+Let H be the halting set relative to 0-prime, and r=sum_{n notin H} 2*3^(-n-1). Then r is right-c.e. relative to 0-prime, and not computable relative to 0-prime, since its Cantor ternary digits compute H. Hence r is irrational and is not an ordinary right-c.e. real. Let S be the rational lower cut of r. Then S is Pi_2 but not Sigma_2: its upper cut is c.e. in 0-prime, and if its lower cut were also c.e. in 0-prime then r would be 0-prime-computable.
+
+For every diagonal index e in K_S, each finite trigger F gives a rational threshold q_F=max(F), with empty triggers assigned -1. Clamp thresholds to [-1,2] and add dummy threshold 2. Their infimum alpha_e is uniformly right-c.e., and e in K_S iff alpha_e<r. Every alpha_e is 0-prime-computable, so alpha_e is not r. Therefore e in S-diamond iff r<alpha_e. This last relation is c.e. in 0-prime: search for a rational p satisfying r<p<alpha_e, using the upper cut of r and a 0-prime-computable Cauchy name for alpha_e. Consequently S-diamond is c.e. in 0-prime. The co-halting set uniformly enumeration-reduces to every skip, so S-diamond has total degree 0-prime. But S is not below this degree, so S is not cototal by cototal(a) iff a<=skip(a).
+
+Thus not all Pi_2 degrees are cototal. Also the lemma [X co-c.e. in total Y and skip(X)<=Y implies X<=Y] is false, taking X=S,Y=0-prime. Having total DEGREE skip(a) does not imply cototal(a), although total degrees themselves are cototal.
+
+Computable finite tests of the threshold identity are in agent3_cut_checks.py; they do not replace any unbounded computability argument above.

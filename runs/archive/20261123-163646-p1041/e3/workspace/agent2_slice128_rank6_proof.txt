@@ -1,0 +1,36 @@
+# Balanced rank6 quadratic 128-slice: complete special-case proof
+
+Let A=F2_y times the support of q6(x1,...,x6)+x7 in F2_x^7,
+with z1,...,z6 fixed zero, inside H=F2^14. Here q6 is a nondegenerate
+quadratic rank6 form. There is no B of weight194,198,202,206 with
+A+B in I7 and AB=J.
+
+Parity-project B along y to b(x,z). Then deg b<=6 on13 variables,
+b is nonzero (AB=J), and wt b<=206. Minimum/second RM(6,13) weights
+128,192 show wt b=128 or192. Write B=(1+y)b+t(x,z); then deg t<=8
+and weightB=weightb+2*weight(t outsideb).
+
+If b192, its affine spanD has dimension9. Its indicator onD is the
+rank4 quadric in4 variables timesfivefreevariables. Let e=weight(t
+outsideb), which is1,3,5,7. Since t outsideD<=e<16 and a nonzero
+degree8 function outside a properflat in13 variables has weight>=16,
+t is supportedD. Factoring its codimension4 leaves t ofdegree<=4 onD.
+The function t*(1+b|D) hasdegree<=6 on9variables, so if nonzero has
+weight>=8; its weight is e<8, contradiction.
+
+If b128, it is a 7-flatD. For every z, convolution AB=J requires
+q7*b_z=1 onx-space. In particularD projects surjectively onto all six
+z variables. Its fibers are affine lines with a fixed nonzero direction
+v inx-space. Convolution by a line is a derivative ofq7, henceconstant1
+only whenv is the radicalx7 direction (the q6 part is nondegenerate).
+Thus D={x_quad=Lz+c,x7 arbitrary}. An affine shear ofx_quad normalizes
+D={x_quad=0}. This preserves A'sdegree8 part: since A is supportedz=0,
+the shear only translatesq6 byc there, adding lower-degree terms.
+
+Now e=weight(t outsideD)=(weightB-128)/2<=39. On the other hand
+h(x)=sum_z t(x,z) hasdegree<=2, with homogeneous degree2 part exactlyq6,
+because t's degree8 part agrees withA's. Onseven variables, such a
+quadratic has weight56,64,or72 (the64 case has nonzero radical linear
+term). Removing the two points withx_quad=0 leaves weight>=54. Parity
+projection cannot increase weight outsideD, giving e>=54, contradiction.
+QED.

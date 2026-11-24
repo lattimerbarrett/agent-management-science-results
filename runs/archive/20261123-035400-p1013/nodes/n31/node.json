@@ -1,0 +1,108 @@
+{
+ "id": "n31",
+ "parent": "n0",
+ "depth": 1,
+ "option": {
+  "branch": "c1b1",
+  "counterfactual": "For every fixed graph H of chromatic number at least three satisfying ex(N,H)=t_r(N)+O(N), a graph maximizing both edges and cycles exists for every sufficiently large order, so every S_r is empty.",
+  "approach": "Attempt a structural proof using stability near the balanced complete multipartite graph. Determine whether a cycle-maximizing configuration with fewer than ex(n,H) edges can always be replaced by an H-free configuration having at least as many cycles and more edges.",
+  "p": 0.0694
+ },
+ "status": "member",
+ "belief": {
+  "answer": "\\boxed{\\mathcal S_r=\\varnothing\\text{ for every integer }r\\ge2.}\\quad\\text{There are no finite boundary points.}",
+  "confidence": 0.99
+ },
+ "judge": {
+  "claim": true,
+  "same_as": "e1",
+  "answer": "\\(\\mathcal S_r=\\varnothing\\) for every integer \\(r\\ge2\\). There are no finite boundary points.",
+  "reason": "It makes an explicit claim determining every set and its boundary points, identical to e1.",
+  "experiment": false,
+  "n": 31
+ },
+ "experiment": null,
+ "options": [
+  {
+   "branch": "c0b0",
+   "counterfactual": "A linear bound on the excess extremal edge count does not guarantee a simultaneous edge-and-cycle extremizer for all sufficiently large orders.",
+   "approach": "Audit the eight-vertex counterexample reported by team e2, checking its extremal classification and cycle comparison independently. A valid example would directly refute the claimed simultaneous-extremizer theorem.",
+   "p": 0.2959,
+   "child": null
+  },
+  {
+   "branch": "c0b1",
+   "counterfactual": "A linear bound on the excess extremal edge count does not guarantee a simultaneous edge-and-cycle extremizer for all sufficiently large orders.",
+   "approach": "Examine the precise statement and hypotheses of the claimed simultaneous-extremizer theorem. Determine whether the argument mistakenly strengthened an asymptotic comparison of cycle counts into an exact common-extremizer assertion.",
+   "p": 0.1345,
+   "child": null
+  },
+  {
+   "branch": "c0b2",
+   "counterfactual": "A linear bound on the excess extremal edge count does not guarantee a simultaneous edge-and-cycle extremizer for all sufficiently large orders.",
+   "approach": "Recompute the cycle counts for the two competing constructions in team e2's example using an independent counting method. This would test whether losing one edge can genuinely increase the number of cycles along an infinite sequence of orders.",
+   "p": 0.0968,
+   "child": null
+  },
+  {
+   "branch": "c1b0",
+   "counterfactual": "For some r at least three, there is a fixed graph H with chromatic number r+1 and extremal number t_r(n)+O(1) for which simultaneous edge-and-cycle extremizers fail to exist at infinitely many orders.",
+   "approach": "Investigate the structure of extremal graphs with bounded excess above the Tur\u00e1n number. Compare the first nonconstant terms in their cycle counts to see whether missing cross-edges or unbalanced parts can outweigh an edge-count advantage.",
+   "p": 0.0051,
+   "child": null
+  },
+  {
+   "branch": "c1b1",
+   "counterfactual": "For some r at least three, there is a fixed graph H with chromatic number r+1 and extremal number t_r(n)+O(1) for which simultaneous edge-and-cycle extremizers fail to exist at infinitely many orders.",
+   "approach": "Search finite exceptional configurations attached to large complete multipartite graphs. Such configurations could produce competing constructions whose edge counts differ by a constant while their cycle counts favor the graph with fewer edges.",
+   "p": 0.0034,
+   "child": null
+  },
+  {
+   "branch": "c1b2",
+   "counterfactual": "For some r at least three, there is a fixed graph H with chromatic number r+1 and extremal number t_r(n)+O(1) for which simultaneous edge-and-cycle extremizers fail to exist at infinitely many orders.",
+   "approach": "Test whether a counterexample with chromatic number three can be transformed into one with higher chromatic number without introducing a linear excess in the extremal number. The central issue would be preserving the cycle-count separation after adding further multipartite classes.",
+   "p": 0.0023,
+   "child": null
+  },
+  {
+   "branch": "c2b0",
+   "counterfactual": "The sets S_r are nonempty upper intervals whose lower endpoints depend on r, rather than being empty for every r.",
+   "approach": "Audit the structural gap theorem reported by team e4 and combine it with upward closure of S_r. This would restrict the possible thresholds without assuming any universal common-extremizer theorem.",
+   "p": 0.1945,
+   "child": null
+  },
+  {
+   "branch": "c2b1",
+   "counterfactual": "The sets S_r are nonempty upper intervals whose lower endpoints depend on r, rather than being empty for every r.",
+   "approach": "Investigate higher-chromatic versions of the verified three-chromatic candidate constructions. Determine how adding multipartite classes changes both the linear extremal coefficient and the cycle-count comparison.",
+   "p": 0.1459,
+   "child": null
+  },
+  {
+   "branch": "c2b2",
+   "counterfactual": "The sets S_r are nonempty upper intervals whose lower endpoints depend on r, rather than being empty for every r.",
+   "approach": "Concentrate on the smallest possible linear excess, where the internal graphs in a nearly Tur\u00e1n partition should be matchings or unions of small trees. Establishing whether common extremizers must exist in these restricted structures could provide a rigorous lower bound on the threshold.",
+   "p": 0.1216,
+   "child": null
+  },
+  {
+   "branch": "own",
+   "counterfactual": null,
+   "approach": null,
+   "p": null,
+   "child": null
+  }
+ ],
+ "cost": 0.064,
+ "responses": 2,
+ "step_from": 16,
+ "known": [
+  "e1",
+  "e2",
+  "e4"
+ ],
+ "created": 1795430306.2374241,
+ "seen": "0633135e670696f3a4fecceb8d62643d47c71ce22d808ec8e1854afa8c97acba",
+ "take_at": 16
+}

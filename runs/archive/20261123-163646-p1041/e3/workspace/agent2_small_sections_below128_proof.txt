@@ -1,0 +1,60 @@
+# Constant-Q m=15: all hyperplane sections of weights96,112,120,124,126 excluded
+
+This is an unconditional lemma using only the classical Kasami--Tokura
+classification STRICTLY BELOW twice minimum distance. No coarse KTA
+structural assertion is used here.
+
+Let A,B be the two hyperplane sections of a hypothetical set S inF2^15
+with Q(S)=J15, where S is an RM(8,15) support, weight<=334. Identify both
+sections with H=F2^14. Then A,B lie in I6, A+B lies in I7, and
+                 A*B=J14
+in the binary group algebra F2[H]. The last identity is simply the
+outside-H coefficients of Q(S): each cross difference occurs oddly.
+Assume 64<|A|<128. We prove |B|>=256, so |S|>=352, contradiction.
+
+CLASSICAL KT NORMAL FORMS USED. A word in RM(8,14) of weight strictly
+between64 and128, after an affine change, is one of these support types:
+
+(I) A=D x supp(q_mu), inside an affine8-space, where
+  dim D=8-2mu, mu in{2,3,4},
+  q_mu(x)=x1*x2+x3*x4+...+x_(2mu-1)*x_(2mu)
+  is a nondegenerate quadratic on2mu variables.
+  Thus |A|=128-2^(7-mu), giving96,112,120.
+
+(II) A=D x (U symmetric-difference V), inside an affine(6+s)-space,
+  dim D=6-s, s in{2,3,4,5,6},
+  U,V complementary s-spaces in F2^(2s).
+  Thus |A|=128-2^(7-s), giving96,112,120,124,126.
+
+These are precisely the usual product-of-linears times quadratic and
+product-of-linears times sum-of-two-monomials KT forms. The mu=1 or s=1
+cases have minimum weight64 and are handled by the separate flat64 lemma.
+Affine translations and invertible linear changes preserve A*B=J, so we
+may normalize the displayed affine supporting spaces to linear ones.
+
+TYPE(I). Split H=L8 direct-sum Z6, A containedL8. For every z inZ,
+the z-section B_z satisfies A*B_z=J_L. Sum B_z modulo2 along the free
+D factor, obtaining beta_z on F2^(2mu). Then
+                    q_mu*beta_z=J_(2mu).
+Also |B_z|>=|beta_z|. We claim |beta_z|>=4. Indeed, a singleton beta
+just translates the nonconstant q_mu. Two distinct points give a
+nonzero directional derivative of q_mu, a NONCONSTANT affine function
+because its polar form is nondegenerate. Three translated copies retain
+the same nonzero homogeneous quadratic part, and cannot sum to1.
+The empty beta is equally impossible. Thus each of64 transverse z-cosets
+contains at least4 B-points, proving |B|>=64*4=256.
+
+TYPE(II). Put L=D direct-sum U direct-sum V, dimension6+s; there are
+2^(8-s) transverse L-cosets inH. In each coset, parity-project B along
+D to a set beta inU direct-sum V. The convolution equation becomes
+           (J_U+J_V)*beta=J_(U+V).
+Writing a point as(u,v), let r(v)=sum_{u'} beta(u',v) and
+c(u)=sum_{v'} beta(u,v'). The equation says r(v)+c(u)=1 for ALLu,v.
+Therefore r is constant epsilon and c is constant1+epsilon. At least
+one family of2^s rows/columns is allodd, so |beta|>=2^s. Consequently
+             |B|>=2^(8-s)*2^s=256.
+
+This covers every weight96,112,120,124,126 and every KT normalform at
+those weights. Together with the separate proved64-slice lemma, it
+eliminates ALL hyperplane sections of weights below128 in the m15
+constant-Q argument.

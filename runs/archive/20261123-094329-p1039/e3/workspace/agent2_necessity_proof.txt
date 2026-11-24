@@ -1,0 +1,44 @@
+DIMENSION TWO NECESSITY -- COMPLETE ARGUMENT
+
+Lemma 1. An open set Y satisfying the stated CAP has no bounded continuous
+plurisubharmonic function which is nonconstant on a connected component.
+Proof. Let u be such a function, bounded above. For every affine holomorphic
+map f from a neighborhood of the closed unit disk to Y, CAP supplies entire
+F_j:C -> Y converging uniformly to f on that disk. Every u o F_j is a
+bounded-above subharmonic function on C, hence constant by the subharmonic
+Liouville theorem. Continuity of u, uniformly on a compact neighborhood of
+the image disk, gives u o f constant. Small affine disks in arbitrary
+complex directions show u locally constant, hence constant on components.
+
+Lemma 2. If an open subset D of C^n has a smooth strictly pseudoconvex
+boundary point q, it has a bounded continuous plurisubharmonic function
+which is not locally constant.
+Proof. Translate q to 0. Choose r with D={r<0} locally, r(0)=0,
+dr(0)!=0. Replace r by s=r+A r^2. For large A>0, its complex Hessian at 0
+is positive definite: the correction to the Hessian is 2A dr^{1,0} tensor
+conjugate(dr^{1,0}), positive in the complex normal direction; the
+restriction of the old Hessian to the tangent hyperplane is positive
+definite. A block-matrix Schur complement proves the assertion. The sign of
+s is the sign of r sufficiently near 0. The second-order Taylor expansion
+is s(z)=2 Re g(z)+L(z)+o(|z|^2), with g a holomorphic polynomial of degree
+at most two and L positive-definite Hermitian. Shrink B_delta so that
+L(z)+o(|z|^2)>=c|z|^2 for some c>0. Consequently
+2 Re g(z)<=-c|z|^2 on D intersect B_delta. Thus
+h(z)=Re g(z)+(c/4)|z|^2 is smooth strictly psh and
+h(z)<=-(c/4)|z|^2 there. Pick 0<eta<c delta^2/16 and use the local function
+max(h,-eta) on D intersect B_delta, and the constant -eta on the rest of
+D. On D intersect {delta/2<|z|<delta}, h<-eta; hence these definitions agree
+on a collar and give a globally continuous psh function u. It takes values
+in [-eta,0), equals -eta on this collar, and tends to 0 along D approaching
+0. It is therefore not locally constant on D.
+
+Application. For K in K_2, let D=C^2 minus K. If the stated orientation of
+Levi pseudoconvexity for K fails at q, its Levi form on the one-dimensional
+complex tangent line has a negative eigenvalue. The local defining
+function for D is the negative of a defining function for K. Its Levi
+form on that line is therefore strictly positive. Lemma 2 contradicts
+Lemma 1 if D has CAP. Therefore n=2 belongs to N.
+
+No connectedness of D is assumed or needed; the peak construction is
+nonconstant on a single local component. The proof uses only CAP with
+m=1. Exact symbolic identities are checked by agent2_necessity_checks.py.

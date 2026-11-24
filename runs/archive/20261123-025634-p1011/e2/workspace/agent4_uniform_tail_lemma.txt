@@ -1,0 +1,70 @@
+Uniform tail and strong-operator lemmas for the graph LS construction
+Agent4; analytical audit detail, not a proof of the requested dimension cutoff.
+
+Notation: d=n-1, a=(n-2)/2, H=D^{1,2}(R^n_+), trace exponent
+b=2d/(n-2), and boundary dual-source exponent b'=2d/n.
+Consider bubbles U_(epsilon,xi) with epsilon,xi in a compact parameter set,
+epsilon bounded above and bounded away from0. Uniformly in these parameters,
+|U(x)| <= C(1+|x|)^{2-n}, |DU(x)|<=C(1+|x|)^{1-n}.
+Consequently for R>=2(1+max|xi|+max epsilon),
+ ||DU||_{L2(|x|>R)} + ||U0||_{Lb(|y|>R)} <= C R^{-a}.
+Both assertions follow by integrating powers in polar coordinates:
+interior gradient squared radial power is 1-n; boundary U^b radial power
+is -d-1. Raising the second integral to1/b gives R^{-d/b}=R^{-a}.
+
+Let a graph h have |Dh|<=delta and ||D2h||_{Ld}<=delta. Its pulled-back
+coefficient matrix differs from identity by O(|Dh|+|Dh|^2); its boundary
+coefficient b_h=Delta h-Dh^t D2h Dh/(1+|Dh|^2) satisfies ||b_h||Ld<=Cdelta.
+For graph perturbations supported in |y|>R, the residual at U is bounded by
+ C(delta+delta^2) [||DU||L2(|x|>R)+||U0||Lb(|y|>R)]
+ <= C(delta+delta^2)R^{-a} in H*. This uses Cauchy--Schwarz for interior
+metric terms and Holder with exponents d,b,b for boundary potential terms.
+The direct energy after exact cancellation of the linear term is
+ K_h - c_n int Dh^t D2h Dh/(1+|Dh|^2) U0^2.
+Its remote part is bounded by C(delta^2+delta^3)R^{-2a}.
+These estimates remain valid if the remote graph consists of any number of
+disjoint supports, because only the global norms above enter.
+
+For physical lambda_i, local radius rho_i, and t_i=mu_i lambda_i^5, take
+R_i comparable rho_i/lambda_i. Then remote residual/t_i is bounded by
+ C delta mu_i^{-1} lambda_i^{(n-12)/2} rho_i^{-a}, and remote direct
+energy/t_i^2 by C(delta^2+delta^3)mu_i^{-2}lambda_i^{n-12}rho_i^{-2a}.
+Thus lambda_i=exp(-(i+10)^4), mu_i=2^{-i^2}, rho_i=2^{-i-4} make both
+ratios tend to0 for every fixed n>12.
+
+For a degree6 polynomial profile f, cutoff f_R=chi(y/R)f satisfies
+ ||ell_(f_R)-ell_f||H* <= C R^{-(n-12)/2} for n>12,
+where ell_f(v)=-int Df.(D_yU v_n+U_n D_yv)+2c_n int Delta f U0 v0.
+Indeed |Df DU|<=C r^{6-n}, square integration in R^n has radial power
+11-n. The boundary factor |D2f U0|<=C r^{6-n} has L^{b'} tail norm
+R^{d/b'+6-n}=R^{-(n-12)/2}. Cutoff derivatives satisfy identical bounds.
+The K_f tail is O(R^{12-n}). The cubic boundary integrand
+|Df|^2|D2f|U0^2 has radial power16-n on R^d, integrable precisely n>17.
+
+Strong operator convergence. Suppose h_i have uniform bounds delta as above
+and Dh_i,D2h_i ->0 uniformly on each fixed compact subset. Let A_i be the
+Jacobi Hessian at a fixed bubble U, including the graph quadratic form.
+For v fixed in H, metric coefficient differences times Dv tend to0 inL2
+by dominated convergence; testing against Dw gives convergence in H*.
+For boundary terms, choose R such that ||v0||Lb(|y|>R) is small. On the
+outside, Holder bounds the H*-norm by Cdelta times that small tail norm.
+On the inside, local D2h_i->0 and finite-measure Holder give convergence.
+Thus (A_i-A_0)v->0 strongly in H*. The same applies after projection off
+the flat n-dimensional kernel, since those projections are fixed here.
+If the projected inverses have a common bound C, their strong convergence
+on any fixed source g follows from the exact resolvent relation
+ A_i^{-1}g-A_0^{-1}g=A_i^{-1}(A_0-A_i)A_0^{-1}g.
+Uniformity over compact parameter families follows from finite nets and
+the uniform operator bounds. The source family and its inverse images are
+compact because they depend continuously on finitely many bubble parameters.
+
+Gauge identity. Put q=f U_n. Since U_n solves the interior Jacobi equation,
+q has zero boundary trace and integration by parts gives
+ A_0(q,q)=int |Df|^2 U_n^2=2K_f.
+Here q belongs H for n>12. Let r_f be the linear Robin residual functional
+of the fixed ambient bubble; then r_f(q)=0, r_f vanishes on Jacobi kernel,
+and the flattened linear residual satisfies ell_f=r_f-A_0q. Projection
+off the kernel does not change any occurrence of A_0 or r_f. Expanding
+this exact quadratic identity gives
+ K_f - (1/2)ell_f A_perp^{-1}ell_f = -(1/2)r_f A_perp^{-1}r_f.
+This avoids formal differentiation of noncompact polynomial graph families.

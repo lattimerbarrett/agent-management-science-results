@@ -1,0 +1,37 @@
+
+ELEMENTARY DERIVATION OF ALL SPECTRAL COEFFICIENTS/MOMENTS.
+
+1. Gegenbauer coefficients. Rodrigues' formula yields
+(1-t²)^(alpha-1/2) C_k^alpha(t)
+ =(-1)^k (2alpha)_k/[2^k k!(alpha+1/2)_k]
+   d^k/dt^k [(1-t²)^(k+alpha-1/2)].
+For s>0, alpha+1/2>s, integrate against (1-t)^(-s),
+integrating by parts k times. The boundary terms vanish by the
+stated inequality. Since d^k(1-t)^(-s)=(s)_k(1-t)^(-s-k),
+the remaining integral is a beta integral. Thus
+I_s(k)=2^(2alpha-s) B(alpha+1/2-s,alpha+1/2)
+       (2alpha)_k(s)_k/[k!(2alpha+1-s)_k].
+For s=0 the coefficient is zero when k>0 by orthogonality;
+when k=0 it is the usual weight integral.
+Expand (1+t)^j=[2-(1-t)]^j to obtain every profile coefficient.
+This proves the formula without Pfaff-Saalschutz or other summation.
+
+2. Moment summation. Let
+V_j=Gamma(j+b)Gamma(j+c)/[Gamma(j+A-b)Gamma(j+A-c)].
+Gamma recurrence gives the exact telescoping identity
+V_j-V_(j+1)=(A-b-c)(2j+A)
+ Gamma(j+b)Gamma(j+c)/[Gamma(j+A-b+1)Gamma(j+A-c+1)].
+When A>b+c, V_j tends to0 by the elementary gamma-ratio asymptotic.
+Consequently
+SUM_(j>=0) (2j+A) Gamma(j+b)Gamma(j+c)/
+ [Gamma(j+A-b+1)Gamma(j+A-c+1)]
+ =Gamma(b)Gamma(c)/[(A-b-c)Gamma(A-b)Gamma(A-c)].
+For T_r(k)=product_(t=0)^(r-1)[(k+l+1+2t)(k+2a-l-1-2t)],
+the product converts one numerator and one denominator gamma factor:
+Gamma((k+l+1)/2)^2/Gamma((k+2a-l+1)/2)^2*T_r(k)
+ =4^r Gamma((k+l+1)/2)Gamma((k+l+1)/2+r)/
+ [Gamma((k+2a-l+1)/2)Gamma((k+2a-l+1)/2-r)].
+Split k even and odd; use A=a,b=(l+1)/2,c=b+r for even,
+and A=a+1,b=(l+2)/2,c=b+r for odd. This gives exactly the
+moment formula in agent1_exact_cross_gram.py and agent2_symbolic_gram.py.
+Convergence condition in both cases is a>l+1+r.

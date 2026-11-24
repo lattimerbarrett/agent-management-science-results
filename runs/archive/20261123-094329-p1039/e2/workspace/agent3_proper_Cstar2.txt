@@ -1,0 +1,25 @@
+Explicit ambient-proper holomorphic immersion C -> (C*)^2.
+
+Let k(z)=integral_0^1 (1-exp(tz))/t dt = -sum_{m>=1} z^m/(m*m!).
+Uniform convergence on compacta proves k entire, and k'(z)=(1-exp(z))/z
+with removable value -1 at z=0. Define F(z)=(exp(z),exp(k(z)-z)).
+Its first coordinate derivative exp(z) never vanishes, so F is an immersion.
+Both coordinates never vanish.
+
+For M>=0 put a=M+1. On Re(z)<=M, Re(a-z)>=1. Frullani's identity gives
+Log(a-z)-log(a)=integral_0^infty exp(-at)(1-exp(tz))/t dt.
+Subtracting this from k(z), the absolute difference is at most
+ C_M=a*(1+exp(M))+exp(-a)/a+exp(-1).
+Indeed on 0<t<1 use (1-exp(-at))/t<=a and
+|1-exp(tz)|<=1+exp(M); on t>=1 use
+exp(-at)|1-exp(tz)|/t <= exp(-at)+exp(-(a-M)t).
+Thus Re k(z)>=log|a-z|-log(a)-C_M on Re(z)<=M.
+
+If |z_j| tends to infinity but F(z_j) remains bounded, exp(Re z_j) bounded
+implies Re z_j<=M for some M>=0. Hence
+ |F_2(z_j)| >= |a-z_j| exp(-M-C_M)/a -> infinity,
+a contradiction. Therefore F is proper as a map into ambient C^2.
+
+This refutes any alleged impossibility of max of two entire harmonic
+functions being a proper exhaustion. It does not establish either missing
+Oka-complement existence claim.

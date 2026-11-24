@@ -1,0 +1,15 @@
+import sympy as s
+n,k=s.symbols('n k', integer=True, nonnegative=True)
+# Positive scalar series b_n = 2^(-n-1).
+full=s.summation(s.Rational(1,2)**(n+1),(n,0,s.oo))
+evens=s.summation(s.Rational(1,2)**(2*k+1),(k,0,s.oo))
+weighted=s.summation(s.Rational(1,2)**(2*k+1)/2+s.Rational(1,2)**(2*k+2),(k,0,s.oo))
+grouped=s.summation(s.Rational(1,2)**(2*k+1)+s.Rational(1,2)**(2*k+2),(k,0,s.oo))
+print('Original supremum:',full)
+print('Selecting the even-indexed summands:',evens)
+print('Halving only the even-indexed summands:',weighted)
+print('Grouping consecutive pairs:',grouped)
+assert full==grouped==1 and evens==s.Rational(2,3) and weighted==s.Rational(2,3)
+e=s.symbols('epsilon', positive=True)
+print('Nonexhaustivity implies projection-dimension lower bound:',s.simplify((e-e/2)/(1-e/2)))
+print('and projection partial-sum bound:',2/e)

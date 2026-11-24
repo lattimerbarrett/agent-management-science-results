@@ -1,0 +1,18 @@
+Stable detector via local metaplectic groups (proof outline; Gaussian-filtration lemma still needs fully justified root collection).
+
+R=Z[t,t^-1], s=t-1. Let G_m=<D_i(t), x_ij(s)> <= GL_m(R), m>=2.
+For c>=3 choose:
+- if c has an odd prime divisor p, put d=c/p and choose K=Q_p(zeta_p)(pi), pi^d=zeta_p-1;
+- otherwise c=2^a,a>=2, put d=c/4 and choose K=Q_2(i)(pi), pi^d=1-i.
+These are totally ramified with residue F_p, and valuation e=v_K(p) satisfies C=pe/(p-1)=c.
+In the second case -1 is a square. Thus Hilbert p-symbol kills both generators {-1,-1},{-1,t} of K2(R), using Bass-Heller-Swan K2(R)=K2(Z)+K1(Z)=(Z/2)^2.
+
+SK1(R)=0, so determinant-balancing GL_m(R)->SL_infinity(R)=E_infinity(R) is a homomorphism. Lift through St(R), specialize t->1+pi, and push K2(K) out by the p-Hilbert symbol. The ambiguity in choosing the Steinberg lift is image K2(R), which is killed. Therefore there is an honest stable homomorphism G_m -> metaplectic SL_infinity(K).
+
+Local reciprocity facts: (U_a,U_b)_p=1 if a+b>C; for 0<a<C with p not dividing a, the induced pairing U_a/U_{a+1} x U_{C-a}/U_{C-a+1} is nondegenerate. Since residue field is F_p, every nonzero graded pair gives nontrivial symbol. In particular (1+pi,1+epsilon*pi^{c-1}*(1+O(pi))) is nontrivial, epsilon=+-1.
+
+Needed local metaplectic filtration lemma: Write Gamma_r=ker SL_N(O)->SL_N(O/pi^r). In the mu_p-cover let F_r be the full inverse image Gamma_r for r<=C, and for r>C the canonical Gauss-section lift. Root and torus commutator collection and Hilbert-depth vanishing show [F_r,F_s] subset F_{r+s}; the deep Gauss section is a homomorphism, normalized by F_1, and disjoint from mu_p. Thus F_1/F_{C+1} is nilpotent of class <=C, retaining central mu_p.
+
+Explicit word: i,j distinct, balance index ell different from both. D=D_i(t) balances to h_{i,ell}(t), A=x_ij(s), B=x_ji(epsilon*s). Set B_k=ad_D^k(B), w_c=[D,[A,B_{c-3}]]. Exactly B_k=x_ji(epsilon*(-1)^k*s^{k+1}t^{-k}). Opposite-root Gauss decomposition of [A,B_k] has diagonal h_ij(1+q) or its inverse, q=epsilon*(-1)^k*s^{c-1}t^{-k}, and root corrections of depth >=c. Commuting with D sends corrections to depth >=c+1, while torus commutator gives (t,1+q)_p^+-1, since dot product (e_i-e_ell).(e_i-e_j)=1. Hence w_c maps to nontrivial central mu_p in class-c quotient, and w_c is not in gamma_{c+1}(G_m).
+
+The representation IA_n -> G_{n-1} is action on Alexander module of ker(F_n->Z), x_2->1 and others0. Original automorphism word can be chosen D=K_12,A=C_{1;23},B=C_{3;12}, signs adjusted. Its first Johnson derivation vanishes at degree c by agent_1's explicit ad(Y) calculation; therefore w_c in gamma_c(IA_n) cap A_{c+1}, while above image proves not gamma_{c+1}.

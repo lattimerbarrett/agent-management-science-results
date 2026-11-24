@@ -1,0 +1,14 @@
+Rank-three strictness, complete.
+Write x1,x2,x3 for free generators. Set Kij(xi)=xj xi xj^{-1}, and Ci;jk(xi)=[xj,xk]xi; all other generators fixed. These are the nine Magnus generators of IA3.
+Let d,e,f be degree-one derivations corresponding to K12,C1;23,C3;12. Their nonzero images are d(X1)=[X2,X1], e(X1)=[X2,X3], f(X3)=[X1,X2]. Set h=[e,f]. Then h(X1)=-[X2,[X1,X2]], h(X3)=[[X2,X3],X2], h(X2)=0. Direct derivation computation and Jacobi give [d,h]=0. Therefore w3=[K12,[C1;23,C3;12]] belongs gamma3(IA3) intersect A4(3). Define w_{c+1}=[K12,w_c]. Strong centrality gives w_c in gamma_c intersect A_{c+1} for every c>=3.
+
+Detection in the infinite dihedral group:
+The abelianized Fox Jacobian gives an antihomomorphism IA3 -> GL3(Z[t1^+-1,t2^+-1,t3^+-1]). Specialize all ti=-1. Every resulting matrix fixes (1,1,1)^T, by the Fox fundamental identity; quotient by this fixed line, using coordinates v1-v3,v2-v3, yields 2x2 matrices. Put
+U=[[1,2],[0,1]], V=[[1,0],[2,1]], R=diag(-1,1), Z=-I.
+In Magnus generator order K12,K13,C1;23,K21,K23,C2;13,K31,K32,C3;12, the matrices are
+UR,R,U,ZVR,ZR,V,VR,ZUR,ZVU^{-1}.
+Each identity is checked exactly in agent3_n3_checks.py. The subgroup <U,V> is free on U,V: on P1(R), put A={|z|>1}, B={|z|<1}; for every nonzero integer k, U^k(B) subset A and V^k(A) subset B. Ping-pong proves freeness and also excludes -I from <U,V>. R has determinant -1 and conjugates U,V to their inverses. Therefore <U,V,R,Z> is (F(U,V) semidirect C2_R) times C2_Z, with R inverting both free generators.
+It has quotient D=<a,b | a^2=b^2=1> by U->a,V->b,R->1,Z->1. Inverting the row Jacobian first turns the antihomomorphism into a homomorphism q:IA3->D. On the nine Magnus generators q has images a,1,a,b,1,b,b,a,ab. Consequently q(w3)=[a,[a,ab]], equal (ab)^4 or its inverse depending on commutator convention; with the stated convention it is (ab)^4. In either case its exponent is +/-4.
+Let z=ab. D is <z> semidirect <a>, with a z a=z^{-1}; its lower central series is gamma_c(D)=<z^{2^{c-1}}> for c>=2. Thus q(w3) is in gamma3(D) but not gamma4(D). Iterating [a,-] doubles the exponent up to sign, so q(w_c)=z^{+/-2^{c-1}} is not in gamma_{c+1}(D). It follows w_c not in gamma_{c+1}(IA3), proving strictness for n=3 and all c>=3.
+
+No claim is made here about survival under IA3 -> IAn. That stabilization is unresolved in this team's work.

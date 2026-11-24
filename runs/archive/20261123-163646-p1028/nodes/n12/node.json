@@ -1,0 +1,104 @@
+{
+ "id": "n12",
+ "parent": "n4",
+ "depth": 2,
+ "option": {
+  "branch": "c0b2",
+  "counterfactual": "For every permitted even n, some cubic graph attains t_n, and for every permitted odd n, some 4-regular graph attains t_n; allowing higher degrees never increases the maximum.",
+  "approach": "Study degree-reducing replacements of dense subgraphs that preserve vertex count and regularity. Look for a transformation showing that a higher-degree candidate cannot outperform an appropriate cubic or 4-regular graph.",
+  "p": 0.0183
+ },
+ "status": "member",
+ "belief": {
+  "answer": "\\(\\displaystyle \\boxed{t_n=\\begin{cases}\\frac{3n(2n-11)}4,&n\\equiv0\\pmod4,\\\\[2pt]\\frac{3n(2n-9)}4,&n\\equiv2\\pmod4,\\\\[2pt]n^2-\\frac{28}{5}n,&n\\text{ odd},\\ n\\equiv0,3\\pmod5,\\\\[2pt]n^2-\\frac{23}{5}n,&n\\text{ odd},\\ n\\equiv1\\pmod5,\\\\[2pt]n^2-\\frac{596}{115}n,&n\\text{ odd},\\ n\\equiv2\\pmod5,\\\\[2pt]n^2-\\frac{278}{45}n,&n\\text{ odd},\\ n\\equiv4\\pmod5.\\end{cases}}\\)",
+  "confidence": 0.74
+ },
+ "judge": {
+  "claim": true,
+  "same_as": "e1",
+  "answer": "\\displaystyle t_n=\\begin{cases}\\frac{3n(2n-11)}4,&n\\equiv0\\pmod4,\\\\[2pt]\\frac{3n(2n-9)}4,&n\\equiv2\\pmod4,\\\\[2pt]n^2-\\frac{28}{5}n,&n\\text{ odd},\\ n\\equiv0,3\\pmod5,\\\\[2pt]n^2-\\frac{23}{5}n,&n\\text{ odd},\\ n\\equiv1\\pmod5,\\\\[2pt]n^2-\\frac{596}{115}n,&n\\text{ odd},\\ n\\equiv2\\pmod5,\\\\[2pt]n^2-\\frac{278}{45}n,&n\\text{ odd},\\ n\\equiv4\\pmod5.\\end{cases}",
+  "reason": "It claims an explicit exact formula for t_n. It is identical to e1, with only the first two cases reordered.",
+  "experiment": false,
+  "n": 12
+ },
+ "experiment": null,
+ "options": [
+  {
+   "branch": "c0b0",
+   "counterfactual": "For some permitted even n, every extremal graph has degree greater than three, or for some permitted odd n, every extremal graph has degree greater than four.",
+   "approach": "Search higher-degree regular graphs with deliberately planted bottlenecks, rather than relying on random starting graphs. Compare their exact commute times with explicit cubic or 4-regular constructions on the same number of vertices.",
+   "p": 0.0462,
+   "child": null
+  },
+  {
+   "branch": "c0b1",
+   "counterfactual": "For some permitted even n, every extremal graph has degree greater than three, or for some permitted odd n, every extremal graph has degree greater than four.",
+   "approach": "Investigate whether a degree-reducing replacement loses too much in the factor multiplying effective resistance. The relevant comparison is degree times resistance, so an increase in resistance alone does not establish improvement.",
+   "p": 0.0308,
+   "child": null
+  },
+  {
+   "branch": "c0b2",
+   "counterfactual": "For some permitted even n, every extremal graph has degree greater than three, or for some permitted odd n, every extremal graph has degree greater than four.",
+   "approach": "Develop degree-dependent upper bounds on resistance diameter and compare the resulting bounds on commute time across degrees. Focus computational effort on degrees for which the upper bound can exceed the best low-degree construction.",
+   "p": 0.0256,
+   "child": null
+  },
+  {
+   "branch": "c1b0",
+   "counterfactual": "An extremal graph need not have its bottlenecks arranged in a linear chain; a branched arrangement can produce a larger maximum commute time on the same number of vertices.",
+   "approach": "Search regular graphs whose decomposition at articulation vertices has branching, and compute their resistance diameters exactly. Check whether the vertices outside the path between the maximizing pair help satisfy regularity more efficiently than a chain construction.",
+   "p": 0.1026,
+   "child": null
+  },
+  {
+   "branch": "c1b1",
+   "counterfactual": "An extremal graph need not have its bottlenecks arranged in a linear chain; a branched arrangement can produce a larger maximum commute time on the same number of vertices.",
+   "approach": "Analyze branches attached through a single articulation vertex. Such branches carry no electrical current between endpoints outside them, but they may permit smaller connecting blocks, so compare this vertex cost explicitly.",
+   "p": 0.1026,
+   "child": null
+  },
+  {
+   "branch": "c1b2",
+   "counterfactual": "An extremal graph need not have its bottlenecks arranged in a linear chain; a branched arrangement can produce a larger maximum commute time on the same number of vertices.",
+   "approach": "Set up a dynamic program over possible articulation-block trees, recording vertex count, attachment degrees, and endpoint resistance. Compare the best branching configurations with the best linear configurations at small orders.",
+   "p": 0.0513,
+   "child": null
+  },
+  {
+   "branch": "c2b0",
+   "counterfactual": "The apparent formulas consisting of a quadratic term plus a residue-dependent linear correction fail at some larger permitted order because a new connecting block becomes more efficient.",
+   "approach": "Enumerate larger two-terminal blocks with the degree deficits needed for assembling regular graphs. Compare their exact resistance per added vertex and their residue corrections with those of the existing small blocks.",
+   "p": 0.2885,
+   "child": null
+  },
+  {
+   "branch": "c2b1",
+   "counterfactual": "The apparent formulas consisting of a quadratic term plus a residue-dependent linear correction fail at some larger permitted order because a new connecting block becomes more efficient.",
+   "approach": "Construct an integer optimization over known terminal and connecting blocks, then extend the block library systematically. Look for a larger block that improves either the leading resistance-to-size ratio or a particular residue class.",
+   "p": 0.2244,
+   "child": null
+  },
+  {
+   "branch": "c2b2",
+   "counterfactual": "The apparent formulas consisting of a quadratic term plus a residue-dependent linear correction fail at some larger permitted order because a new connecting block becomes more efficient.",
+   "approach": "Seek a universal resistance bound for two-terminal blocks in terms of their order and attachment degrees. An equality characterization would determine whether the currently observed small blocks exhaust the possible extremizers.",
+   "p": 0.1282,
+   "child": null
+  },
+  {
+   "branch": "own",
+   "counterfactual": null,
+   "approach": null,
+   "p": null,
+   "child": null
+  }
+ ],
+ "cost": 0.1604,
+ "responses": 5,
+ "step_from": 26,
+ "known": [],
+ "created": 1795471331.8366551,
+ "seen": "11d770e3992d5beaee8f698499381393eb605e74cf8a9758c8bed8b46d112cd2",
+ "take_at": 26
+}

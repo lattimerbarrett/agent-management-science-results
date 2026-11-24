@@ -1,0 +1,107 @@
+{
+ "id": "n2",
+ "parent": "n0",
+ "depth": 1,
+ "option": {
+  "branch": "c2b1",
+  "counterfactual": "Extremal graphs cannot always be assembled as a linear chain of blocks separated by bridges or articulation vertices; a more highly connected component is essential for some vertex counts.",
+  "approach": "Analyze decompositions along two-edge and two-vertex separators rather than only bridges and articulation vertices. Determine which boundary resistance data must be tracked when components are joined.",
+  "p": 0.0979
+ },
+ "status": "member",
+ "belief": {
+  "answer": "For N=\\binom n2, H=(n^{n-2})!, B=2^{N+n}, and \\delta(x)=\\lfloor1/(|x|+1)\\rfloor, define A_b (0\\le b<2^N) to be the symmetric zero-diagonal matrix whose upper-triangular entries, in lexicographic order, are the binary digits of b starting with the least significant digit. Put d_{b,i}=\\sum_j(A_b)_{ij} and L_b=\\operatorname{diag}(d_{b,1},\\ldots,d_{b,n})-A_b. Write L^{[S]} for deletion of the rows and columns indexed by S, and set a_b=\\det L_b^{[\\{n\\}]}, f_{b,uv}=\\det L_b^{[\\{u,v\\}]}, q_b=a_b+\\delta(a_b), and w_b=(1-\\delta(a_b))\\prod_{i=2}^n\\delta(d_{b,i}-d_{b,1}). Then, throughout the stated domain, \\boxed{\\displaystyle t_n=\\frac1H\\left\\lfloor\\log_B\\!\\left(1+\\sum_{b=0}^{2^N-1}w_b\\sum_{1\\le u<v\\le n}B^{Hn d_{b,1}f_{b,uv}/q_b}\\right)\\right\\rfloor}.",
+  "confidence": 0.99
+ },
+ "judge": {
+  "claim": true,
+  "same_as": null,
+  "answer": "For N=\\binom n2, H=(n^{n-2})!, B=2^{N+n}, and \\delta(x)=\\lfloor1/(|x|+1)\\rfloor, define A_b (0\\le b<2^N) to be the symmetric zero-diagonal matrix whose upper-triangular entries, in lexicographic order, are the binary digits of b starting with the least significant digit. Put d_{b,i}=\\sum_j(A_b)_{ij} and L_b=\\operatorname{diag}(d_{b,1},\\ldots,d_{b,n})-A_b. Write L^{[S]} for deletion of the rows and columns indexed by S, and set a_b=\\det L_b^{[\\{n\\}]}, f_{b,uv}=\\det L_b^{[\\{u,v\\}]}, q_b=a_b+\\delta(a_b), and w_b=(1-\\delta(a_b))\\prod_{i=2}^n\\delta(d_{b,i}-d_{b,1}). Then, throughout the stated domain, \\boxed{\\displaystyle t_n=\\frac1H\\left\\lfloor\\log_B\\!\\left(1+\\sum_{b=0}^{2^N-1}w_b\\sum_{1\\le u<v\\le n}B^{Hn d_{b,1}f_{b,uv}/q_b}\\right)\\right\\rfloor}.",
+  "reason": "It asserts an explicit exact formula for t_n, which is a claim a team could attempt to prove. There are no previous answers to match.",
+  "experiment": false,
+  "n": 3,
+  "definite": false,
+  "gate": "The formula exhaustively enumerates all labeled graphs and vertex pairs, computes their commute times, and encodes the maximum using a logarithm. It therefore repackages the defining optimization as a finite calculation rather than determining the requested explicit exact formula for t_n.",
+  "procedure": true
+ },
+ "experiment": null,
+ "options": [
+  {
+   "branch": "c0b0",
+   "counterfactual": "For some admissible even n, a regular graph of degree at least 4 has a larger maximum commute time than every cubic graph; or, for some admissible odd n, a regular graph of degree at least 6 beats every 4-regular graph.",
+   "approach": "Search higher-degree regular graphs at the smallest admissible vertex counts and compare their commute times with the best degree-3 and degree-4 constructions. Compute promising examples exactly using Laplacian minors.",
+   "p": 0.0847,
+   "child": null
+  },
+  {
+   "branch": "c0b1",
+   "counterfactual": "For some admissible even n, a regular graph of degree at least 4 has a larger maximum commute time than every cubic graph; or, for some admissible odd n, a regular graph of degree at least 6 beats every 4-regular graph.",
+   "approach": "Derive upper bounds on effective resistance that retain the degree as a parameter. Compare the resulting bounds on n times degree times resistance to identify which degrees can remain competitive.",
+   "p": 0.0741,
+   "child": null
+  },
+  {
+   "branch": "c0b2",
+   "counterfactual": "For some admissible even n, a regular graph of degree at least 4 has a larger maximum commute time than every cubic graph; or, for some admissible odd n, a regular graph of degree at least 6 beats every 4-regular graph.",
+   "approach": "Construct higher-degree graphs with small edge cuts and calculate their resistances exactly. These constructions would test whether the additional edges can be concentrated inside dense pieces without substantially reducing resistance between distant vertices.",
+   "p": 0.0317,
+   "child": null
+  },
+  {
+   "branch": "c1b0",
+   "counterfactual": "For some admissible n, every maximizing graph has neither a bridge nor an articulation vertex.",
+   "approach": "Search specifically among graphs with no articulation vertices, allowing two-edge and two-vertex separators. Compare their exact maximum commute times with those of constructions joined through bridges or articulation vertices.",
+   "p": 0.1667,
+   "child": null
+  },
+  {
+   "branch": "c1b1",
+   "counterfactual": "For some admissible n, every maximizing graph has neither a bridge nor an articulation vertex.",
+   "approach": "Develop a composition calculation that retains the three pairwise effective resistances between a distinguished vertex and two attachment vertices. This would allow competing components to be compared without incorrectly replacing each by a single resistance.",
+   "p": 0.1667,
+   "child": null
+  },
+  {
+   "branch": "c1b2",
+   "counterfactual": "For some admissible n, every maximizing graph has neither a bridge nor an articulation vertex.",
+   "approach": "Investigate modifications that remove articulation vertices while preserving regularity and the vertex count. Calculate whether reconnecting nearby edges can increase the resistance between the distinguished endpoints.",
+   "p": 0.0952,
+   "child": null
+  },
+  {
+   "branch": "c2b0",
+   "counterfactual": "The maximum effective resistance does not eventually grow by a fixed amount when n is increased by 4 in cubic graphs or by 5 in 4-regular graphs.",
+   "approach": "Extend the numerical search to substantially larger vertex counts within each residue class. Examine successive resistance increments and verify any apparent deviations using exact arithmetic.",
+   "p": 0.1693,
+   "child": "n7"
+  },
+  {
+   "branch": "c2b1",
+   "counterfactual": "The maximum effective resistance does not eventually grow by a fixed amount when n is increased by 4 in cubic graphs or by 5 in 4-regular graphs.",
+   "approach": "Search for components of increasing size whose resistance gained per added vertex improves on the currently observed repeating pieces. A better ratio could invalidate the proposed repeating construction.",
+   "p": 0.127,
+   "child": null
+  },
+  {
+   "branch": "c2b2",
+   "counterfactual": "The maximum effective resistance does not eventually grow by a fixed amount when n is increased by 4 in cubic graphs or by 5 in 4-regular graphs.",
+   "approach": "Investigate whether infinitely many distinct boundary resistance profiles must be retained when joining components. Such a phenomenon could prevent reduction to a fixed finite list of repeating pieces.",
+   "p": 0.0847,
+   "child": null
+  },
+  {
+   "branch": "own",
+   "counterfactual": null,
+   "approach": null,
+   "p": null,
+   "child": null
+  }
+ ],
+ "cost": 0.1336,
+ "responses": 5,
+ "step_from": 15,
+ "known": [],
+ "created": 1795469994.6232,
+ "seen": "592ffa53d64d136d1d00b2c6001de2bf26c5d9da1c42295f7d3b1570e17c5e3e",
+ "take_at": 15
+}

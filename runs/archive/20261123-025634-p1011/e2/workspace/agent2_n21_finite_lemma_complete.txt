@@ -1,0 +1,189 @@
+FINITE n=21 PROFILE LEMMA, WITH COMPLETE COEFFICIENT DERIVATION
+Agent 2. All assertions in the final interval calculation are exact rational
+assertions in agent2_n21_standalone_certificate.py.
+
+STATEMENT. Put m=20, A=diag(I_10,-I_10), P(y)=y^T A y on R^20.
+There exists zeta in (-425186/10^6,-425185/10^6) such that, for
+ f(y)=P(y)[1+zeta|y|^2+(7/150)|y|^4],
+the sphere shape norm associated with f has a strict, nondegenerate
+maximum at bubble scale 1 and tangential centre 0, in ALL 21 parameters.
+This is the finite profile lemma needed by the uniform graph LS theorem.
+No PDE/gluing assertion is part of this lemma.
+
+1. SHAPE NORM AND ITS SPECTRUM.
+On the boundary unit sphere S^20 let Pi_L denote harmonic projection of
+total degree L. Define J_L=(L-1)(L+20), and, for L>=2,
+ D_L=2 Gamma((L+22)/2)Gamma(L/2)/
+         [Gamma((L+21)/2)Gamma((L-1)/2)] >0.
+Define B(phi,psi)=SUM_(L>=2) J_L^2/D_L <Pi_L phi,Pi_L psi>.
+The degree0 and degree1 pieces contribute zero. For the Jacobi equation
+(Delta_{S^21}+21)v=0 on the hemisphere, this is the positive quadratic
+form of the boundary flux Jphi, up to the fixed positive Robin factor.
+The degree0 flux is solved by the normal coordinate, whose boundary
+trace is zero. Degree1 is the Neumann kernel, annihilated by J.
+For L>=2, separation of variables gives
+ v(theta,omega)=(sin theta)^L
+  2F1((L-1)/2,(L+21)/2;L+21/2;sin^2 theta) Y_L(omega).
+The ODE is verified all-symbolically in agent2_dtn_ode_check.py.
+The endpoint coefficients can be obtained without a continuation theorem.
+Write a=(L-1)/2,b=(L+21)/2,c=L+21/2, so c-b=a+1/2. The regular
+hypergeometric factor has Euler integral
+ Gamma(c)/[Gamma(b)Gamma(c-b)] *
+ INT_0^1 u^(b-1)(1-u)^(c-b-1)(1-z u)^(-a)du.
+Differentiation and integration by parts verify its Gauss ODE; at z=0 it
+is1, so it is the regular factor. At z=1 its beta integral value is
+ A0=Gamma(c)Gamma(1/2)/[Gamma(c-a)Gamma(c-b)].
+For z=1-h^2, subtract the z=1 integral and scale 1-u=h^2 v near u=1.
+Dominated convergence (splitting v<1 and v>1) gives linear coefficient
+ Gamma(c)/[Gamma(b)Gamma(c-b)] times
+ INT_0^infty v^(a-1/2)[(1+v)^(-a)-v^(-a)]dv.
+The last integral equals -2a B(a+1/2,1/2): write the bracket as
+ -a INT_0^1(v+s)^(-a-1)ds, use Tonelli, then scale v=s w.
+Thus the linear coefficient is
+ B0=-2Gamma(c)Gamma(1/2)/[Gamma(a)Gamma(b)].
+Since h=cos theta and the outward derivative is partial_theta, the
+Dirichlet-to-Neumann value is -B0/A0, precisely D_L above. All integrals
+converge for L>=2. Hence no hypergeometric summation/continuation theorem
+is needed for any coefficient of this finite lemma.
+
+For eps>0,xi in R^20, put f_(eps,xi)(y)=f(eps y+xi)/eps and
+ phi_(eps,xi)(y)=2 f_(eps,xi)(y)/(1+|y|^2), viewed by stereography on S^20.
+Our norm is N(eps,xi)=B(phi_(eps,xi),phi_(eps,xi))/||P||^2_(S^19).
+It is finite and C-infinity near(1,0), as the coefficient formulas below
+show (all required gamma moment sums converge strictly).
+
+2. EXACT GRAMS.
+For a homogeneous harmonic P_l=r^l Y_l, define G_l(i,j) to be B applied
+to 2P_l r^(2i)/(1+r^2) and 2P_l r^(2j)/(1+r^2), divided by ||Y_l||^2.
+We need l=1,2,3 only; i,j<=2 for l1,2, and i,j<=1 for l3.
+Set x=(21-2)/2=19/2, a=x+l. Use t=(r^2-1)/(r^2+1).
+Then exactly
+ 2P_l r^(2j)/(1+r^2)
+  =(1-t^2)^(l/2) [(1+t)^j/(1-t)^(l+j-1)]Y_l.
+The separated boundary harmonic basis is
+ (1-t^2)^(l/2) C_k^a(t)Y_l, total degree L=k+l.
+Its radial norm is
+ h_k=pi*2^(1-2a)Gamma(k+2a)/[k!(k+a)Gamma(a)^2].
+
+For an integer v>=1 Rodrigues' formula and k integrations by parts give
+ I_v(k)=INT_-1^1(1-t^2)^(a-1/2) C_k^a(t)(1-t)^(-v)dt
+ =2^(2a-v)B(a+1/2-v,a+1/2)
+   (2a)_k(v)_k/[k!(2a+1-v)_k].
+Boundary terms vanish since a+1/2>v in every required case.
+In particular I_1 is independent of k and equals
+ sqrt(pi)Gamma(a-1/2)/Gamma(a).
+Writing Z=(k+a)^2, define R_0=0 (effective degree1-kernel convention),
+ R_v(Z)=2^(1-v) PRODUCT_(u=0)^(v-2)[Z-(a-1-u)^2]/
+         [(v-1)!(a+1/2-v)_(v-1)] for v>=1.
+Gamma recurrence shows R_v=I_v/I_1. Expanding(1+t)^j gives the normalized
+coefficient polynomial
+ b_lj(Z)=SUM_(r=0)^j (-1)^(j-r) binom(j,r)2^r R_(l-1+r)(Z).
+R_0 can be set0 since I_0 has only k=0 coefficient; for l1 this is exactly
+the degree1 source annihilated by J. Thus no nonzero norm is dropped.
+
+Gamma duplication gives the following EXACT simplification:
+ J_(k+l)^2/[h_k D_(k+l)]
+ =2^(2l-1)Gamma(a)^2/pi * (k+a) F_l(Z)
+   [Gamma((k+l+1)/2)/Gamma((k+2a-l+1)/2)]^2,
+where F_1=Z-a^2, F_2=1, F_3=1/[Z-(a-1)^2].
+For l3 all b_lj are divisible by Z-(a-1)^2, so
+p_ij(Z)=F_l(Z)b_li(Z)b_lj(Z) is a polynomial for every required pair.
+Expand it in the monic basis
+ T_r(Z)=PRODUCT_(u=0)^(r-1)[Z-(a-l-1-2u)^2], T_0=1,
+ say p_ij=SUM_r d_ijr T_r. This is unique finite polynomial division.
+
+3. ELEMENTARY MOMENTS (NO SPECIAL SUMMATION THEOREM).
+Let beta=(l+1)/2. The exact moment is
+ S_r=SUM_(k>=0)(k+a)[Gamma((k+l+1)/2)/
+                    Gamma((k+2a-l+1)/2)]^2 T_r((k+a)^2)
+ =4^r/(a-l-1-r) *{
+ Gamma(beta)Gamma(beta+r)/[Gamma(a-beta)Gamma(a-beta-r)]
+ +Gamma(beta+1/2)Gamma(beta+1/2+r)/
+       [Gamma(a+1/2-beta)Gamma(a+1/2-beta-r)]}.
+It converges when a>l+1+r, true in every required case.
+Proof: for arbitrary B,C,V with V>B+C, set
+ W_j=Gamma(j+B)Gamma(j+C)/[Gamma(j+V-B)Gamma(j+V-C)].
+Gamma recurrence gives the telescoper
+ W_j-W_(j+1)=(V-B-C)(2j+V)
+ Gamma(j+B)Gamma(j+C)/[Gamma(j+V-B+1)Gamma(j+V-C+1)].
+W_j tends0 by the gamma-ratio asymptotic. Sum this identity. For even k
+use V=a,B=beta,C=beta+r; for odd k use
+V=a+1,B=beta+1/2,C=beta+1/2+r. The factor4^r comes from the paired
+linear factors defining T_r. This proves the displayed formula.
+Consequently the exact Gram is
+ G_l(i,j)=2^(2l-1)Gamma(a-1/2)^2 SUM_r d_ijr S_r.
+The standalone program computes precisely this finite polynomial formula.
+
+For rational arithmetic it factors G_l/pi using
+ q=Gamma(x+3/2)^2/[pi Gamma(x+1)^2].
+For each S_r after multiplication by the common Gram prefactor and
+division by pi, the two base coefficients are
+ l=1: E=2q x^2/(x+1/2)^2, O=1/2;
+ l=2: E=2(x+1/2)^2, O=8q;
+ l=3: E=32(x+3/2)^2 q, O=18(x+3/2)^2.
+The r-th moment in these scaled units is exactly
+ 4^r/(a-l-1-r) [E(beta)_r(a-beta-r)_r
+                +O(beta+1/2)_r(a+1/2-beta-r)_r].
+This is the implementation symbolic_gram(l,J). Every entry is rational
+in x,q; at x=19/2 only q is nonrational.
+
+4. FULL CENTRE HESSIAN.
+All Gram matrices above use unnormalized angular functions; the required
+relative angular factors follow from the sphere moment identity
+ E[omega_(i1)...omega_(i2r)] = SUM_pairings delta /
+                   [m(m+2)...(m+2r-2)].
+For general tracefree symmetric A, P=y^TAy, L_k=(Ay)_k,
+ H_3k=P y_k-2 L_k r^2/(m+2), and f_j=P r^(2j), one has
+ partial_k f_j=(2+4j/(m+2))L_k r^(2j)+2j H_3k r^(2j-2).
+H_3k is harmonic because Delta(P y_k)=4L_k and
+Delta(L_k r^2)=2(m+2)L_k. With a_k=(A^2)kk/tr(A^2),
+ ||L_k||^2/||P||^2=a_k(m+2)/2,
+ ||H_3k||^2/||P||^2=1/(m+4)+2m a_k/[(m+4)(m+2)],
+and the angular projection of partial_kk f_j onto P is
+ [2j+8j a_k+4j(j-1)(1+4a_k)/(m+4)]P r^(2j-2).
+These follow from
+ E[P^2]=2tr(A^2)/[m(m+2)],
+ E[P^2 omega_k^2]=[2tr(A^2)+8(A^2)kk]/[m(m+2)(m+4)],
+ E[P omega_k(Aomega)_k]=2(A^2)kk/[m(m+2)].
+Exact independent polynomial integrations are in agent2_center_decomposition.py.
+Here A^2=I,m=20, so a_k=1/20 for EVERY axis, and the factors become
+ ||L_k||^2/||P||^2=11/20, ||H_3k||^2/||P||^2=1/22,
+ projection coefficient e_j=2j+j(j+1)/5.
+
+Put c=(1,z,7/150). Then at(eps,xi)=(1,0),
+ partial_eps N = H(z)=SUM_ij 2(i+j+1)G_2(i,j)c_i c_j,
+ partial_eps,eps N = K(z)=SUM_ij 2(i+j+1)(2i+2j+1)G_2(i,j)c_i c_j.
+All first centre derivatives and all mixed Hessian entries vanish by
+coordinate reflection symmetry. Each diagonal centre entry is 2C(z),
+where C(z)=SUM_ij c_i c_j T_ij and
+ T_ij=(2+2i/11)(2+2j/11)*(11/20)*G_1(i,j)
+       +(2ij/11)*G_3(i-1,j-1)
+       +[2j+j(j+1)/5]*G_2(i,j-1).
+Terms with negative indices are0. Thus K<0,C<0 at a root of H proves a
+FULL negative definite Hessian, including all20 centre directions.
+No symmetry-restricted PDE space is being used.
+
+5. EXACT INTERVAL CERTIFICATE.
+At x=19/2,
+ q=4^20(10!)^4/[(20!)^2 pi^2].
+The program computes rational lower/upper pi bounds by alternating series
+for Machin's identity pi=16atan(1/5)-4atan(1/239). It also checks the exact
+rational tangent identity underlying Machin. These bounds give rational
+q_-<q<q_+. Every G, and H,K,C, is affine in q. For both q endpoints, the
+program proves with EXACT RATIONAL ARITHMETIC:
+ H(-425186/10^6)<0, H(-425185/10^6)>0;
+ -K(z)>0 and -C(z)>0 throughout the same closed z interval.
+For the last inequalities it substitutes z=left+(right-left)v and
+expresses each degree2 polynomial in Bernstein basis on0<=v<=1:
+ B_k=SUM_(j<=k) power_coefficient_j binom(k,j)/binom(2,j).
+Every one of the12 rational Bernstein coefficients is strictly positive.
+Linearity in q proves all signs for the actual q. The intermediate value
+theorem gives zeta in the interval with H(zeta)=0, and K,C<0 there.
+Reflection symmetry gives every other gradient entry0 and mixed Hessian
+entry0. The Hessian is therefore negative definite. This proves the lemma.
+
+REPRODUCIBILITY. Run agent2_n21_standalone_certificate.py with SymPy.
+It recomputes every coefficient above and ASSERTS each rational sign.
+No workspace imports, floating quadrature, evalf, or unchecked printed
+belief enters this certificate. agent2_verification_manifest.json lists
+six exact-check scripts and their SHA256 hashes, all rerun successfully.

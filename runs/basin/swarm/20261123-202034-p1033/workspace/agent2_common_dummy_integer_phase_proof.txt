@@ -1,0 +1,57 @@
+INTEGER COMMON-DUMMY PHASE PARAMETER
+
+Let t color classes have real vertices corresponding to NONEMPTY actual
+sets of rank at most r, and one dummy vertex each. All dummies represent
+the same fresh point. Define the symmetric disjointness coefficient D:
+real-real is 1 for disjoint actual sets and 0 otherwise; real-dummy is
+M, dummy-dummy is 0, and all diagonals are 0. Let
+ Q(x)=1/2 sum_{v,w} D(v,w)x_v x_w,
+with nonnegative mass summing to 1 in each color. Assume 0<M<1/4 and x
+is a global maximum. Let R be total real mass. A color is mixed if both
+its real mass and dummy mass are positive; pure-real if dummy mass 0;
+pure-dummy if dummy mass 1. Suppose there is at least one mixed color.
+
+CLAIM: delta=M(2R-t) is a NONNEGATIVE INTEGER.
+
+Proof. Put B=J-D; on the supported color-zero-sum tangent space its
+Gram form is positive semidefinite, since Q is maximal and J vanishes.
+For a supported mixed real vertex S and its color dummy, u=e_S-e_dummy
+has squared B-norm 2M. For any two mixed real vertices S,T, the inner
+product of their corresponding roots is 2M if S,T intersect, and
+2M-1 if they are disjoint. Cauchy-Schwarz excludes the latter because
+1-2M>2M. Therefore ALL supported mixed real sets pairwise intersect.
+
+For two supported real atoms A,A' in ANY pure-real color, the root
+v=e_A-e_A' has squared norm 0 or 2. Its inner product with u is
+1[A intersects S]-1[A' intersects S], an integer in {-1,0,1}.
+Cauchy-Schwarz bounds its absolute value by 2*sqrt(M)<1, so it is zero.
+Thus all supported real atoms of a pure-real color have the SAME
+intersection status with S, regardless of their possibly fractional
+masses. Each pure-real color has total mass exactly one.
+
+The actual real-real disjointness degree of S is consequently the
+NUMBER of pure-real colors whose entire supported actual family is
+disjoint from S. No mixed color contributes, and no pure-dummy color
+has real mass. This is a nonnegative integer. KKT equality between S
+and its supported dummy gives
+ degree(S)+M(t-R)=M R,
+so degree(S)=M(2R-t)=delta, proving the claim.
+
+BALANCED-HALL COROLLARY. If the underlying intersecting core family has
+t classes AND covering number t, and all actual patterns have rank<=r,
+then delta=0 is impossible when t>2r. Indeed every actual alternative P
+in a mixed or pure-dummy color has real disjointness degree at most
+delta by KKT. If delta=0, P intersects EVERY supported real set S.
+Choose one such S, |S|<=r; it covers all mixed/pure-dummy classes. Cover
+each pure-real color by one point of its own core, costing p additional
+points. Since delta=0 gives R=t/2 and p<=R, this yields
+ t=tau<=r+p<=r+t/2, hence t<=2r.
+
+CAUTION: delta+1 arbitrarily chosen supported REAL ATOMS do not
+necessarily have total weight>delta when pure-real colors have multiple
+fractional atoms. The analogous covering argument needs atom WEIGHT
+strictly exceeding delta; replacing weight by atom count is unsupported.
+
+This phase integrality and delta=0 corollary do NOT give the missing
+asymptotic bound. They strengthen the common-dummy global-QP structure
+beyond arbitrary first-order nearblocker models.

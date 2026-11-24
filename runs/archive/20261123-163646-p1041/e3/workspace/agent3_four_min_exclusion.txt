@@ -1,0 +1,136 @@
+UNCONDITIONAL EXCLUSION OF FOUR-MINIMUM-WORD REPRESENTATIONS
+
+Theorem. The XOR of at most four affine7-flat indicators in F2^m, m>=14,
+cannot have weight322,326,330,334.
+This is NOT arbitrary-word coverage and does NOT prove K/descent.
+
+Notation. For four flats A1,A2,A3,A4, write p_ij=|Ai intersect Aj|,
+t_ijk=|Ai intersect Aj intersect Ak|, q=|allfour|, P=sum p, T=sum t.
+Weight is512-2P+4T-8q. The targets require
+ R=P-2T+4q in{89,91,93,95}.
+If any actual pair intersection has size>=64, its two indicators XOR
+into one affine7-flat or zero (at size64 the two affine6-flat complements
+are parallel and their union is an affine7-flat). This reduces to at most
+three minimumwords, already excluded by the elementary three-flat table.
+Thus every actual p_ij is0 or a power of2 at most32.
+
+A target support has affine span AT LEAST14 and no nonzero period.
+Indeed if its span dimension is t<=13, factor the affine span indicator:
+the residual belongs RM(t-7,t), whose weights are divisible4 since
+2(t-7)<t. A period yields twice the weight of an RM(m-7,m-1) word,
+again divisible4 because m-7<m-1. Thus the common intersection
+of the four direction spaces is0 and q<=1. It follows R<=P; if any triple
+intersection is nonempty then R<P (if q=0 clear; if q=1 allfour t>=1).
+Also P is odd, so some pair intersection is a singleton. The corresponding
+two7-dimensional direction spaces are DISJOINT (sum dimension14).
+Call a pair of flats whose actual intersection is32 a LARGE edge.
+
+AT MOST ONE LARGE EDGE IS IMPOSSIBLE.
+Label a singleton pair1,3; their direction spaces are disjoint.
+For each of the remaining flats, its two intersection-direction dimensions
+with these disjoint spaces sum<=7. If neither corresponding actual
+pair is32, their actual sizes sum<=24 (max16+8). If one is32, the sum<=36
+(max32+4). If the sole large edge is incident to1 or3, P<=1+36+24+16=77.
+If it is edge2,4, P<=1+24+24+32=81. With no large edge the bound is smaller.
+Thus R<89.
+
+AT LEAST THREE LARGE EDGES: THE TRIANGLE CASE ONLY.
+Any large-edge spanningtree forces the affine span of the four flats to
+have dimension<=7+2+2+2=13, since each added flat meets an earlier flat in
+a5-flat. This contradicts target support span>=14. Therefore with>=3 large edges there are exactly
+three, forming a triangle on1,2,3; flat4 is isolated in the large graph.
+A singleton pair must involve4; label it1,4. Since dir(A4) meets dir(A1)
+trivially while dir(A1) meets dir(A2),dir(A3) in dimension5, p24,p34<=4.
+Hence P<=96+1+4+4=105.
+If t123=0, the XOR of the firstthree flats has weight192. Classical
+Kasami-Tokura second-weight classification says every192 word in RM7,14
+is a sum of two minimum words (the rank4 quadratic form times affine
+factors). The whole word is then at most three minimum words, excluded.
+If t123>0, inside A1 its two5-flat intersections force t123>=8.
+Moreover T-t123>=3q, so R<=P-2t123<=89. Equality needs P105,t1238,q0,
+and ALL other triple intersections empty. Translate a triple point0.
+The core directions then have common3-space, and their pair-only2-spaces
+span a9-space M. (Each Ai is the sum of its two pair-intersection5-spaces;
+modulo the common3-space these three pair-only2-spaces are independent.)
+Each of A4 intersect A2 and A4 intersect A3 has dimension2, so their
+directions lie in dir(A4) intersect dir(M). Therefore the union span is
+at most9+7-2=14; the target support span>=14 forces equality and
+ dim(dir(A4) intersect dir(M))=2. Both A4 intersect A2 and
+A4 intersect A3 are affine2-flats in the same affine2-flat A4 intersect M,
+so they coincide. Then t234=4, contrary to equality. Done.
+
+EXACTLY TWO LARGE EDGES, OPPOSITE.
+Label them1,2 and3,4; label a singleton pair1,3. Write Ui=dir(Ai),
+so U1 intersect U3=0. Since U2 intersects U1 in dimension5 and U4
+intersects U3 in dimension5, p23,p14<=4. Because there are exactly two
+large edges, p24<=16. Hence P<=89.
+Equality R>=89 would force p14=p23=4,p24=16 and all triples empty.
+But inside A2 the affine5-flat A1 intersect A2 and affine2-flat A2
+intersect A3 have complementary directions: their direction intersection
+is contained in U1 intersect U3=0. They therefore intersect at one point.
+Thus t123=1, contradiction.
+
+EXACTLY TWO LARGE EDGES, ADJACENT.
+Label them1,2 and2,3. Then dim(U1 intersect U3)>=3, so any singleton pair
+must involve A4. Put W=A4, and use symmetry1<->3.
+The remaining p13 is0,8,or16.
+
+First dispose of t123>0. Then t123>=8. If the singleton pair is W,2,
+pW1,pW3<=4, so P<=89. If the singleton pair is W,1, pW2<=4 and pW3<=16,
+so P<=101. In both cases R<=P-2t123<=85<89.
+Thus t123=0. The two affine5-flats A12,A23 inside A2 are disjoint.
+Their direction intersection has dimension>=4 (otherwise they span
+all7 dimensions and must meet). Hence dim(U1 intersect U3)>=4; if p13
+is nonzero, it must be16. If p13=0, the above pair-size bounds give
+P<=64+0+1+4+16=85, impossible. Therefore p13=16.
+
+We need the following elementary precise core geometry:
+ C=U1 intersect U2 intersect U3=U1 intersect U3 has dimension4;
+ M=affine span(A1 union A2 union A3) has dimension10.
+For the second assertion quotient by C. The core flats become affine
+3-flats with pair intersection dimensions1,1,0, still tripleempty.
+Translate their1,3 intersection point0. Their direction3-spaces for1,3
+are complementary and span dimension6. The middle affine3-flat meets
+them in two affine lines. Its direction is generated by these two line
+directions and the difference of one point on each line: these vectors
+are independent, since otherwise the middle flat would also contain0.
+Thus it too lies in that6-space. Lifting C gives dimM=10.
+Since W meets M and the union has affine span>=14, L=W intersect M
+has dimension AT MOST3 (union span=10+7-dimL). In each boundary case
+below the displayed intersections force dimL=3 when needed.
+
+If the singleton pair is W,2, then pW1,pW3<=4, so P<=89. Equality would
+require both to be4. Their two direction2-spaces lie in dirL (dimension3),
+so intersect in dimension>=1. But that intersection lies in
+U1 intersect U3=C subset U2, while dirW intersect U2=0. Contradiction.
+
+Finally suppose the singleton pair is W,1. Let u=pW2<=4,v=pW3<=8
+(the latter because W intersect A3 lies inside L). Then P=81+u+v.
+If v<=4, only u=v=4 can give P>=89. Those two affine2-flats inside L
+have direction intersection exactly1: dimension at least1 in dirL,
+and at most1 because U2 intersect U3 has quotient dimension1 over C,
+while dirL intersect C=0 (since C subset U1). Their directions span dirL,
+so the affine planes always intersect in a line. Thus tW23=2 and
+R<=89-4=85, impossible.
+If v=8, L itself lies in A3. Since dirL intersect C=0, dirL is a complement
+to C in U3 (dimensions3+4=7). Its intersection with U2 intersect U3
+(dimension5, containing C) has dimension1, and their directions span U3.
+Hence L meets the affine5-flat A2 intersect A3 in exactly a line:
+u=2 and tW23=2. The singleton W intersect A1 lies in L subset A3, so
+also tW13=1. Core tripleempty gives q=0. Therefore R<=81+2+8-2(2+1)=85.
+This exhausts the adjacent case and completes the proof.
+
+The arithmetic inequalities used above are independently checked in
+agent3_verify_four_min_arithmetic.py. Geometry, not UNKNOWN SAT, supplies
+all nontrivial restrictions. The existing three-flat numerical exclusion
+is executable in agent3_verify_three_flat.py. No structural claim about
+an arbitrary RM word follows from this theorem alone.
+
+AMBIENT-DIMENSION AUDIT. None of the direction bounds assumes m=14:
+point-pair direction spaces need only be disjoint, not complementary to
+the ambient space. In the opposite-large-edge case p24<=16 follows from
+being nonlarge, so the old ambient projection argument is unnecessary.
+In the triangle boundary M9 plus a2-dimensional W intersection forces
+union span<=14, hence exact14. In the adjacent case M10 and target span
+>=14 give dim(W intersection M)<=3; qualifying pair intersections force
+this dimension3. Thus the proof is valid for EVERYm>=14.

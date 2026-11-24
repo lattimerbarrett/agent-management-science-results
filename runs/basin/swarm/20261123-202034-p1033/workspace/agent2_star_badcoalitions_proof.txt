@@ -1,0 +1,52 @@
+Point-pruning bad coalitions in the regular-owner star construction.
+
+Let G be an h-regular graph on n centers. Each owner color is an edge
+ab in E(G). Its petal family consists of all r=(n-h-1)-subsets of
+St(a) minus {ab}, and all such subsets of St(b) minus {ab}, where actual
+points are E(K_n). Adjoin a private core label c_i to every petal of
+color i; assume r>=1. Original colored Hall follows by degree charge.
+
+Fix an actual point v=xy, and remove all petals containing v. For an
+actual set S not containing v, let J(S) be colors whose entire remaining
+petal family is met by S. Exactly,
+ ab in J(S) iff
+ deg_S(a)-1_{ab in S} >= h-1_{a in {x,y}, ab != v},
+ deg_S(b)-1_{ab in S} >= h-1_{b in {x,y}, ab != v}.
+(The formulas follow from the transversal number of all r-subsets of a
+q-point set being q-r+1.) In particular old Hall plus one removed point
+gives |J(S)|<=|S|+1.
+
+A color coalition I becomes bad precisely when some actual S has
+|I intersect J(S)|>|S|, since all other colors in I can be covered by
+one private core label each. Consequently every minimal bad coalition
+is J(S) with |J(S)|=|S|+1.
+
+For such S let W be endpoints of J(S). Every a in W has
+ deg_S(a)>=h-1_{a in {x,y}}.
+Thus
+ 2|J(S)| <= h|W| <= 2|S|+2.
+The assumed equality |J(S)|=|S|+1 forces equality throughout. It follows
+that x,y are in W; J(S)=E_G(W); every G-neighbor of any W-vertex is in W
+(so W is a union of whole connected components of G); all S-edges have
+both endpoints in W; and degrees in S are h except at x,y, where they
+are h-1. No edge of G can belong to S, since any activated own edge in S
+would raise a required endpoint degree above these forced values.
+
+If v belongs to G, its entire component is in W, so v itself is an
+activated owner. But this owner's threshold remains h at x and y,
+contradicting their forced S-degrees h-1. Thus there are NO bad coalitions.
+If v does not belong to G, every minimal bad coalition contains every
+owner edge of x's component (and y's component). Therefore any single
+color in x's component meets every bad coalition. The minimum number
+lambda_v of colors to discard to restore Hall is at most 1.
+
+This proves lambda_v=0 for owner actual points and lambda_v<=1 otherwise,
+for every h-regular G where the construction is defined. No assertion
+of existence of bad coalitions in the latter case is needed.
+
+Independent exhaustive checks for h=2, G=2K_{2,2}: all actual S of size
+at most 7 were enumerated for each of the 3 actual-point symmetry orbits.
+Owner v: no bad coalition; nonowner v in one component and across two
+components: the sole minimal bad coalition is all 8 colors, lambda_v=1.
+See workspace/agent2_star_badcoalitions_h2.py/.json; independently checked
+by agent_4 via all 256 color coalitions and SAT cover calculations.

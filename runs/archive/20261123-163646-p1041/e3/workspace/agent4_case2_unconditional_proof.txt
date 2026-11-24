@@ -1,0 +1,135 @@
+UNCONDITIONAL MAXIMUM-PAIR-7 TARGET EXCLUSION IN DIMENSION14
+
+Theorem. A support S of an RM(7,14) word of weight w in{322,326,330,334}
+cannot satisfy p_S(v)<=7 for every nonzero v, where p counts unordered pairs
+with difference v. This proof uses only classical KT classification strictly
+below twice minimum distance, not the unverified coarse KTA assertion K.
+
+INPUTS already proved elsewhere in the project:
+(1) RM min distance and its affine-flat equality case; second weight3d/2.
+(2) Classical Kasami--Tokura classification STRICTLY below2d. In particular,
+all RM(3,10) or RM(4,11) words below256 have a nonzero translation period.
+Indeed the quadratic-core type has core ambient dimension c+2=9 with
+quadratic rank at most8, leaving a period, while two-minword type has
+common direction dimension at least2c-n>=3. For RM(4,10), weights<=112
+are64,96,112. Weight96 is an affine8-flat indicator times a rank4 quadratic;
+112 is either rank6 quadratic on an8-flat, or XOR of two6-flats intersecting
+in an affine3-flat. Affine changes and unused variables are included.
+(3) For any target S, every p_S(v) is ODD: divided square Q(S) lies in I^14
+and has coefficient at0 equal w/2 mod2=1, so Q(S)=J14.
+
+STEP1. NO ZERO FOURTH DERIVATIVE.
+If parityprojection along a k-space U is zero, each U-coset has even
+intersection size t. Therefore
+ sum_{v in U\0}p_S(v)=sum_cosets binom(t,2)>=sum_cosets t/2=w/2.
+For k=4 the left side is<=15*7=105, whereas w/2>=161. Thus no reduced
+fourth derivative is zero. The same conclusion holds in every smaller
+positive order by enlarging the kernel to dimension4.
+
+STEP2. SOME ZERO FIFTH DERIVATIVE, THEN A MINIMUM FOURTH DERIVATIVE.
+Choose a uniformly random4-dimensional kernel U. The expected weight of
+its parityprojection into10 dimensions is at most
+ w-2*binom(w,2)*15/(16383)
+   +4*binom(w,3)*15*14/(16383*16382).
+This follows from the fiber inequality (t mod2)<=t-2binom(t,2)+4binom(t,3),
+and the probabilities that two or three distinct points have one image.
+The bound is<256 for each target (exact checker supplied). Therefore some
+projection h in RM(3,10) has weight<256. It is nonzero by Step1; by KT it
+has a nonzero period. Lifting that period gives a5-space K with zero parity
+projection, equivalently a zero fifth derivative.
+
+Choose five coordinates z on K and nine transverse coordinates x. Since
+the fifth derivative is zero, f has z-degree<=4. Its five quartic z-
+coefficients u_i(x) belong to RM(3,9), minimum64 and second weight96.
+They are linearly independent: any nonzero linear combination corresponds
+to a fourth derivative along a4-subspace of K, because every nonzero
+4-vector in a5-space is decomposable. A dependence contradicts Step1.
+Let T be the union of their supports. On x in T the5-variable fiber is
+nonzero and even, hence has at least2 supportpoints. Thus |T|<=167.
+The31 nonzero words of the5-dimensional coefficient code have total
+weight16|T|<=2672<31*96. Some word has weight<96, hence64 and is a minimum
+affine6-flat. Change basis in K to make it the coefficient of z1z2z3z4.
+The corresponding reduced fourth derivative is independent of z5 and is
+the indicator of an affine7-flat D in F2^10, of weight128.
+
+STEP3. A UNIVERSAL RELATIVE GAP.
+If t has degree<=4 on F2^10 and D is ANY affine7-flat, its weight outside D
+cannot equal50,52,54. To prove this, add1_D times an affine Boolean function
+on D. This retains degree<=4 and outside values. By Parseval on128 points,
+one can choose this affine function so that inside weight is<=58: the
+maximum absolute Walsh coefficient is>=sqrt(128), hence>=12.
+The resulting total weight is<=112. KT leaves only64,96,112.
+For64, the inside section is a flat, but64-e is14,12,10, not a power of2.
+For96, inside is a quadratic-function weight on at most7 variables;
+96-e is46,44,42, none such a weight.
+For112, inside<=58 permits only e54 and inside58. A rank6 quadratic section
+on at most7 variables never has weight58. In the two6-flat type the section
+has weight A+B-2C, where A,B are0 or powers of2 at most64, and C is0 or a
+power of2 no larger than min(A,B) (indeed<=8). This expression cannot be58.
+These finite assertions are checked in the accompanying script.
+
+STEP4. FOUR-DIMENSIONAL FIBER BUDGET.
+Use the minimum fourth derivative from Step2 and write f as fibers over
+x in F2^10, each fiber a subset F_x of U=F2^4. The odd fibers are exactly
+x in D; hence there are128 odd fibers. Write
+ E=(w-128)/2 in{97,99,101,103}, B=(105-E)/2 in{4,3,2,1}.
+For v in U\0, let p_v be the original global pair multiplicity and
+k_v=(7-p_v)/2, a nonnegative integer<=3 by Input3.
+Let P=sum_v p_v<=105, K=sum_v k_v=(105-P)/2.
+For an odd fiber of size2h+1 its contribution to (P-E)/2 is h^2;
+for an even fiber of size2h it is h(h-1). Consequently the only possible
+fiber sizes are odd1,3,5 and even0,2,4, and
+ K+a3+4a5+2b4=B,
+where a3,a5 count odd fibers of size3,5 and b4 counts even fibers of size4.
+
+For a nonzero linear functional ell on U, let M_ell(x) be the parity of
+sum_{z in F_x}ell(z). Fiber summation gives degree(M_ell)<=7-4+1=4.
+Write W_ell=wt(M_ell outside D). Let c=|F_x intersect{ell=1}| in a fiber.
+The number of fiber pairs on which ell(difference)=1 is c(t-c).
+For odd fibers their contribution to half the difference P_ell-W_ell is
+ c(t-c)/2; for even fibers it is [c(t-c)-(c mod2)]/2.
+Thus
+ W_ell=56-2s_ell,
+ s_ell=sum_v k_v ell(v)+sum_odd3 alpha_ell
+       +sum_odd5 beta_ell+sum_even4 gamma_ell,
+where alpha is0/1 (1 exactly when ell is nonconstant on the triple's
+2-dimensional direction plane), beta<=3, gamma is0/1/2. All are nonnegative,
+and 0<=s_ell<=K+a3+3a5+2b4=B-a5<=4.
+By Step3, W_ell cannot50,52,54. Therefore s_ell belongs to{0,4} for EVERY
+nonzero ell. For B<=3 this is impossible: at least one nonzero component
+is present since B>0, and it is positive for some ell, yet s_ell<=3.
+This excludes w326,330,334.
+
+STEP5. THE BORDERLINE B=4 (w322).
+An odd5 fiber would force all s_ell<=3 and gives some positive value, so
+none exists. The remaining nonnegative components have respective costs
+k_v,1,2 summing4 and values between0 and their cost. Since every sum is0 or4,
+every component can take ONLY0 or its full cost, and all nonzero components
+must have IDENTICAL nonzero-event sets as ell varies.
+For an even4 fiber, gamma=1 occurs exactly when some ell cuts it oddly.
+Thus such a fiber must have XOR0, hence be an affine2-plane; then gamma=2
+exactly when ell is nonconstant on that plane. The latter event set has
+size12 among the15 nonzero ell. Odd3 components have the same kind of
+plane event set of size12. A deficit k_v has event set{ell:ell(v)=1} of
+size8. Hence deficits cannot coexist with plane components. If only
+deficits occur, their event sets coincide only when they use one vector v;
+then k_v=4, contradicting k_v<=3. Thus K=0, all triple and quadruple fiber
+direction planes are one common2-space P0, and a3+2b4=4.
+
+Now p_v=7 for all15 nonzero v. Triple fibers contribute1 pair in each
+of the3 directions of P0, and quadruple plane fibers contribute2 each.
+Therefore the remaining even2 fibers have directional counts3 on P0\0
+and7 in each of the12 directions outside P0.
+Project f along P0 to g on12 dimensions. Every odd fiber becomes one
+supportpoint, every quadruple plane fiber disappears, and an even2 fiber
+survives as two points iff its direction is outside P0. Hence
+ wt(g)=128+2*(12*7)=296.
+For each of the3 nonzero directions a in U/P0, p_g(a)=4*7=28.
+A reduced derivative of g along a thus has weight296-2*28=240 and lies in
+RM(4,11). By Input2 it has a nonzero period. Lifting the kernel P0, the
+direction a, and this period gives a zero FOURTH derivative of f,
+contradicting Step1. This excludes w322 and completes the theorem.
+
+All steps are unconditional modulo the standard KT<2d classification,
+minimum-distance flat characterization, and the already-proved divided-
+square identity. No coarse KTA arbitrary-word coverage is used here.

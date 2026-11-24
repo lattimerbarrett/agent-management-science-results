@@ -1,0 +1,12 @@
+import sympy as s
+r=s.symbols('r',positive=True)
+f=s.exp(-1/r**2)
+w=s.simplify(s.diff(f,r)/r)
+T=s.simplify(2*s.pi/w)
+print('flat radial Hamiltonian f(r)=exp(-1/r^2)')
+print('angular speed =',w)
+print('period =',T)
+print('period limit near flat point =',s.limit(T,r,0,dir='+'))
+print('For any smooth field with ambient Lipschitz constant L,')
+print('Wirtinger and variance imply every nonconstant period T >= 2*pi/L.')
+print('For epsilon X, T >= 2*pi/(epsilon L).')

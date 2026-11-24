@@ -1,0 +1,107 @@
+{
+ "id": "n14",
+ "parent": "n0",
+ "depth": 1,
+ "option": {
+  "branch": "c0b0",
+  "counterfactual": "Every even integer from 320 through 2^m-320 occurs as a weight, including the weights 322, 326, 330, and 334.",
+  "approach": "Search specifically for degree-seven polynomials in fourteen variables with weights 322, 326, 330, and 334, using structured sums of minimum-weight codewords. Such examples would test whether the apparent gaps are merely failures of random sampling.",
+  "p": 0.2716
+ },
+ "status": "member",
+ "belief": {
+  "answer": "\\(\\displaystyle \\boxed{\\begin{aligned}\\mathcal W_m={}&[0,0]_2\\cup[128,128]_2\\cup[192,192]_2\\cup[224,224]_2\\cup[240,240]_2\\cup[248,248]_2\\\\&\\cup[252,256]_2\\cup[272,272]_2\\cup[288,288]_2\\cup[296,296]_2\\cup[304,304]_2\\cup[308,308]_2\\\\&\\cup[312,2^m-312]_2\\\\&\\cup[2^m-308,2^m-308]_2\\cup[2^m-304,2^m-304]_2\\cup[2^m-296,2^m-296]_2\\\\&\\cup[2^m-288,2^m-288]_2\\cup[2^m-272,2^m-272]_2\\cup[2^m-256,2^m-252]_2\\\\&\\cup[2^m-248,2^m-248]_2\\cup[2^m-240,2^m-240]_2\\cup[2^m-224,2^m-224]_2\\\\&\\cup[2^m-192,2^m-192]_2\\cup[2^m-128,2^m-128]_2\\cup[2^m,2^m]_2.\\end{aligned}}\\) Constant endpoints have coefficient \\(\\alpha=0\\); endpoints \\(2^m-b\\) have \\(\\alpha=1\\) and \\(\\beta=-b\\).",
+  "confidence": 0.8
+ },
+ "judge": {
+  "claim": true,
+  "same_as": "e1",
+  "answer": "\\(\\displaystyle \\boxed{\\begin{aligned}\\mathcal W_m={}&[0,0]_2\\cup[128,128]_2\\cup[192,192]_2\\cup[224,224]_2\\cup[240,240]_2\\cup[248,248]_2\\\\&\\cup[252,256]_2\\cup[272,272]_2\\cup[288,288]_2\\cup[296,296]_2\\cup[304,304]_2\\cup[308,308]_2\\\\&\\cup[312,2^m-312]_2\\\\&\\cup[2^m-308,2^m-308]_2\\cup[2^m-304,2^m-304]_2\\cup[2^m-296,2^m-296]_2\\\\&\\cup[2^m-288,2^m-288]_2\\cup[2^m-272,2^m-272]_2\\cup[2^m-256,2^m-252]_2\\\\&\\cup[2^m-248,2^m-248]_2\\cup[2^m-240,2^m-240]_2\\cup[2^m-224,2^m-224]_2\\\\&\\cup[2^m-192,2^m-192]_2\\cup[2^m-128,2^m-128]_2\\cup[2^m,2^m]_2.\\end{aligned}}\\) Constant endpoints have coefficient \\(\\alpha=0\\); endpoints \\(2^m-b\\) have \\(\\alpha=1\\) and \\(\\beta=-b\\).",
+  "reason": "It claims an explicit complete weight spectrum. Its intervals are exactly those in e1, with N replaced by 2^m.",
+  "experiment": false,
+  "n": 14
+ },
+ "experiment": null,
+ "options": [
+  {
+   "branch": "c0b0",
+   "counterfactual": "At least one of the weights 322, 326, 330, and 334 does not occur in RM(7,14), despite the proposed central interval containing all four.",
+   "approach": "Study projection along a direction and classify the smaller supports obtained from a hypothetical weight-322 word. Use the parity constraints on collisions to turn the existence question into explicit conditions on supports of weight at most 320.",
+   "p": 0.2364,
+   "child": "n16"
+  },
+  {
+   "branch": "c0b1",
+   "counterfactual": "At least one of the weights 322, 326, 330, and 334 does not occur in RM(7,14), despite the proposed central interval containing all four.",
+   "approach": "Examine whether the four problematic weights have a common obstruction involving products of coordinate functions on their supports. Seek a necessary rank or orthogonality condition that rules them out without restricting the number of minimum-weight summands.",
+   "p": 0.2068,
+   "child": null
+  },
+  {
+   "branch": "c0b2",
+   "counterfactual": "At least one of the weights 322, 326, 330, and 334 does not occur in RM(7,14), despite the proposed central interval containing all four.",
+   "approach": "Separate the dimension-14 and dimension-15 questions. Search for a construction in dimension 15 together with a dimension-14 obstruction, since such a difference would disprove the existence of the requested fixed interval list.",
+   "p": 0.1477,
+   "child": null
+  },
+  {
+   "branch": "c1b0",
+   "counterfactual": "Weight 310 occurs in RM(7,14), so the proposed list is incorrect even below its claimed central interval.",
+   "approach": "Inspect weight-308 supports for a lift that adds exactly two support points while preserving all required moment parities. Solve the resulting linear equations and independently check any resulting polynomial's degree and weight.",
+   "p": 0.0545,
+   "child": null
+  },
+  {
+   "branch": "c1b1",
+   "counterfactual": "Weight 310 occurs in RM(7,14), so the proposed list is incorrect even below its claimed central interval.",
+   "approach": "Investigate the available constructions combining a weight-256 support with three affine 7-flats. Calculate the necessary intersection sizes for weight 310 and search for realizable configurations rather than relying only on abstract dimension constraints.",
+   "p": 0.0477,
+   "child": null
+  },
+  {
+   "branch": "c1b2",
+   "counterfactual": "Weight 310 occurs in RM(7,14), so the proposed list is incorrect even below its claimed central interval.",
+   "approach": "Reconstruct the applicable below-320 classification from its actual canonical forms. Determine which form permits weight 310 and extract an explicit polynomial witness from its parameters.",
+   "p": 0.0341,
+   "child": null
+  },
+  {
+   "branch": "c2b0",
+   "counterfactual": "All four weights 322, 326, 330, and 334 occur in RM(7,14), but none has a representation using only a small number of minimum-weight codewords.",
+   "approach": "Search directly over degree-seven polynomials using degree-preserving modifications of known weight-320 or weight-336 words. Allow dense polynomial representations instead of bounding the number of affine-flat indicators.",
+   "p": 0.1091,
+   "child": null
+  },
+  {
+   "branch": "c2b1",
+   "counterfactual": "All four weights 322, 326, 330, and 334 occur in RM(7,14), but none has a representation using only a small number of minimum-weight codewords.",
+   "approach": "Use the decomposition f(x,t)=u(x)+t v(x), with degree bounds on u and v, to target the four weights through controlled intersections. Search shortened subcodes for admissible v rather than sampling individual minimum-weight words.",
+   "p": 0.0955,
+   "child": null
+  },
+  {
+   "branch": "c2b2",
+   "counterfactual": "All four weights 322, 326, 330, and 334 occur in RM(7,14), but none has a representation using only a small number of minimum-weight codewords.",
+   "approach": "Explore mixed-degree tensor constructions on smaller variable blocks. Enumerate joint weight profiles of the component functions and solve for profiles producing the four target weights, then verify any witnesses by a full Boolean M\u00f6bius transform.",
+   "p": 0.0682,
+   "child": "n21"
+  },
+  {
+   "branch": "own",
+   "counterfactual": null,
+   "approach": null,
+   "p": null,
+   "child": null
+  }
+ ],
+ "cost": 0.091,
+ "responses": 5,
+ "step_from": 43,
+ "known": [
+  "e1",
+  "e2"
+ ],
+ "created": 1795489246.181099,
+ "seen": "544f30e68c442599b126589db79a3ecb7fc7f2c71116bff04721521ccd1b115d",
+ "take_at": 43
+}

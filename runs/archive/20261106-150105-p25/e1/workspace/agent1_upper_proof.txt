@@ -1,0 +1,54 @@
+UPPER BOUND COMPLETE
+Let G have no C3,C5 and delta>=cn, c>1/5. Saturate G within this class.
+Define P(G) on V(G), edges whenever a walk of length1 or3 joins its endpoints.
+There are no loops. Every N_G(v) is independent in P(G): an offending odd walk,
+closed through v, gives an odd closed walk of length3 or5, hence C3 orC5.
+
+For m>=3 form T_m with vertex roles a_i,p_i,q_i,r_i,b_i (0<=i<m), edges
+ a_i-p_i-q_i-r_i-b_i, and a_i-b_j whenever i<j.
+Let U be all5 roles at indices1..m-2 plus a_0 and b_{m-1}; |U|=5m-8.
+Claim every independent set in P(T_m)[U] has size<=m-1.
+At each interior index, maximum independent sets have size2, with pairs exactly
+{a,q},{p,r},{q,b}. For i<j, the guaranteed cross-edge rows in role order apqrb are
+ a_i: p_j,q_j,b_j; p_i:a_j,r_j; q_i:b_j; r_i:b_j; b_i:a_j,r_j.
+Thus any two double interior indices conflict. If neither endpoint is included,
+there is at mostone double, so at most(m-2)+1 vertices. If a0 included, only a_i,r_i
+can be selected at indexi; these conflict. If b_last included, only p_i,b_i remain,
+and conflict. The two endpoints themselves are adjacent. Claim proved.
+All these adjacencies are walks of length1 or3 in T_m; can be checked directly.
+
+For any hom phi:T_m->G and x in G, phi^{-1}(N_G(x)) is independent in P(T_m), so
+ sum_{t in U} deg_G(phi(t)) <= (m-1)n.
+Therefore such a hom forces c<=(m-1)/(5m-8).
+Fix m with c>(m-1)/(5m-8).
+
+The neighborhood set system of saturated G has VCdimension <m+2.
+Indeed, shattering m+2 distinct vertices a_0,...,a_{m+1} supplies witnesses b_j
+with a_i b_j an edge iff i<j. Use the middle m pairs i=1,...,m. Each diagonal
+nonedge a_i b_i has a length3 walk a_i-b_{i+1}-a_{i-1}-b_i. It therefore cannot
+have a length2 walk, since this would give an odd closed walk of length5.
+Saturation implies an existing length2 or4 path between any nonadjacent pair;
+here it must be length4. Choose such a path and send p_i,q_i,r_i to its interiors.
+This defines a hom T_m->G, contradiction. Repeated path vertices do not matter.
+Witnesses b_i are distinct because their traces are distinct; potential overlap
+with a_i does not affect the hom argument, nor any closed-walk argument.
+
+VC epsilon-net (proved by double sampling): for a finite universe with range
+VCdimension<=d, all ranges of measure>=c are hit by a set of size t whenever
+ct>=8 and 2(2t+1)^d 2^{-ct/2}<1. Sample t points X, and another t points Y.
+If a range of measure>=c is missed by X, choose one deterministically; with
+probability>=1/2, Y hits it at leastct/2 times (Chebyshev or Chernoff).
+Conditional on the combined2t sample, at most(2t+1)^d traces occur (Sauer),
+and a given trace of size>=ct/2 lies entirely in Y with probability<=2^{-ct/2}.
+A union bound proves the assertion. Such t exists for every fixed c,d.
+Consequently G has a dominating set S of size<=t.
+
+Assign each v a chosen s(v) in S adjacent to it. Equal labels imply both
+vertices lie in N(s), hence are nonadjacent in P(G). Thus chi(P(G))<=t.
+For any proper t-coloring q of P(G), map v to (q(v), q(N_G(v))) in finite graph
+W_t: vertices (i,A), i notin A subset[t]; two vertices (i,A),(j,B) adjacent iff
+ i in B, j in A, and A intersection B empty. A triangle would have the third
+vertex's label in A intersection B, impossible. Edges of G map to edges W_t:
+if a color occurred in both neighbor-color sets, a monochromatic length3 walk
+would result. Hence G maps to finite trianglefree W_t. This also maps unsaturated
+original G. The upper bound is proved.

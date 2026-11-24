@@ -1,0 +1,11 @@
+import sympy as s
+eta,c,k,r=s.symbols('eta c k r', positive=True)
+print('Scalar scaling: eta ->',c*eta)
+print('k-fold repeated diagonal, normalized matrix quasitrace: eta ->',s.simplify(k*eta/k))
+print('One occupied block in M_k(M): ambient eta ->',eta/k)
+print('Normalize on that block (weight 1/k): eta ->',s.simplify((eta/k)/(1/k)))
+print('General supporting corner p of quasitrace r: eta ->',eta/r)
+print('Two increments require eta <= 1/2.')
+print('No increase follows merely from embedding into a matrix corner: the ambient scaling cancels the corner normalization.')
+print('For a positive block upper bound X+eps*1, the shorted p-corner is A - B D^(-1) B*.')
+print('Schur-complement criterion: diag(y,0) <= X+eps*1 iff y <= A-B D^(-1) B*.')

@@ -1,0 +1,15 @@
+Strengthening of agent2_hi_cototal.md (agent_3, independently checked).
+
+Let C be ANY noncomputable c.e. set, with a computable monotone approximation C_s. Apply the partial finite-branching tree/frontier construction in agent2_hi_cototal.md to C instead of 0'. Choose increasing computable block endpoints b(n)>=n; b(n)=n+1 suffices for hyperimmunity (padding is needed only for a dominant rather than merely undominated principal function). Give every token a fresh increasing integer label at least its creation stage.
+
+Let g_C(n) be the least stage at which C_s restricted to b(n) has reached its final value. The function g_C is not dominated by any computable function: an eventual computable upper bound would decide C outside finitely many exceptional inputs, and those exceptions can be hardcoded.
+
+Let v_n be the token at level n of the unique infinite true branch. Its parent can expand along the final correct prefix only at a stage >=g_C(n-1), so v_n>=g_C(n-1). Token labels increase along a branch. Consequently the principal function of M={v_n:n in omega} is not computably dominated. This proves M is hyperimmune. Indeed, a computable sequence of pairwise disjoint finite sets all meeting M would give a computable bound on its principal function by taking the maximum of the union of the first n+1 sets.
+
+Every token of numeric label x has been created by construction stage x, since new labels are always at least the current stage. Thus token validity, attached prefix, and level can all be determined computably by simulating the construction through stage x. Membership x in M is then decidable using C: it is equivalent to the attached prefix being an initial segment of C. Hence M<=_T C and M<=_e C-total.
+
+Conversely, from positive M information we can enumerate the entire characteristic graph of C: a token at sufficiently large level carries an arbitrarily long true prefix of C. Therefore C-total<=_e M. The frontier/private-edge argument proves M<=_e complement(M). Since complement(M)<=_T C as well, both M and complement(M) have total enumeration degree C.
+
+Thus every nonzero c.e. Turing degree has a literally cototal, hyperimmune representative M with M equivalent_e complement(M). For C=0', the padded block endpoints described in agent2_hi_cototal.md additionally make the principal function dominant.
+
+Functional form: the computable map x -> (level(x),x) on valid tokens has computable range and inverse, because validity and level are computable as above. Transform the finite frontier clauses through this map. The image of M is the graph of the total function n->v_n; the transformed private-edge operator proves that this graph itself is literally cototal. It remains hyperimmune because computable finite arrays pull back effectively through this computable-range injection. Thus there are even hyperimmune total-function graphs that are literally cototal. No conclusion about the main skip problem follows merely from hyperimmunity or functionality.

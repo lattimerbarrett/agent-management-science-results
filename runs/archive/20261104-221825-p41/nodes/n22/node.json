@@ -1,0 +1,108 @@
+{
+ "id": "n22",
+ "parent": "n1",
+ "depth": 2,
+ "option": {
+  "branch": "c1b0",
+  "counterfactual": "There exist pure shellable complexes \u0393 and \u0393\u222a2^F for which adding the single new facet F is not a valid shelling step.",
+  "approach": "Enumerate pairs consisting of a pure complex and one additional facet, testing shellability of both complexes and purity of their intersection with the added simplex.",
+  "p": 0.0235
+ },
+ "status": "member",
+ "belief": {
+  "answer": "The exact value of \\(b(d,k)\\) is not known in general.",
+  "confidence": 0.35
+ },
+ "judge": {
+  "claim": false,
+  "same_as": null,
+  "answer": "The exact value of b(d,k) is not known in general.",
+  "reason": "It states only that the value is unknown, without bounds or other established information, so it does not make a qualifying claim. The earlier unknown-value answers include additional mathematical assertions.",
+  "experiment": false
+ },
+ "experiment": null,
+ "options": [
+  {
+   "branch": "c0b0",
+   "counterfactual": "There exists a pure shellable complex \u0393 and a missing facet F such that \u0393 \u222a 2^F is shellable, but appending F is not a valid shelling step.",
+   "approach": "Inspect the proof using a maximal face of \u0393 \u2229 2^F, checking whether its link must actually split into two nonempty components. Identify the precise point at which the proposed counterexample avoids that argument.",
+   "p": 0.0007,
+   "child": null
+  },
+  {
+   "branch": "c0b1",
+   "counterfactual": "There exists a pure shellable complex \u0393 and a missing facet F such that \u0393 \u222a 2^F is shellable, but appending F is not a valid shelling step.",
+   "approach": "Independently implement the ridge-witness criterion for shellability and compare it against the existing recursive checker. A discrepancy could reveal a convention or implementation error behind the finite agreement.",
+   "p": 0.0003,
+   "child": null
+  },
+  {
+   "branch": "c0b2",
+   "counterfactual": "There exists a pure shellable complex \u0393 and a missing facet F such that \u0393 \u222a 2^F is shellable, but appending F is not a valid shelling step.",
+   "approach": "Search the supplied workspaces for an explicit adjacent shellable pair violating the attachment condition, then verify its faces and shellings directly from the definitions.",
+   "p": 0.0002,
+   "child": null
+  },
+  {
+   "branch": "c1b0",
+   "counterfactual": "The reported 1-decomposable three-dimensional complex with no permissible first facet addition has an invalid decomposition certificate or an overlooked permissible addition.",
+   "approach": "Read and run the standalone verifier for that complex, then independently reconstruct every deletion and link from its facet set. This tests the certificate without relying on the construction's interpretation.",
+   "p": 0.1083,
+   "child": null
+  },
+  {
+   "branch": "c1b1",
+   "counterfactual": "The reported 1-decomposable three-dimensional complex with no permissible first facet addition has an invalid decomposition certificate or an overlooked permissible addition.",
+   "approach": "Generate every missing tetrahedron and compute the maximal faces of its intersection with the complex. Any intersection pure of dimension two would identify an overlooked shelling extension.",
+   "p": 0.065,
+   "child": null
+  },
+  {
+   "branch": "c1b2",
+   "counterfactual": "The reported 1-decomposable three-dimensional complex with no permissible first facet addition has an invalid decomposition certificate or an overlooked permissible addition.",
+   "approach": "Audit the reordered addition trace, especially additions introducing triangles rather than edges. Check whether each claimed shedding face satisfies the cardinality bound and whether its deletion is exactly the previously certified complex.",
+   "p": 0.0433,
+   "child": null
+  },
+  {
+   "branch": "c2b0",
+   "counterfactual": "One additional vertex does not always suffice: there is a dimension d and a parameter k for which b(d,k) is at least two.",
+   "approach": "Inspect the reported clone-expansion construction in dimension four and verify its first-exit obstruction with one auxiliary vertex. This could establish b(4,3) \u2265 2 and directly rule out a universal one-vertex answer.",
+   "p": 0.4302,
+   "child": null
+  },
+  {
+   "branch": "c2b1",
+   "counterfactual": "One additional vertex does not always suffice: there is a dimension d and a parameter k for which b(d,k) is at least two.",
+   "approach": "Extract the explicit origin complex and formulate the obstruction entirely in terms of supports of facets. Prove that the first facet leaving the allowed support family has a maximal intersection face below codimension one.",
+   "p": 0.2347,
+   "child": "n29"
+  },
+  {
+   "branch": "c2b2",
+   "counterfactual": "One additional vertex does not always suffice: there is a dimension d and a parameter k for which b(d,k) is at least two.",
+   "approach": "Compare the higher-dimensional obstruction with the reported upper bounds, focusing on the smallest parameters where they match. Establishing an exact value in one such case would distinguish competing formulas.",
+   "p": 0.1173,
+   "child": null
+  },
+  {
+   "branch": "own",
+   "counterfactual": null,
+   "approach": null,
+   "p": null,
+   "child": null
+  }
+ ],
+ "cost": 0.0256,
+ "responses": 3,
+ "step_from": 11,
+ "known": [
+  "e1",
+  "e2",
+  "e3",
+  "e4"
+ ],
+ "created": 1793858209.1703072,
+ "seen": "b3ef46459fb4515ceb9cd68ad376381c239e8072dec4a386fafd8c7b024d374e",
+ "take_at": 11
+}

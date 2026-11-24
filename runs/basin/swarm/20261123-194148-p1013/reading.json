@@ -1,0 +1,78 @@
+{
+ "run": "20261123-194148-p1013",
+ "problem": 1013,
+ "told": false,
+ "solo": false,
+ "answer": "\\(\\mathcal S_2=[0,\\infty),\\quad \\mathcal S_3=[5/18,\\infty),\\quad \\mathcal S_4=[7/32,\\infty),\\quad \\mathcal S_r=[2/(2r+1),\\infty)\\text{ for }r\\ge5.\\) Every finite boundary point belongs to its set.",
+ "claims_proof": true,
+ "where": "Posts #480 and #486; agent_2's last reply. Proof completion is also confirmed in all four agents' last replies.",
+ "answer_reason": "The team explicitly agrees on these sets at the end and declares the proof and computational checks complete.",
+ "definite": true,
+ "verify": {
+  "verdict": "sound",
+  "acknowledged": false,
+  "review": {
+   "claimed": "The exact sets are S_2=[0,infinity), S_3=[5/18,infinity), S_4=[7/32,infinity), and S_r=[2/(2r+1),infinity) for r>=5, with every finite endpoint included.",
+   "verdict": "sound",
+   "team_acknowledged_gap": false,
+   "decisive_steps": [
+    {
+     "step": "The bounded-excess H17 witness proves 0 belongs to S_2.",
+     "basis": "argument",
+     "checked": "Checked the unique-critical-vertex argument, freeness of the two-triangle and five-edge-star hosts, and the edge-extremizer classification in agent2_H17_complete_witness_proof.md. The pure-vertex replacement and cross-hole filling preserve H-freeness by the stated remapping arguments. The odd-order cycle weights give the strictly positive difference 4-beta_A, with beta_A<1."
+    },
+    {
+     "step": "Edge and cycle extremizers admit the bounded-component, finite-hole reduction used for r>=3.",
+     "basis": "argument",
+     "checked": "Read the rotation-transfer and finite-hole lemmas and their application in the lower assembly. Checked the prefix half-density bound, forward/inverse rotation counts, exceptional-vertex prefilling and simultaneous H-safe replacement, component purification, and abundance remapping. The final proof does not rely on the earlier uncertain exact Simonovits classification."
+    },
+    {
+     "step": "Uniform cycle asymptotics justify bounded imbalance and the first-order phase score.",
+     "basis": "argument",
+     "checked": "Checked the Perron/Fourier saddle argument and its Hessian normalization, the original-tilt factorial tail bound, and the internal path-forest contraction expansion. Re-derived the contraction coefficient and the score (2/q)E-LQ+4L*rho*delta_active-B*omega. These give the required O(1) imbalance rather than assuming the fixed-deviation expansion applies uniformly."
+    },
+    {
+     "step": "The exact phase comparison gives the claimed lower exclusions.",
+     "basis": "argument",
+     "checked": "Checked the active-size lattice optimization and the path-to-star wedge interval. The worst advantage of a phase one edge below an edge maximum is A(r,k), with sign polynomial P_r(k)=(r-2)k^2+(-2r^2+3r+4)k+2r-8. Combined with (k-1)/(kr)<=a, its integer cutoffs give precisely the three asserted exclusions."
+    },
+    {
+     "step": "The programmed forbidden graphs realize the sharp star/path phases.",
+     "basis": "argument",
+     "checked": "Checked the finite three-colorable obstruction-basis proof and the protected color-profile construction, including the tensor-power dictatorship proof. The critical-star profile bounds internal degree before robust necessity is invoked, avoiding circularity. Cross-hole completion is safe in these constructed examples, and the exact marker profiles force all edge extremizers to have the stated star-phase form."
+    },
+    {
+     "step": "The r=4 equality endpoint is attained.",
+     "basis": "argument",
+     "checked": "Checked the equal-edge finite-replacement wedge formula and the degree-uniform forest-error bound. For reference cycle markers the residual bound is at most linear in fixed U, while replacing the star-phase marker by the triangle-with-pendant-leaves marker gives a positive quadratic wedge correction. Thus sufficiently large fixed U resolves the zero first-order coefficient without relying on numerical extrapolation."
+    },
+    {
+     "step": "Supplementary finite computations and symbolic identities.",
+     "basis": "computation",
+     "checked": "Inspected the relevant checkers and reran workspace/final_checks.py successfully. Also copied and reran the complete 12-program verification suite in my own directory; all assertions passed in about 20 seconds. These verify the stated finite identities, embeddings, cycle counts, phase optimization, gadget tests, and forest-error inequalities; the infinite-parameter conclusions are supplied by the accompanying arguments."
+    }
+   ],
+   "failing_step": "The most delicate step is the cycle-extremizer regularization followed by the uniform saddle estimate; both are supplied with arguments sufficient for the subsequent finite-phase comparison.",
+   "reason": "The final record claims a complete proof and supplies the structural, asymptotic, realization, and endpoint arguments needed for the exact answer. Earlier acknowledged uncertainties concern routes that were replaced or are explicitly resolved in the final appendices. The lower exclusions and attained sharp constructions cover every r and include all claimed finite boundary points."
+  },
+  "responses": 18,
+  "runs": 3,
+  "cost": 0.5167
+ },
+ "stop": true,
+ "contract": {
+  "form": "A complete answer is an explicit description of the exact set \\(\\mathcal S_r\\subseteq[0,\\infty)\\) for every integer \\(r\\ge2\\), specifying precisely which values of \\(a\\) belong and whether each finite boundary point is included. The description may distinguish cases in \\(r\\), but must cover all such integers.",
+  "not_enough": "Bounds or partial inclusions for \\(\\mathcal S_r\\), examples of members or nonmembers, an unspecified threshold, a description that leaves boundary membership unresolved, results for only some values of \\(r\\), or a conjectural or conditional characterization would not settle the question."
+ },
+ "definite_reason": "The proposed answer explicitly specifies the exact set for every integer r\u22652 and includes each finite boundary point, so if true it would settle the question.",
+ "procedure": false,
+ "reference": "\\[\\mathcal S_r=\\begin{cases}[0,\\infty),&r=2,\\\\{}[\\frac{5}{18},\\infty),&r=3,\\\\{}[\\frac{7}{32},\\infty),&r=4,\\\\{}[\\frac{2}{2r+1},\\infty),&r\\ge5.\\end{cases}\\]",
+ "correct": true,
+ "graded_by": "judge",
+ "matharena": true,
+ "restated": false,
+ "grade_note": "The model\u2019s answer exactly matches all four cases of the ground truth, including inclusion of every finite boundary point.",
+ "solved": true,
+ "cost": 0.7106,
+ "read_at": 1795493467.375757
+}

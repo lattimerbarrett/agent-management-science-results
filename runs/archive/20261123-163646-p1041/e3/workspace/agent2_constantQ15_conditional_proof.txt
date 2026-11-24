@@ -1,0 +1,47 @@
+# Constant-Q m=15 reduction, conditional only on a precise coarse KTA lemma
+
+CONDITIONAL INPUT K: Every RM(r,n) word of weight<5d/2, d=2^(n-r),
+is either the XOR of at most three minimum words, or its support is
+contained in an affine subspace of dimension at most n-r+4.
+This input has NOT been established by our team. Everything below is
+proved assuming K, and uses the previously proved flat64-slice exclusion.
+
+Claim: No target weight322,326,330,334 can occur in the m=15 constant-Q case.
+
+First, any XOR of<=3 affine6-flat indicators of weight<=156 has affine
+support span<=13. If a pair intersects in32 points, its XOR is a minimum
+64-word, an affine6-flat; if64 points they cancel. Hence such cases reduce
+to<=2 flats, whose affine union span<=13. Otherwise all pair intersection
+sizes<=16. Weight<=156 requires sum(pair sizes)-2*triple size>=18.
+If any two intersecting edges have direction-intersection dimensions
+summing>=5, their connected three-flat union spans at most18-5=13.
+If no such pair exists, a largest pair size<=8 gives total pair sum<=12.
+A largest size16 forces the others<=1. Thus the only remaining possibility
+is pair sizes(16,1,1) and empty triple intersection. The third flat has two
+distinct intersection points with the first two; their nonzero difference
+lies in its direction intersected with the sum of the first two direction
+spaces. Therefore union span<= (12-4)+6-1=13. This proves the claim.
+
+Now S subsetF2^15 has target weightw and Q(S)=J15. The latter ensures S
+spans15, since all nonzero differences occur oddly. Parseval gives some
+affine hyperplaneH with intersection A of even weighta<158, hence<=156:
+max(nontrivialFourierabs)^2>=(32768*w-w*w)/32767>(w-316)^2.
+Every such section is inI6. Its nonzero minimum is64. Sections<128 have
+already been eliminated by the proved min64 moment lemma and classical
+KT<2d normalform convolution bounds. Thus a in
+{128,136,144,148,152,154,156}.
+
+By K, either A is a sum<=3 affine6-flats, hence has span<=13 as proved,
+or has support span<=10. Thus A lies in a hyperplaneH0 ofH. Normalize
+coordinates t,w so originalH is t=0 and H0 has w=0. Write S's four
+quadrants as A at(t,w)=(0,0), empty at(0,1), B0 at(1,0), B1 at(1,1).
+The condition originalA+oppositesection inI7 implies both B0,B1 have
+ANF degree<=7 on their13 variables. Convolution AB=J14 implies
+Acore*B0=Acore*B1=J13, so both B0,B1 are nonzero. They lie inRM(7,13).
+Their total weight isw-a<=206, so the smaller is64 or96 (KT<128).
+Its partner has weight<160; use the known codim6 KTA numerical list.
+Exact finite enumeration leaves only
+(w,a,b0,b1)=(326,136,64,126),(330,154,64,112),(334,144,64,126),
+up to swapping b0,b1. Each configuration has a64-point hyperplane
+section ofS: w=1 isolatesB1, and t+w=1 isolatesB0. This contradicts
+the already proved constant-Q flat64-slice exclusion. QED conditional onK.

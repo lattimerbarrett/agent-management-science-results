@@ -1,0 +1,5 @@
+p='workspace/fz25_upper.py';s=open(p).read()
+s=s.replace("print('rank',M.rank(),flush=True)","assert len(basis)==77 and len(rows)==59\nassert M.rank()==33\nprint('rank',M.rank(),flush=True)")
+s=s.replace("print('minor determinant mod prime',int(minor.det())%1000000007,flush=True)","assert int(minor.det())%1000000007==88277662\nprint('minor determinant mod prime',int(minor.det())%1000000007,flush=True)")
+open(p,'w').write(s)
+print('upper explicitassertions added')

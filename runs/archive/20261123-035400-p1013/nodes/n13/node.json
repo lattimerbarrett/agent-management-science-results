@@ -1,0 +1,179 @@
+{
+ "id": "n13",
+ "parent": "n7",
+ "depth": 3,
+ "option": {
+  "branch": "c2b0",
+  "counterfactual": "For at least one r, S_r has a positive finite infimum that does not belong to S_r, so admissible coefficients approach a threshold without any graph witnessing the threshold itself.",
+  "approach": "Separate a universal lower bound on admissible coefficients from the construction of counterexamples approaching that bound. This would distinguish a genuinely open endpoint from a threshold attained by one fixed forbidden graph.",
+  "p": 0.1956
+ },
+ "status": "member",
+ "belief": {
+  "answer": "\\(\\boxed{\\mathcal S_2=[\\tfrac12,\\infty),\\qquad \\mathcal S_r=(\\tfrac1r,\\infty)\\ \\text{for every }r\\ge3.}\\)",
+  "confidence": 0.22
+ },
+ "judge": {
+  "claim": true,
+  "same_as": null,
+  "answer": "\\mathcal S_2=[\\tfrac12,\\infty),\\qquad \\mathcal S_r=(\\tfrac1r,\\infty)\\ \\text{for every }r\\ge3.",
+  "reason": "It gives explicit sets that a team could attempt to prove. It differs from every listed answer; in particular, e2 includes the boundary 1/r for r\u22653, whereas this answer excludes it.",
+  "experiment": true,
+  "n": 13,
+  "definite": true,
+  "gate": "It explicitly describes the set for every integer r\u22652 and specifies boundary membership: 1/2 is included for r=2, while 1/r is excluded for every r\u22653."
+ },
+ "experiment": "e7",
+ "options": [
+  {
+   "branch": "c0b0",
+   "counterfactual": "There is a graph H with chromatic number three witnessing a coefficient a strictly smaller than 1/2, so the supplied construction does not locate the lower boundary of S_2.",
+   "approach": "Search graphs obtained by adding a vertex with selected neighbors to a path. Examine which repeated internal components are permitted in nearly complete bipartite H-free graphs, looking for competing constructions with linear surplus below n/2.",
+   "p": 0.1143,
+   "child": null
+  },
+  {
+   "branch": "c0b1",
+   "counterfactual": "There is a graph H with chromatic number three witnessing a coefficient a strictly smaller than 1/2, so the supplied construction does not locate the lower boundary of S_2.",
+   "approach": "Investigate the structural consequences of ex(n,H) being bounded above by t_2(n)+(1/2-epsilon)n. Since a graph with no vertex whose deletion makes it bipartite permits a universal-vertex construction, focus on forbidden graphs having such a vertex.",
+   "p": 0.1143,
+   "child": null
+  },
+  {
+   "branch": "c0b2",
+   "counterfactual": "There is a graph H with chromatic number three witnessing a coefficient a strictly smaller than 1/2, so the supplied construction does not locate the lower boundary of S_2.",
+   "approach": "Compare cycle asymptotics for complete bipartite graphs with bounded tree components inside one part. Identify whether component shapes or a small change in part sizes can compensate for having fewer edges.",
+   "p": 0.0571,
+   "child": null
+  },
+  {
+   "branch": "c1b0",
+   "counterfactual": "For some r at least three, the infimum of S_r is not 1/r; the threshold depends on additional structural or cycle-counting effects.",
+   "approach": "Derive the next-order cycle-count expansion for complete r-partite graphs with bounded internal components. Compare the contributions of edge count, part imbalance, and internal degree variance to identify a different candidate threshold.",
+   "p": 0.2095,
+   "child": null
+  },
+  {
+   "branch": "c1b1",
+   "counterfactual": "For some r at least three, the infimum of S_r is not 1/r; the threshold depends on additional structural or cycle-counting effects.",
+   "approach": "Analyze how adjoining large independent color classes to a three-chromatic forbidden graph changes its admissible matching constructions. Determine whether the resulting linear surplus scales as 1/r or remains bounded away from zero independently of r.",
+   "p": 0.1571,
+   "child": null
+  },
+  {
+   "branch": "c1b2",
+   "counterfactual": "For some r at least three, the infimum of S_r is not 1/r; the threshold depends on additional structural or cycle-counting effects.",
+   "approach": "Look for a universal lower-bound argument that does not presuppose the threshold. Use elementary H-free constructions to constrain which internal patterns and exceptional vertices are possible at each surplus coefficient.",
+   "p": 0.1571,
+   "child": null
+  },
+  {
+   "branch": "c2b0",
+   "counterfactual": "A nonattained boundary can arise from one fixed forbidden graph: its extremal surplus has leading coefficient alpha but an unbounded positive remainder smaller than linear, so it witnesses every a greater than alpha and not alpha itself.",
+   "approach": "Investigate whether a bound ex(n,H)=t_r(n)+O(n) necessarily admits a refinement t_r(n)+lambda n+O(1). Establishing or refuting that refinement would distinguish a single-graph explanation of an open endpoint from a sequence of different forbidden graphs.",
+   "p": 0.0857,
+   "child": null
+  },
+  {
+   "branch": "c2b1",
+   "counterfactual": "A nonattained boundary can arise from one fixed forbidden graph: its extremal surplus has leading coefficient alpha but an unbounded positive remainder smaller than linear, so it witnesses every a greater than alpha and not alpha itself.",
+   "approach": "Search for constructions whose linear surplus comes from bounded exceptional vertices while a sparse auxiliary graph contributes an unbounded sublinear correction. Check whether enlarging that auxiliary graph would contradict the assumed global linear bound.",
+   "p": 0.0571,
+   "child": null
+  },
+  {
+   "branch": "c2b2",
+   "counterfactual": "A nonattained boundary can arise from one fixed forbidden graph: its extremal surplus has leading coefficient alpha but an unbounded positive remainder smaller than linear, so it witnesses every a greater than alpha and not alpha itself.",
+   "approach": "Express membership for a fixed H using the limsup of its normalized extremal surplus and the boundedness of the residual at that limsup. Separate this endpoint issue from the independent requirement that simultaneous edge- and cycle-extremizers fail infinitely often.",
+   "p": 0.0476,
+   "child": "n17"
+  },
+  {
+   "branch": "own",
+   "counterfactual": null,
+   "approach": null,
+   "p": null,
+   "child": "n24"
+  },
+  {
+   "branch": "e7/c0b0",
+   "counterfactual": "The set \\(\\mathcal S_2\\) has infimum \\(1/4\\), but \\(1/4\\notin\\mathcal S_2\\); in particular, counterexamples exist with admissible coefficients arbitrarily close to \\(1/4\\) from above.",
+   "approach": "Examine the eight-vertex counterexample\u2019s defect partitions and look for a parameterized replacement of its internal \\(P_3\\)-packing. The objective would be to retain the cycle advantage while reducing the extremal surplus toward that of a matching in one bipartition class.",
+   "p": 0.2182,
+   "child": null
+  },
+  {
+   "branch": "e7/c0b1",
+   "counterfactual": "The set \\(\\mathcal S_2\\) has infimum \\(1/4\\), but \\(1/4\\notin\\mathcal S_2\\); in particular, counterexamples exist with admissible coefficients arbitrarily close to \\(1/4\\) from above.",
+   "approach": "Investigate the endpoint separately by classifying forbidden graphs satisfying \\(\\operatorname{ex}(N,H)\\le t_2(N)+N/4+O(1)\\). Determine whether their edge-extremal constructions necessarily admit a cycle-maximizing representative.",
+   "p": 0.1909,
+   "child": null
+  },
+  {
+   "branch": "e7/c0b2",
+   "counterfactual": "The set \\(\\mathcal S_2\\) has infimum \\(1/4\\), but \\(1/4\\notin\\mathcal S_2\\); in particular, counterexamples exist with admissible coefficients arbitrarily close to \\(1/4\\) from above.",
+   "approach": "Test whether the same forbidden graph can witness every coefficient strictly above \\(1/4\\), but not \\(1/4\\) itself. This would require studying whether its extremal surplus has an unbounded sublinear remainder above \\(N/4\\).",
+   "p": 0.1364,
+   "child": null
+  },
+  {
+   "branch": "e7/c1b0",
+   "counterfactual": "For some \\(r\\ge3\\), there is a forbidden graph with \\(\\operatorname{ex}(N,H)=t_r(N)+O(1)\\) for which simultaneous edge and cycle maximizers fail to exist at infinitely many orders.",
+   "approach": "Revisit the first-order cycle expansion around balanced complete multipartite graphs, distinguishing added internal edges, deleted crossing edges, and changes in part sizes. Look for a configuration where these operations have different cycle costs despite a bounded total edge surplus.",
+   "p": 0.0364,
+   "child": null
+  },
+  {
+   "branch": "e7/c1b1",
+   "counterfactual": "For some \\(r\\ge3\\), there is a forbidden graph with \\(\\operatorname{ex}(N,H)=t_r(N)+O(1)\\) for which simultaneous edge and cycle maximizers fail to exist at infinitely many orders.",
+   "approach": "Search bounded exceptional-vertex configurations computationally for competing constructions with different edge and cycle rankings. Any promising pair would then need an explicit forbidden graph and an eventual extremal-edge classification.",
+   "p": 0.0318,
+   "child": null
+  },
+  {
+   "branch": "e7/c1b2",
+   "counterfactual": "For some \\(r\\ge3\\), there is a forbidden graph with \\(\\operatorname{ex}(N,H)=t_r(N)+O(1)\\) for which simultaneous edge and cycle maximizers fail to exist at infinitely many orders.",
+   "approach": "Audit the precise hypotheses of structural and cycle-comparison theorems for bounded extremal surplus. Identify whether disconnected forbidden graphs or exceptional vertices fall outside the versions that would otherwise rule out such examples.",
+   "p": 0.0227,
+   "child": null
+  },
+  {
+   "branch": "e7/c2b0",
+   "counterfactual": "A fixed forbidden graph can have a finite linear surplus coefficient that is not itself an admissible upper-bound coefficient because the surplus includes a positive, unbounded sublinear remainder.",
+   "approach": "Study whether finite forbidden-subgraph conditions permit \\(\\operatorname{ex}(N,H)=t_r(N)+\\alpha N+o(N)\\) with \\(\\operatorname{ex}(N,H)-t_r(N)-\\alpha N\\) unbounded above. Such a graph could explain an excluded endpoint without a sequence of different forbidden graphs.",
+   "p": 0.1455,
+   "child": null
+  },
+  {
+   "branch": "e7/c2b1",
+   "counterfactual": "A fixed forbidden graph can have a finite linear surplus coefficient that is not itself an admissible upper-bound coefficient because the surplus includes a positive, unbounded sublinear remainder.",
+   "approach": "Inspect the structural decomposition available under a linear extremal surplus and determine whether it forces an \\(O(1)\\) remainder. Separate the cases covered by bounded repeated components from those allowing unbounded internal components.",
+   "p": 0.1273,
+   "child": null
+  },
+  {
+   "branch": "e7/c2b2",
+   "counterfactual": "A fixed forbidden graph can have a finite linear surplus coefficient that is not itself an admissible upper-bound coefficient because the surplus includes a positive, unbounded sublinear remainder.",
+   "approach": "Search for constructions in which a growing exceptional set contributes a sublinear edge gain while preserving the leading linear coefficient. Then compare their cycle counts with those of edge-extremal graphs to see whether the same graph also satisfies the required incompatibility condition.",
+   "p": 0.0909,
+   "child": null
+  },
+  {
+   "branch": "e7/own",
+   "counterfactual": null,
+   "approach": null,
+   "p": null,
+   "child": null
+  }
+ ],
+ "cost": 0.6313,
+ "responses": 5,
+ "step_from": 25,
+ "known": [
+  "e1",
+  "e7"
+ ],
+ "created": 1795426738.297458,
+ "seen": "1d0d8323df9a04ef7d58b2f0e5a439b3c072b82adb8a1e22c91b3d6c593ec8a9",
+ "take_at": 25
+}

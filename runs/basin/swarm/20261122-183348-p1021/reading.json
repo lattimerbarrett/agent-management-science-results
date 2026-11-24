@@ -1,0 +1,68 @@
+{
+ "run": "20261122-183348-p1021",
+ "problem": 1021,
+ "told": false,
+ "solo": true,
+ "answer": "Let \\(\\Delta=\\{(u,u):u\\geq1\\}\\). Then\n\\[\n\\mathcal E(S)=(\\mathcal V\\setminus\\Delta)\\cup\\{(A_L,b):B_L\\leq b<A_L\\}\\cup\\{(a,B_R):A_R\\leq a<B_R\\}.\n\\]\nEmpty intervals are omitted; the ray vertices are included and the diagonal ray endpoints are excluded.",
+ "claims_proof": true,
+ "where": "Reply #1, formula (1) and Conclusion.",
+ "answer_reason": "The agent explicitly gives this exceptional set and concludes that sufficiency and necessity cover every boundary point, with nothing unresolved.",
+ "definite": true,
+ "verify": {
+  "verdict": "sound",
+  "acknowledged": false,
+  "review": {
+   "claimed": "The entire exceptional set is (V\\Delta) union {(A_L,b): B_L<=b<A_L} union {(a,B_R): A_R<=a<B_R}, with the stated half-open endpoint conventions, including the single-vertex case.",
+   "verdict": "sound",
+   "team_acknowledged_gap": false,
+   "decisive_steps": [
+    {
+     "step": "Localized nondegenerate and two-sided finite-type analytic estimates, finals \u00a71.",
+     "basis": "citation",
+     "checked": "The proof states the standard localized planar estimates precisely. The nondegenerate estimate is the canonical-graph FIO estimate; the two-sided finite-type estimate supplies gain 1/(m+2) for the interior p-range and the noncritical sloping sides. The subsequent uses avoid its two excluded corners."
+    },
+    {
+     "step": "Newton decomposition and treatment of compact-face transitions, finals \u00a73.",
+     "basis": "argument",
+     "checked": "Checked that a compact face has lattice increments (ell*u,-ell*v), so nonzero roots of its mixed derivative have multiplicity at most ell and give nonvanishing pure x- and y-derivatives of that order on signed annuli. Checked the supporting-line inequality a+b>=2+ell*min(u,v)>=m+2. Its forbidden corner equalities force off-diagonal endpoint vertices. The transition strips have bounded row and column counts, so their scaled estimates sum."
+    },
+    {
+     "step": "Sufficiency on every remaining boundary location, finals \u00a74.",
+     "basis": "argument",
+     "checked": "Checked the scaling weight W_jk and frequency-offset decay. Compact-edge interiors have summable rows and columns; diagonal vertices use L2 frequency orthogonality and bounded spatial incidence; good horizontal rays use p<=2 and summability in j, with vertical rays obtained by duality. The separate grouping for a coordinate equal to 1 gives a uniformly nondegenerate normalized phase and summable factors. These cases cover exactly the complement of the proposed exceptional set."
+    },
+    {
+     "step": "Failure at off-diagonal vertices and bad ray segments, finals \u00a75.",
+     "basis": "argument",
+     "checked": "Checked the randomized construction: input bands have disjoint y-supports, their input norm grows as N^(1/p), and separated output t-frequencies produce N^(1/2). At vertices the common x-annulus factors cancel exactly, leaving divergence for p>2. The same calculation works on the bad horizontal segment. Localized translation invariance and t-Sobolev duality give the transposed failures. At the diagonal ray endpoint p=2 the obstruction disappears and the sufficiency argument applies."
+    },
+    {
+     "step": "Exact geometric and scaling checks in scratchpad.py.",
+     "basis": "computation",
+     "checked": "Read and reran the team's script unchanged via runpy. It reproduced 327 distinct Newton polygons, 39,637 exact geometric/type/scaling checks, and maximum exact-frequency row/column degree 1. The code uses rational arithmetic and symbolic identities; appropriately, it is only supporting verification of the finite algebra and combinatorics, not a substitute for the analytic proof."
+    }
+   ],
+   "failing_step": "Hardest step: applying the uniform two-sided finite-type estimate to transition rectangles and combining the different endpoint summation mechanisms.",
+   "reason": "The written argument establishes both sufficiency and necessity and handles the unbounded-ray and diagonal endpoints explicitly. The standard analytic inputs are stated with the needed hypotheses, their applications satisfy those hypotheses, and the dyadic scaling, summation, randomized obstruction, and duality checks hold. No unresolved final gap is acknowledged or needed."
+  },
+  "responses": 10,
+  "runs": 3,
+  "cost": 0.2195
+ },
+ "stop": true,
+ "contract": {
+  "form": "A complete answer is an explicit set-valued formula for the entire exceptional set \\(\\mathcal E(S)\\) in terms of \\(\\mathcal V,A_L,B_L,A_R,B_R\\), valid for every phase satisfying the hypotheses. The formula must specify exactly which boundary points are exceptional, including every endpoint inclusion or exclusion and the case when the two extreme vertices coincide.",
+  "not_enough": "Bounds or partial inclusions for the exceptional set, sufficient or necessary conditions alone, an answer conditional on a conjecture, an assertion that the set is unknown or not determined, or a formula covering only some phases or boundary points would not settle the question. Nor would a description leaving endpoint membership ambiguous."
+ },
+ "definite_reason": "The proposed answer gives an explicit formula for the entire exceptional set using only the specified vertex data. Its inequalities specify all endpoint inclusions and exclusions, and the formula also applies when the extreme vertices coincide.",
+ "reference": "\\[\\boxed{\\mathcal E(S)=\\{(a,b)\\in\\mathcal V:a\\ne b\\}\\ \\cup\\ \\bigl(\\{A_L\\}\\times[B_L,A_L)\\bigr)\\ \\cup\\ \\bigl([A_R,B_R)\\times\\{B_R\\}\\bigr).}\\]\nAn interval is empty when its upper endpoint is no greater than its lower endpoint. Thus the second term occurs only when \\(A_L>B_L\\), and the third only when \\(A_R<B_R\\); neither segment includes its diagonal endpoint.",
+ "correct": true,
+ "graded_by": "judge",
+ "solved": true,
+ "cost": 0.2479,
+ "read_at": 1795391159.2020202,
+ "matharena": true,
+ "restated": false,
+ "grade_note": "The formula matches the reference exactly: \\(\\mathcal V\\setminus\\Delta\\) is the set of off-diagonal vertices, and both exceptional segments have the same included lower endpoints and excluded diagonal endpoints.",
+ "graded_at": 1795396402.449585
+}

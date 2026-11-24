@@ -1,0 +1,76 @@
+Extended moment gaps used for constant-Q supports in dimension15.
+
+Notation: lambda6(S) is the first nonzero moment exterior form of a
+6-even set. Its catalecticant ranks h_i have total L<=|S|, by the moment
+matrix block-triangular argument. Its essential dimension is h_1.
+
+I. Let alpha=vol(U6)+vol(V6), U direct-sum V of dimension12, embedded in
+13-space. If beta is any decomposable6-form and lambda=alpha+beta has
+L<=144, the exact49-orbit calculation gives only these normal forms:
+ L64: decomposable6-form;
+ L124: t wedge (vol(P5)+vol(Q5)), on an11-dimensional essential space;
+ L126: vol(P6)+vol(Q6), disjoint essential6-spaces.
+Completeness of the49 orbits: if W_beta lies in U+V, its GL(U)xGL(V)
+orbit has parameters (a,b,c), dimensions of W intersect U, W intersect V,
+and remaining graph part, a+b+c=6 (28 possibilities). Otherwise let
+P=W intersect(U+V), dimension5. A shear fixing U+V makes W=P+<z>;
+P is classified by the same parameters with a+b+c=5 (21 possibilities).
+The eight low-L rows in the verifier immediately factor into the three
+normal forms displayed above, by combining two six-volume terms sharing
+five factors. No guessed orbit coverage is used.
+
+No S in RM(7,13) of weight136 or144 has one of these moment forms.
+L64: choose minimum64-flat G with the same leading ANF term. Then
+S+G is in RM(6,13), weight<=208, so its weight is128 or192. If128 it is
+a7-flat and its intersection with G would be24 or28, not a power of2.
+If192 it is the second KT form (four linear factors times a rank4 quadric);
+its restriction to G is a product of affine factors and a quadratic.
+If a factor is nonconstant its support has size<=32; otherwise the
+quadratic's weight on six variables cannot be56 or60. Contradiction.
+L126: choose coordinates in which top ANF is z*(vol(P6)+vol(Q6)). Its
+z-slices belong RM(6,12), minimum64, next96. Total136/144 cannot have both
+nonzero (the smaller would64 and the other72/80); hence one is zero.
+The other has crossstar6 top form, which forces weight2 mod4, contradiction.
+L124: top ANF is z0*z1*(vol(P5)+vol(Q5)), independent of t. If Delta_t S
+is nonzero, it is a minimum128-flat (degree<=5 in12 variables, next192).
+Writing S=t*v+u gives outside-v weight4 or8, while the flat-puncturing
+minimum for degree7 in12 variables is16. Thus S is t-invariant. Divide
+weight by2: 68/72 in12 variables, top z0*z1*crossstar5. Slice z0, then z1.
+At either stage both nonzero slices have minimum32,next48, so sums68/72
+are impossible unless one slice is zero. After both zero slices removed,
+the remaining degree5 function on10 variables has crossstar5 top, so its
+weight is2 mod4, contradicting68/72.
+
+II. Let gamma be either KT moment form of a weight112 word: D2 wedge
+rho4 on an8-space (rho dual of rank6 symplectic2-form), or
+D3 wedge (vol(U3)+vol(V3)) on a9-space. For any decomposable beta6 in
+13 dimensions, L(beta+gamma)<=154 implies essential dimension<=11.
+The complete finite orbit proof is in the verifier. For the first type,
+write W intersect M = D_a direct-sum R_b after a shear Q->D, with R_b
+inside symplectic6-space having rank2s and radical b-2s. These determine
+26 cases; outside shears make W this intersection plus external coordinate
+vectors. For the second type, project W intersect M to U3+V3; its orbit
+is given by dimensions i,j,c (pure U, pure V, mixed graph), together with
+a=intersection D3. The same shears give all100 cases. The verifier computes
+all catalecticants; every low case has essential dimension<=11.
+
+If a154-point6-even set is supported in a12-flat, its moment form has
+essential dimension12. Indeed its affine span cannot be smaller by Ax
+4-divisibility. If its moment were in an11-space, Hodge duality makes the
+top-degree6 ANF divisible by a linear factor. Slicing by it gives two
+RM(5,11) words with minimum64,next96, whose weights cannot sum154 unless
+one is zero. That would put the support in an11-flat, contradiction.
+Therefore such an A154 cannot have moment beta64+gamma112.
+
+III. Consequence for a proper small slice A in F2^14 of a constant-Q
+15-dimensional target support. If A is contained a hyperplane, AB=J
+forces both opposite B-slices nonzero. A+B in I7 puts each in RM(7,13).
+Their smaller weight is at most103, hence64 or96. The exact sumset check
+leaves only (|A|,w; B0,B1)=(136,326;64,126),
+(144,334;64,126), or (154,330;64,112). Cases136/144 are excluded by I;
+case154 is excluded by II if A has affine span12. All other proper A
+of weights128,136,144,148,152,154,156 are excluded numerically.
+
+This does not assert that all small A are proper or that A154 has span12;
+that remaining coverage follows conditionally from the coarse KTA
+triple-minword/small-span alternative under investigation.

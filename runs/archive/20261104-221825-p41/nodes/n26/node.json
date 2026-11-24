@@ -1,0 +1,108 @@
+{
+ "id": "n26",
+ "parent": "n9",
+ "depth": 4,
+ "option": {
+  "branch": "c1b0",
+  "counterfactual": "A pure shellable complex can remain shellable after adding a single facet even though that facet cannot be appended to an existing shelling.",
+  "approach": "Choose a maximal face in the intersection of the new simplex with the old complex that has dimension below a ridge. Compute its link explicitly to determine why the expected disconnection argument fails.",
+  "p": 0.0131
+ },
+ "status": "member",
+ "belief": {
+  "answer": "\\(\\boxed{b(d,k)=d-2}\\)",
+  "confidence": 0.24
+ },
+ "judge": {
+  "claim": true,
+  "same_as": "e7",
+  "answer": "b(d,k)=d-2",
+  "reason": "It claims an exact general formula, identical to e7.",
+  "experiment": false
+ },
+ "experiment": null,
+ "options": [
+  {
+   "branch": "c0b0",
+   "counterfactual": "The reported complexes that admit no first facet addition are not valid counterexamples under the exact recursive definition in the question.",
+   "approach": "Locate and run the standalone counterexample verifiers, independently reconstructing every deletion and link rather than trusting stored certificates. Identify the first recursive condition that fails.",
+   "p": 0.0294,
+   "child": null
+  },
+  {
+   "branch": "c0b1",
+   "counterfactual": "The reported complexes that admit no first facet addition are not valid counterexamples under the exact recursive definition in the question.",
+   "approach": "Reconstruct every missing facet\u2019s intersection with the alleged counterexample and check its maximal faces directly. Test whether an allegedly blocked addition actually has a pure codimension-one intersection.",
+   "p": 0.0176,
+   "child": null
+  },
+  {
+   "branch": "c0b2",
+   "counterfactual": "The reported complexes that admit no first facet addition are not valid counterexamples under the exact recursive definition in the question.",
+   "approach": "Compare the mathematical complex described by each construction with the complex its verifier actually generates. Check especially vertex cloning, dimension truncation, and whether the generated family includes all subsets of its facets.",
+   "p": 0.0118,
+   "child": null
+  },
+  {
+   "branch": "c1b0",
+   "counterfactual": "One auxiliary vertex suffices for every dimension and every positive decomposition parameter, despite the reported higher-dimensional lower bounds.",
+   "approach": "Audit the higher-dimensional lower-bound construction at its first-exit argument. Determine whether an added mixed facet can introduce old faces that invalidate the claimed obstruction before the designated first exit.",
+   "p": 0.0627,
+   "child": null
+  },
+  {
+   "branch": "c1b1",
+   "counterfactual": "One auxiliary vertex suffices for every dimension and every positive decomposition parameter, despite the reported higher-dimensional lower bounds.",
+   "approach": "Try to prove that the ridge skeleton of every k-decomposable complex can be completed without auxiliary vertices. Such a completion could be lifted through one new apex and followed by full-boundary facet additions.",
+   "p": 0.0627,
+   "child": null
+  },
+  {
+   "branch": "c1b2",
+   "counterfactual": "One auxiliary vertex suffices for every dimension and every positive decomposition parameter, despite the reported higher-dimensional lower bounds.",
+   "approach": "Apply an explicit one-apex completion search to the smallest higher-dimensional complex claimed to require two auxiliary vertices. A successful certified ordering would pinpoint a flaw in the reported lower bound.",
+   "p": 0.0314,
+   "child": null
+  },
+  {
+   "branch": "c2b0",
+   "counterfactual": "Even when the decomposition parameter is fixed at one, the number of auxiliary vertices required is unbounded as the dimension increases.",
+   "approach": "Generalize the certified three-dimensional 1-decomposable obstruction using vertex cloning. Seek a decomposition certificate that remains valid while the first-exit obstruction forces progressively more auxiliary vertices.",
+   "p": 0.3529,
+   "child": null
+  },
+  {
+   "branch": "c2b1",
+   "counterfactual": "Even when the decomposition parameter is fixed at one, the number of auxiliary vertices required is unbounded as the dimension increases.",
+   "approach": "Inspect the higher-dimensional shellable lower-bound constructions for shedding edges. If their recursive certificates can use only vertices and edges, they would establish growing lower bounds already for k=1.",
+   "p": 0.2745,
+   "child": null
+  },
+  {
+   "branch": "c2b2",
+   "counterfactual": "Even when the decomposition parameter is fixed at one, the number of auxiliary vertices required is unbounded as the dimension increases.",
+   "approach": "Develop an operation that increases both dimension and the minimum necessary number of auxiliary vertices while preserving 1-decomposability. Check carefully that mixed facets cannot bypass the inherited obstruction.",
+   "p": 0.1569,
+   "child": null
+  },
+  {
+   "branch": "own",
+   "counterfactual": null,
+   "approach": null,
+   "p": null,
+   "child": null
+  }
+ ],
+ "cost": 0.0391,
+ "responses": 2,
+ "step_from": 22,
+ "known": [
+  "e1",
+  "e2",
+  "e3",
+  "e4"
+ ],
+ "created": 1793858291.13596,
+ "seen": "ee586bcc8d99f813e51d46464bda2a87d96ca1a04b970fb2df3a6543e2e58cf2",
+ "take_at": 22
+}

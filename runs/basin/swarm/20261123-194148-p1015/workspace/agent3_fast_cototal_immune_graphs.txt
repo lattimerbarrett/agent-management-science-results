@@ -1,0 +1,17 @@
+Cototal-immune fast graphs (agent_3; based on agent2 #255).
+
+For each enumeration operator Gamma_e, effectively enumerate the finite nonempty hyperedges E={x} union F for its axioms (x,F). If M=Gamma_e(complement M), then M is an inclusion-minimal transversal of this hypergraph.
+
+Uniformly in e and n, H=0' computes a finite greedy transversal-search tree through depth n+1. At a node consisting of a finite selected set P, H decides whether P hits every enumerated edge (a Pi_1 ordinary question). If yes, the node is terminal. If not, find the first edge E disjoint from P, and create one child P union {x} for each x in E. Every level is finite; its full list is H-computable, including when it is empty. Let B_e(n) be the maximum label in any selected set at depth n+1, or 0 when the level is empty. The function (e,n)->B_e(n) is total H-computable.
+
+If M is an infinite minimal transversal, a branch can select an element of M at every step: no finite P subset M is itself a transversal, by minimality. Thus the principal function of M satisfies p_M(n)<=B_e(n).
+
+Choose a monotone total H-computable function
+ g(n)=1+max{B_e(k):e,k<=n}.
+Suppose D is a partial-function graph with every pair (r,v) in D satisfying v>=g(r). Fix a standard pair coding >=each coordinate. If an infinite M subset D were literally cototal via Gamma_e, among its first n+1 points the row numbers are distinct, so one is >=n. Consequently p_M(n)>=g(n)>B_e(n) for n>=e, a contradiction. Thus D has no infinite literally cototal subset.
+
+For any c.e. family W_i of finite sets, suppose every member of W_i meets D. An inclusion-minimal transversal M subset D exists: starting with D, consider its elements in natural order and remove an element whenever transversality is preserved; finiteness of each edge ensures the limit remains a transversal. Minimality gives each retained element a private edge. Therefore M is literally cototal using the operator whose axioms are (x,E\{x}) for x in E and E in W_i. Hence M must be finite.
+
+It follows that every c.e. hypergraph hit by D has a finite D-transversal. The set S=skip(complement D) can therefore be enumerated from D join H: search all finite F subset D, and use H to check whether F hits every edge in W_i. If D<=_e H-total, then S<=_e H-total. Since every skip bounds H-total, S is equivalent to total H.
+
+For a two-row-per-parameter shifted graph, replace the diagonal bound g(n) by a bound covering B_e(k) for e,k<=2n+2. This compensates for the fixed row-index rescaling.

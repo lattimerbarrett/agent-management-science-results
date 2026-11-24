@@ -1,0 +1,51 @@
+RAINBOW SELF-PETALS OBSTRUCT A TARGET-COMPLETION OF FACTORED REVERSE
+
+Let an inner family H be partitioned into T classes with disjoint cores
+X_i. Choose one anchor a_i in each core. In the factored reverse gadget,
+label the private Q_i (size |X_i|-1) by X_i minus {a_i}; write q_{i,x}.
+Each residual point x in an inner member of class j is copied as p_{j,x},
+with these copies shared WITHIN owner j and disjoint across owners.
+Thus Q_F=Q_owner union {p_{owner,x}: x in F minus X_owner}.
+
+For every nonanchor corepoint x in X_i minus {a_i}, form
+ S_x={q_{i,x}} union {p_{j,x}: j!=i and some F in H_j contains x}.
+
+CLAIM: S_x is an inclusion-minimal transversal of
+ {Q_F: F in H and x in F}. Hence S_x is an actual TYPE-A petal of the
+ reverse color x.
+Proof: for F of owner i, its Q_i contains q_{i,x}. For F of any other
+ owner j containing x, its residual copy contains p_{j,x}. Conversely,
+ every chosen point of S_x belongs to one private owner-ground block.
+ That owner block has some relevant F, and S_x has exactly ONE point
+ in that block, so this F witnesses indispensability of that point.
+This proves both hitting and minimality.
+
+All the S_x are PAIRWISE DISJOINT for distinct nonanchor x: their Q_i
+labels and residual-copy labels differ. Thus the reverse gadget has a
+rainbow actual-petal matching of size
+ q=sum_i(|X_i|-1).
+
+Consider ANY proposed intersecting-core realization that keeps these
+actual petals and adds only points in disjoint own/target cores (or
+uses uniformity padding from which disjoint choices can be selected).
+Take the corresponding q full members. Their own cores are mutually
+disjoint, as are their actual S_x. Each pairwise intersection therefore
+requires a residual core-target slot of one endpoint. A residual slot
+can target only ONE of the other disjoint cores, and hence accounts
+for at most one pair. Consequently
+ binom(q,2) <= sum_{x selected} d_x,
+and in particular max_x d_x >=(q-1)/2.
+
+This statement is NOT about arbitrary modifications of the actual
+petal system: adding common actual points can destroy the matching,
+but may also destroy Hall. It directly obstructs economical target
+completion of the fixed factored reverse system.
+
+Cloning every old point L times and replacing each inner occurrence by
+the whole clone-pack does NOT fix this: the same proof gives one
+self-petal per nonanchor cloned corepoint, so
+ q=L*sum_i|X_i|-T.
+In the regime |X_i|>=T-d with d=o(T), q is asymptotic to L*T^2.
+Thus target completion needs maximum deficit Omega(L*T^2), not O(T*d)
+or O(T*L). The tempting golden-ratio reverse recursion cannot be
+implemented by this unmodified factored reverse architecture.

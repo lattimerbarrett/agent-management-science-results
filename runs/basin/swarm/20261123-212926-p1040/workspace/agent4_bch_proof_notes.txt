@@ -1,0 +1,60 @@
+Explicit IA3 candidate and a source-nonmembership criterion
+==========================================================
+Conventions: Kij conjugates xi by xj. Put a=K21,b=K12,c=K13.
+For a Lyndon word w on 0<1<2, let C_w be its standard group
+commutator, splitting at the longest proper Lyndon suffix.
+
+1. File agent4_mccool_degree6_relation.json gives integer coefficients
+r_w (eleven nonzero). In free Lie derivations, sum r_w L_w=0.
+This was proved by exact sparse rational elimination, not guessed.
+Let g=product C_w^(r_w), ordered as in JSON. Then g∈γ6 IA3∩A7.
+
+2. In the formal associative algebra on a,b,c use generators exp(a),
+exp(b),exp(c). Through degree8, g−1=sum r_w(C_w−1), because each
+factor has weight6. Write the degree7 part as P7. Exact Lyndon
+reduction gives 2P7=sum d_v L_v with 51 integer coefficients d_v.
+Set h=g² product C_v^(-d_v). This belongs γ6 IA3∩A8.
+The files agent4_bch_candidate.py and agent4_bch_candidate.pkl
+compute/store (d_v, h8), where h8 is the formal degree8 part.
+All operations are exact Fraction arithmetic.
+
+3. A tangential generator Kij acts on logarithmic variables by
+Xi↦exp(ad Xj)Xi and fixes the others, so Kij=exp(Dij),
+Dij(Xi)=[Xj,Xi]. Evaluating formal h8 at these three derivations
+therefore gives τ8(h). agent4_eval_bch.py performs this evaluation.
+The resulting integral vector is agent4_candidate_tau8.pkl, with
+8679 nonzero tensor coordinates and 6350 nonzero coordinates mod3.
+Its multidegrees are permutations of (4,2,2) and (3,3,2).
+
+4. Universal lemma needed to detect that h∉γ7:
+For every r≥2 and f∈γ_r IA_n∩A_(r+1),
+ τ_(r+1)(f) belongs (image of degree-(r+1) Lie brackets of the
+ first Johnson images) tensored with Z[1/2].
+Proof: first observe that each Magnus generator has logarithm
+D1+D2+... where 2D2 is an integral bracket of first Johnson images.
+For Kij, D2=0. For T=T_i;jk: xi↦[xj,xk]xi, the exact identity is
+ 2D2=[D_kj+D_jk,T1]−[D_ij,D_ik].
+To verify, write C=[Xj,Xk]. The LHS on Xi is
+ [Xj+Xk,C]+[C,Xi]; all other generator values vanish.
+agent4_log_degree2_check.py checks every ordered triple in rank3.
+
+Modulo degree r+2 the logarithm of a commutator of weight r has
+leading homogeneous Lie term of degree r and next term of degree
+r+1 with denominators only powers of2 (in fact at most2 for a
+basic commutator). This follows directly by induction from BCH,
+since only the first correction to the leading commutator enters.
+Hall collection in the free nilpotent group of class r+1 then gives
+the same statement for all elements of γ_r in the Magnus generators.
+Substitute D1+D2+...; at next degree only D1 and D2 can enter.
+This proves the lemma, since 2D2 is in the integral bracket image.
+When f∈A_(r+1), its degree-r logarithm vanishes and the degree-r+1
+logarithm equals its integral Johnson homomorphism.
+
+CONSEQUENCE: If τ8(h) reduced mod3 is not in the mod3 span of all
+length8 brackets of the nine IA3 Magnus derivations, then h∉γ7 IA3.
+Together with (2), this would prove (3,6)∈D without an IA presentation.
+The nonmembership computation is being performed by agent3.
+
+LIMITATION: membership would refute this particular diagnostic, not
+prove h∈γ7. No assertion of nonmembership is made before that check.
+No stabilization or all-degree consequence has yet been established.

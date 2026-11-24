@@ -1,0 +1,108 @@
+{
+ "id": "n16",
+ "parent": "n1",
+ "depth": 2,
+ "option": {
+  "branch": "c2b1",
+  "counterfactual": "The extendable-shellability question relevant to b(d,k) has already been resolved, so the claimed open-problem obstruction does not establish that the requested value is unknown.",
+  "approach": "Search computationally for small shellable complexes with no permissible next facet, testing candidate negative examples against the exact recursion in the question.",
+  "p": 0.2206
+ },
+ "status": "member",
+ "belief": {
+  "answer": "\\(\\boxed{b(d,k)=\\max\\{1,\\min\\{d-2,k-1\\}\\}}\\)",
+  "confidence": 0.25
+ },
+ "judge": {
+  "claim": true,
+  "same_as": null,
+  "answer": "b(d,k)=\\max\\{1,\\min\\{d-2,k-1\\}\\}",
+  "reason": "It claims an exact formula. It differs from every prior answer; for example, it gives b(4,3)=2, unlike e2 and e3, and it is neither the zero formula nor an unknown-value assertion.",
+  "experiment": true
+ },
+ "experiment": "e5",
+ "options": [
+  {
+   "branch": "c0b0",
+   "counterfactual": "The reported terminal complexes have an error in their decomposition certificates or obstruction checks, so they do not establish that any auxiliary vertex is necessary.",
+   "approach": "Read and run the standalone counterexample verifiers, then independently recompute deletion purity, links, and maximal intersections for their claimed certificates. This would distinguish a genuine obstruction from a mismatch with the exact recursive definition.",
+   "p": 0.0415,
+   "child": null
+  },
+  {
+   "branch": "c0b1",
+   "counterfactual": "The reported terminal complexes have an error in their decomposition certificates or obstruction checks, so they do not establish that any auxiliary vertex is necessary.",
+   "approach": "Inspect the full-boundary extension lemma used to construct the certificates, focusing on its simplex base case and links of dimension zero. An incorrect certificate transformer could invalidate many examples simultaneously.",
+   "p": 0.0174,
+   "child": null
+  },
+  {
+   "branch": "c0b2",
+   "counterfactual": "The reported terminal complexes have an error in their decomposition certificates or obstruction checks, so they do not establish that any auxiliary vertex is necessary.",
+   "approach": "Search for a permissible first facet addition to the smallest reported terminal complex using an independent implementation. A single verified successful addition would directly refute its claimed terminality.",
+   "p": 0.0166,
+   "child": null
+  },
+  {
+   "branch": "c1b0",
+   "counterfactual": "One auxiliary vertex does not suffice in all dimensions; some k-decomposable complexes require at least two.",
+   "approach": "Inspect the universal lower-bound construction reported by the second team, specializing it to dimension four. Verify whether its first-exit obstruction rules out every completion using one auxiliary vertex.",
+   "p": 0.3728,
+   "child": null
+  },
+  {
+   "branch": "c1b1",
+   "counterfactual": "One auxiliary vertex does not suffice in all dimensions; some k-decomposable complexes require at least two.",
+   "approach": "Extract the origin-support conditions from the clone construction and prove its obstruction directly. The aim would be to replace a large enumeration with a short argument about the ridges available at the first forbidden-support facet.",
+   "p": 0.2223,
+   "child": null
+  },
+  {
+   "branch": "c1b2",
+   "counterfactual": "One auxiliary vertex does not suffice in all dimensions; some k-decomposable complexes require at least two.",
+   "approach": "Compare the stronger lower bound with the recursive cone upper bound in the shellable parameter range. If both apply, they would determine the exact value there even without resolving smaller k.",
+   "p": 0.1219,
+   "child": "n17"
+  },
+  {
+   "branch": "c2b0",
+   "counterfactual": "For every k at least one, the worst-case number of auxiliary vertices depends only on d, not on k.",
+   "approach": "Investigate whether the higher-dimensional clone obstructions admit decompositions using only vertices and edges. Such certificates could transfer the strongest lower bound to every allowed k.",
+   "p": 0.0851,
+   "child": "n28"
+  },
+  {
+   "branch": "c2b1",
+   "counterfactual": "For every k at least one, the worst-case number of auxiliary vertices depends only on d, not on k.",
+   "approach": "Try to generalize the certified three-dimensional 1-decomposable obstruction into higher dimensions while increasing the number of required auxiliary vertices. A lift must obstruct mixed facets involving new vertices, not merely preserve failure on the original vertex set.",
+   "p": 0.0747,
+   "child": null
+  },
+  {
+   "branch": "c2b2",
+   "counterfactual": "For every k at least one, the worst-case number of auxiliary vertices depends only on d, not on k.",
+   "approach": "Examine whether arbitrary shellable obstructions can be transformed into 1-decomposable complexes without weakening their completion obstruction. Combined with the dimension-dependent upper bound, such a transformation could establish parameter independence.",
+   "p": 0.0477,
+   "child": null
+  },
+  {
+   "branch": "own",
+   "counterfactual": null,
+   "approach": null,
+   "p": null,
+   "child": null
+  }
+ ],
+ "cost": 0.0611,
+ "responses": 1,
+ "step_from": 11,
+ "known": [
+  "e1",
+  "e2",
+  "e3",
+  "e4"
+ ],
+ "created": 1793858081.9058712,
+ "seen": "5827dc00e01346cab6e97e8437df9f156912a9ecac4f533087b2631cf037db0a",
+ "take_at": 11
+}

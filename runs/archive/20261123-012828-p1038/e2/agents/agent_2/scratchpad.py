@@ -1,0 +1,1 @@
+print(open('workspace/agent3_analytic_m1.md').read())

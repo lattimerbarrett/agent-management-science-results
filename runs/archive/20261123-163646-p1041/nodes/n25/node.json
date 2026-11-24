@@ -1,0 +1,107 @@
+{
+ "id": "n25",
+ "parent": "n3",
+ "depth": 3,
+ "option": {
+  "branch": "c0b0",
+  "counterfactual": "The low-weight spectrum has already stabilized at m = 14, so a fixed finite interval list may satisfy the problem.",
+  "approach": "Reassess the claimed nonstabilization and require an explicit weight that distinguishes dimension 14 from a later dimension. Without such a witness or a precise theorem, withdraw the impossibility conclusion.",
+  "p": 0.1324
+ },
+ "status": "member",
+ "belief": {
+  "answer": "Let N=2^m. Then \\(\\boxed{\\begin{aligned}\\mathcal W_m={}&[0,0]_2\\cup[128,128]_2\\cup[192,192]_2\\cup[224,224]_2\\cup[240,240]_2\\cup[248,248]_2\\\\&\\cup[252,256]_2\\cup[272,272]_2\\cup[288,288]_2\\cup[296,296]_2\\cup[304,304]_2\\cup[308,308]_2\\\\&\\cup[312,320]_2\\cup[324,324]_2\\cup[328,328]_2\\cup[332,332]_2\\cup[336,N-336]_2\\\\&\\cup[N-332,N-332]_2\\cup[N-328,N-328]_2\\cup[N-324,N-324]_2\\cup[N-320,N-312]_2\\\\&\\cup[N-308,N-308]_2\\cup[N-304,N-304]_2\\cup[N-296,N-296]_2\\cup[N-288,N-288]_2\\\\&\\cup[N-272,N-272]_2\\cup[N-256,N-252]_2\\cup[N-248,N-248]_2\\cup[N-240,N-240]_2\\\\&\\cup[N-224,N-224]_2\\cup[N-192,N-192]_2\\cup[N-128,N-128]_2\\cup[N,N]_2.\\end{aligned}}\\) Every constant endpoint b denotes 0\u00b72^m+b, and every endpoint N-b denotes 1\u00b72^m-b.",
+  "confidence": 0.55
+ },
+ "judge": {
+  "claim": true,
+  "same_as": "e3",
+  "answer": "Let N=2^m. Then W_m = [0,0]_2 \u222a [128,128]_2 \u222a [192,192]_2 \u222a [224,224]_2 \u222a [240,240]_2 \u222a [248,248]_2 \u222a [252,256]_2 \u222a [272,272]_2 \u222a [288,288]_2 \u222a [296,296]_2 \u222a [304,304]_2 \u222a [308,308]_2 \u222a [312,320]_2 \u222a [324,324]_2 \u222a [328,328]_2 \u222a [332,332]_2 \u222a [336,N-336]_2 \u222a [N-332,N-332]_2 \u222a [N-328,N-328]_2 \u222a [N-324,N-324]_2 \u222a [N-320,N-312]_2 \u222a [N-308,N-308]_2 \u222a [N-304,N-304]_2 \u222a [N-296,N-296]_2 \u222a [N-288,N-288]_2 \u222a [N-272,N-272]_2 \u222a [N-256,N-252]_2 \u222a [N-248,N-248]_2 \u222a [N-240,N-240]_2 \u222a [N-224,N-224]_2 \u222a [N-192,N-192]_2 \u222a [N-128,N-128]_2 \u222a [N,N]_2. Every constant endpoint b denotes 0\u00b72^m+b, and every endpoint N-b denotes 1\u00b72^m-b.",
+  "reason": "It asserts an explicit complete spectrum that a team could try to prove. Its interval list is identical to e3's proposed spectrum.",
+  "experiment": false,
+  "n": 26
+ },
+ "experiment": null,
+ "options": [
+  {
+   "branch": "c0b0",
+   "counterfactual": "The low-weight spectrum has not stabilized at dimension 14: at least one even weight below 336 occurs in a later dimension but not in dimension 14.",
+   "approach": "Audit the claimed stabilization proof, checking separately its injective-projection bound and its treatment of projection directions with collisions. Identify whether an exceptional support can evade reduction to dimension 14.",
+   "p": 0.0125,
+   "child": null
+  },
+  {
+   "branch": "c0b1",
+   "counterfactual": "The low-weight spectrum has not stabilized at dimension 14: at least one even weight below 336 occurs in a later dimension but not in dimension 14.",
+   "approach": "Search for a support in dimension 15 whose weight is one of 310, 322, 326, 330, or 334, using the existing support-lifting equations. A witness would isolate the dimension comparison that still needs a nonexistence proof in dimension 14.",
+   "p": 0.0097,
+   "child": null
+  },
+  {
+   "branch": "c0b2",
+   "counterfactual": "The low-weight spectrum has not stabilized at dimension 14: at least one even weight below 336 occurs in a later dimension but not in dimension 14.",
+   "approach": "Prove precisely what a fixed finite list of integer-affine endpoints would imply about the lower fringe of the spectrum. Then use an explicit dimension-distinguishing weight to test whether that list format is impossible.",
+   "p": 0.0056,
+   "child": null
+  },
+  {
+   "branch": "c1b0",
+   "counterfactual": "All four weights 322, 326, 330, and 334 are absent in every dimension, rather than merely being difficult to construct.",
+   "approach": "Extend the projection-and-collision classification from weights below 320 to the four candidate weights. Reduce each hypothetical support to already classified smaller supports and examine the necessary lifting equations.",
+   "p": 0.4062,
+   "child": null
+  },
+  {
+   "branch": "c1b1",
+   "counterfactual": "All four weights 322, 326, 330, and 334 are absent in every dimension, rather than merely being difficult to construct.",
+   "approach": "Look for a common obstruction for weights congruent to 2 modulo 4 between 320 and 336. Use the moment-parity equations defining Reed\u2013Muller supports to seek a single argument covering all four weights.",
+   "p": 0.316,
+   "child": null
+  },
+  {
+   "branch": "c1b2",
+   "counterfactual": "All four weights 322, 326, 330, and 334 are absent in every dimension, rather than merely being difficult to construct.",
+   "approach": "Examine the strongest existing restricted nonexistence certificates and determine what representations they fail to cover. Try to prove that every support of one of the four weights must admit a covered representation.",
+   "p": 0.1806,
+   "child": null
+  },
+  {
+   "branch": "c2b0",
+   "counterfactual": "Weight 310 is attainable, so the proposed gap between weights 308 and 312 does not exist.",
+   "approach": "Inspect the saved weight-310 construction attempts and independently verify any candidate by evaluating its truth table and computing its squarefree polynomial degree. A valid witness would immediately settle this membership question.",
+   "p": 0.0278,
+   "child": null
+  },
+  {
+   "branch": "c2b1",
+   "counterfactual": "Weight 310 is attainable, so the proposed gap between weights 308 and 312 does not exist.",
+   "approach": "Search for weight 310 through lifts of classified smaller supports, using exact linear algebra on their moment constraints. Focus on the collision patterns whose projected weights already have explicit constructions.",
+   "p": 0.0278,
+   "child": null
+  },
+  {
+   "branch": "c2b2",
+   "counterfactual": "Weight 310 is attainable, so the proposed gap between weights 308 and 312 does not exist.",
+   "approach": "Obtain the precise canonical forms in the classical classification below 2.5 times the minimum distance and compute their possible weights at minimum distance 128. Determine which form can yield 310 and extract an explicit polynomial from it.",
+   "p": 0.0139,
+   "child": null
+  },
+  {
+   "branch": "own",
+   "counterfactual": null,
+   "approach": null,
+   "p": null,
+   "child": null
+  }
+ ],
+ "cost": 0.0848,
+ "responses": 3,
+ "step_from": 57,
+ "known": [
+  "e1",
+  "e2"
+ ],
+ "created": 1795489976.0989912,
+ "seen": "18bdb5844084f2edb92228c3b375835de309f4f7af9b47adec102bbc8f21fe91",
+ "take_at": 57
+}

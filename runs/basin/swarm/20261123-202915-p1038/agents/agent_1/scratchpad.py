@@ -1,0 +1,1 @@
+print(open('workspace/agent2_certificate.py').read())

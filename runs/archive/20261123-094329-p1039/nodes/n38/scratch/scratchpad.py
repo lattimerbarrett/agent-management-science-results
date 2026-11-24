@@ -1,0 +1,2 @@
+for name in ['experiments/e3/agent1_conditional_qcomplete_proof.txt','experiments/e3/agent2_qcomplete_candidate.txt','experiments/e6/agent4_annulus_route.md','experiments/e3/agent3_convex_sections.txt']:
+ print('\n###',name,'\n',open(name).read())

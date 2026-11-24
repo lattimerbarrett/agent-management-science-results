@@ -1,0 +1,57 @@
+PROJECTED PAIR MULTIPLICITY VS THREE/FOUR MINIMUM FLATS
+
+All results here are UNCONDITIONAL geometric lemmas. They do NOT prove
+that an arbitrary low RM word has a <=3/4-flat representation.
+
+1. General parityprojection bound. Let S in F2^n have p_S(a)<=M for every
+nonzero a, where p counts unordered distinct support pairs. Parityproject
+S along any t-dimensional kernel K to g. For every nonzero quotient b,
+ p_g(b)<=sum_{k in K}p_S(b+k)<=2^t M.
+Proof: select one original supportpoint in each odd fiber. Each g-pair
+at difference b lifts to one distinct original pair at difference b+k.
+There is no assumption on affine span, RM degree, or small weight.
+
+2. Three-flat bound. Suppose g is XOR<=3 affine k-flat indicators in
+F2^n with 2k>n, d=2^k. Then some nonzero a satisfies
+ p_g(a)>= (wt(g)-d)/2.
+For three terms choose a!=0 common to the directions of two flats.
+Their derivatives vanish; the last derivative is either0 or two disjoint
+parallel k-flats. Thus the reduced derivative is0 or a minimum d-word,
+and p_g(a)=wt(g)/2 or(wt(g)-d)/2. With one/two terms there is a common
+period, giving p_g(a)=wt(g)/2. Affine offsets cause no exception.
+
+3. Four-flat bound. Suppose g is XOR exactly4 affine k-flats in F2^n,
+2k>n, and p_g(a)<=M for all nonzero a. Put w=wt(g),d=2^k.
+If w>d+2M, then necessarily
+ 5w<=8d+12M.
+To prove, fix ANY pair C,D of the four flats and choose a!=0 in the
+intersection of the OTHER two direction spaces. If a periods C or D,
+the reduced derivative of g is0 or d and so p_g(a)>M, impossible.
+Otherwise C,D both project injectively along a to k-flats. Let I be their
+projected intersection size, at least the actual intersection |C cap D|.
+The reduced derivative has weight2d-2I, so
+ M>=p_g(a)=(w-2d+2I)/2, yielding |C cap D|<=d+M-w/2.
+This holds for all six pairs. Bonferroni gives
+ w>=4d-2*sum_pairs |C cap D|>=4d-12(d+M-w/2),
+which rearranges to the claimed inequality. Equivalently, the explicit
+four-flat formula has a nonnegative remainder4T-8Q because T>=4Q.
+
+APPLICATION A: any parityprojection of an original pmax<=7 support along
+K2 has p_g<=28. If g has weight280..312, it is neither <=3 nor4 minimum
+7-flats in F2^12. Three-flat bound gives p_g>28. For four flats, w>184 and
+5w<=8*128+12*28=1360 would give w<=272, contradiction.
+
+APPLICATION B: dramatic simplification of CONDITIONAL m14 Case1.
+Let f be a hypothetical target322/326/330/334, P=pmax(f)>=9, and choose a
+attaining P. Its reduced derivative g has wg=w-2P, is aperiodic and
+wg>=256 by the previously proved derivative lemmas. CoarseK(6,13),
+STILLUNPROVED, plus the smallspan obstruction imply g is <=3 minimum
+7-flats. By(1), p_g<=2P. By(2), (wg-128)/2<=2P, whence
+ 3wg<=2w+128<=796, so wg<=264 (wg divisible4).
+Three-flat weight arithmetic excludes260,264 (also all257..271), so wg256.
+But every three7-flat XOR of weight256 in13variables is periodic (proved
+in agent3_m14_conditional_coverage.txt), contradiction.
+This removes ALL canonical312/316 classification and footprint demands
+from the main conditional m14 proof, just as ApplicationA removed the
+canonical308 lift demands. Those certificates remain independently valid.
+The arbitrary-word coarseK input is NOT established by this simplification.

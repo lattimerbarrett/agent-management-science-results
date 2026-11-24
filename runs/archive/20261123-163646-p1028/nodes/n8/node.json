@@ -1,0 +1,107 @@
+{
+ "id": "n8",
+ "parent": "n4",
+ "depth": 2,
+ "option": {
+  "branch": "c2b1",
+  "counterfactual": "The sequence t_n does not eventually agree with a polynomial on each residue class modulo any fixed integer.",
+  "approach": "Seek a structural reduction to a finite or explicitly parameterized family of graph constructions, then derive an exact arithmetic optimization over their block counts. This could yield a useful formula even without eventual polynomial behavior.",
+  "p": 0.1262
+ },
+ "status": "member",
+ "belief": {
+  "answer": "Put \\(N=\\binom n2\\), \\(H=(n^{n-2})!\\), \\(B=2^{N+n}\\), and \\(\\delta(x)=\\lfloor 1/(|x|+1)\\rfloor\\) for integers \\(x\\). For each \\(0\\le b<2^N\\), let \\(A_b\\) be the symmetric zero-diagonal matrix whose upper-triangular entries, in lexicographic order, are the binary digits of \\(b\\), starting with its least significant digit. Define \\(d_{b,i}=\\sum_j(A_b)_{ij}\\) and \\(L_b=\\operatorname{diag}(d_{b,1},\\ldots,d_{b,n})-A_b\\). Writing \\(L^{[S]}\\) for deletion of the rows and columns indexed by \\(S\\), set\n\\[\na_b=\\det L_b^{[\\{n\\}]},\\qquad f_{b,uv}=\\det L_b^{[\\{u,v\\}]},\\qquad q_b=a_b+\\delta(a_b),\\qquad w_b=(1-\\delta(a_b))\\prod_{i=2}^n\\delta(d_{b,i}-d_{b,1}).\n\\]\nThen, throughout the stated domain,\n\\[\n\\boxed{\\displaystyle t_n=\\frac1H\\left\\lfloor\\log_B\\left(1+\\sum_{b=0}^{2^N-1}w_b\\sum_{1\\le u<v\\le n}B^{\\,Hn d_{b,1}f_{b,uv}/q_b}\\right)\\right\\rfloor.}\n\\]",
+  "confidence": 0.98
+ },
+ "judge": {
+  "claim": true,
+  "same_as": null,
+  "answer": "Put \\(N=\\binom n2\\), \\(H=(n^{n-2})!\\), \\(B=2^{N+n}\\), and \\(\\delta(x)=\\lfloor 1/(|x|+1)\\rfloor\\) for integers \\(x\\). For each \\(0\\le b<2^N\\), let \\(A_b\\) be the symmetric zero-diagonal matrix whose upper-triangular entries, in lexicographic order, are the binary digits of \\(b\\), starting with its least significant digit. Define \\(d_{b,i}=\\sum_j(A_b)_{ij}\\) and \\(L_b=\\operatorname{diag}(d_{b,1},\\ldots,d_{b,n})-A_b\\). Writing \\(L^{[S]}\\) for deletion of the rows and columns indexed by \\(S\\), set\n\\[\na_b=\\det L_b^{[\\{n\\}]},\\qquad f_{b,uv}=\\det L_b^{[\\{u,v\\}]},\\qquad q_b=a_b+\\delta(a_b),\\qquad w_b=(1-\\delta(a_b))\\prod_{i=2}^n\\delta(d_{b,i}-d_{b,1}).\n\\]\nThen, throughout the stated domain,\n\\[\n\\boxed{\\displaystyle t_n=\\frac1H\\left\\lfloor\\log_B\\left(1+\\sum_{b=0}^{2^N-1}w_b\\sum_{1\\le u<v\\le n}B^{\\,Hn d_{b,1}f_{b,uv}/q_b}\\right)\\right\\rfloor.}\n\\]",
+  "reason": "It claims an explicit exact formula for t_n, so it is a provable mathematical claim. Its exhaustive graph-enumeration formula is different from e1's residue-class polynomial formula.",
+  "experiment": false,
+  "n": 10,
+  "definite": false,
+  "gate": "The formula enumerates all labeled graphs, filters for connected regular graphs, computes their pairwise commute times through determinants, and encodes taking the maximum using a logarithm. It therefore repackages the defining optimization as an exhaustive calculation rather than determining the requested explicit exact value of t_n.",
+  "procedure": true
+ },
+ "experiment": null,
+ "options": [
+  {
+   "branch": "c0b0",
+   "counterfactual": "For every permitted even n, some extremal graph is cubic, and for every permitted odd n, some extremal graph is 4-regular; higher degrees never improve the optimum.",
+   "approach": "Restrict the block-decomposition calculations to degrees three and four, and compare their exact outputs with the best candidates already found. Look for a small collection of terminal blocks and repeatable interior blocks that accounts for each possible order.",
+   "p": 0.2077,
+   "child": null
+  },
+  {
+   "branch": "c0b1",
+   "counterfactual": "For every permitted even n, some extremal graph is cubic, and for every permitted odd n, some extremal graph is 4-regular; higher degrees never improve the optimum.",
+   "approach": "Seek degree-dependent upper bounds on effective resistance that place every higher-degree graph below an explicit cubic or 4-regular construction. The commute-time identity would then justify eliminating higher degrees rigorously.",
+   "p": 0.1615,
+   "child": null
+  },
+  {
+   "branch": "c0b2",
+   "counterfactual": "For every permitted even n, some extremal graph is cubic, and for every permitted odd n, some extremal graph is 4-regular; higher degrees never improve the optimum.",
+   "approach": "Enumerate small graphs with two designated vertices and prescribed degree deficits, evaluating their resistances exactly. Use these as building blocks in a size-constrained optimization for cubic and 4-regular graphs.",
+   "p": 0.0923,
+   "child": null
+  },
+  {
+   "branch": "c1b0",
+   "counterfactual": "There is a fixed modulus such that, for all sufficiently large n, t_n agrees with a polynomial on each permitted residue class.",
+   "approach": "Compute exact optima within progressively larger block libraries and examine the differences between successive values in each residue class. Use any stable pattern to formulate a candidate expression, while keeping the numerical evidence separate from a proof.",
+   "p": 0.1538,
+   "child": null
+  },
+  {
+   "branch": "c1b1",
+   "counterfactual": "There is a fixed modulus such that, for all sufficiently large n, t_n agrees with a polynomial on each permitted residue class.",
+   "approach": "Search for a finite weighted-state description of all extremal constructions, with vertex count as cost and resistance as reward. Analyze the best repeatable cycles and the finite endpoint corrections to derive eventual residue-class formulas.",
+   "p": 0.1538,
+   "child": null
+  },
+  {
+   "branch": "c1b2",
+   "counterfactual": "There is a fixed modulus such that, for all sufficiently large n, t_n agrees with a polynomial on each permitted residue class.",
+   "approach": "Compare the resistance gained per added vertex by candidate interior blocks. Try to prove that all sufficiently large extremal graphs consist of the most efficient blocks together with finitely many exceptional pieces.",
+   "p": 0.0769,
+   "child": null
+  },
+  {
+   "branch": "c2b0",
+   "counterfactual": "For infinitely many permitted orders, every extremal graph is 2-connected, so its largest commute time cannot be explained by adding resistances across cut vertices.",
+   "approach": "Search directly among 2-connected regular graphs, preserving connectivity during edge-switch moves and evaluating promising candidates exactly. Examine whether their resistance comes from a repeated sequence of small edge cuts.",
+   "p": 0.0615,
+   "child": null
+  },
+  {
+   "branch": "c2b1",
+   "counterfactual": "For infinitely many permitted orders, every extremal graph is 2-connected, so its largest commute time cannot be explained by adding resistances across cut vertices.",
+   "approach": "Replace scalar block resistances with electrical response matrices for pieces joined through two or more boundary vertices. Develop composition rules that retain the interaction between the boundary vertices.",
+   "p": 0.0615,
+   "child": null
+  },
+  {
+   "branch": "c2b2",
+   "counterfactual": "For infinitely many permitted orders, every extremal graph is 2-connected, so its largest commute time cannot be explained by adding resistances across cut vertices.",
+   "approach": "Investigate electrical-potential orderings in high-resistance 2-connected graphs. Use the resulting edge cuts and degree constraints to seek sharp upper bounds and identify constructions attaining them.",
+   "p": 0.0308,
+   "child": null
+  },
+  {
+   "branch": "own",
+   "counterfactual": null,
+   "approach": null,
+   "p": null,
+   "child": null
+  }
+ ],
+ "cost": 0.2213,
+ "responses": 5,
+ "step_from": 26,
+ "known": [],
+ "created": 1795470617.5325289,
+ "seen": "1536ef097c1de321eeb0d1b83eedd50a0799c0aa053aabc9f52920be7104d398",
+ "take_at": 26
+}

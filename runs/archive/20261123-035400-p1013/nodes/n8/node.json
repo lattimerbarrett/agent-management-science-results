@@ -1,0 +1,179 @@
+{
+ "id": "n8",
+ "parent": "n5",
+ "depth": 3,
+ "option": {
+  "branch": "c2b1",
+  "counterfactual": "For every r\u22652, S_r is nonempty and has a strictly positive infimum, but that infimum does not belong to S_r.",
+  "approach": "Study the equality cases in the matching and universal-vertex constructions. Determine whether the structural changes occurring at their coefficient thresholds explain why a limiting coefficient cannot support a counterexample.",
+  "p": 0.1333
+ },
+ "status": "member",
+ "belief": {
+  "answer": "\\(\\boxed{\\mathcal S_r=\\left(\\frac{1}{2r},\\infty\\right)\\quad\\text{for every integer }r\\ge2.}\\)",
+  "confidence": 0.08
+ },
+ "judge": {
+  "claim": true,
+  "same_as": null,
+  "answer": "\\(\\mathcal S_r=(1/(2r),\\infty)\\) for every integer \\(r\\ge2\\).",
+  "reason": "It explicitly specifies every set. It differs from e1's empty sets and from the closed rays with different endpoints in e2 and e3.",
+  "experiment": true,
+  "n": 9,
+  "definite": true,
+  "gate": "It explicitly specifies the entire set for every integer r\u22652 and excludes its finite boundary point 1/(2r), leaving no membership unresolved."
+ },
+ "experiment": "e4",
+ "options": [
+  {
+   "branch": "c0b0",
+   "counterfactual": "For some integer r\u22652, the infimum of S_r is strictly smaller than 1/(2r). Thus requiring an embedding into a complete r-partite graph with an internal matching does not prevent edge and cycle maximizers from separating.",
+   "approach": "Investigate forbidden graphs that embed both into an internal-matching construction and into a universal-vertex construction. Look for two permitted bounded internal configurations whose edge counts and cycle counts favor different choices.",
+   "p": 0.0772,
+   "child": "n10"
+  },
+  {
+   "branch": "c0b1",
+   "counterfactual": "For some integer r\u22652, the infimum of S_r is strictly smaller than 1/(2r). Thus requiring an embedding into a complete r-partite graph with an internal matching does not prevent edge and cycle maximizers from separating.",
+   "approach": "Analyze the bounded-surplus case ex(n,H)=t_r(n)+O(1), rather than assuming it admits simultaneous maximizers. Derive cycle expansions for finite modifications of balanced Tur\u00e1n graphs and test whether missing cross edges and added internal edges have different costs.",
+   "p": 0.0662,
+   "child": null
+  },
+  {
+   "branch": "c0b2",
+   "counterfactual": "For some integer r\u22652, the infimum of S_r is strictly smaller than 1/(2r). Thus requiring an embedding into a complete r-partite graph with an internal matching does not prevent edge and cycle maximizers from separating.",
+   "approach": "Search computationally among small forbidden graphs and finite modifications of complete multipartite graphs. Use any separation found to identify a structural obstruction that survives at infinitely many orders.",
+   "p": 0.0441,
+   "child": null
+  },
+  {
+   "branch": "c1b0",
+   "counterfactual": "For the nine-vertex graph formed from a four-rim wheel by attaching triangles at opposite rim vertices, the claimed uniqueness of the edge-extremal graph is false. Another edge-extremal construction could therefore invalidate the reported proof that 1/2 belongs to S_2.",
+   "approach": "Audit the exact hypotheses of the Simonovits uniqueness-transfer statement used in the reported argument. Separate the existence of a structured extremizer from the stronger assertion that every extremizer has that structure.",
+   "p": 0.0556,
+   "child": null
+  },
+  {
+   "branch": "c1b1",
+   "counterfactual": "For the nine-vertex graph formed from a four-rim wheel by attaching triangles at opposite rim vertices, the claimed uniqueness of the edge-extremal graph is false. Another edge-extremal construction could therefore invalidate the reported proof that 1/2 belongs to S_2.",
+   "approach": "Enumerate finite exceptional configurations around two large independent bulk parts. Search for H-free configurations attaining the claimed extremal edge count without being the universal-vertex construction.",
+   "p": 0.0417,
+   "child": null
+  },
+  {
+   "branch": "c1b2",
+   "counterfactual": "For the nine-vertex graph formed from a four-rim wheel by attaching triangles at opposite rim vertices, the claimed uniqueness of the edge-extremal graph is false. Another edge-extremal construction could therefore invalidate the reported proof that 1/2 belongs to S_2.",
+   "approach": "Check the reported finite-gadget embedding certificates independently, allowing missing hub adjacencies and missing cross edges. A failed certificate could reveal an overlooked family of edge-extremal graphs.",
+   "p": 0.0278,
+   "child": "n15"
+  },
+  {
+   "branch": "c2b0",
+   "counterfactual": "The thresholds do not scale uniformly with 1/r: the quantities r\u00b7inf(S_r) are not constant as r varies. The bipartite Tur\u00e1n case may have a different mechanism from cases with three or more parts.",
+   "approach": "Derive and compare cycle asymptotics for finite modifications of balanced complete bipartite and complete multipartite graphs. Identify which parity effects disappear when a third part becomes available.",
+   "p": 0.2674,
+   "child": null
+  },
+  {
+   "branch": "c2b1",
+   "counterfactual": "The thresholds do not scale uniformly with 1/r: the quantities r\u00b7inf(S_r) are not constant as r varies. The bipartite Tur\u00e1n case may have a different mechanism from cases with three or more parts.",
+   "approach": "Attempt to lift the reported r=2 forbidden graph by joining it to additional independent parts. Track both the extremal edge coefficient and the competing cycle counts instead of assuming that the separation transfers.",
+   "p": 0.2292,
+   "child": null
+  },
+  {
+   "branch": "c2b2",
+   "counterfactual": "The thresholds do not scale uniformly with 1/r: the quantities r\u00b7inf(S_r) are not constant as r varies. The bipartite Tur\u00e1n case may have a different mechanism from cases with three or more parts.",
+   "approach": "Develop separate candidate thresholds for r=2 and r\u22653. Use matching and universal-vertex constructions as necessary-condition tests, then seek constructions tailored to each regime.",
+   "p": 0.191,
+   "child": null
+  },
+  {
+   "branch": "own",
+   "counterfactual": null,
+   "approach": null,
+   "p": null,
+   "child": null
+  },
+  {
+   "branch": "e4/c0b0",
+   "counterfactual": "For at least one integer r\u22652, the infimum of S_r belongs to S_r, so the spectrum has a closed rather than an open finite boundary.",
+   "approach": "Investigate whether the reported structural gap extends from P_3 to larger trees. If coefficients below 1/r reduce to a discrete collection of attainable linear surpluses, that could force a minimum whenever counterexamples exist below 1/r.",
+   "p": 0.036,
+   "child": null
+  },
+  {
+   "branch": "e4/c0b1",
+   "counterfactual": "For at least one integer r\u22652, the infimum of S_r belongs to S_r, so the spectrum has a closed rather than an open finite boundary.",
+   "approach": "Study graphs whose extremal surplus is n/(2r)+O(1), retaining all bounded exceptional configurations. Compare their cycle counts asymptotically to determine whether a counterexample can occur exactly at this coefficient.",
+   "p": 0.024,
+   "child": null
+  },
+  {
+   "branch": "e4/c0b2",
+   "counterfactual": "For at least one integer r\u22652, the infimum of S_r belongs to S_r, so the spectrum has a closed rather than an open finite boundary.",
+   "approach": "Use the reported nine-vertex example as a possible boundary witness for r=2. Seek a general common-extremizer theorem for every forbidden graph with a strictly smaller linear surplus.",
+   "p": 0.02,
+   "child": null
+  },
+  {
+   "branch": "e4/c1b0",
+   "counterfactual": "The reported structural gap theorem is false: some fixed H satisfies the stated upper bound with a<2/(3r), but its extremal surplus cannot be bounded by n/(2r)+O(1).",
+   "approach": "Audit the removal and restoration of low-degree vertices, tracking all constants and the dependence on the remaining order. Look for an unjustified passage from an asymptotic stability estimate to a bounded additive error.",
+   "p": 0.128,
+   "child": null
+  },
+  {
+   "branch": "e4/c1b1",
+   "counterfactual": "The reported structural gap theorem is false: some fixed H satisfies the stated upper bound with a<2/(3r), but its extremal surplus cannot be bounded by n/(2r)+O(1).",
+   "approach": "Audit the extension of internal stars, P_3 packings, and two matchings to copies of H. Check whether the required cross-adjacencies follow uniformly from the stated missing-degree bounds.",
+   "p": 0.112,
+   "child": null
+  },
+  {
+   "branch": "e4/c1b2",
+   "counterfactual": "The reported structural gap theorem is false: some fixed H satisfies the stated upper bound with a<2/(3r), but its extremal surplus cannot be bounded by n/(2r)+O(1).",
+   "approach": "Search for an explicit forbidden graph and an augmented multipartite construction with surplus strictly between the two proposed thresholds. Concentrate on exceptional vertices whose missing cross-edges might invalidate the reduction to one large internal matching.",
+   "p": 0.08,
+   "child": null
+  },
+  {
+   "branch": "e4/c2b0",
+   "counterfactual": "The reported nine-vertex graph does not establish 1/2\u2208S_2, because its edge-extremal classification or its cycle comparison is incorrect.",
+   "approach": "Check the precise Simonovits theorem used for uniqueness transfer. Determine whether uniqueness within the structured class really implies uniqueness among all extremal graphs under the hypotheses available for this H.",
+   "p": 0.24,
+   "child": null
+  },
+  {
+   "branch": "e4/c2b1",
+   "counterfactual": "The reported nine-vertex graph does not establish 1/2\u2208S_2, because its edge-extremal classification or its cycle comparison is incorrect.",
+   "approach": "Enumerate bounded exceptional configurations around the matching and universal-vertex constructions. Test their H-freeness and edge counts to find a missing edge-extremal family that could also maximize cycles.",
+   "p": 0.24,
+   "child": null
+  },
+  {
+   "branch": "e4/c2b2",
+   "counterfactual": "The reported nine-vertex graph does not establish 1/2\u2208S_2, because its edge-extremal classification or its cycle comparison is incorrect.",
+   "approach": "Independently derive the exact cycle formulas for both competing constructions and their normalized limits. Verify the treatment of cycles through the universal vertex, omitted vertices, and degenerate contracted cycles.",
+   "p": 0.12,
+   "child": null
+  },
+  {
+   "branch": "e4/own",
+   "counterfactual": null,
+   "approach": null,
+   "p": null,
+   "child": null
+  }
+ ],
+ "cost": 0.2841,
+ "responses": 4,
+ "step_from": 28,
+ "known": [
+  "e1",
+  "e4"
+ ],
+ "created": 1795426009.045126,
+ "seen": "13bed45abe0c32c4b318fb82ade82d64d9a585b075032665f0f802928afe258d",
+ "take_at": 28
+}

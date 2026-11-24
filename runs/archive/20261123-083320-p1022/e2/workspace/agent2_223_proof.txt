@@ -1,0 +1,43 @@
+P4 RANK7 WIDTH-THREE MULTIPLICITIES (2,2,3)
+
+Normalize splitting degrees to (2,1,0). Write s=x+y,t=xy for the
+Grassmannian tautological-root generators. Let q-HN bundles have
+additive characters ch1(F1)=a*s,ch2(F1)=b*s^2+c*t,
+ch1(F2)=d*s,ch2(F2)=e*s^2+(another coefficient)*t.
+The additive Chern-character incidence constraints are linear in all
+ch_j(F_i). Solve them exactly, then impose Newton c_j(F_i)=0 above each
+block's rank through degree6 (the Grassmannian dimension). Elimination
+leaves these five variables. The self-regenerating exact certificate
+workspace/agent2_223_certificate.py computes the QQ Groebner basis and
+verifies the ideal contains
+ d+2e, d(d+1), ad, a^2+2a+6c, a^2-2b, a^2(a+2).
+It also certifies the full complex root list by coordinate-power ideal
+membership and exhaustive grid testing. There are exactly three roots:
+ (a,b,c,d,e)=(0,0,0,0,0),(0,0,0,-1,1/2),(-2,2,0,0,0).
+
+If a=0, the first HN subbundle restricted to any p-fiber is a subbundle
+of a trivial bundle with Pluecker degree0, hence constant; it descends to
+E' on P4. Its restriction to every line is O(2)^2, so E'=O(2)^2. The
+quotient is a two-degree uniform bundle of rank5, already reconstructed
+without low-rank classification. The extension splits by Euler
+cohomology: the lower bundle has only line and at most one Q/Q* block,
+and the unique Euler H1 exception is incompatible with the separated
+top degree2. Thus E is homogeneous.
+
+If a=-2,b=2,c=0, then c1(F1)=-2s and
+ c2(F1)=(a^2/2-b)s^2-c*t=0.
+The first HN block A restricts on p-fiber P3 to a subbundle of O^7 with
+A*=O(2)+O (gg,c1=2,c2=0). Hence B=p_*A is a line bundle and evaluation
+p*B->A is a subbundle. Comparing xy coefficients in c2(A), as in the
+standard peeling lemma, gives B=O(2). It injects in E entirely within
+the top O(2)^2 part along every line, so E/B is uniform rank6 with
+multiplicities (1,2,3), degrees(2,1,0). The first Grassmann map for E/B
+has derivative through Hom(rank1,rank2), of rank2<dim p-fiber3. It must
+be constant, so its top line descends and splits from E/B, leaving a
+two-degree rank5 bundle. All these bundles and extensions are classified
+by the preceding two-degree recognition and elementary Ext vanishing.
+Finally the extension by B=O(2) splits for the same Euler-cohomology
+reason. Therefore E is homogeneous.
+
+The reversed multiplicities (3,2,2) follow by dualizing and twisting.
+No published uniform-bundle classification is invoked.

@@ -1,0 +1,15 @@
+import sympy as s
+r,b,t=s.symbols('r b t', nonnegative=True)
+rho=(r-1)**2+b-2
+print('rho =',s.expand(rho))
+print('Boundary bounds: r <= 1+sqrt(2), b <= 2')
+print('Gradient vanishes only at b=0 with r=0 or r=1.')
+print('Values there:',rho.subs({r:0,b:0}),rho.subs({r:1,b:0}))
+radial=s.expand((t*r-1)**2+t*b-2)
+print('rho(sqrt(t)*(z,w)) =',radial)
+print('second derivative in t =',s.diff(radial,t,2))
+print('Since the radial expression is convex, rho(0)=-1 and rho(z,w)<0 imply rho(sqrt(t)*(z,w))<0 for 0<=t<=1.')
+print('At q=(z=0,w=(1,0,...)), rho=',rho.subs({r:0,b:1}))
+print('Complex tangent condition at q is v_w1=0.')
+print('Levi form on tangent: -2*|v_z|^2 + sum_{j>=2}|v_wj|^2.')
+print('Ball-fiber squared radius a(z)=2-(|z|^2-1)^2; nonempty fibers precisely |z|^2<=1+sqrt(2).')

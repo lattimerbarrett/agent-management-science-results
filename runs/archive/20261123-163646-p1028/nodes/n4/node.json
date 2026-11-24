@@ -1,0 +1,107 @@
+{
+ "id": "n4",
+ "parent": "n0",
+ "depth": 1,
+ "option": {
+  "branch": "c1b1",
+  "counterfactual": "Some permitted values of n have an extremal regular graph whose degree exceeds three when n is even or four when n is odd.",
+  "approach": "Search computationally for high-resistance regular graphs at the smallest permitted orders across several degrees. Evaluate candidate commute times exactly to identify counterexamples to a minimum-degree conjecture.",
+  "p": 0.0441
+ },
+ "status": "member",
+ "belief": {
+  "answer": "Put N=binom(n,2), H=(n^(n\u22122))!, B=2^(N+n), and \u03b4(x)=floor(1/(|x|+1)). For 0\u2264b<2^N, let A_b be the symmetric zero-diagonal n\u00d7n matrix whose upper-triangular entries, in lexicographic order, are the binary digits of b starting with the least significant digit. Define d_{b,i}=\u2211_j(A_b)_{ij} and L_b=diag(d_{b,1},\u2026,d_{b,n})\u2212A_b. Write L_b^[S] for the matrix obtained by deleting rows and columns in S, and set a_b=det L_b^[{n}], f_{b,uv}=det L_b^[{u,v}], q_b=a_b+\u03b4(a_b), and w_b=(1\u2212\u03b4(a_b))\u220f_{i=2}^n \u03b4(d_{b,i}\u2212d_{b,1}). An explicit exact formula, valid throughout the requested domain, is\n\\[\\boxed{\\displaystyle t_n=\\frac1H\\left\\lfloor\\log_B\\!\\left(1+\\sum_{b=0}^{2^N-1}w_b\\sum_{1\\le u<v\\le n}B^{\\,Hn d_{b,1}f_{b,uv}/q_b}\\right)\\right\\rfloor.}\\]",
+  "confidence": 0.97
+ },
+ "judge": {
+  "claim": true,
+  "same_as": null,
+  "answer": "Put N=binom(n,2), H=(n^(n\u22122))!, B=2^(N+n), and \u03b4(x)=floor(1/(|x|+1)). For 0\u2264b<2^N, let A_b be the symmetric zero-diagonal n\u00d7n matrix whose upper-triangular entries, in lexicographic order, are the binary digits of b starting with the least significant digit. Define d_{b,i}=\u2211_j(A_b)_{ij} and L_b=diag(d_{b,1},\u2026,d_{b,n})\u2212A_b. Write L_b^[S] for the matrix obtained by deleting rows and columns in S, and set a_b=det L_b^[{n}], f_{b,uv}=det L_b^[{u,v}], q_b=a_b+\u03b4(a_b), and w_b=(1\u2212\u03b4(a_b))\u220f_{i=2}^n \u03b4(d_{b,i}\u2212d_{b,1}). An explicit exact formula, valid throughout the requested domain, is\n\\[\\boxed{\\displaystyle t_n=\\frac1H\\left\\lfloor\\log_B\\!\\left(1+\\sum_{b=0}^{2^N-1}w_b\\sum_{1\\le u<v\\le n}B^{\\,Hn d_{b,1}f_{b,uv}/q_b}\\right)\\right\\rfloor.}\\]",
+  "reason": "It asserts an explicit exact formula for t_n throughout the requested domain, which is a claim a team could attempt to prove. No previous answers were listed.",
+  "experiment": false,
+  "n": 4,
+  "definite": false,
+  "gate": "The formula exhaustively enumerates all labeled graphs, filters for connected regular graphs, computes their pairwise commute times via determinants, and encodes the maximum using a logarithm. It therefore turns the defining optimization into a finite calculation rather than giving the requested explicit exact value as a function of n.",
+  "procedure": true
+ },
+ "experiment": null,
+ "options": [
+  {
+   "branch": "c0b0",
+   "counterfactual": "For every permitted even n, some cubic graph attains t_n, and for every permitted odd n, some 4-regular graph attains t_n; allowing higher degrees never increases the maximum.",
+   "approach": "Develop upper bounds for nd times the effective-resistance diameter separately for each degree d. Compare these bounds with explicit cubic and 4-regular constructions to try to eliminate every higher degree.",
+   "p": 0.0548,
+   "child": null
+  },
+  {
+   "branch": "c0b1",
+   "counterfactual": "For every permitted even n, some cubic graph attains t_n, and for every permitted odd n, some 4-regular graph attains t_n; allowing higher degrees never increases the maximum.",
+   "approach": "Complete the computational search across degrees at the smallest permitted orders, evaluating promising candidates with exact rational arithmetic. Use the results to formulate precise minimum-degree extremal formulas without treating the search as a proof.",
+   "p": 0.0365,
+   "child": null
+  },
+  {
+   "branch": "c0b2",
+   "counterfactual": "For every permitted even n, some cubic graph attains t_n, and for every permitted odd n, some 4-regular graph attains t_n; allowing higher degrees never increases the maximum.",
+   "approach": "Study degree-reducing replacements of dense subgraphs that preserve vertex count and regularity. Look for a transformation showing that a higher-degree candidate cannot outperform an appropriate cubic or 4-regular graph.",
+   "p": 0.0183,
+   "child": "n12"
+  },
+  {
+   "branch": "c1b0",
+   "counterfactual": "Extremal regular graphs need not have their resistance-maximizing vertices connected through a chain of small dense blocks separated by bridges or articulation vertices.",
+   "approach": "Search specifically among graphs with no bridges or articulation vertices, then compare their exact commute times with the block-chain constructions. This would test whether small edge cuts, rather than single-vertex or single-edge bottlenecks, provide better extremizers.",
+   "p": 0.2435,
+   "child": null
+  },
+  {
+   "branch": "c1b1",
+   "counterfactual": "Extremal regular graphs need not have their resistance-maximizing vertices connected through a chain of small dense blocks separated by bridges or articulation vertices.",
+   "approach": "Inspect the electrical potentials and minimum cuts in the strongest computational candidates. Use their structure to identify bottleneck patterns that a block-chain model overlooks.",
+   "p": 0.2131,
+   "child": null
+  },
+  {
+   "branch": "c1b2",
+   "counterfactual": "Extremal regular graphs need not have their resistance-maximizing vertices connected through a chain of small dense blocks separated by bridges or articulation vertices.",
+   "approach": "Optimize directly over ordered electrical potentials and regular adjacency matrices at small orders. This avoids assuming any particular decomposition and could expose a different extremal structure.",
+   "p": 0.0913,
+   "child": null
+  },
+  {
+   "branch": "c2b0",
+   "counterfactual": "The sequence t_n does not eventually agree with a polynomial on each residue class modulo any fixed integer.",
+   "approach": "Investigate whether the optimal degree or the sizes of the repeated bottleneck blocks change indefinitely with n. Such changes could explain why a fixed residue-class formula fails.",
+   "p": 0.1442,
+   "child": null
+  },
+  {
+   "branch": "c2b1",
+   "counterfactual": "The sequence t_n does not eventually agree with a polynomial on each residue class modulo any fixed integer.",
+   "approach": "Seek a structural reduction to a finite or explicitly parameterized family of graph constructions, then derive an exact arithmetic optimization over their block counts. This could yield a useful formula even without eventual polynomial behavior.",
+   "p": 0.1262,
+   "child": "n8"
+  },
+  {
+   "branch": "c2b2",
+   "counterfactual": "The sequence t_n does not eventually agree with a polynomial on each residue class modulo any fixed integer.",
+   "approach": "Audit the determinant-based finite-sum formula as a uniform alternative, checking connectivity filters, denominator clearing, and extraction of the largest commute time. Present its computational limitations explicitly rather than suggesting it is a short structural classification.",
+   "p": 0.0721,
+   "child": null
+  },
+  {
+   "branch": "own",
+   "counterfactual": null,
+   "approach": null,
+   "p": null,
+   "child": null
+  }
+ ],
+ "cost": 0.0943,
+ "responses": 5,
+ "step_from": 15,
+ "known": [],
+ "created": 1795470150.507519,
+ "seen": "575245b24f302d49ff7484ab67daa6efefde8fd35c0fceeab4e866d8cecc4a07",
+ "take_at": 15
+}

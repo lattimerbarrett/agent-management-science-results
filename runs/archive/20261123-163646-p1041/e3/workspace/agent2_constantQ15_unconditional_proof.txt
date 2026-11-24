@@ -1,0 +1,159 @@
+UNCONDITIONAL CONSTANT-Q DIMENSION15 EXCLUSION VIA DERIVATIVE BOOTSTRAP
+
+Theorem. There is no RM(8,15) support S of weight w in{322,326,330,334}
+whose divided square Q(S) equals J15. This proof uses classical strict KT
+normal forms and the classical KTA NUMERICAL low-weight gaps, but NO
+unverified KTA structural assertion K.
+
+All group algebras below are binary, I is the augmentation ideal, J_V is
+the sum of every point of V. Our established RM/group-algebra convention
+identifies RM(n-c,n) supports with I^c. For an even set A, Q(A) has ordinary
+pair-count coefficients at nonzero directions and constant coefficient
+wt(A)/2 mod2. Translation does not change Q(A). The input Q(S)=J15 means
+all nonzero directional unordered pair multiplicities are odd.
+
+LEMMA A (minimum first derivative impossible).
+Suppose a reduced first derivative of f is the minimum word 1_D, D an
+affine7-flat in V=F2^14. Write f=y1_D+t. Its two y-sections in the group
+algebra are t and t+D. The outside-V part of Q(f)=J15 gives
+                      t(t+D)=J14.
+Since degree(t)<=8<14, wt(t) is even, so t^2=0, whence tD=J14. Convolution
+by the7-flat indicator makes each of the128 cosets of its direction space
+have odd t-parity. In particular the127 cosets other than D each contain
+a t-point, so wt(t outside D)>=127. But fiber counting gives
+      wt(f)=128+2 wt(t outside D)>=382>334.
+This excludes every minimum first derivative, without a relative-gap input.
+
+LEMMA B (all first derivatives aperiodic).
+A periodic first derivative gives zero mixed second derivative, hence
+f=a*u+b*v+t on13 base variables, u,v in RM(7,13), and
+ wt(f)=2|supp(u) union supp(v)|+4 wt(t outside that union).
+The union is odd, so u,v have odd inner product and are independent.
+The quadratic q(c)=wt(c)/2 mod2 on C=<u,v> has nondegenerate polar form.
+It has one or three anisotropic nonzero elements. Three have total
+weight>=3*126>334. In the one-anisotropic case, a q0 minimum64 word
+would give a minimum128 first derivative of f, excluded by A.
+Otherwise the two q0 words have weights>=96. Classical KTA NUMERICAL
+gaps for codimension6 imply their only possible weight triples of total
+at most334 are (96,96,126),(96,112,126).
+The strict KT moment6-forms of these words are respectively:
+ alpha=vol(U6)+vol(V6), U6 direct-sum V6 (essential dimension12);
+ beta essential dimension8 (the96 word);
+ gamma essential dimension<=9 (the96 or112 word), alpha=beta+gamma.
+Here moment means the leading degree6 component in the augmentation
+ideal filtration, NOT the top ANF component.
+
+The impossibility of these three forms is AMBIENT-INDEPENDENT. Let
+E=ess(alpha), dimE12, M=ess(beta), dimM8, N=ess(gamma), dimN<=9.
+Their sum M+N contains E. If M+N is not contained in E, choose a covector
+eta annihilating E but with contraction eta(beta)=eta(gamma) nonzero.
+This is a5-form, whose essential space has dimension>=5, and lies in
+M intersect N. Thus dim(M+N)<=8+9-5=12, contradicting that it contains
+E12 and an external vector. Therefore beta,gamma both lie in E.
+In E=U6+V6 use the following elementary12D exterior lemma:
+if alpha=volU+volV and beta has essential dimension8, then alpha+beta
+has essential dimension>=10. To prove it, suppose the contraction kernel
+K of alpha+beta has dimension>=3. A covector with both nonzero U and V
+components contracts alpha to two disjoint5-volumes, essential dimension10,
+whereas contracting beta has essential dimension<=8. Thus K lies in one
+factor, say U*. Two independent K contractions force U subset M. Then
+beta-volU is annihilated by K and supported on M, so lies in
+Lambda6(M intersect Kperp), with dim(M intersect Kperp)<=8-dimK<=5.
+Thus beta=volU, contradicting ess(beta)=8. This proves B.
+
+LEMMA C (all reduced first derivative weights >=256).
+Strict KT for codimension7 in ambient dimension14 says every word below
+256 is periodic EXCEPT possibly the two-minimum-word form with parameter
+s7, weight254. (Quadratic forms are on9 core variables of rank<=8 and
+have a period; two-minimum forms s<=6 have common period dimension7-s.)
+By B all periodic cases are impossible. Since Q(S)=J15 each p_S(a) is
+odd, so wt(D_a f)=w-2p_S(a) is divisible4; it cannot equal254. This proves C.
+
+LEMMA D (small-span first derivative impossible).
+If a first derivative g has weight>=256 and support affine span<=11,
+its preimage is an affine space U of dimension<=12 and f has at most
+w-wt(g)<=78 supportpoints outside U. Q(S)=J15 ensures some supportpoint
+outside U. Choose a hyperplane H containing U but excluding such a point.
+The nonzero outside-H section belongs RM(8,14), minimum64, next96, hence
+is a minimum6-flat F of weight64. At most14 remaining supportpoints lie
+outside U inside H. Such a nonzero puncture has weight>=32: choose within
+H a hyperplane containing U and excluding an outside supportpoint; its
+outside restriction belongs RM(8,13), minimum32. Thus the inside-H section
+B is entirely supported in U. On directions of H,
+                 Q(S)|H=Q(B)+Q(F)=Q(B),
+since a6-flat has zero divided square. But Q(B) is supported in dirU,
+a proper subspace of H, while Q(S)|H=J14. Contradiction.
+
+LEMMA E (weight256 + minimum first derivative).
+Let g be a codimension7 word in ambient n<=14, of weight256, with a
+minimum128 reduced first derivative. Then g is periodic OR supportspan<=11.
+Write g=y1_D+t on n-1 variables, D7, wt(t outside D)=64. Add1_D times an
+affine ell to t and absorb the affine shear of y. Invertibility of Walsh
+transform on D lets us arrange wt(t restricted D)<64, so wt(t)<128.
+Degree(t)<=n-7 on n-1 variables, thus t has codimension6 and minimum64.
+Strict KT applies. If t is minimum or two-minimum type, lifting its
+6-flats freely along y shows g is an XOR of <=3 minimum7-flats.
+Every such sum of weight256 in ambient<=14 is periodic: if a pair meets
+in64 points, collapse it to one7-flat; the remaining two7-flats must be
+disjoint, and in ambient<=14 disjointness forces their directions to
+intersect nontrivially. Otherwise all pair sizes<=32. If tripleintersection
+has size>=2 its direction is a period. Triple size1 would require pair
+sizes32,32,2, but their incident5-dimensional pair directions force common
+dimension>=3, impossible for a singleton triple. Triple size0 requires
+pair sizes(32,32,0) or(32,16,16); incident pair dimensions force common
+period dimension>=3 or>=2. These exhaust all cases.
+The remaining KT type for t is quadratic of weight96,112,120, with support
+spanning an8-flat L. Its inside-D weight is32,48,56 respectively, so
+|D intersect L|>=32 and dim(D intersect L)>=5. Therefore
+ dim(affspan(D union L))<=7+8-5=10,
+and support(g) has affine span<=11. This proves E using strict KT only.
+
+LEMMA F (general bootstrap in ambient m=14 OR15).
+Let f in RM(m-7,m) have a target weight. A uniformly random (m-10)-space
+kernel has cubic10-dimensional parityprojection of expected weight at most
+ w-2*C(w,2)*(2^(m-10)-1)/(2^m-1)
+ +4*C(w,3)*(2^(m-10)-1)*(2^(m-10)-2)/((2^m-1)*(2^m-2)) <256.
+Use the exact third-order fiber Bonferroni inequality and the probabilities
+that one or two independent differences lie in the kernel. A zero such
+projection already gives a zero derivative; a nonzero one is strict-KT
+cubic10 and periodic, giving a zero derivative one order higher.
+
+Suppose all kth derivatives are nonzero but some (k+1)st is zero,
+2<=k<=m-10. Expand along its (k+1)-dimensional kernel: the k+1 top kth
+coefficients lie in a codimension6 RM code, minimum64,next96. They are
+linearly independent: all nonzero k-vectors in a (k+1)-space are
+decomposable, and a dependence gives a zero kth derivative. Their support
+union T has size<=floor(w/2)<=167, because each corresponding nonempty
+fiber has even size>=2. The coefficient code's nonzero weight average is
+ 2^k |T|/(2^(k+1)-1)<96   (k=2,3,4,5).
+Therefore it contains a minimum64 word; a kernel basis change gives a
+minimum reduced kth derivative1_D of weight128 (6-flat times a free line).
+Now consider the 2^k-1 codimension-one subkernels of this k-kernel U.
+Their parityprojection weights are 128+2e_ell: an odd U-fiber contributes
+one point, while an even U-fiber contributes two iff ell evaluates1 on
+its pointwise XOR vector. Therefore
+ sum_ell e_ell=2^(k-1)L,   2L<=w-128.
+For k>=3 some (k-1)st projection consequently has weight at most
+ 128+2^(k-1)*(w-128)/(2^k-1)<256.
+Its ambient dimension m-k+1<=13. All strict-KT codimension7 words in
+ambient<=13 are periodic; a zero projection also gives a zero kth
+derivative. In either case this contradicts the assumed absence of zero
+kth derivatives. Starting at the cubic projection above and descending
+k=m-10,...,3 proves that f ALWAYS has a zero third derivative.
+
+FINAL CONTRADICTION.
+For our constant-Q m15 word, B excludes zero second derivatives. Apply the
+k=2 coefficient-code part of F to a zero third derivative. It yields a
+minimum128 reduced second derivative. Its three codimension-one kernel
+projections are first derivatives of f, have that minimum first derivative,
+and have average weight at most
+                   128+(2/3)*(w-128)<=265+1/3.
+By C all weigh>=256. Classical KTA NUMERICAL gap (256,272) forces at least
+one weight256. By E it is periodic or has supportspan<=11, contradicting
+B or D. Thus the constant-Q m15 targets do not exist. NO K is used.
+
+The same F proves the m14 closure using the previously proved m14 versions
+of B,C,D and the SAME E. Finite arithmetic/exterior normalization checks
+are in agent2_verify_bootstrap15.py. The proofs of strict KT and the
+classical KTA numerical low-weight lists are standard external inputs,
+not claimed to be established by the finite checker.

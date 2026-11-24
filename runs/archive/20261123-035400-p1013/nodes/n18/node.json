@@ -1,0 +1,107 @@
+{
+ "id": "n18",
+ "parent": "n15",
+ "depth": 5,
+ "option": {
+  "branch": "c1b1",
+  "counterfactual": "A finite exceptional configuration can invalidate the claimed uniqueness of an edge-extremal graph, even though exhaustive checks with three exceptional vertices in each part find no such configuration.",
+  "approach": "Encode the exceptional configuration as a satisfiability problem: require the target edge count, forbid every embedding of H, and exclude the proposed extremal construction. Allow both missing cross edges and missing adjacencies to exceptional high-degree vertices.",
+  "p": 0.2019
+ },
+ "status": "member",
+ "belief": {
+  "answer": "\\(\\boxed{\\mathcal S_r=\\left(\\frac{1}{2r},\\infty\\right)\\quad\\text{for every integer }r\\ge2.}\\)",
+  "confidence": 0.08
+ },
+ "judge": {
+  "claim": true,
+  "same_as": "e4",
+  "answer": "\\mathcal S_r=\\left(\\frac{1}{2r},\\infty\\right)\\quad\\text{for every integer }r\\ge2.",
+  "reason": "It explicitly specifies every set \\(\\mathcal S_r\\), making a claim a team could try to prove. The formula is identical to e4.",
+  "experiment": false,
+  "n": 18
+ },
+ "experiment": null,
+ "options": [
+  {
+   "branch": "c0b0",
+   "counterfactual": "The finite-gadget search is unsound: some of its bit masks certify embeddings of the nine-vertex forbidden graph that do not actually exist.",
+   "approach": "Recover a complete vertex map for a suspicious certificate and check every forbidden-graph edge directly. A missing required edge would identify the encoding error before any larger search.",
+   "p": 0.3365,
+   "child": null
+  },
+  {
+   "branch": "c0b1",
+   "counterfactual": "The finite-gadget search is unsound: some of its bit masks certify embeddings of the nine-vertex forbidden graph that do not actually exist.",
+   "approach": "Construct explicit finite host graphs for several certified gadgets and compare the compressed search with an independent subgraph-isomorphism algorithm. Disagreement would isolate which compression assumptions fail.",
+   "p": 0.2033,
+   "child": null
+  },
+  {
+   "branch": "c0b2",
+   "counterfactual": "The finite-gadget search is unsound: some of its bit masks certify embeddings of the nine-vertex forbidden graph that do not actually exist.",
+   "approach": "Replace the compressed embedding test with an exact satisfiability encoding using an injective image variable for every forbidden-graph vertex. Require every forbidden edge explicitly and repeat the smallest exceptional-configuration searches.",
+   "p": 0.1332,
+   "child": null
+  },
+  {
+   "branch": "c1b0",
+   "counterfactual": "The proposed edge-extremal graph for the nine-vertex forbidden graph really is unique for all sufficiently large odd orders; its claimed nonuniqueness is false.",
+   "approach": "Prove the finite-gadget inequality symbolically, separating internal stars, triangles, and single edges. This would establish whether equality genuinely forces the proposed graph without relying on bounded exhaustive searches.",
+   "p": 0.0593,
+   "child": null
+  },
+  {
+   "branch": "c1b1",
+   "counterfactual": "The proposed edge-extremal graph for the nine-vertex forbidden graph really is unique for all sufficiently large odd orders; its claimed nonuniqueness is false.",
+   "approach": "Audit the exact hypotheses and conclusion of the Simonovits structural theorem, particularly the claimed transfer from uniqueness within its structured class to global uniqueness.",
+   "p": 0.0561,
+   "child": null
+  },
+  {
+   "branch": "c1b2",
+   "counterfactual": "The proposed edge-extremal graph for the nine-vertex forbidden graph really is unique for all sufficiently large odd orders; its claimed nonuniqueness is false.",
+   "approach": "Reconstruct the cycle comparison independently from exact path-contraction formulas. If uniqueness and the strict cycle inequality both survive, reconsider which supplied threshold conclusions can consistently be retained.",
+   "p": 0.0385,
+   "child": null
+  },
+  {
+   "branch": "c2b0",
+   "counterfactual": "The eight-vertex counterexample's asserted extremal function is incorrect because an overlooked family of graphs has more edges than the proposed construction.",
+   "approach": "Search for exceptional configurations above the proposed extremal edge count, allowing missing cross edges and unrestricted adjacencies to exceptional vertices. A single scalable construction would refute the asserted upper bound.",
+   "p": 0.0729,
+   "child": "n19"
+  },
+  {
+   "branch": "c2b1",
+   "counterfactual": "The eight-vertex counterexample's asserted extremal function is incorrect because an overlooked family of graphs has more edges than the proposed construction.",
+   "approach": "Check each local embedding certificate used in the structural proof, including the claim that edges in both parts necessarily extend to the forbidden graph. Identify exactly which common-neighborhood conditions each extension requires.",
+   "p": 0.0619,
+   "child": null
+  },
+  {
+   "branch": "c2b2",
+   "counterfactual": "The eight-vertex counterexample's asserted extremal function is incorrect because an overlooked family of graphs has more edges than the proposed construction.",
+   "approach": "Audit the progressive-pruning argument using exact differences of the proposed extremal function. Verify that its surplus increase and stopping argument remain valid through every residue class and every possible stopping order.",
+   "p": 0.0383,
+   "child": null
+  },
+  {
+   "branch": "own",
+   "counterfactual": null,
+   "approach": null,
+   "p": null,
+   "child": null
+  }
+ ],
+ "cost": 0.0991,
+ "responses": 5,
+ "step_from": 49,
+ "known": [
+  "e1",
+  "e2"
+ ],
+ "created": 1795428126.7285252,
+ "seen": "71c49662db74cb3b4dfdf269152de0084cd1f63c399fc3ae54e59ac37c6c8abc",
+ "take_at": 49
+}

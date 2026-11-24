@@ -1,0 +1,41 @@
+Let \(g\geq2\) be an integer, and set
+\[
+r=\left\lfloor\frac{g+2}{3}\right\rfloor,\qquad k=g-r.
+\]
+Let \(C_g\) be the smooth projective completion over \(\mathbb C\) of the affine curve
+\[
+z^2=x^{2g+1}-1,
+\]
+and let \(p\) be its unique point over infinity. Choose the local parameter \(t\) at \(p\) satisfying
+\[
+x=t^{-2},\qquad z=t^{-(2g+1)}(1-t^{4g+2})^{1/2},
+\]
+where the square root has value \(1\) at \(t=0\).
+
+For a nonzero vector \(b=(b_0,\ldots,b_{r-1})\in\mathbb C^r\), define
+\[
+\phi_b(t)=\sum_{j=0}^{r-1}b_jt^{-(2g-1-2j)}.
+\]
+Choose coordinate discs \(W_0\Subset W\) centered at \(p\), with \(t\) defined on a neighborhood of \(\overline W\), and put \(U=C_g\setminus\overline{W_0}\). Take product neighborhoods of the zero sections over \(U\) and \(W\), with fiber coordinates \(y_U\) and \(y_W\). After shrinking the fiber directions, glue them over \(U\cap W\), preserving the base point, by
+\[
+y_W=t^{-1}y_U\bigl(1+k\phi_b(t)y_U^k\bigr)^{-1/k}.
+\]
+The fractional power denotes the holomorphic branch whose value is \(1\) at \(y_U=0\).
+
+Let \(X_b\) be the resulting smooth analytic surface germ along its zero section \(E\simeq C_g\). Its normal bundle is \(\mathcal O_{C_g}(-p)\), and contracting \(E\) gives a normal surface singularity \((V_b,0)\) with minimal good resolution \(f_b:(X_b,E)\to(V_b,0)\). For cohomology, take \(X_b\) to be the inverse image of a sufficiently small Stein representative of this singularity.
+
+Write \(\mathcal I_E\) for the ideal sheaf of \(E\), and define the logarithmic tangent sheaf by
+\[
+S_b=\{D\in\Theta_{X_b}:D(\mathcal I_E)\subseteq\mathcal I_E\},
+\]
+where \(\Theta_{X_b}\) is the sheaf of holomorphic vector fields. Put \(L_b=\bigwedge^2S_b\) and \(h^1(X_b,\mathcal F)=\dim_{\mathbb C}H^1(X_b,\mathcal F)\). Determine the exact formula, as a function of \(g\) and the entire coefficient vector \(b\), for
+\[
+\Delta_b=h^1(X_b,\mathcal O_{X_b})-h^1(X_b,S_b)+h^1(X_b,L_b),
+\]
+for every allowed nonzero \(b\), including vectors with vanishing components.
+
+The answer was proved recently, so it is not an open problem: your task is to find it and prove it, completely, and to write Python that really computes or checks every step that can be checked. Printing what you believe is not evidence. Arriving at an answer that settles less than the question asks (a partial or conditional answer, "not known") is not acceptable, and neither is conceding: when an approach fails, try another.
+
+Proving it means showing that the answer is right in every case the question covers, and that no other answer is.
+
+Stop only when your proof is complete. When you stop, write in that response what you proved, and what is left.

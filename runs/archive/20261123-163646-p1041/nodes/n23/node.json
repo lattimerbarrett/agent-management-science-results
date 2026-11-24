@@ -1,0 +1,107 @@
+{
+ "id": "n23",
+ "parent": "n7",
+ "depth": 3,
+ "option": {
+  "branch": "c1b0",
+  "counterfactual": "The complete spectrum contains every even weight from 320 to 2^m-320, despite the difficulty of finding some of those weights in sparse polynomial families.",
+  "approach": "Seek explicit constructions for the missing weights 322, 326, 330, and 334 in RM(7,14). These are useful tests of whether the apparent gaps are genuine or merely artifacts of the sampled families.",
+  "p": 0.1109
+ },
+ "status": "member",
+ "belief": {
+  "answer": "\\(\\displaystyle \\boxed{\\begin{aligned}\\mathcal W_m={}&[0,0]_2\\cup[128,128]_2\\cup[192,192]_2\\cup[224,224]_2\\cup[240,240]_2\\cup[248,248]_2\\\\&\\cup[252,256]_2\\cup[272,272]_2\\cup[288,288]_2\\cup[296,296]_2\\cup[304,304]_2\\cup[308,308]_2\\\\&\\cup[312,2^m-312]_2\\\\&\\cup[2^m-308,2^m-308]_2\\cup[2^m-304,2^m-304]_2\\cup[2^m-296,2^m-296]_2\\\\&\\cup[2^m-288,2^m-288]_2\\cup[2^m-272,2^m-272]_2\\cup[2^m-256,2^m-252]_2\\\\&\\cup[2^m-248,2^m-248]_2\\cup[2^m-240,2^m-240]_2\\cup[2^m-224,2^m-224]_2\\\\&\\cup[2^m-192,2^m-192]_2\\cup[2^m-128,2^m-128]_2\\cup[2^m,2^m]_2.\\end{aligned}}\\) Every constant endpoint \\(b\\) denotes \\(0\\cdot2^m+b\\).",
+  "confidence": 0.9
+ },
+ "judge": {
+  "claim": true,
+  "same_as": "e1",
+  "answer": "Let N=2^m. Then \\(\\mathcal W_m=[0,0]_2\\cup[128,128]_2\\cup[192,192]_2\\cup[224,224]_2\\cup[240,240]_2\\cup[248,248]_2\\cup[252,256]_2\\cup[272,272]_2\\cup[288,288]_2\\cup[296,296]_2\\cup[304,304]_2\\cup[308,308]_2\\cup[312,N-312]_2\\cup[N-308,N-308]_2\\cup[N-304,N-304]_2\\cup[N-296,N-296]_2\\cup[N-288,N-288]_2\\cup[N-272,N-272]_2\\cup[N-256,N-252]_2\\cup[N-248,N-248]_2\\cup[N-240,N-240]_2\\cup[N-224,N-224]_2\\cup[N-192,N-192]_2\\cup[N-128,N-128]_2\\cup[N,N]_2\\). Every constant endpoint b denotes 0\u00b72^m+b, and every endpoint N-b denotes 1\u00b72^m-b.",
+  "reason": "It claims an explicit complete weight spectrum. Its intervals and endpoints are identical to those in e1.",
+  "experiment": false,
+  "n": 25
+ },
+ "experiment": null,
+ "options": [
+  {
+   "branch": "c0b0",
+   "counterfactual": "Weight 310 occurs in RM(m-7,m) for some m\u226514, so the displayed spectrum incorrectly excludes it.",
+   "approach": "Seek a weight-310 construction using sums of products of linear factors and overlapping quadratic forms. Independently evaluate any candidate truth table and its squarefree polynomial degree before changing the interval list.",
+   "p": 0.072,
+   "child": null
+  },
+  {
+   "branch": "c0b1",
+   "counterfactual": "Weight 310 occurs in RM(m-7,m) for some m\u226514, so the displayed spectrum incorrectly excludes it.",
+   "approach": "Analyze projection of a hypothetical weight-310 support to a weight-308 support. Express the reverse lifting conditions as exact linear equations using the degree-at-most-six moment constraints.",
+   "p": 0.0606,
+   "child": null
+  },
+  {
+   "branch": "c0b2",
+   "counterfactual": "Weight 310 occurs in RM(m-7,m) for some m\u226514, so the displayed spectrum incorrectly excludes it.",
+   "approach": "Audit the low-weight classification rather than relying on its previously asserted numerical specialization. Determine which canonical forms could produce 310 and whether their dimension requirements permit m=14.",
+   "p": 0.0474,
+   "child": null
+  },
+  {
+   "branch": "c1b0",
+   "counterfactual": "At least one of 322, 326, 330, and 334 is absent from RM(7,14), so the claimed uninterrupted central interval is false.",
+   "approach": "Withdraw the unsupported central-interval assertion and isolate these four weights as unresolved candidates. Separate verified constructions from claims that still require a membership or nonexistence proof.",
+   "p": 0.2183,
+   "child": null
+  },
+  {
+   "branch": "c1b1",
+   "counterfactual": "At least one of 322, 326, 330, and 334 is absent from RM(7,14), so the claimed uninterrupted central interval is false.",
+   "approach": "Use pair-difference counts and projection to reduce each candidate support to lower-weight supports in thirteen dimensions. Investigate whether the necessary lifts are blocked by exact moment-space closure conditions.",
+   "p": 0.2058,
+   "child": null
+  },
+  {
+   "branch": "c1b2",
+   "counterfactual": "At least one of 322, 326, 330, and 334 is absent from RM(7,14), so the claimed uninterrupted central interval is false.",
+   "approach": "Develop an exact constrained search for one candidate, incorporating affine symmetry and low-weight structural restrictions. Require a globally valid infeasibility certificate rather than interpreting failed sparse searches as nonexistence.",
+   "p": 0.1559,
+   "child": null
+  },
+  {
+   "branch": "c2b0",
+   "counterfactual": "The bounded low-weight fringe changes between m=14 and m=15, so no fixed finite interval list with the requested integer-affine endpoints exists throughout the stated range.",
+   "approach": "Compare membership at dimensions fourteen and fifteen for 310, 322, 326, 330, and 334. A verified construction at fifteen together with a rigorous exclusion at fourteen would give the needed counterexample.",
+   "p": 0.1137,
+   "child": null
+  },
+  {
+   "branch": "c2b1",
+   "counterfactual": "The bounded low-weight fringe changes between m=14 and m=15, so no fixed finite interval list with the requested integer-affine endpoints exists throughout the stated range.",
+   "approach": "Prove endpoint rigidity using the established long central interval. Show that endpoints describing a uniformly bounded lower fringe must have coefficient zero on 2^m, making any genuine fringe change incompatible with the requested output.",
+   "p": 0.0632,
+   "child": null
+  },
+  {
+   "branch": "c2b2",
+   "counterfactual": "The bounded low-weight fringe changes between m=14 and m=15, so no fixed finite interval list with the requested integer-affine endpoints exists throughout the stated range.",
+   "approach": "Investigate graph lifts of low-weight supports through degree-five evaluation closures. Search specifically for a lift that introduces one collision pair and produces a new weight at dimension fifteen.",
+   "p": 0.0632,
+   "child": null
+  },
+  {
+   "branch": "own",
+   "counterfactual": null,
+   "approach": null,
+   "p": null,
+   "child": null
+  }
+ ],
+ "cost": 0.1113,
+ "responses": 5,
+ "step_from": 63,
+ "known": [
+  "e1",
+  "e2"
+ ],
+ "created": 1795489870.53302,
+ "seen": "d7ff4611ae538d101444b4523698056b955774602a9aed7b787484d386556ecf",
+ "take_at": 63
+}

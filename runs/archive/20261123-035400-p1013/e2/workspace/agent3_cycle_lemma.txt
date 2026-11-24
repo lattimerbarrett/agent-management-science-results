@@ -1,0 +1,35 @@
+CYCLE COMPARISON LEMMA (for proposed 3-fan clique witness)
+Let n=rm, let Q_m be T_{n,r} with disjoint triangles covering all but at most two vertices added to one part (m>=3), and U_m=K1 join T_{n-1,r}. The same limit holds for any internal max-degree-2 graph with m+O(1) edges; do NOT use a spanning cycle as the H-free competitor if H has P5 decomposition.
+Adding/deleting boundedly many edges, or changing the part sizes in U_m by bounded amounts, does not change the leading constant for r>=3. For r=2 arbitrary fixed imbalance only decreases the constant below the maximum below.
+
+For r>=3, with alpha=1/(r-1) and B=h(T_{rm,r}),
+ c(Q_m)/B -> exp((r+2)alpha),
+ c(U_m)/B -> exp(r alpha)*(1+alpha)^2.
+The former is strictly larger since exp(alpha)>1+alpha.
+
+Exact contraction identity: every cycle not lying entirely in an internal graph gives a collection F of vertex-disjoint nontrivial internal paths and selected isolated vertices; contract each internal path. If s_i vertices are omitted in part i and j_i internal edges are used, the remaining cross-edge Hamilton cycle is on complete multipartite part sizes m-s_i-j_i (or m+u_i-s_i-j_i under bounded shifts). Every nontrivial internal path has two orientations. Sum these nonnegative terms over all linear forests and omissions. This is an EXACT identity, not inclusion-exclusion.
+
+For fixed D=sum(s_i+j_i), standard finite-shift asymptotics for multipartite Hamilton cycles give
+ h(T_{m-d_1,...,m-d_r})/h(T_{m,...,m}) ~ [(r-1)m]^(-D).
+This follows directly from the local CLT for the stationary Markov chain on r colors with transition P_ab=1/(r-1) for a!=b, P_aa=0, together with factorial labelings. For r>=3 the occupation covariance is positive definite on sum-zero vectors. The periodic r=2 case must be treated separately.
+For bounded-degree-2 Q_m, weighted choices of j internal edges are (2m)^j/j!*(1+O(1/m)), since all but O(m^(j-1)) choices form a matching. Omitted vertices give m^(sum s_i)/prod(s_i!). Thus all j,s are independent Poisson sums with parameters 2alpha, alpha,...,alpha, giving exp((r+2)alpha).
+For U_m regard it as balanced T plus an internal star: weighted linear forests using j=0,1,2 internal edges have leading counts 1,2m,m^2 (no j>=3), so the same sum gives exp(r alpha)*(1+2alpha+alpha^2).
+Bounded extra edges have weighted chance O(1/m) and do not affect either limit.
+UNIFORM TAIL PROOF: Fourier inversion for the r-state no-self-transition chain gives the global occupation upper bound
+ h(K_{a_1,...,a_r}) <= C_r (r-1)^N (prod a_i!)/N^p, p=(r+1)/2.
+It also gives a matching lower bound at balanced sizes and the fixed-shift ratio above. The chain is aperiodic for r>=3; in the (r-1)-dimensional sum-zero subspace its covariance is positive definite. Fourier proof: characteristic transfer matrix has spectral radius <r-1 off the finite lattice-character points; near each maximum its dominant eigenvalue has a nondegenerate Gaussian Taylor expansion. Integrating the absolute value gives O(N^{-(r-1)/2}), while saddle expansion at the mean gives asymptotic positive constant.
+Since (m)_d >= (m/e)^d for 0<=d<=m (the geometric mean of the first d descending factors is at least that of all m, and m!>=(m/e)^m), the ratio is bounded by C(n/N)^p [e/((r-1)m)]^D. Thus a term with I internal edges and omissions s_i is at most
+ C(n/N)^p (2e alpha)^I/I! * prod (e alpha)^{s_i}/s_i!.
+For N>=n/2 this is a fixed summable factorial majorant. For N<n/2, D>n/2 and (n/N)^p<=n^p; grouping by D gives a constant^D/D! tail, which is o(n^{-p}). Contracted cycles of length 2 are treated separately with the alternating-run weight 1/2 and are also in this negligible tail. Internal-only cycles are O(m) for the bounded-degree graph and bounded extra-edge graphs and negligible.
+Bounded fixed shifts m+u_i with sum u_i=0 alter only multiplicative constants in the bound and not the fixed-shift limit. Bounded extra internal edges contribute an additional factor O(1/m) whenever used: classify the at most two star edges separately, and any of O(1) extra edges has only O(1) choices rather than O(m). Bounded missing cross edges have o(B) cycles: within each pair of bulk part types all edges are symmetric and a cycle uses O(n) edges out of Omega(n^2); edges incident to the apex are similarly symmetric within a bulk part and are used with probability O(1/m). Thus O(1) edits do not affect the leading constants.
+
+For r=2 normalize B_m=m!(m-1)!/2. Then
+ c(Q_m)/B_m -> sum_{t>=0}3^t/(t!)^2 = I0(2sqrt(3)),
+ c(U_m)/B_m -> I0(2)+2I1(2)+I2(2).
+Both follow from the same contraction identity and fixed omissions. For Q, if s omitted A, t omitted B, and i internal edges, balance forces i+s=t. Weighted internal count ~(2m)^i/i!, hence sum_{t>=0}sum_{i+s=t}2^i/(i!s!t!)=sum3^t/(t!)^2.
+For U, j=0,1,2 star-edge weights are 1,2,1 and balance gives t=s+j, hence the stated sum of Bessels.
+For fixed integer imbalance (m+d,m-d), the universal-star constant becomes I_|2d|(2)+2I_|2d-1|(2)+I_|2d-2|(2), maximized at d=0,1 because I_k(2) strictly decreases with k>=0.
+
+Rational certificates for both strict Bessel inequalities can be checked using nonnegative series and a geometric tail; code agent3_cycles.py certifies the first needed previous comparison. Extend to the present comparison by summing through K=20 and bounding next-tail ratio.
+
+For r2 degree<=2 domination details: expand forests i and omitted s,t. For Q the relation i+s=t, and k=m-t. In the range k>=m/2 the normalized contribution is bounded by C*6^i/(i!s!t!), summable. In k<m/2, a cycle has length<=m+k<=1.5m and the trivial bound (2m)^(1.5m+1)=o(B_m) suffices. For stars j<=2 all tails are immediate factorial tails.

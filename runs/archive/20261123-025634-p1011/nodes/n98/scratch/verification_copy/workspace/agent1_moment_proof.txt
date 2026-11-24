@@ -1,0 +1,29 @@
+Elementary exact universal-moment identity (agent_1)
+
+Let alpha>r+1, integer r>=0, X_m=(m+alpha)^2,
+W_m=(m+alpha)[Gamma((m+1)/2)/Gamma((m+2alpha+1)/2)]^2,
+E_r(X)=prod_{h=0}^{r-1}(X-(alpha-1-2h)^2).
+Then sum_m>=0 W_m E_r(X_m) equals
+4^r/(alpha-r-1) * [
+Gamma(r+1/2)Gamma(1/2)/(Gamma(alpha-r-1/2)Gamma(alpha-1/2))
++ Gamma(r+1)/(Gamma(alpha-r)Gamma(alpha))].
+
+PROOF. Split m=2k+s, s=0,1, B=(s+1)/2 and a=2B+alpha-1.
+The term W_m E_r(X_m) is
+4^r(2k+a) Gamma(k+B+r)Gamma(k+B)/
+[Gamma(k+B+alpha-r)Gamma(k+B+alpha)].
+Set
+G_k=Gamma(k+B+r)Gamma(k+B)/
+[(alpha-r-1)Gamma(k+B+alpha-r-1)Gamma(k+B+alpha-1)].
+Gamma recurrence gives term=4^r(G_k-G_{k+1}); the only algebra is
+(x+alpha-r-1)(x+alpha-1)-x(x+r)
+=(alpha-r-1)(2x+alpha-1).
+Since G_k=O(k^(2r-2alpha+2)), it tends to zero under alpha>r+1.
+Sum each parity and evaluate G_0. This proves the identity.
+
+In the boundary-shape calculation alpha=(n+2)/2, so the condition is n>2r.
+Every polynomial in X up to degree8 can be expanded exactly in monic E_r,
+so this identity evaluates its weighted series with no numerical truncation.
+
+Scope: This is an exact summation lemma. It is NOT a proof of boundary
+Yamabe compactness, existence, geometric Pohozaev expansions, or gluing.

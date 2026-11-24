@@ -1,0 +1,26 @@
+STRUCTURE LEMMA AND PROGRESSIVE PRUNING FOR H=GE`cFs
+
+Let f(n)=max_{0<=a<=n} a(n-a)+floor(2a/3). Then ex(n,H)=f(n) for all sufficiently large n. The H8 graph has edges
+03,04,06,07,13,15,17,25,27,37,47,67.
+
+Lemma. For each fixed K, if n is sufficiently large, every H-free n-vertex G with delta(G)>=n/2-K and e(G)>=f(n) satisfies e(G)<=f(n). Moreover, equality at n=2m with 3|m forces G to be K_{m,m} plus a P3-factor in one part.
+
+Proof. By Erdos-Stone-Simonovits stability, a maximum cut A,B has |A|,|B|=n/2+o(n), o(n^2) missing cross edges, and o(n^2) internal edges. This holds uniformly over the graphs under consideration: e(G)>=f(n)>=n^2/4-O(n), and H has chromatic number 3.
+
+First prove Delta(G[A]),Delta(G[B])=o(n), uniformly. If some v in A has >=epsilon n neighbors in A, maximum-cut optimality gives >=epsilon n neighbors in B. All but o(n) vertices miss o(n) vertices across the cut (choose a vanishing threshold whose square dominates the cross-hole density). Choose three good vertices in N(v) cap A; their common neighborhood in N(v) cap B contains at least epsilon n-o(n) vertices, so choose four there. These seven vertices induce a (not necessarily induced) K_{3,4}, all adjacent to v. The graph H-7 is bipartite with parts {0,1,2} and {3,4,5,6}, so map these parts to the selected triples and quadruples and map 7 to v. This embeds H (the additional adjacency from v to image 5 is harmless), contradiction. The argument for v in B is identical.
+
+Minimum degree now implies EVERY vertex has cross degree n/2-o(n), and hence misses only o(n) opposite vertices, uniformly.
+
+Each internal graph avoids claw, P4, and C3. Indeed each such copy extends to H: for claw use special vertices {0,1,2,7}, with the remaining vertices {3,4,5,6} independent; for P4 use {0,1,5,7}, with the rest {2,3,4,6} independent; for C3 use {0,3,7} and one further arbitrary special vertex for 5, with the rest {1,2,4,6} independent. All required ordinary vertices can be chosen in the common cross neighborhood of the bounded special set. Consequently each internal graph consists of isolated vertices, edges, and P3's, and has maximum degree 2.
+
+There are at least f(n)-t_2(n)>=n/3-O(1) internal edges. Thus one part, say A, has Omega(n) pairwise vertex-disjoint internal edges. If B has any internal edge uv, choose an internal A-edge pq with both endpoints adjacent to both u and v: only o(n) A-vertices are excluded, hitting o(n) internal edges. Extend pq and uv to a complete-cross K_{3,5} by adding one A-vertex adjacent to u,v, then three B-vertices in the common neighborhood of these three A-vertices. In H, the partition A_H={0,7,5}, B_H={1,3,2,4,6} has precisely one internal edge in each part (07 and 13), so this embeds H, contradiction. Thus B is edgeless. Therefore
+ e(G)<=|A||B|+floor(2|A|/3)<=f(n).
+
+If n=2m and 3|m, write |A|=m+d. Then the last bound minus m^2+2m/3 is floor(2d/3)-d^2, strictly negative for every integer d!=0. Equality therefore forces |A|=|B|=m, all cross edges, and e(G[A])=2m/3. Since G[A] consists of P1,P2,P3 components, equality forces a P3-factor. This proves the lemma.
+
+To pass from the lemma to all graphs, note f(n)=n^2/4+n/3+O(1); in particular f(n)-f(n-1)>=n/2-K for an absolute K. The lemma gives, for all sufficiently large n, that every H-free graph with e(G)>f(n) has a vertex of degree at most f(n)-f(n-1)-1 (otherwise it meets the lemma). Thus, writing x(n)=max(0,ex(n,H)-f(n)),
+ x(n)<=max(0,x(n-1)-1).
+The nonnegative integer sequence is eventually zero. Equivalently, progressively remove the stated vertices; surplus e-f strictly increases upon each removal, so a counterexample of arbitrarily large order cannot reach the fixed finite starting order, and cannot stop at a large order by the lemma. Finally f(n) is attained by a complete bipartite graph with one side partitioned into as many P3's as possible (and one edge for a two-vertex remainder), because every one-part decomposition of H contains claw, P4, or C3, as checked independently in agent4_H8_certificate.py. Therefore ex(n,H)=f(n) eventually.
+
+The crude bound f(n)<=t_2(n)+n/3+1 follows by completing the square:
+ a(n-a)+2a/3 = n^2/4+n/3+1/9-(a-n/2-1/3)^2.

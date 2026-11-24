@@ -1,0 +1,108 @@
+{
+ "id": "n17",
+ "parent": "n16",
+ "depth": 3,
+ "option": {
+  "branch": "c1b2",
+  "counterfactual": "One auxiliary vertex does not suffice in all dimensions; some k-decomposable complexes require at least two.",
+  "approach": "Compare the stronger lower bound with the recursive cone upper bound in the shellable parameter range. If both apply, they would determine the exact value there even without resolving smaller k.",
+  "p": 0.1219
+ },
+ "status": "member",
+ "belief": {
+  "answer": "\\(\\boxed{b(d,k)=\\max\\{1,\\min\\{d,k+1\\}-2\\}}\\)",
+  "confidence": 0.28
+ },
+ "judge": {
+  "claim": true,
+  "same_as": "e5",
+  "answer": "b(d,k)=\\max\\{1,\\min\\{d,k+1\\}-2\\}",
+  "reason": "It claims an exact formula. Since min{d,k+1}\u22122 = min{d\u22122,k\u22121}, it is mathematically identical to e5.",
+  "experiment": false
+ },
+ "experiment": null,
+ "options": [
+  {
+   "branch": "c0b0",
+   "counterfactual": "One auxiliary vertex suffices for every dimension and every k in the question, despite the reported constructions claiming larger lower bounds.",
+   "approach": "Audit the claimed higher-dimensional lower bound, especially its first-exit argument. Check whether mixed facets containing auxiliary vertices can supply intersection faces that the obstruction overlooks.",
+   "p": 0.0571,
+   "child": null
+  },
+  {
+   "branch": "c0b1",
+   "counterfactual": "One auxiliary vertex suffices for every dimension and every k in the question, despite the reported constructions claiming larger lower bounds.",
+   "approach": "Investigate whether the ridge skeleton of every k-decomposable complex admits completion on its existing vertices. Such a theorem could support a one-apex completion construction.",
+   "p": 0.0444,
+   "child": null
+  },
+  {
+   "branch": "c0b2",
+   "counterfactual": "One auxiliary vertex suffices for every dimension and every k in the question, despite the reported constructions claiming larger lower bounds.",
+   "approach": "Build a completion search for a small member of the purported obstruction family with one auxiliary vertex. An explicit completion would identify a concrete failure in the claimed lower-bound proof.",
+   "p": 0.0254,
+   "child": null
+  },
+  {
+   "branch": "c1b0",
+   "counterfactual": "The exact answer is b(d,k)=d-2 for every k\u22651, so even complexes admitting only small shedding faces can require the full dimension-dependent number of auxiliary vertices.",
+   "approach": "Try to construct 1-decomposition certificates for the expanded complexes used in the dimension-dependent lower bound. If successful, their obstruction would apply to every allowed k.",
+   "p": 0.2381,
+   "child": null
+  },
+  {
+   "branch": "c1b1",
+   "counterfactual": "The exact answer is b(d,k)=d-2 for every k\u22651, so even complexes admitting only small shedding faces can require the full dimension-dependent number of auxiliary vertices.",
+   "approach": "Generalize the certified three-dimensional 1-decomposable obstruction using vertex cloning. Seek a cloning operation that preserves 1-decomposability while making any first forbidden facet require more auxiliary vertices.",
+   "p": 0.1667,
+   "child": null
+  },
+  {
+   "branch": "c1b2",
+   "counterfactual": "The exact answer is b(d,k)=d-2 for every k\u22651, so even complexes admitting only small shedding faces can require the full dimension-dependent number of auxiliary vertices.",
+   "approach": "Inspect the shelling of the expanded obstruction and group consecutive facets around newly introduced edges. Connected links of these edges could turn the shelling into a 1-decomposition.",
+   "p": 0.0714,
+   "child": null
+  },
+  {
+   "branch": "c2b0",
+   "counterfactual": "The exact answer depends on the shedding-face bound and is b(d,k)=max{1,min{d-2,k-1}}, rather than depending only on dimension.",
+   "approach": "Seek an upper-bound induction that decreases the necessary auxiliary budget with the permitted shedding-face size. Focus on completing relative targets that forbid the current shedding face.",
+   "p": 0.1786,
+   "child": null
+  },
+  {
+   "branch": "c2b1",
+   "counterfactual": "The exact answer depends on the shedding-face bound and is b(d,k)=max{1,min{d-2,k-1}}, rather than depending only on dimension.",
+   "approach": "Study the first unresolved case d=4, k=2 and attempt a one-auxiliary-vertex completion algorithm. Its success would distinguish this formula from the dimension-only formula.",
+   "p": 0.1389,
+   "child": null
+  },
+  {
+   "branch": "c2b2",
+   "counterfactual": "The exact answer depends on the shedding-face bound and is b(d,k)=max{1,min{d-2,k-1}}, rather than depending only on dimension.",
+   "approach": "Revisit the decomposition-tree capacity construction with k-1 auxiliary vertices. Determine whether choosing shedding faces adaptively repairs the terminal capacity failures of fixed certificates.",
+   "p": 0.0794,
+   "child": null
+  },
+  {
+   "branch": "own",
+   "counterfactual": null,
+   "approach": null,
+   "p": null,
+   "child": null
+  }
+ ],
+ "cost": 0.0291,
+ "responses": 1,
+ "step_from": 14,
+ "known": [
+  "e1",
+  "e2",
+  "e3",
+  "e4"
+ ],
+ "created": 1793858110.427712,
+ "seen": "b662d2f7e62d2c0d7ceb16cd688e28dc1ac0c39fec36029f9dfb34c1ad838a14",
+ "take_at": 14
+}

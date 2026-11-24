@@ -1,0 +1,175 @@
+{
+ "id": "n2",
+ "parent": "n0",
+ "depth": 1,
+ "option": {
+  "branch": "c0b2",
+  "counterfactual": "Extendable shellability of simplex skeleta has already been resolved in the dimensions relevant here, so the connection to Simon\u2019s conjecture does not prevent an exact answer.",
+  "approach": "Develop a completion construction using additional vertices and compare its vertex requirement with known obstructions. A matching construction and obstruction could determine the exact value even where zero is impossible.",
+  "p": 0.2273
+ },
+ "status": "member",
+ "belief": {
+  "answer": "\\(\\boxed{b(d,k)=\\max\\{0,\\min\\{d,k\\}-2\\}}\\)",
+  "confidence": 0.12
+ },
+ "judge": {
+  "claim": true,
+  "same_as": null,
+  "answer": "b(d,k)=\\max\\{0,\\min\\{d,k\\}-2\\}",
+  "reason": "It asserts an exact formula for b(d,k), which is a provable claim distinct from e1's assertion that the exact value is not known in general.",
+  "experiment": true
+ },
+ "experiment": "e2",
+ "options": [
+  {
+   "branch": "c0b0",
+   "counterfactual": "No additional vertices are necessary: b(d,k)=0 for every d\u22653 and k\u22651.",
+   "approach": "Try induction on a k-decomposition, treating the deletion and link separately. Identify a way to interleave their facet additions that preserves the original shedding face.",
+   "p": 0.0938,
+   "child": "n14"
+  },
+  {
+   "branch": "c0b1",
+   "counterfactual": "No additional vertices are necessary: b(d,k)=0 for every d\u22653 and k\u22651.",
+   "approach": "Investigate whether every proper k-decomposable subcomplex of the full skeleton admits at least one missing facet whose addition preserves k-decomposability. Such a local extension theorem would immediately give completion.",
+   "p": 0.0562,
+   "child": null
+  },
+  {
+   "branch": "c0b2",
+   "counterfactual": "No additional vertices are necessary: b(d,k)=0 for every d\u22653 and k\u22651.",
+   "approach": "Recheck the relationship between the completion condition and extendable shellability, including the requirement that the initial vertex set be exactly V. Determine whether the supposed obstruction applies to precisely the definition in the question.",
+   "p": 0.0375,
+   "child": "n8"
+  },
+  {
+   "branch": "c1b0",
+   "counterfactual": "A single additional vertex suffices for every d and k, even when completion on the original vertex set is impossible.",
+   "approach": "Start by adjoining facets through the new vertex over codimension-one faces of the original complex. Seek an invariant that allows the link of the new vertex to grow until the remaining original facets can be added.",
+   "p": 0.225,
+   "child": "n24"
+  },
+  {
+   "branch": "c1b1",
+   "counterfactual": "A single additional vertex suffices for every d and k, even when completion on the original vertex set is impossible.",
+   "approach": "Use induction on the shedding-face decomposition while reserving the same new vertex as a buffer in every recursive step. Check whether deletion and link completions can share that vertex without introducing conflicting facets.",
+   "p": 0.175,
+   "child": null
+  },
+  {
+   "branch": "c1b2",
+   "counterfactual": "A single additional vertex suffices for every d and k, even when completion on the original vertex set is impossible.",
+   "approach": "Look for a concrete noncompletable complex on its original vertices and verify its k-decomposability. A one-vertex construction together with this example would establish a sharp value for the applicable parameters.",
+   "p": 0.1,
+   "child": null
+  },
+  {
+   "branch": "c2b0",
+   "counterfactual": "Preserving k-decomposability can require more additional vertices than preserving shellability, so the hardest cases need not occur when k\u2265d.",
+   "approach": "Search small complexes for a missing-facet addition that preserves shellability but destroys k-decomposability. Use such examples to isolate an obstruction specific to small shedding faces.",
+   "p": 0.125,
+   "child": null
+  },
+  {
+   "branch": "c2b1",
+   "counterfactual": "Preserving k-decomposability can require more additional vertices than preserving shellability, so the hardest cases need not occur when k\u2265d.",
+   "approach": "Analyze joins with a simplex on additional vertices and determine when their d-skeleta become vertex-decomposable. This could yield a uniform upper bound that remains valid for every k.",
+   "p": 0.1094,
+   "child": "n11"
+  },
+  {
+   "branch": "c2b2",
+   "counterfactual": "Preserving k-decomposability can require more additional vertices than preserving shellability, so the hardest cases need not occur when k\u2265d.",
+   "approach": "Study links throughout a proposed completion, using the fact that links of k-decomposable complexes are k-decomposable. Seek a link obstruction that survives every completion using fewer than a specified number of new vertices.",
+   "p": 0.0781,
+   "child": null
+  },
+  {
+   "branch": "own",
+   "counterfactual": null,
+   "approach": null,
+   "p": null,
+   "child": null
+  },
+  {
+   "branch": "e2/c0b0",
+   "counterfactual": "The corrected candidate b(d,k)=max{0,min(d,k+1)-2} is false: some k-decomposable complexes require more auxiliary vertices than this expression allows.",
+   "approach": "Search the first unsettled case, d=4 and k=2, for complexes that cannot be completed with one auxiliary vertex. Use exact recursive decomposability checks and distinguish a genuinely impossible completion from a failed greedy ordering.",
+   "p": 0.15,
+   "child": null
+  },
+  {
+   "branch": "e2/c0b1",
+   "counterfactual": "The corrected candidate b(d,k)=max{0,min(d,k+1)-2} is false: some k-decomposable complexes require more auxiliary vertices than this expression allows.",
+   "approach": "Investigate whether the clone-expansion obstruction can retain a smaller decomposition parameter while increasing its resistance to auxiliary vertices. Such a construction could separate the required number of vertices from the proposed dependence on k.",
+   "p": 0.1,
+   "child": null
+  },
+  {
+   "branch": "e2/c0b2",
+   "counterfactual": "The corrected candidate b(d,k)=max{0,min(d,k+1)-2} is false: some k-decomposable complexes require more auxiliary vertices than this expression allows.",
+   "approach": "Develop an upper bound depending only on d without assuming the corrected formula. Start by adjoining cones over lower-dimensional skeleta, aiming to reach a vertex-decomposable complex that can then be completed.",
+   "p": 0.0833,
+   "child": null
+  },
+  {
+   "branch": "e2/c1b0",
+   "counterfactual": "Taking the ridge skeleton of a k-decomposable complex does not generally reduce the decomposition parameter to k-1.",
+   "approach": "Search for a small explicit counterexample to parameter reduction using the exact recursive checker. Inspect its shedding faces to identify why passing to the ridge skeleton prevents a smaller shedding-face bound.",
+   "p": 0.1633,
+   "child": null
+  },
+  {
+   "branch": "e2/c1b1",
+   "counterfactual": "Taking the ridge skeleton of a k-decomposable complex does not generally reduce the decomposition parameter to k-1.",
+   "approach": "Replace parameter reduction with a relative completion theorem that preserves the original parameter. Attempt to complete a deletion while forbidding facets containing its designated shedding face, then complete the corresponding link.",
+   "p": 0.1867,
+   "child": null
+  },
+  {
+   "branch": "e2/c1b2",
+   "counterfactual": "Taking the ridge skeleton of a k-decomposable complex does not generally reduce the decomposition parameter to k-1.",
+   "approach": "Prove a weaker statement about the ridge skeleton after adjoining an auxiliary vertex. The additional vertex might supply a new shedding face even when the unmodified skeleton has no smaller-parameter decomposition.",
+   "p": 0.1167,
+   "child": null
+  },
+  {
+   "branch": "e2/c2b0",
+   "counterfactual": "Some pure 1-decomposable complexes cannot be completed on their existing vertex sets, despite the corrected candidate predicting b(d,1)=0.",
+   "approach": "Enumerate small pure 1-decomposable complexes and compute which admit a sequence of 1-decomposable facet additions to the full skeleton. A failure would provide a counterexample independent of the shellability-based obstruction.",
+   "p": 0.09,
+   "child": null
+  },
+  {
+   "branch": "e2/c2b1",
+   "counterfactual": "Some pure 1-decomposable complexes cannot be completed on their existing vertex sets, despite the corrected candidate predicting b(d,1)=0.",
+   "approach": "Analyze complexes whose available shedding faces are edges rather than vertices. Seek an example in which adding any missing facet destroys all possible edge or vertex decompositions.",
+   "p": 0.06,
+   "child": null
+  },
+  {
+   "branch": "e2/c2b2",
+   "counterfactual": "Some pure 1-decomposable complexes cannot be completed on their existing vertex sets, despite the corrected candidate predicting b(d,1)=0.",
+   "approach": "Construct a completion procedure for 1-decomposable complexes using one auxiliary vertex. Maintain a specified shedding vertex or edge throughout the additions, establishing a replacement upper bound even if completion without auxiliary vertices fails.",
+   "p": 0.05,
+   "child": null
+  },
+  {
+   "branch": "e2/own",
+   "counterfactual": null,
+   "approach": null,
+   "p": null,
+   "child": null
+  }
+ ],
+ "cost": 0.1442,
+ "responses": 3,
+ "step_from": 3,
+ "known": [
+  "e2"
+ ],
+ "created": 1793848948.005746,
+ "seen": "be5003dcb13ced66140058ce446e6fcb58e71208be511dbb35c5a053b24c9561",
+ "take_at": 3
+}

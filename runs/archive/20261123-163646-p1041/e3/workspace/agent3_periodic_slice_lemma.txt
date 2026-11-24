@@ -1,0 +1,32 @@
+PERIODIC-SLICE EXCLUSION LEMMA (supersedes many128special subcases)
+
+Let A,B⊂F2^14 satisfy A∈I6, A+B∈I7, AB=J14 inbinary groupalgebra.
+If A has ANY nonzero translationperiod, then B cannot have weight2 modulo4
+and atmost206.
+
+Proof. Normalizeperiodcoordinatey. A=Acore(x) independentofy, x∈F2^13.
+Its Boolean degreeis<=8. SinceA+B hasdegree<=7, the parityprojection
+b(x)=B(0,x)+B(1,x) hasdegree<=6 (Aprojects tozero). AB=J forcesb nonzero.
+Thus |b|>=128, and the first/second RM(6,13) weights128/192 imply
+ |b|=128or192 whenever|B|<=206.
+Write B=(1+y)b+t(x), deg t<=8, and |B|=|b|+2e with
+ e=wt(t outside support b).
+
+Case |b|=128. Then b=1_D foraffine7-flatD⊂F2^13.
+ConvolutionAB=J means Acore*1_D=J13, so the parityprojection ofAcore alongD
+isconstant1. Also (1+y)b hasdegree7, so Acore+t hasdegree<=7. Summing
+alongD, the parityprojection oft is CONSTANT (degree<=0). Ifconstant0,
+t has evenweight ineachDcoset, soe iseven. But |B|=128+2e≡2mod4 forces
+eodd. Ifconstant1, all64Dcosetsareodd, soe>=63 and|B|>=254>206.
+
+Case |b|=192. Thenb is a secondweightRM(6,13) word: itsaffinespanD has
+dimension9, and onD itis arank4quadratic on4vars times5freevars.
+Now e=(|B|-192)/2 isoneof1,3,5,7. Since outsideD⊂outsideb,
+t hasoutsideDweight<=7. A nonzero degree8polynomial outsideaproperflat
+in13vars hasoutsideweight>=2^(13-1-8)=16; hence t is supportedD.
+Factoring thefourconormals ofD leavesdegree<=4 onD. The function
+(t|D)*(1+b|D) hasdegree<=6 on9vars, soifnonzero itsweightis>=8.
+Itsweightise<=7, contradiction. QED.
+
+Only classicalfirst/secondRMweights andsecondwordrank4quadricnormalform
+areused. NoKTA2d..2.5dclassification isrequired.

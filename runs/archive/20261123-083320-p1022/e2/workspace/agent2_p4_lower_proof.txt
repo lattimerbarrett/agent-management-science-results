@@ -1,0 +1,43 @@
+P4 THREE-DEGREE CASES IN RANKS AT MOST SIX
+
+Use the notation and gap/descend/peeling lemmas of agent2_lower_proof.txt,
+now with p-fiber P3. The first Grassmann map has derivative factoring
+through Hom(first HN block, second HN block), of rank m1*m2. A nonconstant
+Grassmann map P3->Grass has ample Pluecker pullback and is finite onto a
+three-dimensional image. Thus m1*m2<3 forces the first HN block to descend.
+The dual applies at the other end. If there are >=4 distinct degrees,
+the first two and last two multiplicities have sum at least4 each,
+contradicting total rank<=7. Hence only three degrees remain.
+
+At rank<=4 there are no positive triples with ab>=3 and bc>=3.
+At rank5 only (1,3,1) remains.
+At rank6 only (1,4,1),(1,3,2),(2,3,1),(2,2,2) remain.
+This list is directly checked by enumerating positive triples.
+
+workspace/agent2_p4_lower_certificate.py constructs the flag-Chow equations
+and computes exact QQ Groebner bases, plus independent coordinate-power
+membership and finite-grid completeness certificates. It proves:
+- (1,3,1): exactly three roots; in every root first or last c1=0.
+- (1,4,1): exactly three roots; in every root first or last c1=0.
+- (1,3,2): exactly three roots; either an extremal c1=0, or q-Chern c1
+  coefficients are (-1,0,1) and last rank2 block has c2=0.
+- (2,2,2): unique root, first c1=0.
+The reversed (2,3,1) follows by duality/twist.
+
+A zero extremal c1 makes that block descend, splitting into one-degree
+and two-degree uniform bundles. The two-degree cases of every rank<=7
+are reconstructed explicitly in agent3_hn_recognition.txt and the
+agent4 two-step computation (no induction on unproved larger ranks).
+The unique remaining (1,3,2) root has last block rank2 with c1=s,c2=0.
+Dualize and twist: the first block is rank2, c1=-s,c2=0. The standard
+peeling lemma (valid identically on p-fiber P3, since generated c1=1,c2=0
+splits O1+O) supplies an extremal quotient O0 of E. Its kernel is uniform
+rank5 with three-degree multiplicities (1,3,1), already handled. The
+extension splits by Euler cohomology, since all constituents have rank
+sum<=6 and at most one nonline block can occur. Thus E is homogeneous.
+Alternatively, the induced (1,3,1) Chern coefficients (-1,0,1) contradict
+the computed (1,3,1) numerical roots, so that exceptional root cannot occur.
+
+Consequently the induction for P4 rank7 gap descents is fully noncircular:
+all smaller ranks have now been classified using only the two-degree
+recognition theorem and these four explicit finite systems.

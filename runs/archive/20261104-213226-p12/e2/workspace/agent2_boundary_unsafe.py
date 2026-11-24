@@ -1,0 +1,2 @@
+code=open('workspace/agent2_boundary.py').read().replace('range(len(BAp),14)','range(len(BAp),16)').replace('range(8,13)','range(8,14)').replace('if not u+v:continue # kills rational-tail corrections!','if False:continue').replace("workspace/agent2_boundary_test.pkl","workspace/agent2_boundary_unsafe_test.pkl").replace("workspace/agent2_boundary.py','w'","workspace/agent2_boundary_unsafe.py','w'")
+exec(compile(code,'agent2_boundary_unsafe','exec'))

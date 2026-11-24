@@ -1,0 +1,8 @@
+COUNTEREXAMPLE TO THE PROPOSED INTERSECTING ALMOST-BLOCKER LEMMA (#515)
+Let a tend to infinity through integers, r=a^5, W=m=a^9, N=m+r-1, and alpha=r^2/N~a. Independently sample m uniform r-subsets S_j of [N], each of weight one. Let d=ceil(4(N/r)log(eN/r))=O(a^4 log a).
+(1) Each pair is disjoint with probability at most exp(-alpha), since C(N-r,r)/C(N,r)<=exp(-r^2/N). Union bound gives failure <=m^2 exp(-alpha)/2=o(1).
+(2) For any fixed r-set P, the number of sampled S_j disjoint from P is binomial(m,p), p<=exp(-alpha). Probability of at least d misses is <=(em/d)^d exp(-alpha d). Union bound over C(N,r)<=(eN/r)^r gives log failure <=r log(eN/r)+d log(em/d)-alpha d, which tends to minus infinity (main terms r*O(log a)-4r*O(log a), since log m=o(alpha)). Thus simultaneously EVERY r-set P misses at most d members of S.
+(3) Duplicate probability <=m^2/(2 C(N,r))<=m^2(r/N)^r/2=o(1). Hence we can require all S_j distinct and weights exactly one.
+The Python checks evaluate these rigorous union bounds at a=1000,2000,10000 with 100-digit arithmetic, each total failure probability<1.
+Therefore there exists an INTERSECTING weighted rank-r family S of total W=m, weights exactly one, such that EVERY r-set P misses S-mass <=d. Consequently the family of all rank-r almost-blockers contains EVERY r-set of [N], and its covering number is N-r+1=m. But r sqrt(d)+r^2 d/W = O(a^7 sqrt(log a)+a^5 log a)=o(a^9)=o(m). Also W/d tends to infinity. This refutes every universal-constant version of the bound proposed in #515, even with intersecting S and weights<=1.
+This is agent2's earlier first-order-gradient counterexample (#312), with the added observation that sampled S are themselves intersecting with high probability.

@@ -1,0 +1,817 @@
+{
+ "id": "20261123-132821-p1024",
+ "problem": 1024,
+ "settings": {
+  "budget": 100.0,
+  "exp_budget": 20.0,
+  "agents": 4,
+  "workers": 2,
+  "max_experiments": 2,
+  "wait_rollouts": 6,
+  "seed_turns": 20,
+  "step_turns": 5,
+  "n": 3,
+  "k": 3,
+  "run_minutes": 10,
+  "seed": 0,
+  "stop_rule": "verify",
+  "gate": "definite",
+  "experiments": "run",
+  "max_rollouts": 0
+ },
+ "spent": 2.6353,
+ "nodes": [
+  {
+   "id": "n0",
+   "parent": null,
+   "depth": 0,
+   "option": null,
+   "status": "member",
+   "belief": {
+    "answer": "The following finite matrix-rank formula gives the answer for every allowed vector b, without genericity assumptions. Set h=2g\u22122, N=4g\u22124, d=2g\u22121\u2212k, Q=\u230aN/k\u230b, B=2h+1+dQ and J=B+N+dQ+1. Put \u03c6=\u2211_{j=0}^{r\u22121}b_jt^{\u2212(2g\u22121\u22122j)}, q=kt^k\u03c6 and a=\u2212(1/2)t^{\u2212h}(1\u2212t^{4g+2})^{1/2}. All matrices acting on polynomials in w below are taken modulo w^{N+1}. Let P be the substitution matrix F(u)\u21a6F(tw(1\u2212qw^k)^{\u22121/k}); explicitly, P_{mn}=t^n(n/k)_j q^j/j! if m=n+jk with j\u22650, and P_{mn}=0 otherwise, for 0\u2264m,n\u2264N. Let D and C be multiplication by 1\u2212qw^k and \u2212t^{\u22121}\u2212t^k\u03c6\u2032w^k, respectively. Define T_O=P, T_L=aDP, and T_S=((aP,0),(aCP,DP)) in block notation. Define H_B={s\u2208Z:0\u2264s\u2264B and s even}\u222a{s\u2208Z:2g+1\u2264s\u2264B and s odd}, and F_s=t^{\u2212s} for even s, F_s=t^{\u2212s}(1\u2212t^{4g+2})^{1/2} for odd s. For each m\u00d7m matrix T among T_O,T_L,T_S, form the finite complex matrix M(T) with rows (\u03b1,j), 1\u2264\u03b1\u2264m, 1\u2264j\u2264J, columns (i,s), 1\u2264i\u2264m, s\u2208H_B, and entries M(T)_{(\u03b1,j),(i,s)}=[t^{\u2212j}](a^{\u22121}(T^{\u2212\ud835\uddb3})_{\u03b1i}F_s). Then \\boxed{\\Delta_b=\\operatorname{rank}_{\\mathbb C}M(T_S)-\\operatorname{rank}_{\\mathbb C}M(T_O)-\\operatorname{rank}_{\\mathbb C}M(T_L)}.",
+    "confidence": 0.88
+   },
+   "judge": {
+    "claim": true,
+    "same_as": null,
+    "answer": "Set h=2g\u22122, N=4g\u22124, d=2g\u22121\u2212k, Q=\u230aN/k\u230b, B=2h+1+dQ, and J=B+N+dQ+1. Put \u03c6=\u2211_{j=0}^{r\u22121}b_jt^{\u2212(2g\u22121\u22122j)}, q=kt^k\u03c6, and a=\u2212(1/2)t^{\u2212h}(1\u2212t^{4g+2})^{1/2}. All matrices acting on polynomials in w are taken modulo w^{N+1}. Let P be the substitution matrix F(u)\u21a6F(tw(1\u2212qw^k)^{\u22121/k}); explicitly, P_{mn}=t^n(n/k)_j q^j/j! if m=n+jk with j\u22650, and P_{mn}=0 otherwise, for 0\u2264m,n\u2264N. Let D and C be multiplication by 1\u2212qw^k and \u2212t^{\u22121}\u2212t^k\u03c6\u2032w^k, respectively. Define T_O=P, T_L=aDP, and T_S=((aP,0),(aCP,DP)) in block notation. Define H_B={s\u2208\u2124:0\u2264s\u2264B and s even}\u222a{s\u2208\u2124:2g+1\u2264s\u2264B and s odd}, and F_s=t^{\u2212s} for even s and F_s=t^{\u2212s}(1\u2212t^{4g+2})^{1/2} for odd s. For each m\u00d7m matrix T among T_O,T_L,T_S, form M(T) with rows (\u03b1,j), 1\u2264\u03b1\u2264m, 1\u2264j\u2264J, columns (i,s), 1\u2264i\u2264m, s\u2208H_B, and entries M(T)_{(\u03b1,j),(i,s)}=[t^{\u2212j}](a^{\u22121}(T^{\u2212\ud835\uddb3})_{\u03b1i}F_s). Then, for every allowed nonzero b, \u0394_b=rank_\u2102 M(T_S)\u2212rank_\u2102 M(T_O)\u2212rank_\u2102 M(T_L).",
+    "reason": "It asserts an explicit finite matrix-rank formula for the requested quantity for every allowed coefficient vector. No previous answers were listed.",
+    "experiment": false,
+    "n": 1,
+    "definite": false,
+    "gate": "The proposed answer reduces the cohomology dimensions to ranks of explicitly constructed matrices but leaves those ranks to be computed. It therefore supplies a finite procedure, not the requested resulting formula describing the dependence on g and all coefficient vectors b, including their vanishing patterns.",
+    "procedure": true
+   },
+   "experiment": null,
+   "options": [
+    {
+     "branch": "c0b0",
+     "counterfactual": "The finite Laurent-coefficient matrix formula fails for some coefficient vectors because its stated pole bounds omit necessary equations.",
+     "approach": "Derive independent pole bounds using determinants and adjugates of the transition matrices. Replace the truncation bounds by these more conservative bounds before asserting a uniform formula.",
+     "p": 0.072,
+     "child": null
+    },
+    {
+     "branch": "c0b1",
+     "counterfactual": "The finite Laurent-coefficient matrix formula fails for some coefficient vectors because its stated pole bounds omit necessary equations.",
+     "approach": "Compute the transition matrices and their inverses exactly for several small genera and sparse coefficient vectors. Compare their actual pole orders with the proposed bounds to locate the missing equations.",
+     "p": 0.056,
+     "child": null
+    },
+    {
+     "branch": "c0b2",
+     "counterfactual": "The finite Laurent-coefficient matrix formula fails for some coefficient vectors because its stated pole bounds omit necessary equations.",
+     "approach": "Define the finite constraints using the complete polar parts of the explicitly computed inverse transition matrices. This would avoid reliance on the disputed uniform bound.",
+     "p": 0.032,
+     "child": null
+    },
+    {
+     "branch": "c1b0",
+     "counterfactual": "The invariant is independent of the entire nonzero coefficient vector, even though the gluing depends on that vector.",
+     "approach": "Compute the invariant for small genera using vectors with different supports and compare the results. These examples could reveal a common value and suggest which rank changes cancel.",
+     "p": 0.096,
+     "child": "n3"
+    },
+    {
+     "branch": "c1b1",
+     "counterfactual": "The invariant is independent of the entire nonzero coefficient vector, even though the gluing depends on that vector.",
+     "approach": "Search for an exact sequence relating the three sheaves that forces their alternating cohomology dimension to be independent of the deformation parameters.",
+     "p": 0.084,
+     "child": null
+    },
+    {
+     "branch": "c1b2",
+     "counterfactual": "The invariant is independent of the entire nonzero coefficient vector, even though the gluing depends on that vector.",
+     "approach": "Study coordinate changes preserving the zero section to determine which coefficient vectors define equivalent surface germs. Separate equivalence-based constancy from any additional cohomological constancy.",
+     "p": 0.06,
+     "child": null
+    },
+    {
+     "branch": "c2b0",
+     "counterfactual": "A matrix-rank expression does not provide the requested formula adequately; an explicit classification of the possible values and their coefficient conditions is necessary.",
+     "approach": "Reduce the large matrices by eliminating blocks whose ranks are independent of the coefficients. Express the answer through smaller matrices built directly from the entries of the coefficient vector.",
+     "p": 0.27,
+     "child": "n4"
+    },
+    {
+     "branch": "c2b1",
+     "counterfactual": "A matrix-rank expression does not provide the requested formula adequately; an explicit classification of the possible values and their coefficient conditions is necessary.",
+     "approach": "Analyze the filtration by powers of the exceptional-curve ideal and compute its connecting maps explicitly. Use the hyperelliptic gap sequence to identify the coefficient conditions under which their ranks change.",
+     "p": 0.21,
+     "child": "n1"
+    },
+    {
+     "branch": "c2b2",
+     "counterfactual": "A matrix-rank expression does not provide the requested formula adequately; an explicit classification of the possible values and their coefficient conditions is necessary.",
+     "approach": "Calculate exact examples for small genera and several support patterns, then formulate a classification in terms of vanishing components or minors. Prove that classification using the explicit transition matrices.",
+     "p": 0.12,
+     "child": null
+    },
+    {
+     "branch": "own",
+     "counterfactual": null,
+     "approach": null,
+     "p": null,
+     "child": "n2"
+    }
+   ],
+   "cost": 0.1471,
+   "responses": 1,
+   "step_from": 0,
+   "known": [],
+   "created": 1795458501.214126
+  },
+  {
+   "id": "n1",
+   "parent": "n0",
+   "depth": 1,
+   "option": {
+    "branch": "c2b1",
+    "counterfactual": "A matrix-rank expression does not provide the requested formula adequately; an explicit classification of the possible values and their coefficient conditions is necessary.",
+    "approach": "Analyze the filtration by powers of the exceptional-curve ideal and compute its connecting maps explicitly. Use the hyperelliptic gap sequence to identify the coefficient conditions under which their ranks change.",
+    "p": 0.21
+   },
+   "status": "member",
+   "belief": {
+    "answer": "\\(\\displaystyle \\boxed{\\Delta_b=-\\max\\{j\\in\\{0,\\ldots,r-1\\}:b_j\\ne0\\}}\\).",
+    "confidence": 0.12
+   },
+   "judge": {
+    "claim": true,
+    "same_as": null,
+    "answer": "\\displaystyle \\boxed{\\Delta_b=-\\max\\{j\\in\\{0,\\ldots,r-1\\}:b_j\\ne0\\}}",
+    "reason": "It asserts an explicit formula for every allowed vector. Unlike e1, it gives negative values when a nonzero component has index greater than zero.",
+    "experiment": true,
+    "n": 4,
+    "definite": true,
+    "gate": "The formula determines a unique integer from g and b for every allowed nonzero vector, including vectors with vanishing components, since the set of indices with nonzero coefficients is nonempty.",
+    "procedure": false
+   },
+   "experiment": "e2",
+   "options": [
+    {
+     "branch": "c0b0",
+     "counterfactual": "The value of \u0394_b is not determined by the largest index j for which b_j is nonzero; vectors with the same nonzero components can give different values.",
+     "approach": "Compare coefficient vectors with the same support but different coefficient ratios. Look for polynomial conditions on those ratios where the cohomology dimensions change.",
+     "p": 0.18,
+     "child": null
+    },
+    {
+     "branch": "c0b1",
+     "counterfactual": "The value of \u0394_b is not determined by the largest index j for which b_j is nonzero; vectors with the same nonzero components can give different values.",
+     "approach": "Compute the connecting maps symbolically for the first genera with several independent coefficients. Factor their relevant minors to identify exceptional coefficient conditions.",
+     "p": 0.108,
+     "child": null
+    },
+    {
+     "branch": "c0b2",
+     "counterfactual": "The value of \u0394_b is not determined by the largest index j for which b_j is nonzero; vectors with the same nonzero components can give different values.",
+     "approach": "Associate a polynomial to the coefficient vector and investigate whether repeated roots or common factors with its derivative govern the exceptional values.",
+     "p": 0.072,
+     "child": null
+    },
+    {
+     "branch": "c1b0",
+     "counterfactual": "The connecting homomorphism from global horizontal vector fields to the first cohomology of vertical logarithmic vector fields is nonzero for some allowed nonzero vectors b.",
+     "approach": "Derive that connecting homomorphism directly from the coordinate change. Track the lowest fiber orders at which a horizontal vector field can produce a nontrivial vertical cohomology class.",
+     "p": 0.09,
+     "child": null
+    },
+    {
+     "branch": "c1b1",
+     "counterfactual": "The connecting homomorphism from global horizontal vector fields to the first cohomology of vertical logarithmic vector fields is nonzero for some allowed nonzero vectors b.",
+     "approach": "Compute the logarithmic tangent cohomology directly in small genera, without decomposing it into horizontal and vertical contributions, and compare the results.",
+     "p": 0.07,
+     "child": null
+    },
+    {
+     "branch": "c1b2",
+     "counterfactual": "The connecting homomorphism from global horizontal vector fields to the first cohomology of vertical logarithmic vector fields is nonzero for some allowed nonzero vectors b.",
+     "approach": "Use Serre duality to test whether the proposed vertical obstruction classes survive, pairing them with explicitly written holomorphic differentials on the curve.",
+     "p": 0.04,
+     "child": null
+    },
+    {
+     "branch": "c2b0",
+     "counterfactual": "Higher-order terms in the expansion of z at infinity change the answer; retaining only its leading pole misses coefficient conditions relevant to \u0394_b.",
+     "approach": "Recompute small examples using enough terms of the square-root expansion to include every term that can contribute to an obstruction. Compare against computations using only the leading pole.",
+     "p": 0.198,
+     "child": null
+    },
+    {
+     "branch": "c2b1",
+     "counterfactual": "Higher-order terms in the expansion of z at infinity change the answer; retaining only its leading pole misses coefficient conditions relevant to \u0394_b.",
+     "approach": "Bound the pole orders appearing at each fiber order and determine exactly when a correction term from the square-root expansion can enter a hyperelliptic gap.",
+     "p": 0.154,
+     "child": null
+    },
+    {
+     "branch": "c2b2",
+     "counterfactual": "Higher-order terms in the expansion of z at infinity change the answer; retaining only its leading pole misses coefficient conditions relevant to \u0394_b.",
+     "approach": "Perform reductions using exact functions in the coordinate ring defined by z\u00b2 = x^(2g+1) \u2212 1, using Laurent expansions only to impose regularity at infinity.",
+     "p": 0.088,
+     "child": null
+    },
+    {
+     "branch": "own",
+     "counterfactual": null,
+     "approach": null,
+     "p": null,
+     "child": null
+    }
+   ],
+   "cost": 0.1264,
+   "responses": 5,
+   "step_from": 3,
+   "known": [
+    "e2"
+   ],
+   "created": 1795458738.101113
+  },
+  {
+   "id": "n2",
+   "parent": "n0",
+   "depth": 1,
+   "option": {
+    "branch": "own",
+    "counterfactual": null,
+    "approach": null,
+    "p": null
+   },
+   "status": "member",
+   "belief": {
+    "answer": "The following finite matrix-rank formula gives the answer for every allowed vector b, without any genericity assumptions. Set h=2g\u22122, N=4g\u22124, d=2g\u22121\u2212k, Q=\u230aN/k\u230b, B=2h+1+dQ, and J=B+N+dQ+1. Write \u03c6(t)=\u03a3_{j=0}^{r\u22121}b_j t^{\u2212(2g\u22121\u22122j)}, q(t)=kt^k\u03c6(t), and a(t)=\u2212(1/2)t^{\u2212h}(1\u2212t^{4g+2})^{1/2}. All matrices acting on polynomials in w below are truncated modulo w^{N+1}. Define (N+1)\u00d7(N+1) matrices P,D,C by P_{mn}=t^n(n/k)_j q^j/j! if m=n+jk for an integer j\u22650, and P_{mn}=0 otherwise; D is multiplication by 1\u2212qw^k; C is multiplication by \u2212t^{\u22121}\u2212t^k\u03c6\u2032(t)w^k. Here (x)_0=1 and (x)_j=x(x+1)\u22ef(x+j\u22121). Put T_O=P, T_L=aDP, and T_S=[[aP,0],[aCP,DP]]. Define H_B={s\u2208\u2124:0\u2264s\u2264B, s even or s\u22652g+1}, and F_s(t)=t^{\u2212s} for even s and F_s(t)=t^{\u2212s}(1\u2212t^{4g+2})^{1/2} for odd s. For each m\u00d7m matrix T among T_O,T_L,T_S, define the finite complex matrix M(T), with rows (\u03b1,j)\u2208{1,\u2026,m}\u00d7{1,\u2026,J} and columns (i,s)\u2208{1,\u2026,m}\u00d7H_B, by M(T)_{(\u03b1,j),(i,s)}=[t^{\u2212j}](a(t)^{\u22121}(T^{\u2212\ud835\uddb3})_{\u03b1i}F_s(t)). Then\n\\[\\boxed{\\Delta_b=\\operatorname{rank}_{\\mathbb C}M(T_S)-\\operatorname{rank}_{\\mathbb C}M(T_O)-\\operatorname{rank}_{\\mathbb C}M(T_L).}\\]\nAll coefficient extractions are finite, and all matrix entries are explicit polynomials in the entire coefficient vector b.",
+    "confidence": 0.93
+   },
+   "judge": {
+    "claim": true,
+    "same_as": null,
+    "answer": "Set h=2g\u22122, N=4g\u22124, d=2g\u22121\u2212k, Q=\u230aN/k\u230b, B=2h+1+dQ, and J=B+N+dQ+1. Write \u03c6(t)=\u03a3_{j=0}^{r\u22121}b_j t^{\u2212(2g\u22121\u22122j)}, q(t)=kt^k\u03c6(t), and a(t)=\u2212(1/2)t^{\u2212h}(1\u2212t^{4g+2})^{1/2}. All matrices acting on polynomials in w are truncated modulo w^{N+1}. Define (N+1)\u00d7(N+1) matrices P,D,C by P_{mn}=t^n(n/k)_j q^j/j! if m=n+jk for an integer j\u22650, and P_{mn}=0 otherwise; D is multiplication by 1\u2212qw^k; C is multiplication by \u2212t^{\u22121}\u2212t^k\u03c6\u2032(t)w^k. Here (x)_0=1 and (x)_j=x(x+1)\u22ef(x+j\u22121). Put T_O=P, T_L=aDP, and T_S=[[aP,0],[aCP,DP]]. Define H_B={s\u2208\u2124:0\u2264s\u2264B, s even or s\u22652g+1}, and F_s(t)=t^{\u2212s} for even s and F_s(t)=t^{\u2212s}(1\u2212t^{4g+2})^{1/2} for odd s. For each m\u00d7m matrix T among T_O,T_L,T_S, define the finite complex matrix M(T), with rows (\u03b1,j)\u2208{1,\u2026,m}\u00d7{1,\u2026,J} and columns (i,s)\u2208{1,\u2026,m}\u00d7H_B, by M(T)_{(\u03b1,j),(i,s)}=[t^{\u2212j}](a(t)^{\u22121}(T^{\u2212\ud835\uddb3})_{\u03b1i}F_s(t)). Then \u0394_b=rank_C M(T_S)\u2212rank_C M(T_O)\u2212rank_C M(T_L) for every allowed vector b, without any genericity assumptions. All coefficient extractions are finite, and all matrix entries are explicit polynomials in the entire coefficient vector b.",
+    "reason": "The answer asserts an explicit finite matrix-rank formula for \u0394_b for every allowed b, which a team could attempt to prove. There are no previous answers.",
+    "experiment": false,
+    "n": 2,
+    "definite": false,
+    "gate": "The proposed answer reduces the cohomology calculation to ranks of explicit finite matrices but leaves those ranks to be computed. It therefore gives a procedure for finding \u0394_b, not the requested result describing its value as a function of g and b, including the exceptional cases with vanishing components.",
+    "procedure": true
+   },
+   "experiment": null,
+   "options": [
+    {
+     "branch": "c0b0",
+     "counterfactual": "The cohomology groups defining \u0394_b are not all determined by restricting the relevant sheaves to the neighborhood defined by I_E^(4g\u22123). Higher infinitesimal neighborhoods contribute additional terms.",
+     "approach": "Reexamine the restriction sequences for all three sheaves and determine exactly when their first cohomology groups stabilize. Use that stabilization threshold to replace the truncation bound in the matrix formula.",
+     "p": 0.0379,
+     "child": null
+    },
+    {
+     "branch": "c0b1",
+     "counterfactual": "The cohomology groups defining \u0394_b are not all determined by restricting the relevant sheaves to the neighborhood defined by I_E^(4g\u22123). Higher infinitesimal neighborhoods contribute additional terms.",
+     "approach": "Check the hypotheses of the theorem on formal functions for the contracted surface and compare analytic cohomology with the inverse limit over infinitesimal neighborhoods. Identify whether the problem lies in stabilization or in the analytic comparison.",
+     "p": 0.0207,
+     "child": null
+    },
+    {
+     "branch": "c0b2",
+     "counterfactual": "The cohomology groups defining \u0394_b are not all determined by restricting the relevant sheaves to the neighborhood defined by I_E^(4g\u22123). Higher infinitesimal neighborhoods contribute additional terms.",
+     "approach": "Compute the finite-neighborhood cohomology at several successive truncation orders for small genera and sparse coefficient vectors. Use any change in dimension to identify the missing contribution.",
+     "p": 0.0103,
+     "child": null
+    },
+    {
+     "branch": "c1b0",
+     "counterfactual": "The stated finite matrix-rank formula is incorrect because its transition matrices or Laurent-coefficient bounds omit a contribution from the nonlinear gluing.",
+     "approach": "Derive the coordinate changes for functions, logarithmic vector fields, and their exterior products directly from the original gluing. Compare each resulting matrix block with the proposed matrices to locate the discrepancy.",
+     "p": 0.1207,
+     "child": null
+    },
+    {
+     "branch": "c1b1",
+     "counterfactual": "The stated finite matrix-rank formula is incorrect because its transition matrices or Laurent-coefficient bounds omit a contribution from the nonlinear gluing.",
+     "approach": "Replace the Laurent-coefficient bounds by independently justified, more conservative bounds and recompute small examples. This would distinguish an insufficient truncation bound from an incorrect transition matrix.",
+     "p": 0.0603,
+     "child": null
+    },
+    {
+     "branch": "c1b2",
+     "counterfactual": "The stated finite matrix-rank formula is incorrect because its transition matrices or Laurent-coefficient bounds omit a contribution from the nonlinear gluing.",
+     "approach": "Construct an independent calculation using \u010cech cohomology and principal parts on the curve. Compare its dimensions with those predicted by the dual-section matrix calculation.",
+     "p": 0.0603,
+     "child": null
+    },
+    {
+     "branch": "c2b0",
+     "counterfactual": "For fixed g, \u0394_b is independent of the choice of nonzero b, including choices with vanishing components. Dependence on the full coefficient vector disappears in the alternating combination.",
+     "approach": "Compare coordinate vectors, vectors with several nonzero components, and generic vectors in the first genera with r greater than one. Look for constant alternating rank even when the individual cohomology dimensions vary.",
+     "p": 0.2759,
+     "child": null
+    },
+    {
+     "branch": "c2b1",
+     "counterfactual": "For fixed g, \u0394_b is independent of the choice of nonzero b, including choices with vanishing components. Dependence on the full coefficient vector disappears in the alternating combination.",
+     "approach": "Search for an exact sequence or a map between the three cohomology calculations that forces their coefficient-dependent contributions to cancel. Such a construction could replace the matrix-rank formula with a formula depending only on g.",
+     "p": 0.3103,
+     "child": "n5"
+    },
+    {
+     "branch": "c2b2",
+     "counterfactual": "For fixed g, \u0394_b is independent of the choice of nonzero b, including choices with vanishing components. Dependence on the full coefficient vector disappears in the alternating combination.",
+     "approach": "Study coordinate changes preserving the curve and its zero section to determine which coefficient vectors define equivalent neighborhoods. Combine those equivalences with a deformation argument to investigate constancy across the remaining vectors.",
+     "p": 0.1034,
+     "child": null
+    },
+    {
+     "branch": "own",
+     "counterfactual": null,
+     "approach": null,
+     "p": null,
+     "child": null
+    }
+   ],
+   "cost": 0.0328,
+   "responses": 4,
+   "step_from": 3,
+   "known": [],
+   "created": 1795458738.102241
+  },
+  {
+   "id": "n3",
+   "parent": "n0",
+   "depth": 1,
+   "option": {
+    "branch": "c1b0",
+    "counterfactual": "The invariant is independent of the entire nonzero coefficient vector, even though the gluing depends on that vector.",
+    "approach": "Compute the invariant for small genera using vectors with different supports and compare the results. These examples could reveal a common value and suggest which rank changes cancel.",
+    "p": 0.096
+   },
+   "status": "member",
+   "belief": {
+    "answer": "\\(\\boxed{\\Delta_b=0\\quad\\text{for every }g\\ge2\\text{ and every }b\\in\\mathbb C^r\\setminus\\{0\\}.}\\)",
+    "confidence": 0.8
+   },
+   "judge": {
+    "claim": true,
+    "same_as": null,
+    "answer": "\\Delta_b=0\\quad\\text{for every }g\\ge2\\text{ and every }b\\in\\mathbb C^r\\setminus\\{0\\}.",
+    "reason": "It asserts a precise universal value for the invariant, which a team could attempt to prove. No previous answers were listed.",
+    "experiment": true,
+    "n": 3,
+    "definite": true,
+    "gate": "The proposed answer gives an exact value for \u0394_b for every allowed genus and every nonzero coefficient vector, including vectors with vanishing components.",
+    "procedure": false
+   },
+   "experiment": "e1",
+   "options": [
+    {
+     "branch": "c0b0",
+     "counterfactual": "The invariant \u0394_b is independent of the nonzero vector b; apparent differences between coefficient vectors come from an error in the cohomology computation.",
+     "approach": "Recheck the logarithmic tangent transition matrix directly by differentiating the gluing and then independently invert it. This would test whether a missing factor or incorrect transpose explains the apparent dependence on b.",
+     "p": 0.0645,
+     "child": null
+    },
+    {
+     "branch": "c0b1",
+     "counterfactual": "The invariant \u0394_b is independent of the nonzero vector b; apparent differences between coefficient vectors come from an error in the cohomology computation.",
+     "approach": "Compute the three cohomology dimensions independently for genus 4 and the vectors (1,0) and (0,1), using successive extensions along the exceptional curve. Their alternating sums would provide a check that does not rely on the Laurent matrix implementation.",
+     "p": 0.0565,
+     "child": "n6"
+    },
+    {
+     "branch": "c0b2",
+     "counterfactual": "The invariant \u0394_b is independent of the nonzero vector b; apparent differences between coefficient vectors come from an error in the cohomology computation.",
+     "approach": "Look for an exact sequence or a complex whose Euler characteristic is \u0394_b and whose cohomology is unchanged by varying b. Such a construction could explain cancellation of all coefficient-dependent rank changes.",
+     "p": 0.0403,
+     "child": null
+    },
+    {
+     "branch": "c1b0",
+     "counterfactual": "Vectors with the same last nonzero component can have different values of \u0394_b because special algebraic relations among their coefficients matter.",
+     "approach": "Compare vectors with the same support but different coefficient ratios in genera where r is at least 3. Include deliberately chosen coefficients satisfying simple polynomial relations to look for exceptional rank drops.",
+     "p": 0.2581,
+     "child": null
+    },
+    {
+     "branch": "c1b1",
+     "counterfactual": "Vectors with the same last nonzero component can have different values of \u0394_b because special algebraic relations among their coefficients matter.",
+     "approach": "Reduce the cohomology matrices symbolically in the first genus with three coefficients and extract the minors controlling their ranks. This would identify explicit equations for exceptional coefficient vectors.",
+     "p": 0.2258,
+     "child": null
+    },
+    {
+     "branch": "c1b2",
+     "counterfactual": "Vectors with the same last nonzero component can have different values of \u0394_b because special algebraic relations among their coefficients matter.",
+     "approach": "Express the obstruction maps through multiplication and differentiation of the polynomial formed from b. Their kernels could reveal dependence on repeated roots or other relations invisible to the support alone.",
+     "p": 0.1613,
+     "child": null
+    },
+    {
+     "branch": "c2b0",
+     "counterfactual": "The finite matrix-rank formula does not compute the analytic invariant because the chosen finite neighborhood omits contributions to H\u00b9.",
+     "approach": "Repeat selected computations with progressively thicker neighborhoods of the exceptional curve. Failure of stabilization at the claimed cutoff would directly expose the missing contributions.",
+     "p": 0.0774,
+     "child": null
+    },
+    {
+     "branch": "c2b1",
+     "counterfactual": "The finite matrix-rank formula does not compute the analytic invariant because the chosen finite neighborhood omits contributions to H\u00b9.",
+     "approach": "Reprove the comparison with finite neighborhoods using the filtration by powers of the exceptional ideal and the theorem on formal functions. In particular, check whether vanishing of the graded H\u00b9 groups really gives the asserted stabilization.",
+     "p": 0.0774,
+     "child": null
+    },
+    {
+     "branch": "c2b2",
+     "counterfactual": "The finite matrix-rank formula does not compute the analytic invariant because the chosen finite neighborhood omits contributions to H\u00b9.",
+     "approach": "Derive a separate analytic \u010cech description on the two gluing charts and compare its obstruction spaces with those of the truncated bundles. This would test whether formal truncation loses analytic conditions.",
+     "p": 0.0387,
+     "child": null
+    },
+    {
+     "branch": "own",
+     "counterfactual": null,
+     "approach": null,
+     "p": null,
+     "child": null
+    }
+   ],
+   "cost": 0.0467,
+   "responses": 5,
+   "step_from": 3,
+   "known": [],
+   "created": 1795458807.665589
+  },
+  {
+   "id": "n4",
+   "parent": "n0",
+   "depth": 1,
+   "option": {
+    "branch": "c2b0",
+    "counterfactual": "A matrix-rank expression does not provide the requested formula adequately; an explicit classification of the possible values and their coefficient conditions is necessary.",
+    "approach": "Reduce the large matrices by eliminating blocks whose ranks are independent of the coefficients. Express the answer through smaller matrices built directly from the entries of the coefficient vector.",
+    "p": 0.27
+   },
+   "status": "member",
+   "belief": {
+    "answer": "Let \\(s=\\max\\{j\\in\\{0,\\ldots,r-1\\}:b_j\\ne0\\}\\). Then \\(\\boxed{\\Delta_b=-s}\\). Thus the possible values are \\(0,-1,\\ldots,-(r-1)\\), and \\(\\Delta_b=-s\\) if and only if \\(b_s\\ne0\\) and \\(b_{s+1}=\\cdots=b_{r-1}=0\\), with no restrictions on \\(b_0,\\ldots,b_{s-1}\\).",
+    "confidence": 0.96
+   },
+   "judge": {
+    "claim": true,
+    "same_as": "e2",
+    "answer": "Let \\(s=\\max\\{j\\in\\{0,\\ldots,r-1\\}:b_j\\ne0\\}\\). Then \\(\\boxed{\\Delta_b=-s}\\). Thus the possible values are \\(0,-1,\\ldots,-(r-1)\\), and \\(\\Delta_b=-s\\) if and only if \\(b_s\\ne0\\) and \\(b_{s+1}=\\cdots=b_{r-1}=0\\), with no restrictions on \\(b_0,\\ldots,b_{s-1}\\).",
+    "reason": "It claims an explicit formula and coefficient classification. These are equivalent to e2; the added classification simply spells out the same maximum-index formula.",
+    "experiment": false,
+    "n": 5
+   },
+   "experiment": null,
+   "options": [
+    {
+     "branch": "c0b0",
+     "counterfactual": "Two nonzero coefficient vectors with the same last nonzero component index can give different values of \u0394_b.",
+     "approach": "Compare exact cohomology computations for several vectors with the same support endpoint in genus seven. This is the first genus with three coefficients, allowing nontrivial coefficient relations that cannot occur with only one coefficient.",
+     "p": 0.2045,
+     "child": null
+    },
+    {
+     "branch": "c0b1",
+     "counterfactual": "Two nonzero coefficient vectors with the same last nonzero component index can give different values of \u0394_b.",
+     "approach": "Derive the smaller coefficient matrices directly from the transition functions and retain their determinantal rank conditions. This would identify which polynomial relations among the coefficients distinguish the possible values.",
+     "p": 0.1818,
+     "child": null
+    },
+    {
+     "branch": "c0b2",
+     "counterfactual": "Two nonzero coefficient vectors with the same last nonzero component index can give different values of \u0394_b.",
+     "approach": "Examine whether analytic changes of fiber coordinate can remove the earlier nonzero coefficients while preserving the last one. A failure of such normalization could reveal additional invariants relevant to \u0394_b.",
+     "p": 0.0682,
+     "child": null
+    },
+    {
+     "branch": "c1b0",
+     "counterfactual": "Higher-order terms in the fiber gluing contribute cohomology obstructions that are not detected by the first-order coefficient matrices.",
+     "approach": "Calculate the second-order lifting obstruction explicitly for a section in the kernel of the first obstruction. This would test whether the parity argument actually eliminates its cohomology class.",
+     "p": 0.1636,
+     "child": null
+    },
+    {
+     "branch": "c1b1",
+     "counterfactual": "Higher-order terms in the fiber gluing contribute cohomology obstructions that are not detected by the first-order coefficient matrices.",
+     "approach": "Analyze genera congruent to one modulo three, where a third-order obstruction can just fit within the relevant cohomological range. Track whether any section surviving the first obstruction can support that third-order obstruction.",
+     "p": 0.1273,
+     "child": null
+    },
+    {
+     "branch": "c1b2",
+     "counterfactual": "Higher-order terms in the fiber gluing contribute cohomology obstructions that are not detected by the first-order coefficient matrices.",
+     "approach": "Compare the full finite-neighborhood cohomology dimensions with those predicted by the first-order matrices. Any discrepancy would locate the sheaf and degree where a higher obstruction must occur.",
+     "p": 0.0727,
+     "child": null
+    },
+    {
+     "branch": "c2b0",
+     "counterfactual": "The connecting homomorphism from global sections of the pulled-back tangent bundle of C_g to the first cohomology of the vertical logarithmic tangent bundle can be nonzero for an allowed nonzero vector b.",
+     "approach": "Compute the connecting cocycle directly by lifting a horizontal section in both coordinate charts and subtracting the lifts. Its lowest fiber degree would determine whether its class can survive in the vertical cohomology.",
+     "p": 0.0909,
+     "child": null
+    },
+    {
+     "branch": "c2b1",
+     "counterfactual": "The connecting homomorphism from global sections of the pulled-back tangent bundle of C_g to the first cohomology of the vertical logarithmic tangent bundle can be nonzero for an allowed nonzero vector b.",
+     "approach": "Recheck whether every global horizontal section must vanish to fiber order greater than 2g\u22122. If a section can survive at that critical order, it could produce the missing connecting class.",
+     "p": 0.0636,
+     "child": null
+    },
+    {
+     "branch": "c2b2",
+     "counterfactual": "The connecting homomorphism from global sections of the pulled-back tangent bundle of C_g to the first cohomology of the vertical logarithmic tangent bundle can be nonzero for an allowed nonzero vector b.",
+     "approach": "Compute the vertical and horizontal cohomology separately in a small genus and compare their sum with the logarithmic tangent cohomology. The difference would give the rank of the connecting homomorphism directly.",
+     "p": 0.0273,
+     "child": null
+    },
+    {
+     "branch": "own",
+     "counterfactual": null,
+     "approach": null,
+     "p": null,
+     "child": "n7"
+    }
+   ],
+   "cost": 0.1803,
+   "responses": 5,
+   "step_from": 3,
+   "known": [],
+   "created": 1795458902.194922
+  },
+  {
+   "id": "n5",
+   "parent": "n2",
+   "depth": 2,
+   "option": {
+    "branch": "c2b1",
+    "counterfactual": "For fixed g, \u0394_b is independent of the choice of nonzero b, including choices with vanishing components. Dependence on the full coefficient vector disappears in the alternating combination.",
+    "approach": "Search for an exact sequence or a map between the three cohomology calculations that forces their coefficient-dependent contributions to cancel. Such a construction could replace the matrix-rank formula with a formula depending only on g.",
+    "p": 0.3103
+   },
+   "status": "member",
+   "belief": {
+    "answer": "\\boxed{\\Delta_b=0\\quad\\text{for every }g\\ge2\\text{ and every nonzero }b\\in\\mathbb C^r.}",
+    "confidence": 0.97
+   },
+   "judge": {
+    "claim": true,
+    "same_as": "e1",
+    "answer": "\\Delta_b=0\\quad\\text{for every }g\\ge2\\text{ and every nonzero }b\\in\\mathbb C^r.",
+    "reason": "It asserts a definite value for every allowed parameter choice and is identical to e1.",
+    "experiment": false,
+    "n": 6
+   },
+   "experiment": null,
+   "options": [
+    {
+     "branch": "c0b0",
+     "counterfactual": "Although \u0394_b is independent of the nonzero coefficient vector b, its common value is not zero for every genus.",
+     "approach": "Compute the three cohomology dimensions for b=(1,0,\u2026,0) in additional genera using finite-field matrix ranks. Compare their alternating sum with candidate formulas depending on g modulo 3.",
+     "p": 0.07,
+     "child": null
+    },
+    {
+     "branch": "c0b1",
+     "counterfactual": "Although \u0394_b is independent of the nonzero coefficient vector b, its common value is not zero for every genus.",
+     "approach": "Derive the connecting maps for b=(1,0,\u2026,0) symbolically, retaining all resonant fiber degrees. Determine whether an unpaired class survives in the alternating sum.",
+     "p": 0.0633,
+     "child": null
+    },
+    {
+     "branch": "c0b2",
+     "counterfactual": "Although \u0394_b is independent of the nonzero coefficient vector b, its common value is not zero for every genus.",
+     "approach": "Use Serre duality to calculate the alternating combination directly from spaces of meromorphic differentials and vector fields, rather than calculating three cohomology dimensions separately.",
+     "p": 0.0333,
+     "child": null
+    },
+    {
+     "branch": "c1b0",
+     "counterfactual": "For b=(1,0,\u2026,0), higher-order connecting maps contribute to cohomology even after the first-order obstructions have been imposed.",
+     "approach": "Expand the gluing through the third relevant fiber-order increment and calculate the induced maps on the kernels of the preceding obstruction maps. Pay particular attention to genera satisfying 3k=2g\u22122.",
+     "p": 0.2108,
+     "child": null
+    },
+    {
+     "branch": "c1b1",
+     "counterfactual": "For b=(1,0,\u2026,0), higher-order connecting maps contribute to cohomology even after the first-order obstructions have been imposed.",
+     "approach": "Construct explicit lifts of the classes surviving the first-order maps. Their next discrepancies would identify precisely which higher-order obstructions remain.",
+     "p": 0.1558,
+     "child": null
+    },
+    {
+     "branch": "c1b2",
+     "counterfactual": "For b=(1,0,\u2026,0), higher-order connecting maps contribute to cohomology even after the first-order obstructions have been imposed.",
+     "approach": "Retain the complete finite transition matrices and seek a block elimination proving cancellation of higher-order contributions in the alternating combination, without claiming that those contributions vanish individually.",
+     "p": 0.0917,
+     "child": null
+    },
+    {
+     "branch": "c2b0",
+     "counterfactual": "The proposed Laurent-coefficient matrices do not correctly compute all three cohomology groups, despite reproducing some low-genus checks.",
+     "approach": "Reconstruct the transition matrices independently from the coordinate change, checking the horizontal-vector-field terms and the dual-frame conventions. Compare the resulting matrices entry by entry with the existing implementation.",
+     "p": 0.165,
+     "child": null
+    },
+    {
+     "branch": "c2b1",
+     "counterfactual": "The proposed Laurent-coefficient matrices do not correctly compute all three cohomology groups, despite reproducing some low-genus checks.",
+     "approach": "Increase both the allowed pole bound and the Laurent-coefficient cutoff in small examples. Stabilization would distinguish a truncation error from an incorrect transition or duality formula.",
+     "p": 0.1162,
+     "child": null
+    },
+    {
+     "branch": "c2b2",
+     "counterfactual": "The proposed Laurent-coefficient matrices do not correctly compute all three cohomology groups, despite reproducing some low-genus checks.",
+     "approach": "Calculate cohomology independently through the exact sequence from vertical logarithmic vector fields to S_b to the pulled-back tangent bundle of C_g. Compare its connecting-map ranks with the direct matrix calculation.",
+     "p": 0.0938,
+     "child": null
+    },
+    {
+     "branch": "own",
+     "counterfactual": null,
+     "approach": null,
+     "p": null,
+     "child": null
+    }
+   ],
+   "cost": 0.146,
+   "responses": 5,
+   "step_from": 11,
+   "known": [],
+   "created": 1795458912.660395
+  },
+  {
+   "id": "n6",
+   "parent": "n3",
+   "depth": 2,
+   "option": {
+    "branch": "c0b1",
+    "counterfactual": "The invariant \u0394_b is independent of the nonzero vector b; apparent differences between coefficient vectors come from an error in the cohomology computation.",
+    "approach": "Compute the three cohomology dimensions independently for genus 4 and the vectors (1,0) and (0,1), using successive extensions along the exceptional curve. Their alternating sums would provide a check that does not rely on the Laurent matrix implementation.",
+    "p": 0.0565
+   },
+   "status": "member",
+   "belief": {
+    "answer": "An exact finite-rank formula is as follows. Set h=2g\u22122, N=4g\u22124, d=2g\u22121\u2212k, Q=\u230aN/k\u230b, B=2h+1+dQ, and J=B+N+dQ+1. Put \u03c6=\u03c6_b(t), q=kt^k\u03c6, and a=\u2212\u00bdt^(\u2212h)(1\u2212t^(4g+2))^(1/2). On polynomials in w modulo w^(N+1), let P be the substitution matrix F(u)\u21a6F(tw(1\u2212qw^k)^(\u22121/k)), and let D and C be the multiplication matrices of 1\u2212qw^k and \u2212t^(\u22121)\u2212t^k\u03c6\u2032w^k, respectively. Define T_O=P, T_L=aDP, and T_S=[[aP,0],[aCP,DP]]. Let H_B consist of the even integers from 0 to B and the odd integers from 2g+1 to B. Set F_s=t^(\u2212s) for even s and F_s=t^(\u2212s)(1\u2212t^(4g+2))^(1/2) for odd s. For any m\u00d7m matrix T among T_O,T_L,T_S, define the finite complex matrix M(T), with rows (\u03b1,j), 1\u2264\u03b1\u2264m, 1\u2264j\u2264J, and columns (i,s), 1\u2264i\u2264m, s\u2208H_B, by M(T)_((\u03b1,j),(i,s))=[t^(\u2212j)](a^(\u22121)(T^(\u2212transpose))_(\u03b1i)F_s). Then \\boxed{\\Delta_b=\\operatorname{rank}_{\\mathbb C}M(T_S)-\\operatorname{rank}_{\\mathbb C}M(T_O)-\\operatorname{rank}_{\\mathbb C}M(T_L)}. All powers are expanded at t=0 with the specified square-root branch.",
+    "confidence": 0.86
+   },
+   "judge": {
+    "claim": true,
+    "same_as": "e2",
+    "answer": "Set h=2g\u22122, N=4g\u22124, d=2g\u22121\u2212k, Q=\u230aN/k\u230b, B=2h+1+dQ, and J=B+N+dQ+1. Put \u03c6=\u03c6_b(t), q=kt^k\u03c6, and a=\u2212\u00bdt^(\u2212h)(1\u2212t^(4g+2))^(1/2). On polynomials in w modulo w^(N+1), let P be the substitution matrix F(u)\u21a6F(tw(1\u2212qw^k)^(\u22121/k)), and let D and C be the multiplication matrices of 1\u2212qw^k and \u2212t^(\u22121)\u2212t^k\u03c6\u2032w^k, respectively. Define T_O=P, T_L=aDP, and T_S=[[aP,0],[aCP,DP]]. Let H_B consist of the even integers from 0 to B and the odd integers from 2g+1 to B. Set F_s=t^(\u2212s) for even s and F_s=t^(\u2212s)(1\u2212t^(4g+2))^(1/2) for odd s. For any m\u00d7m matrix T among T_O,T_L,T_S, define M(T), with rows (\u03b1,j), 1\u2264\u03b1\u2264m, 1\u2264j\u2264J, and columns (i,s), 1\u2264i\u2264m, s\u2208H_B, by M(T)_((\u03b1,j),(i,s))=[t^(\u2212j)](a^(\u22121)(T^(\u2212transpose))_(\u03b1i)F_s). Then \u0394_b=rank_C M(T_S)\u2212rank_C M(T_O)\u2212rank_C M(T_L). All powers are expanded at t=0 with the specified square-root branch.",
+    "reason": "It claims an exact finite-matrix formula. The matrices compute the three cohomology dimensions by finite truncation and Serre duality, so their rank combination is another expression for the invariant evaluated in e2, not a different value or range.",
+    "experiment": false,
+    "n": 7
+   },
+   "experiment": null,
+   "options": [
+    {
+     "branch": "own",
+     "counterfactual": null,
+     "approach": null,
+     "p": null,
+     "child": null
+    }
+   ],
+   "cost": 0.0822,
+   "responses": 5,
+   "step_from": 14,
+   "known": [],
+   "created": 1795459175.2209768
+  },
+  {
+   "id": "n7",
+   "parent": "n4",
+   "depth": 2,
+   "option": {
+    "branch": "own",
+    "counterfactual": null,
+    "approach": null,
+    "p": null
+   },
+   "status": "stopped",
+   "belief": null,
+   "judge": null,
+   "experiment": null,
+   "options": null,
+   "cost": 0.0025,
+   "responses": 2,
+   "step_from": 14,
+   "known": [],
+   "created": 1795459262.269676
+  }
+ ],
+ "members": [
+  "n0",
+  "n2",
+  "n3",
+  "n1",
+  "n4",
+  "n5",
+  "n6"
+ ],
+ "experiments": [
+  {
+   "id": "e1",
+   "node": "n3",
+   "answer": "\\Delta_b=0\\quad\\text{for every }g\\ge2\\text{ and every }b\\in\\mathbb C^r\\setminus\\{0\\}.",
+   "status": "ended",
+   "cost": 1.0128,
+   "queued_at": 1795458882.612043,
+   "at": {
+    "judged": 3,
+    "spent": 0.3562,
+    "seconds": 381
+   },
+   "key": "archive/20261123-132821-p1024/e1",
+   "swarm": "20261123-132821-p1024-e1",
+   "halves": "Proving it takes one claim: for every integer \\(g\\ge2\\) and every nonzero coefficient vector \\(b\\in\\mathbb C^r\\), including those with vanishing components, \\(h^1(X_b,\\mathcal O_{X_b})+h^1(X_b,L_b)=h^1(X_b,S_b)\\).",
+   "report": null,
+   "manager": null,
+   "reason": "the archive ended: proved: e2 (\\displaystyle \\boxed{\\Delta_b=-\\max\\{j\\in\\{0,\\ldots,r-1\\}:b_j\\ne0\\}})",
+   "budget": 20.0,
+   "started": 1795458885.58719,
+   "ended_at": 1795459336.483393
+  },
+  {
+   "id": "e2",
+   "node": "n1",
+   "answer": "\\displaystyle \\boxed{\\Delta_b=-\\max\\{j\\in\\{0,\\ldots,r-1\\}:b_j\\ne0\\}}",
+   "status": "ended",
+   "cost": 0.5453,
+   "queued_at": 1795458899.049956,
+   "at": {
+    "judged": 4,
+    "spent": 0.3959,
+    "seconds": 398
+   },
+   "key": "archive/20261123-132821-p1024/e2",
+   "swarm": "20261123-132821-p1024-e2",
+   "halves": "Proving it takes showing that, for every \\(g\\ge2\\) and every \\(m\\in\\{0,\\ldots,r-1\\}\\), every vector \\(b\\) with \\(b_m\\ne0\\) and \\(b_j=0\\) for all \\(j>m\\) satisfies \\(h^1(X_b,\\mathcal O_{X_b})-h^1(X_b,S_b)+h^1(X_b,L_b)=-m\\), regardless of the values of \\(b_0,\\ldots,b_{m-1}\\).",
+   "report": {
+    "status": "PROVED",
+    "text": "## Result\n\nThe team established the proposed formula for every allowed nonzero vector \\(b\\), including arbitrary vanishing lower coefficients. Writing\n\\[\nm=\\max\\{j:b_j\\ne0\\},\n\\]\nthey proved\n\\[\n\\boxed{\\Delta_b=-m}.\n\\]\nNothing they found contradicts the supplied answer, and no mathematical step remained unresolved in their final argument.\n\n## 1. Reduction to vertical logarithmic vector fields\n\nThe gluing preserves the base, giving a projection \\(\\pi:X_b\\to C_g\\). Put\n\\[\nd=2g-2,\\qquad T=\\pi^*T_{C_g},\n\\]\nand let \\(A\\) denote the vertical logarithmic tangent line bundle, locally generated by \\(y\\partial_y\\). They obtained\n\\[\n0\\longrightarrow A\\longrightarrow S_b\\longrightarrow T\\longrightarrow0,\n\\qquad L_b=A\\otimes T.\n\\]\n\nThe curve\u2019s Weierstrass semigroup at \\(p\\) is \\(\\langle2,2g+1\\rangle\\), so\n\\[\nH^1(C_g,\\mathcal O(np))\n=\\bigoplus_{\\substack{q=1,3,\\ldots,2g-1\\\\q>n}}\\mathbb C[t^{-q}],\n\\qquad T_{C_g}\\simeq\\mathcal O(-dp).\n\\]\nThe elementary bounds used throughout are\n\\[\nk<d,\\quad k\\ge2r-2,\\quad 3k\\ge d,\\quad 4k>d,\n\\]\nwith \\(3k=d\\) exactly when \\(g\\equiv1\\pmod3\\).\n\nThey proved that the connecting map \\(H^0(T)\\to H^1(A)\\) vanishes. A section of \\(T\\) must begin in fiber degree at least \\(d\\). If its degree-\\(d\\) coefficient were nonzero, its first obstruction would be a nonzero scalar multiple of\n\\[\nd[\\phi_b]\\in H^1(C_g,\\mathcal O(kp)).\n\\]\nThis class is nonzero because all poles in \\(\\phi_b\\) are distinct gaps, at least \\(2k+1>k\\). Thus every section begins in degree at least \\(d+1\\), where the relevant \\(H^1\\) tail of \\(A\\) vanishes. Consequently\n\\[\nh^1(S_b)=h^1(A)+h^1(T).\n\\]\n\n## 2. The main construction: relative divergence\n\nWrite \\(u=y_U,\\ v=y_W\\), and \\(F=1-k\\phi_b t^kv^k\\). Direct differentiation gives\n\\[\nu=tvF^{-1/k},\\qquad\nu\\partial_u=Fv\\partial_v.\n\\]\nThe relative differentials\n\\[\n\\alpha_U=\\frac{du}{u^{k+1}},\\qquad\n\\alpha_W=\\frac{dv}{v^{k+1}}\n\\]\nsatisfy \\(\\alpha_W=t^k\\alpha_U\\). Hence relative divergence defines a global, base-linear operator\n\\[\nD:A\\longrightarrow\\mathcal O_X,\\qquad\nD(f(u)u\\partial_u)=uf'(u)-kf(u).\n\\]\nOn degree \\(n\\), it multiplies by \\(n-k\\).\n\nThe fiberwise \\(\\mu_k\\)-action splits the calculation into characters. On every nontrivial character, divergence is invertible, so those contributions cancel. Only invariant degrees \\(0,k,2k,\\ldots\\) remain.\n\nLet \\(Q_1,Q_2\\) be invariant function tails starting in degrees \\(k,2k\\). Then\n\\[\n\\mathcal O_X^{\\mu_k}=\\mathcal O_C\\oplus Q_1,\\qquad\n0\\to Q_2\\to Q_1\\to\\mathcal O_C(kp)\\to0.\n\\]\nFor \\(A\\), the exact identities\n\\[\ne_U=(1-k\\phi_bt^kv^k)e_W,\\qquad\nu^ke_U=t^kv^ke_W\n\\]\nshow that its invariant part splits into a rank-two bundle \\(B\\) and a tail identified with \\(Q_2\\) by divergence. Here\n\\[\n0\\to\\mathcal O_C(kp)\\to B\\to\\mathcal O_C\\to0\n\\]\nhas nonzero extension class \\(-k[\\phi_b]\\), hence connecting-map rank one.\n\nIf\n\\[\n\\rho:H^0(\\mathcal O_C(kp))\\to H^1(Q_2),\\qquad R=\\operatorname{rank}\\rho,\n\\]\nthe resulting cancellation gives\n\\[\nh^1(\\mathcal O_X)-h^1(A)=1-R.\n\\]\nTensoring the same construction by \\(T_C\\), both possible connecting sources vanish:\n\\[\nH^0(T_C)=H^0(T_C(kp))=0.\n\\]\nTherefore\n\\[\nh^1(L_b)=h^1(T).\n\\]\n\n## 3. The remaining rank calculation\n\nThe first component of \\(\\rho\\) is a nonzero scalar multiple of\n\\[\nf\\longmapsto[\\phi_bf]\\in H^1(\\mathcal O_C(2kp)).\n\\]\nUsing source basis \\(x^a\\), \\(0\\le a\\le\\lfloor k/2\\rfloor\\), and target gap basis indexed by \\(0\\le j<r\\), its matrix is\n\\[\nM_{j,a}=b_{j+a},\n\\]\nwith coefficients beyond \\(m\\) interpreted as zero.\n\nBecause \\(k\\ge2r-2\\), the first \\(m+1\\) columns exist. Their leading square block has determinant\n\\[\n(-1)^{m(m+1)/2}b_m^{m+1}\\ne0.\n\\]\nAll columns \\(a>m\\) vanish. Thus the first obstruction has rank \\(m+1\\), with kernel spanned by \\(x^a\\), \\(a>m\\).\n\nThey also proved that these kernel elements have no higher obstruction\u2014not merely that the first matrix has the desired rank. Each term of \\(\\phi_bx^a\\), for \\(a>m\\), has odd nongap pole\n\\[\n2g+1+2(a-j-1).\n\\]\nIts principal part can be removed using \\(zx^{a-j-1}\\); the square-root expansion shows the remainder is holomorphic. This correction is odd under the hyperelliptic involution. The next obstruction, in degree \\(3k\\), is consequently even, while all relevant \\(H^1\\) gap classes are odd, so it vanishes. All subsequent targets vanish by \\(4k>d\\).\n\nThus \\(R=m+1\\), proving\n\\[\nh^1(\\mathcal O_X)-h^1(A)=-m\n\\]\nand hence the stated formula.\n\n## 4. Analytic justification and verification files\n\nThey addressed formal-to-analytic passage explicitly. The associated graded pieces are \\(\\mathcal O_C(np)\\) for \\(\\mathcal O_X,A\\), and \\(T_C(np)\\) for \\(T,L_b\\). Tail cohomology vanishes at cutoffs \\(2g-1\\) and \\(4g-3\\), respectively. Formal functions, cofinality of the exceptional and maximal-ideal filtrations, and stabilization identify these finite calculations with analytic \\(H^1\\). Character decompositions are performed on finite thickenings as coherent \\(\\mathcal O_C\\)-modules.\n\nReported executable checks:\n\n- `workspace/agent1_final_check.py`: nine divergence identities and 1,716 symbolic \\((g,m)\\) cases through \\(g=100\\).\n- `workspace/agent2_resonance_check.py`: the same range, checking symbolic Hankel pivots, kernel principal parts, and bounds.\n- `workspace/agent3_log_tangent_check.py`: five transition identities, gap/cutoff checks through \\(g=500\\) (41,916 coordinates), and 13 symbolic determinant identities.\n- `workspace/agent4_exact_cech.py`: full nonlinear \u010cech calculations using exact rational elimination, 34 sparse/dense cases through \\(g=9\\), with enlarged-cutoff stability; also 16 symbolic Hankel identities.\n- `workspace/agent4_cech.py` and `workspace/agent4_checks.json`: 152 additional checks modulo \\(1000003\\), through \\(g=20\\).\n\nThese finite checks corroborate the universal proof; they do not replace its geometric and analytic arguments. Early speculation that the tangent connecting map might have rank one was explicitly corrected to rank zero for nonzero \\(b\\)."
+   },
+   "manager": {
+    "new": true,
+    "reason": "sound: The final proof supplies the necessary all-genus, all-coefficient argument, including degenerate lower-coefficient patterns. Its reductions yield \u0394_b=1-rank(\u03c1), and the full obstruction map has rank m+1. Earlier tentative approaches were corrected or replaced, and no substantive unresolved gap remains in the final proof.",
+    "by": "verify"
+   },
+   "reason": "all agents idle, the judge found the proof complete",
+   "budget": 20.0,
+   "started": 1795458908.8515258,
+   "ended_at": 1795459191.4530308,
+   "verify": {
+    "stop": true,
+    "definite": true,
+    "definite_reason": "The formula determines a unique integer from g and b for every allowed nonzero vector, including vectors with vanishing components, since the set of indices with nonzero coefficients is nonempty.",
+    "procedure": false,
+    "verdict": "sound",
+    "acknowledged": false,
+    "review": {
+     "claimed": "The team claims a complete proof that \u0394_b = -m for every g\u22652 and every nonzero b, where m is the largest index with b_m\u22600.",
+     "verdict": "sound",
+     "team_acknowledged_gap": false,
+     "decisive_steps": [
+      {
+       "step": "Reduction from analytic cohomology to finite infinitesimal neighborhoods.",
+       "basis": "argument",
+       "checked": "Checked the graded sheaves: O and the vertical logarithmic tangent line A have graded pieces O_C(np), while \u03c0*T_C and L have T_C(np). Their tails have vanishing H\u00b9 at the stated cutoffs. Formal functions, cofinality of the exceptional and maximal-ideal filtrations, and the proper-to-Stein setup justify the finite calculations. The finite-thickening treatment also resolves the module-coherence concern raised in channel post #27."
+      },
+      {
+       "step": "The logarithmic tangent connecting map H\u2070(\u03c0*T_C)\u2192H\u00b9(A) vanishes.",
+       "basis": "argument",
+       "checked": "Verified T_C\u2245O_C(-(2g-2)p). A section could first occur in order d=2g-2, but its nonzero constant leading coefficient has obstruction d[\u03c6_b] in H\u00b9(O_C(kp)). This is nonzero because all the distinct poles in \u03c6_b are gaps greater than k. Thus sections start in order d+1, where H\u00b9(A(-(d+1)E))=0, and lift. Together with H\u00b2(A)=0, this gives h\u00b9(S)=h\u00b9(A)+h\u00b9(\u03c0*T_C)."
+      },
+      {
+       "step": "Relative divergence cancels all nonresonant pieces and reduces the answer to \u0394_b=1-rank(\u03c1).",
+       "basis": "argument",
+       "checked": "Verified the inverse gluing and relative differential identity \u03b1_W=t^k\u03b1_U. Divergence acts on degree n by n-k and intertwines transitions. On finite thickenings it is invertible on nontrivial \u03bc_k eigenspaces and on the invariant tail starting at 2k. The exact degree-0,k block of A has extension class -k[\u03c6_b], with connecting rank one. The resulting exact sequences give h\u00b9(O)-h\u00b9(A)=1-rank(\u03c1). Tensoring by T_C gives h\u00b9(L)=h\u00b9(\u03c0*T_C), since H\u2070(T_C)=H\u2070(T_C(kp))=0."
+      },
+      {
+       "step": "The full obstruction map \u03c1 has rank m+1, not merely its first graded component.",
+       "basis": "argument",
+       "checked": "Checked the first-component matrix M_{j,a}=b_{j+a}, including reduction of odd nongap poles using z-polynomials. Its leading (m+1)-square minor has determinant \u00b1b_m^(m+1), and its kernel is exactly the span of x^a with a>m. For every such monomial, the degree-2k obstruction can be removed using odd functions z*x^(a-j-1), with holomorphic odd remainders. The degree-3k obstruction is consequently even and has zero class in the odd-gap cohomology. All later targets vanish because 4k>2g-2. This proves that the first-component kernel is killed by the full map, uniformly under arbitrary specialization of the lower coefficients."
+      },
+      {
+       "step": "Executable symbolic and independent finite \u010cech checks.",
+       "basis": "computation",
+       "checked": "Read the shared scripts and reran agent1_final_check.py, agent2_resonance_check.py, agent3_log_tangent_check.py, and agent4_exact_cech.py. All passed: the symbolic transition identities, 1,716 symbolic support-stratum cases through genus 100, the additional gap checks through genus 500, and all 34 exact-rational nonlinear \u010cech/stability cases through genus 9. These are corroboration; the written divergence and obstruction argument supplies the all-genus proof."
+      }
+     ],
+     "failing_step": "The hardest step is proving that vectors in the kernel of the first graded obstruction have no higher obstruction; the odd first corrections, even second obstruction, and degree cutoff establish it.",
+     "reason": "The final proof supplies the necessary all-genus, all-coefficient argument, including degenerate lower-coefficient patterns. Its reductions yield \u0394_b=1-rank(\u03c1), and the full obstruction map has rank m+1. Earlier tentative approaches were corrected or replaced, and no substantive unresolved gap remains in the final proof."
+    },
+    "responses": 7,
+    "runs": 1,
+    "cost": 0.1578,
+    "summary": "sound: The final proof supplies the necessary all-genus, all-coefficient argument, including degenerate lower-coefficient patterns. Its reductions yield \u0394_b=1-rank(\u03c1), and the full obstruction map has rank m+1. Earlier tentative approaches were corrected or replaced, and no substantive unresolved gap remains in the final proof."
+   },
+   "read_at": 1795459336.1161861
+  }
+ ],
+ "reason": "proved: e2 (\\displaystyle \\boxed{\\Delta_b=-\\max\\{j\\in\\{0,\\ldots,r-1\\}:b_j\\ne0\\}})",
+ "ended": true
+}

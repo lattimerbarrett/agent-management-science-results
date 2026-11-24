@@ -1,0 +1,93 @@
+# A proved special case of the remaining m=15 exclusion
+
+Let A in F2^14 be F2^5 times the support of q(x1,x2,x3)=x1*x2+x3,
+with its other six coordinates fixed to zero. Thus |A|=128. There is
+no B of weight194,198,202,206 such that A+B lies in I^7 and AB=J.
+Here products and I are in the binary group algebra.
+
+Write y in F2^5, base v=(x1,x2,x3,z1,...,z6) in F2^9. For every
+T subset{1,...,5} of size k<=4, put b_T(v)=sum_{y in B_v} product_T y_i.
+Then deg b_T<=k+2, including deg b_empty<=2. This follows because
+A's moments containing fewer than all five y coordinates vanish and
+A+B in I^7. Put b=b_empty.
+
+Convolution AB=J says q*b_z=1 for every z. Direct calculation forces
+b13=b23=0 and b3+b12=1 in the quadratic polynomial b. If b12=0,
+b contains x3 with coefficient1 and no x3 interactions, hence wt b=256,
+contrary to wt B<=206. Otherwise affine base changes put
+b=x1*x2+delta(z), delta quadratic on six variables. Hence
+wt b=128+4 wt delta. The bound wt B<=206 forces wt delta=0 or16.
+Thus b is either a 7-flat indicator (weight128), or a rank4 quadratic
+on four variables times five free variables (weight192).
+
+CASE wt b=192. There are at most7 defective fibers, where defective
+means not a singleton when b=1 or not empty when b=0. First moments
+h_i have degree<=3. The polynomial h_i*(1+b), degree<=5, is supported
+on these<=7 fibers, so vanishes (minimum nonzero weight16). Any cubic
+supported on b is b times an affine function: expand in the five free
+variables and use the 4-variable shortened-code dimensions
+(0,0,1,5) in degrees0,1,2,3. Normalize these affine first moments to
+zero by affine y-shifts. The second, third, fourth moments have degree
+<=4,5,6 and support<=7, below minimum weights32,16,8, so vanish.
+A nontrivial fiber then costs at least30 extra points (null4 minimum32),
+contradicting total excess<=14.
+
+CASE wt b=128. Normalize b=1_D for a 7-flat D in F2^9. Total excess
+over the 128 singleton fibers is E in{66,70,74,78}.
+
+First suppose some first moment is nonzero outside D. Its outside
+weight is<=E/2<=39. Split base into the four D-parallel 7-flats.
+At least one of the three outside restrictions is zero: otherwise
+three nonzero cubics cost>=48. The other restrictions then have degree
+<=2, as differences of cubic restrictions have degree<=2. Their first
+nonzero weight is32 and next48. Thus the outside support is exactly one
+affine5-flat T of size32, in one outside coset. Any two distinct such
+supports have union>=48, exceeding the defect count39. Therefore all
+first moments outside D are proportional to 1_T. Change y basis so
+only h_1 has this outside part; all other h_j are supported D, hence
+1_D times affine functions. Normalize them to zero by affine shifts.
+The first moment h_1 on D fixes its singleton fibers; on T the minimum
+fiber is a pair differing by e_1. These give a baseline of192 points,
+with residual R<=14 and <=7 defective fibers.
+
+For j>=2, the second moment b_{1j}, degree<=4, is supported on T and
+these <=7 defects. Puncturing outside the flat T gives minimum nonzero
+weight16, so it is supported T. Since codim T=4, it is a constant times
+1_T. Affine y_j shifts vanishing D and constant T align all baseline
+pairs into <e1>. For each j>=2, the number of B points with y_j=1 is
+at most R+2*(number of defective T fibers)<=28: parity and h_j=0
+make that count even per fiber, costing at most the excess, plus2
+in each defective baseline pair. A nonzero restriction of B to the
+affine hyperplane y_j=1 has weight>=32 (RM(8,13)), impossible. Thus
+B lies in a 10-flat and its weight is divisible4, contradiction.
+
+Now suppose all first moments are supported D. Normalize them all to
+zero. A defective odd fiber then has size>=3, and an even nonempty
+fiber has size>=4. Each second moment c has degree<=4. If nonzero
+outside D, it has outside weight>=16 by puncturing and total weight
+>=32. Its fibers therefore cost at least
+2*wt(c)+2*wt(c outside D)>=96>E, impossible. So all second moments
+are supported D and equal 1_D times quadratics on seven variables.
+Nonzero such quadratics have weight at least32, next48. Since each
+nonzero-second-moment fiber costs>=2, all nonzero second moments must
+have the SAME affine5-flat support T of size32. (Distinct supports
+have union>=48.) Their alternating matrix is constant M on T.
+Rank M<=|B_v|-1 for odd fibers of zero XOR, so32*rank M<=78. Thus
+rank M=2. This fixes a 2-space P, and the minimum T fiber is the
+three nonzero points of P. Baseline192 again leaves R<=14 and<=7
+exceptional fibers. For any linear y-coordinate annihilating P,
+its first moment is zero. Its 1-half contains at most R+2*7<=28
+points, again below32. Hence B lies in a base9-plus-P2 flat of
+dimension11, forcing weight divisible4, contradiction.
+
+The final possibility is all first AND second moments zero. Any
+nontrivial odd fiber costs>=6, any even nonempty fiber>=8. A nonzero
+third moment has degree<=5. If supported D its weight>=16 and costs
+>=96; if not, total weight>=16 and outside weight>=8 cost>=112.
+So third moments vanish. A nonzero fourth moment, degree<=6, has
+supported-D weight>=8 cost>=112, or total>=8 and outside>=4 cost>=120.
+So fourth moments vanish as well. A null4 set on F2^5 is empty or
+all of F2^5. Thus odd fibers are {0} or F2^5\{0}, and even fibers
+are empty or F2^5. Necessarily wt B=128+30a+32b. No nonnegative a,b
+give the required excess66,70,74,78 (two summands<=64, three>=90).
+This completes the special case.

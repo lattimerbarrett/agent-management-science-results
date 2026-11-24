@@ -1,0 +1,213 @@
+UNIFORM GRAPH LYAPUNOV--SCHMIDT THEOREM, WITH PROOF
+Agent4, full analytical piece for team integration.
+
+Theorem. Let n>17, d=n-1, a=(n-2)/2, p=(n+2)/(n-2), q=p+1,
+c=(n-2)/(4(n-1)), and alpha=2c. Let f:R^d->R be a real polynomial
+of degree at most6. For eps>0, xi in R^d put
+ U_b(y,z)=[eps/(eps^2+|y-xi|^2+z^2)]^a, b=(eps,xi).
+On H=D^{1,2}(R^n_+) define the Jacobi form
+ A_b(v,w)=int Dv.Dw-n(n+2)int U_b^(p-1)vw.
+Let K_b=span{partial_eps U_b,partial_xik U_b}, and let B_b be the inverse
+of A_b on K_b-perp, with orthogonality in H. Define a boundary functional
+ r_(f,b)(v)=int_{R^d}[Df.D_yU_b-f U_b,nn+alpha Delta f U_b] v0,
+and Q_f(b)=r_(f,b)(B_b r_(f,b)). These definitions are legitimate below;
+in particular r_(f,b) annihilates K_b.
+If Q_f has a strict local maximum at b*, then there is one fixed smooth
+compactly supported function F on R^d such that the critical equation
+ -Delta u=n(n-2)(u_+)^p in {z>F(y)},
+ partial_nu u+alpha H u=0 on its boundary
+has infinitely many nonzero weak finite-energy solutions concentrating
+at distinct boundary points with scales tending to0. Their pullbacks to
+R^n_+ differ from the standard bubbles by o(1) in H. The quadratic form
+of the conformal Laplacian/Robin operator is coercive. The solutions are
+nonnegative by testing negative parts. Compactification, smoothness, and
+strict positivity are treated separately by agent3's geometric lemma.
+
+Proof.
+I. Exact functional and small-form estimates.
+For any smooth compactly supported h, T_h(y,z)=(y,z+h(y)) maps R^n_+
+to its epigraph with determinant1. Its inverse metric is
+ G_h=[[I,-Dh],[-Dh^t,1+|Dh|^2]]. With the outward normal, mean curvature
+density on the boundary is
+ b_h=Delta h-Dh^t D2h Dh/(1+|Dh|^2).
+Thus the exact pulled-back functional is
+ E_h(v)=1/2 int G_h Dv.Dv+c int b_h v0^2-(n-2)^2/2 int(v_+)^q.
+Its critical points give precisely the asserted weak PDE and Robin
+condition, since q(n-2)^2/2=n(n-2) and alpha=2c.
+
+The Sobolev and trace inequalities are
+ ||v||Lq+||v0||Lb <= C_n||v||H,  b=2d/(n-2).
+Holder uses 1/d+2/b=1. Therefore, writing
+ eta(h)=||Dh||infty+||D2h||Ld and assuming eta(h)<=1,
+ |(a_h-a_0)(v,w)|<=C_n eta(h)||v||H||w||H,
+where a_h is the quadratic form of E_h. Consequently a_h is coercive
+if eta(h) is sufficiently small. All estimates here and below allow
+constants depending on n,f,a fixed compact parameter neighborhood, and
+a fixed cutoff, but never on the bump index i.
+
+II. Flat inverse and projected nonlinear equation.
+The kernel of A_b is exactly K_b, of dimension n. To check this and the
+inverse bound, conformally map to the unit round hemisphere: the H inner
+product becomes C(v,w)=int(Dv.Dw+n(n-2)vw/4), and A becomes
+int(Dv.Dw-nvw). Neumann spherical harmonics of degree k have eigenvalue
+mu_k=k(k+n-1). The C-Riesz eigenvalues are
+ (mu_k-n)/(mu_k+n(n-2)/4).
+For k0 this is -4/(n-2), for k1 it is0 with multiplicity n, and for k>=2
+it is at least4/(n+4), since the rational function is increasing in mu.
+Thus ||B_b||<= (n+4)/4, uniformly in b by conformal isometry of H.
+The inverse here is not claimed positive: its one negative mode is kept.
+
+Let P_b be orthogonal projection onto K_b-perp. The projected Hessian
+ P_b E_h''(U_b) P_b differs from P_b A_b P_b by at most C_n eta(h).
+Choose eta0 so small that the Neumann-series perturbation criterion
+holds, uniformly b. Its inverse then has norm at most(n+4)/2.
+For n>17, 1<p<2. The Nemytskii remainder satisfies, uniformly b,
+ ||N_b(w)||H* <= C||w||H^p,
+ ||N_b(w)-N_b(v)||H* <= C(||w||+||v||)^(p-1)||w-v||,
+where N_b(w) is the nonlinear part of E_h'(U_b+w)-E_h'(U_b)-E_h''(U_b)w.
+These inequalities follow from the scalar Holder estimate for
+(t_+)^(p-1), Holder with q=p+1, and the Sobolev embedding; N_b is
+independent of h because det DT_h=1.
+Hence if R_h,b=E_h'(U_b) is small, the contraction
+ w=-[P_b E_h''(U_b)P_b]^-1 P_b[R_h,b+N_b(w)]
+has a unique solution in K_b-perp with ||w||<=C||R_h,b||. On any compact
+parameter set where the residual tends uniformly to0, this holds uniformly.
+The solution is C1 in b by the ordinary Banach implicit-function theorem:
+the positive-part nonlinearity is C1, and the finite-rank projections
+are smooth. One may trivialize K_b-perp locally and glue branches by
+uniqueness. No parameter derivative remainder estimate is required.
+
+III. One fixed smooth graph.
+Choose centers p_i=(2^-i,0,...,0), radii rho_i=2^(-i-4),
+mu_i=2^(-i^2), lambda_i=exp(-(i+10)^4), i>=1. Let chi=1 on B1 and be
+supported in B2. The sets B_(2rho_i)(p_i) are pairwise disjoint. Set
+ F_i(y)=tau mu_i lambda_i^6 chi((y-p_i)/rho_i) f((y-p_i)/lambda_i),
+ F=sum_i F_i, beta_i=tau mu_i, t_i=beta_i lambda_i^5.
+Since lambda_i<rho_i, polynomial scaling gives
+ ||D^k F_i||infty<=C_k beta_i rho_i^(6-k) for every fixed k.
+These bounds, divided by any power of |p_i|, tend to0. Thus F is smooth
+and flat at0. It is compactly supported. Disjoint supports give
+ eta(F)<=C tau, using ||D2F_i||Ld<=C beta_i rho_i^5.
+Fix tau>0 so small that eta(F)<eta0. This fixes one graph once and for all.
+
+The H-isometric bubble rescaling is
+ (S_i v)(y,z)=lambda_i^-a v((y-p_i)/lambda_i,z/lambda_i).
+Exactly E_F(S_i v)=E_(h_i)(v), where
+ h_i(y)=F(p_i+lambda_i y)/lambda_i.
+Write R_i=rho_i/lambda_i. The local bump of h_i is
+ t_i f_(R_i), f_R=chi(y/R)f(y), and all other bumps are outside a ball
+of radius cR_i. The local form norm is at most
+ delta_i=C beta_i rho_i^5 ->0. The global form norm stays below eta0.
+
+IV. Uniform source and direct energy asymptotics.
+Fix a compact parameter neighborhood D around b*, with eps bounded
+away from0. Bubbles and derivatives satisfy uniformly there
+ |U_b(x)|<=C(1+|x|)^(2-n), |DU_b(x)|<=C(1+|x|)^(1-n).
+For R large, direct polar integration gives
+ ||DU_b||L2(|x|>R)+||U_b,0||Lb(|y|>R)<=CR^-a.
+Thus remote graph contributions to the residual are bounded by
+ C eta0 R_i^-a; remote quadratic/cubic direct energies are bounded by
+ C(eta0^2+eta0^3)R_i^-2a. Indeed use Cauchy--Schwarz for bulk terms
+and Holder (d,b,b) for the curvature term; only the global norms enter.
+The ratios of these bounds to t_i and t_i^2 tend to0, since
+ lambda_i^((n-12)/2) rho_i^-N /mu_i ->0 for each fixed N (n>12).
+
+The linear graph residual at U_b is the functional
+ ell_(f,b)(v)=-int Df.(D_yU_b v_n+U_b,n D_yv)
+              +alpha int Delta f U_b,0 v0.
+The bulk coefficients Df DU_b are O(r^(6-n)), with square radial
+power11-n. Boundary D2f U_b,0 is O(r^(6-n)), in L^{2d/n} precisely
+when n>12. These estimates also hold for derivatives of the cutoff.
+Consequently
+ ||ell_(f_R,b)-ell_(f,b)||H*<=CR^(-(n-12)/2).
+The nonlinear local metric residual has bound C delta_i t_i; the
+nonlinear local curvature residual has bound C delta_i^2 t_i. Combining
+these with the remote estimates proves, uniformly b in D,
+ R_(h_i,b)/t_i ->ell_(f,b) strongly in H*.
+
+The first energy variation of every graph is identically0 at every
+bubble on the boundary plane:
+ -int Dh.D_yU_b U_b,n+c int Delta h U_b,0^2=0.
+This follows by integrating the first term in z and the second in y;
+for f_R it is ordinary integration by parts, and the stated integrable
+bounds pass to f. Thus exactly
+ E_h(U_b)-E_0(U_b)=1/2 int|Dh|^2 U_b,n^2
+ -c int[Dh^t D2h Dh/(1+|Dh|^2)]U_b,0^2.
+Put K_f(b)=1/2 int|Df|^2 U_b,n^2. It is finite for n>12, and its
+cutoff error is O(R^(12-n)). The local cubic curvature integral has
+absolute bound Ct_i^3: its radial integrand is O(r^(16-n)), integrable
+for n>17. Remote direct energy was estimated above. Therefore
+ E_(h_i)(U_b)=E_0(U)+t_i^2 K_f(b)+o(t_i^2)
+uniformly on D. This is the only place n>17, rather than n>12, is used.
+
+V. Strong inverse convergence and reduced action.
+For each fixed v in H, E_(h_i)''(U_b)v-A_b v tends to0 in H*, uniformly
+for b in compact sets after finite-net approximation. For the bulk
+part use bounded coefficients, local Dh_i->0, and dominated convergence
+on Dv. For the boundary part choose R with small trace Lb tail of v;
+on the tail use the uniform Ld curvature bound, while on the ball use
+local D2h_i->0. This proves strong convergence. Fixed-source inverse
+convergence follows from the resolvent identity and the uniform inverse
+bound in II. The varying finite-rank projections cause no difficulty:
+they are smooth in b; equivalently conjugate by the bubble H-isometry.
+Uniformity on compact families follows by a finite net, since the limit
+source family and its flat inverse images are compact in H* and H.
+
+By II and IV, w_i(b) exists with ||w_i||<=Ct_i. Divide its projected
+equation by t_i. The nonlinear error is O(t_i^(p-1))->0. Consequently
+ w_i/t_i ->v_b=-B_b ell_(f,b) strongly in H, uniformly b in D.
+Here ell annihilates K_b: the identically-zero linear graph energy at
+U_b, differentiated in each bubble parameter, gives ell_(f,b)(Z)=0.
+The differentiation is justified by the same integrable polynomial
+bounds (or first for f_R and then by strong source convergence).
+
+Taylor's theorem for the scalar positive-part power gives an action
+remainder O(||w_i||^q), q>2, uniformly. Testing the projected equation
+against w_i eliminates the linear term. Thus the reduced action
+ j_i(b)=E_(h_i)(U_b+w_i(b))
+satisfies uniformly on D
+ j_i(b)=E_0(U)+t_i^2[K_f(b)-A_b(v_b,v_b)/2]+o(t_i^2).
+
+VI. Exact gauge identity, with no noncompact-shape differentiability.
+Set q_b=f U_b,n. It has zero trace and belongs H for n>12; its gradient
+is O(r^(6-n)). By the interior Jacobi equation for U_b,n and integration
+by parts with compact cutoffs, then H-convergence,
+ A_b(q_b,q_b)=int|Df|^2 U_b,n^2=2K_f(b).
+A direct integration by parts also gives
+ ell_(f,b)=r_(f,b)-A_b q_b.
+The functional r depends only on the boundary trace, so r(q_b)=0.
+Since ell annihilates K_b and A_b does also, r annihilates K_b. Therefore
+all projected inverse expressions are legitimate. Replacing q_b by its
+projection off K_b changes neither A_b q_b nor r(q_b). Expanding the
+quadratic expression yields the exact identity
+ ell B_b ell = r B_b r +2K_f(b).
+Hence the reduced action limit is
+ (j_i(b)-E_0(U))/t_i^2 -> -Q_f(b)/2
+uniformly on D.
+
+VII. Actual critical points and concentration.
+Choose D to be a small closed parameter ball around the strict maximum
+b* with Q_f(b*)>sup_(boundary D) Q_f. Uniform convergence in VI ensures
+j_i(b*)<inf_(boundary D)j_i for all large i. Thus j_i has a minimum at
+an interior b_i. Because w_i is C1, j_i'(b_i)=0.
+Let Z_k=partial_(b_k)U_b. The projected equation means E'(U_b+w_i)
+is in the H-Riesz span of the Z_k. The parameter derivative matrix is
+ <Z_k,partial_(b_l)(U_b+w_i)>H
+ =<Z_k,Z_l>H-<partial_(b_l)Z_k,w_i>H.
+The flat Gram is uniformly positive definite on D, and the second term
+is O(t_i), since the Z derivatives are uniformly bounded in H there.
+Thus the matrix is invertible for large i. The vanishing of j_i' forces
+all residual coefficients to vanish: U_(b_i)+w_i(b_i) is an exact weak
+critical point of E_(h_i), not merely a projected solution.
+
+Its physical pullback S_i[U_(b_i)+w_i] is an exact critical point of E_F.
+Testing its equation against the negative part gives minus a_F(u_-,u_-)
+on the left and0 on the right; coercivity forces u_-=0. The solution is
+nonzero because its rescaled H distance from a nonzero bubble tends to0.
+Finally b_i stays in D, and w_i->0 in H, hence in boundary Lb. On one
+fixed boundary ball, the trace of U_(b_i) has a uniform positive Lb norm.
+Thus the physical boundary supremum is at least C lambda_i^-a, diverging
+to infinity. Smooth compactification and strict positivity complete the
+geometric conclusion as in agent3's independent lemma. This proves the
+theorem, using only the usual Sobolev/trace inequalities, explicit sphere
+spectrum, contraction/IFT, and finite-dimensional minimization.

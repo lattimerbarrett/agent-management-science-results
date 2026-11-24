@@ -1,0 +1,122 @@
+EXACT MAXIMUM t=5 FOR RESIDUAL CAP TWO IN THE SEPARATED ALL-CHOICE MODEL
+
+WARNING: this theorem concerns the separated all-target-choice model;
+the general original configuration may need factor-two separation, so
+this does NOT rule out an original maximum-deficit-two example at t=6.
+
+A pattern of class i is (P,T), actual set P, foreign target-label set T,
+with |P|+|T|<=d. All independent one-point choices from target cores
+occur. In any putative example with t>=6,d<=2, every core has size at
+least t-d>=4 (any member covers an intersecting family). Thus for two
+patterns of DIFFERENT owners i,j the exact intersection condition is
+ P intersect Q nonempty OR j in T OR i in U.                 (*)
+Indeed any shared third-core choices can be chosen distinct.
+
+LEMMA 1 (cap one). A valid full-Hall instance with d<=1 has t<=3.
+If all actual patterns are nonempty, they are target-free singletons;
+cross-class intersection forces a single actual point to cover all
+classes when t>=2. Otherwise choose an empty-actual pattern of owner h
+with targets T, |T|<=1. Every class outside {h} union T must have ALL
+patterns target h, and cap one makes these patterns empty actual with
+only target h. Two such classes violate (*), so there is at most one.
+Hence t<=3. If t=3, there cannot be ANY singleton-actual pattern (x,empty)
+of owner h: each foreign pattern is either the same actual singleton x
+or empty actual targeting h. A foreign empty pattern violates (*) with
+EVERY pattern of the other foreign class. Thus both foreign classes
+consist only of x, and {x,one representative of core h} is a 2-cover.
+So at t=3 all patterns are empty actual, each with one target among the
+other two classes (necessarily the directed 3-cycle).
+
+LEMMA 2 (graphs). If a graph G has vertex-cover number at least three,
+its edge-disjointness graph K(G) is either connected or G is K4 after
+removing isolated original vertices.
+Proof: if K(G) is disconnected, no component can be an isolated edge
+of G, since that edge's two endpoints would cover G. Choose one
+component C with disjoint edges ab,cd. Any edge outside C intersects
+both, so it lies among ac,ad,bc,bd. If an edge of C uses a vertex z
+outside {a,b,c,d}, it must have its other endpoint among these four;
+say it is az. Then all edges outside C lie among ac,ad. If there is
+only one such edge its endpoints cover G. If both exist, every edge
+of C contains a or equals cd; hence {a,c} covers G. Both contradict
+cover number>=3. Thus all edges of C, as well as those outside C, lie
+on four vertices. Cover number>=3 then forces the complete K4.
+
+MAIN PROOF. Suppose t>=6.
+Case A: some empty-actual pattern has owner h, target set T, |T|<=2.
+Discard S={h} union T, and delete target choices in S from the remaining
+patterns. (Safe excision preserves intersection and gives cover number
+exactly the number of remaining classes.) Every remaining pattern
+originally targets h by (*), so its residual cap after excision is one.
+Lemma 1 gives t<=|S|+3<=6. Equality t=6 requires |T|=2 and three
+remaining classes R forming a cap-one full-Hall family. Lemma 1 says
+ALL their surviving patterns have empty actual part and one R-target.
+Before excision they therefore had exactly two targets, h and an
+R-label, with no actual points or targets in T. Any pattern of either
+class a in T must consequently target EVERY one of the three owners
+in R, by (*). This contradicts cap two. Hence Case A is impossible.
+
+Case B: every actual pattern is nonempty. Build a graph G from all
+actual TWO-point patterns (these necessarily have no targets). Any two
+disjoint edges of G must have the SAME owner, by (*). Thus every
+nontrivial component of K(G) has one unique owner.
+If tau(G)>=3 and K(G) is connected, all graph edges have one owner i.
+No other class has a two-point pattern, as that would be a 2-cover of
+G. Every other class's singleton-actual pattern must target i, because
+no single point covers G. After excising i, the remaining family has
+cap one with only actual singletons; intersection and full Hall allow
+at most one class. Thus t<=2, contradiction.
+If tau(G)>=3 and G=K4, its three K(G)-components are opposite-edge
+pairs, each with one owner. Unless all edges have one owner (previous
+case), removing the edges of ANY one owner leaves a matching pair or
+a C4, neither having a one-point cover. A singleton-actual pattern of
+a new owner can target at most one old owner, and its actual point
+cannot hit all the remaining edges. Hence every class owns a K(G)
+component, giving t<=3. Contradiction.
+Therefore G has a vertex cover U of size at most two.
+Restrict the whole family to members avoiding U. Its covering number
+is at least t-|U|>=t-2. All remaining patterns are actual SINGLETONS,
+with at most one target. Form the bipartite graph of nonempty classes
+versus actual singleton values. A matching of q edges chooses q
+patterns of different owners and different actual values. These q
+actual petals are disjoint, so (*) needs at least binom(q,2) target
+slots, while only q are available. Thus q<=3.
+By Konig's bipartite vertex-cover theorem, at most three class vertices
+and actual-point vertices cover this incidence graph. Replacing each
+selected class vertex by one core representative gives a cover of the
+restricted full family of size at most three. Hence t-2<=3, contradiction.
+
+This proves t<=5. Sharpness: use the regular tournament on five class
+labels, each core of size three, and for each class all choices of one
+point from each of its two out-neighbor cores. Every member has rank
+five and residual cap two. The family is intersecting and tau=5.
+
+
+STRONGER UNIVERSAL FORM (independent audit by agent4, Slack 596--598)
+The same proof actually bounds the covering number, not the number of
+classes: ANY intersecting separated all-choice family with residual cap
+2 and ARBITRARILY MANY nonempty core classes has tau<=5.
+Proof modification: assume tau>=6; then all cores have size>=tau-2>=4,
+so (*) still applies. For cap one, the same structural argument gives
+tau<=3 with arbitrary class count, and tau=3 forces EXACTLY three
+classes forming the pure-target directed cycle: in the empty-pattern
+argument there are at most three classes total, while the noempty case
+has a one-point actual cover. If a singleton actual pattern occurs at
+tau3, there are at most two classes, or all foreign classes share its
+actual point, giving a cover of size at most two.
+In Case A delete at most three owner classes and their foreign target
+choices. The cover number of the remaining family decreases by at most
+three (add one own-core representative for each deleted class); deleting
+foreign choices cannot lower it. Thus tau<=3+3=6, and equality forces
+exactly the rigid three-cycle outside the deleted classes. The previous
+three-required-target contradiction then rules out tau6.
+In Case B the connected-G and K4 arguments give either tau<=2 or at
+most three classes (hence tau<=3), without any class-Hall premise. In
+the other case, restrict away a two-point graph cover U; the singleton
+Kong/Konig matching-cover argument gives tau<=|U|+3<=5. This proves the
+universal theorem. No balancing m=t is needed for this stronger result.
+
+For larger caps let F(d) be this UNIVERSAL maximum cover number with
+arbitrary class count. The seed stripping normalization extends with
+rank=tau seeds, so F(d)<=F(d-1)+d+1 when tau>2d; elementary branching
+also gives the same quadratic-scale bound without normalization. This
+does NOT yet prove F(d)=O(d^(3/2)) or the main logarithmic limit.

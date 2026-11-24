@@ -1,0 +1,107 @@
+{
+ "id": "n16",
+ "parent": "n14",
+ "depth": 2,
+ "option": {
+  "branch": "c0b0",
+  "counterfactual": "At least one of the weights 322, 326, 330, and 334 does not occur in RM(7,14), despite the proposed central interval containing all four.",
+  "approach": "Study projection along a direction and classify the smaller supports obtained from a hypothetical weight-322 word. Use the parity constraints on collisions to turn the existence question into explicit conditions on supports of weight at most 320.",
+  "p": 0.2364
+ },
+ "status": "member",
+ "belief": {
+  "answer": "Let N=2^m. Then\n\\[\n\\boxed{\\begin{aligned}\n\\mathcal W_m={}&[0,0]_2\\cup[128,128]_2\\cup[192,192]_2\\cup[224,224]_2\\cup[240,240]_2\\cup[248,248]_2\\\\\n&\\cup[252,256]_2\\cup[272,272]_2\\cup[288,288]_2\\cup[296,296]_2\\cup[304,304]_2\\cup[308,308]_2\\\\\n&\\cup[312,320]_2\\cup[324,324]_2\\cup[328,328]_2\\cup[332,332]_2\\\\\n&\\cup[336,N-336]_2\\\\\n&\\cup[N-332,N-332]_2\\cup[N-328,N-328]_2\\cup[N-324,N-324]_2\\cup[N-320,N-312]_2\\\\\n&\\cup[N-308,N-308]_2\\cup[N-304,N-304]_2\\cup[N-296,N-296]_2\\\\\n&\\cup[N-288,N-288]_2\\cup[N-272,N-272]_2\\cup[N-256,N-252]_2\\\\\n&\\cup[N-248,N-248]_2\\cup[N-240,N-240]_2\\cup[N-224,N-224]_2\\\\\n&\\cup[N-192,N-192]_2\\cup[N-128,N-128]_2\\cup[N,N]_2.\n\\end{aligned}}\n\\]\nEvery constant endpoint b denotes 0\\cdot2^m+b, and every endpoint N-b denotes 1\\cdot2^m-b.",
+  "confidence": 0.45
+ },
+ "judge": {
+  "claim": true,
+  "same_as": "e3",
+  "answer": "Let N=2^m. Then\n\\[\n\\begin{aligned}\n\\mathcal W_m={}&[0,0]_2\\cup[128,128]_2\\cup[192,192]_2\\cup[224,224]_2\\cup[240,240]_2\\cup[248,248]_2\\\\\n&\\cup[252,256]_2\\cup[272,272]_2\\cup[288,288]_2\\cup[296,296]_2\\cup[304,304]_2\\cup[308,308]_2\\\\\n&\\cup[312,320]_2\\cup[324,324]_2\\cup[328,328]_2\\cup[332,332]_2\\\\\n&\\cup[336,N-336]_2\\\\\n&\\cup[N-332,N-332]_2\\cup[N-328,N-328]_2\\cup[N-324,N-324]_2\\cup[N-320,N-312]_2\\\\\n&\\cup[N-308,N-308]_2\\cup[N-304,N-304]_2\\cup[N-296,N-296]_2\\\\\n&\\cup[N-288,N-288]_2\\cup[N-272,N-272]_2\\cup[N-256,N-252]_2\\\\\n&\\cup[N-248,N-248]_2\\cup[N-240,N-240]_2\\cup[N-224,N-224]_2\\\\\n&\\cup[N-192,N-192]_2\\cup[N-128,N-128]_2\\cup[N,N]_2.\n\\end{aligned}\n\\]\nEvery constant endpoint b denotes 0\\cdot2^m+b, and every endpoint N-b denotes 1\\cdot2^m-b.",
+  "reason": "It asserts an explicit complete weight spectrum, which is a claim a team could try to prove. Its intervals are exactly those in e3.",
+  "experiment": false,
+  "n": 17
+ },
+ "experiment": null,
+ "options": [
+  {
+   "branch": "c0b0",
+   "counterfactual": "All four weights 322, 326, 330, and 334 occur in RM(7,14), despite their resistance to structured searches.",
+   "approach": "Search for a weight-320 support whose degree-five evaluation vectors span the evaluation vector of an outside point. Such a relation gives explicit labels for a projection lift of weight 322, which can then be checked by its full polynomial representation.",
+   "p": 0.1342,
+   "child": null
+  },
+  {
+   "branch": "c0b1",
+   "counterfactual": "All four weights 322, 326, 330, and 334 occur in RM(7,14), despite their resistance to structured searches.",
+   "approach": "Search beyond sums of a few minimum-weight words by imposing the degree constraints directly on a small collection of affine fibers. Solve for the fiber contents while requiring one of the four target weights.",
+   "p": 0.0954,
+   "child": null
+  },
+  {
+   "branch": "c0b2",
+   "counterfactual": "All four weights 322, 326, 330, and 334 occur in RM(7,14), despite their resistance to structured searches.",
+   "approach": "Use the verified words of nearby weights as starting points for degree-preserving modifications, allowing intermediate weights to increase. Independently verify any target reached by computing every truth-table value and its squarefree polynomial coefficients.",
+   "p": 0.0686,
+   "child": null
+  },
+  {
+   "branch": "c1b0",
+   "counterfactual": "Weight 310 occurs in one of the codes in the question, so the proposed list of weights below 320 omits an attainable weight.",
+   "approach": "Investigate aperiodic weight-308 supports for an outside point in their degree-five closure. A suitable relation would construct a weight-310 lift and directly refute the proposed low-weight list.",
+   "p": 0.1235,
+   "child": "n18"
+  },
+  {
+   "branch": "c1b1",
+   "counterfactual": "Weight 310 occurs in one of the codes in the question, so the proposed list of weights below 320 omits an attainable weight.",
+   "approach": "Reconstruct the numerical consequence of the classical below-2.5-times-minimum-distance classification from its actual canonical forms. Check whether a previously omitted family permits weight 310.",
+   "p": 0.0982,
+   "child": null
+  },
+  {
+   "branch": "c1b2",
+   "counterfactual": "Weight 310 occurs in one of the codes in the question, so the proposed list of weights below 320 omits an attainable weight.",
+   "approach": "Search for weight 310 as the symmetric difference of a weight-256 support and several affine 7-flats. Compute all intersection terms explicitly and verify the polynomial degree of any successful construction.",
+   "p": 0.0589,
+   "child": null
+  },
+  {
+   "branch": "c2b0",
+   "counterfactual": "The requested fixed interval list does not exist: at least one bounded weight first appears after ambient dimension 14.",
+   "approach": "Compare projection-lift conditions in dimensions 14 and 15 for the five unresolved weights 310, 322, 326, 330, and 334. Seek a witness in dimension 15 together with a complete obstruction to the corresponding projections in dimension 14.",
+   "p": 0.2063,
+   "child": null
+  },
+  {
+   "branch": "c2b1",
+   "counterfactual": "The requested fixed interval list does not exist: at least one bounded weight first appears after ambient dimension 14.",
+   "approach": "Study pair-difference multiplicities of a hypothetical low-weight support in dimension 14. Their parity and average restrict the possible projections, potentially reducing absence to a finite classification of smaller supports.",
+   "p": 0.1432,
+   "child": "n22"
+  },
+  {
+   "branch": "c2b2",
+   "counterfactual": "The requested fixed interval list does not exist: at least one bounded weight first appears after ambient dimension 14.",
+   "approach": "Establish the endpoint-rigidity argument explicitly, then concentrate on one candidate weight with the strongest existing restricted-family exclusions. A proved change of membership between dimensions 14 and 15 would rule out every fixed list with the specified integer-affine endpoints.",
+   "p": 0.0716,
+   "child": null
+  },
+  {
+   "branch": "own",
+   "counterfactual": null,
+   "approach": null,
+   "p": null,
+   "child": "n32"
+  }
+ ],
+ "cost": 0.1391,
+ "responses": 5,
+ "step_from": 54,
+ "known": [
+  "e1",
+  "e2"
+ ],
+ "created": 1795489401.6289139,
+ "seen": "48b2dca1533ac8a8f524732a9e394545c43ca8fa2c664a03f7b96dd780ce0dfb",
+ "take_at": 54
+}

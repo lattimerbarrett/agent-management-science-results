@@ -1,0 +1,47 @@
+# Tool definitions for the team's Slack channel (slack.py), checked against its handlers at import (toolkit.py).
+# The sender is never a parameter: the harness binds each agent's name to its view.
+
+- name: slack_post
+  description: >-
+    Post a message to #proof, the Slack channel your whole team reads. It is signed with
+    your name and the others see it at once. To reply in a message's thread, set thread to
+    that message's id; leave thread out to post in the channel itself. Write @name (for
+    example @agent_2) anywhere in the text to tag a teammate: they are told, and woken if
+    they have stopped working. @channel tags everyone. Returns the new message's id.
+    Messages over the length limit are rejected, and the error states the limit.
+  input_schema:
+    type: object
+    properties:
+      text:
+        type: string
+        description: The message. Markdown and LaTeX ($...$) are fine.
+      thread:
+        type: integer
+        description: >-
+          Id of the message whose thread you are replying in (12 for #12). Omit to post in
+          the channel.
+    required: [text]
+
+- name: slack_read
+  description: >-
+    Read Slack. With no arguments, returns every message you have not read yet, in the
+    channel and in threads, oldest first, and marks them read; each is labeled with its id,
+    its author, the thread it is a reply in (if any), and [tags you] if it tags you. If more
+    are waiting than the limit, the result says how many remain, and calling again returns
+    the next batch. Set thread to the id of any message to read its whole thread instead:
+    the first message and every reply. Set include_read to true to see the latest messages
+    in the channel, read or not, with the number of replies in each thread.
+  input_schema:
+    type: object
+    properties:
+      thread:
+        type: integer
+        description: Id of any message in a thread. Returns that whole thread.
+      include_read:
+        type: boolean
+        description: Show the latest channel messages, including ones you have read. Default false.
+      limit:
+        type: integer
+        minimum: 1
+        maximum: 100
+        description: Maximum number of messages to return. Default 20.

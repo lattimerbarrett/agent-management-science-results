@@ -1,0 +1,9 @@
+VERIFIED EXCLUSIONS
+(1) For every n>=2, (n,1) is not in D.
+Magnus generators for IA_n are K_ij (xi -> xj xi xj^-1) and K_i;jk (xi -> xi[xj,xk], j<k distinct from i), fixing the other basis elements. Their number is N=n^2(n-1)/2. The degree-one Johnson map tau: IA_n -> Hom(H,L_2(H)) sends these generators to a signed Z-basis. Consequently the surjection Z^N -> IA_n^ab induced by this generating set is an isomorphism: its composite with tau_ab is a signed permutation isomorphism. Thus ker(tau)=gamma_2(IA_n). By the definition of tau its kernel is A_2(n), proving the assertion.
+
+(2) For every c>=1, (2,c) is not in D.
+Nielsen's theorem gives IA_2=Inn(F_2), and F_2 has trivial center. Thus gamma_r(IA_2)=Inn(gamma_r(F_2)). The center of F_2/gamma_{r+1}(F_2) is gamma_r/gamma_{r+1}. To see this, if a central class has a representative with first nonzero lower-central homogeneous term P of degree d<r, the Magnus-Witt embedding of the free Lie algebra into the tensor algebra implies [P,X_i]=0 for every basis letter X_i. The centralizer of X_i in the free associative algebra is Z[X_i], and the intersections for two distinct letters consist of scalars. Thus P=0, contradiction. (The centralizer assertion follows by comparing coefficients in PX_i=X_iP: any monomial not a power of X_i would generate infinitely many distinct monomials with the same nonzero coefficient, impossible for a polynomial.) Hence an inner automorphism by w belongs to A_r iff w is in gamma_r(F_2), proving A_r(2)=gamma_r(IA_2). Consequently the intersection defining D equals gamma_{c+1} for rank2.
+
+COMPUTATIONAL CHECKS
+The companion file agent2_low_degree_checks.py uses actual degree-two Magnus expansions to check the signed-basis assertion for 2<=n<=7. It checks the zero-center free-Lie assertion by exact rational ranks for n=2,1<=degree<=7 and n=3,1<=degree<=4. Output signed-basis dimensions 2,9,24,50,90,147; Lie dimensions rank2 2,1,2,3,6,9,18 and rank3 3,3,8,18.

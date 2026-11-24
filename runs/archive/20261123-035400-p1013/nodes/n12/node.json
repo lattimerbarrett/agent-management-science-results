@@ -1,0 +1,109 @@
+{
+ "id": "n12",
+ "parent": "n9",
+ "depth": 4,
+ "option": {
+  "branch": "c0b2",
+  "counterfactual": "There is a fixed graph H with chromatic number three and ex(n,H)=t_2(n)+O(1) for which no graph simultaneously maximizes edges and cycles at infinitely many orders. Thus 0 belongs to S_2.",
+  "approach": "Investigate graphs obtained by adding one vertex to a bipartite graph, arranging that deleting an independent set can leave either a star or a matching. Classify the allowable finite internal configurations and test for a discrepancy between edge and cycle optimization.",
+  "p": 0.0625
+ },
+ "status": "member",
+ "belief": {
+  "answer": "\\(\\displaystyle \\mathcal S_r=\\begin{cases}[0,\\infty),&r=2,\\\\[5/18,\\infty),&r=3,\\\\[7/32,\\infty),&r=4,\\\\[2/(2r+1),\\infty),&r\\ge5.\\end{cases}\\)",
+  "confidence": 0.02
+ },
+ "judge": {
+  "claim": true,
+  "same_as": null,
+  "answer": "\\displaystyle \\mathcal S_r=\\begin{cases}[0,\\infty),&r=2,\\\\[5/18,\\infty),&r=3,\\\\[7/32,\\infty),&r=4,\\\\[2/(2r+1),\\infty),&r\\ge5.\\end{cases}",
+  "reason": "It asserts explicit sets for every r, so it is a provable claim. It differs from e3 at r=2 and from every other listed answer for at least one r.",
+  "experiment": true,
+  "n": 15,
+  "definite": true,
+  "gate": "The proposed answer explicitly specifies the set for every integer r \u2265 2 and includes each finite boundary point via closed left endpoints."
+ },
+ "experiment": "e8",
+ "options": [
+  {
+   "branch": "c0b0",
+   "counterfactual": "For some integer r at least three, 0 belongs to S_r: a bounded additive extremal surplus can already produce infinitely many orders with no simultaneous edge- and cycle-maximizer.",
+   "approach": "Investigate whether a bounded-surplus counterexample for chromatic number three survives joining it to large independent parts. Compare the leading cycle-count corrections before assuming that the additional parts eliminate the discrepancy.",
+   "p": 0.0165,
+   "child": null
+  },
+  {
+   "branch": "c0b1",
+   "counterfactual": "For some integer r at least three, 0 belongs to S_r: a bounded additive extremal surplus can already produce infinitely many orders with no simultaneous edge- and cycle-maximizer.",
+   "approach": "Examine bounded exceptional configurations in nearly complete r-partite graphs, allowing missing cross edges as well as added internal edges. Look for configurations whose cycle contributions distinguish graphs with the same or adjacent edge counts.",
+   "p": 0.0165,
+   "child": null
+  },
+  {
+   "branch": "c0b2",
+   "counterfactual": "For some integer r at least three, 0 belongs to S_r: a bounded additive extremal surplus can already produce infinitely many orders with no simultaneous edge- and cycle-maximizer.",
+   "approach": "Recalculate the first-order cycle expansion for balanced and slightly unbalanced complete multipartite graphs with finite modifications. Check whether the claimed equality between the marginal contributions of internal and cross edges has an overlooked exception.",
+   "p": 0.0082,
+   "child": null
+  },
+  {
+   "branch": "c1b0",
+   "counterfactual": "For every r at least three, no coefficient below 1/r belongs to S_r; competing bounded-tree constructions cannot yield counterexamples below that value.",
+   "approach": "Investigate structural results for forbidden graphs satisfying an extremal bound strictly below t_r(n)+n/r. Determine whether their allowable internal tree components obey restrictions that prevent the proposed competing phases.",
+   "p": 0.1763,
+   "child": null
+  },
+  {
+   "branch": "c1b1",
+   "counterfactual": "For every r at least three, no coefficient below 1/r belongs to S_r; competing bounded-tree constructions cannot yield counterexamples below that value.",
+   "approach": "Test the realizability of two competing internal structures, such as repeated stars and repeated paths, by a single forbidden graph. Identify whether requiring both structures to be H-free necessarily permits another construction with surplus at least n/r.",
+   "p": 0.1371,
+   "child": null
+  },
+  {
+   "branch": "c1b2",
+   "counterfactual": "For every r at least three, no coefficient below 1/r belongs to S_r; competing bounded-tree constructions cannot yield counterexamples below that value.",
+   "approach": "Seek a counterexample exactly at coefficient 1/r using exceptional vertices and distributed internal edges. Compare their cycle counts and determine whether a constant edge advantage can force the less cycle-efficient construction to be edge-extremal.",
+   "p": 0.0784,
+   "child": "n23"
+  },
+  {
+   "branch": "c2b0",
+   "counterfactual": "Every bounded-surplus witness for 0 belonging to S_2 requires missing cross edges in its edge-extremal graphs; restricting attention to complete bipartite graphs with added internal edges cannot reveal such a witness.",
+   "approach": "Extend the finite-core search to configurations with explicitly deleted cross edges. Optimize edge count and the first-order cycle contribution separately, retaining configurations where deleting cross edges permits additional internal structure.",
+   "p": 0.2835,
+   "child": null
+  },
+  {
+   "branch": "c2b1",
+   "counterfactual": "Every bounded-surplus witness for 0 belonging to S_2 requires missing cross edges in its edge-extremal graphs; restricting attention to complete bipartite graphs with added internal edges cannot reveal such a witness.",
+   "approach": "Construct an apex-over-bipartite forbidden graph whose embeddings depend on specified cross adjacencies between internal gadgets. Use those dependencies to make a small number of missing cross edges essential to edge extremality.",
+   "p": 0.1701,
+   "child": null
+  },
+  {
+   "branch": "c2b2",
+   "counterfactual": "Every bounded-surplus witness for 0 belonging to S_2 requires missing cross edges in its edge-extremal graphs; restricting attention to complete bipartite graphs with added internal edges cannot reveal such a witness.",
+   "approach": "Analyze the structural theorem's finite exceptional set without completing its cross adjacencies. Derive the cycle contribution of each allowed exceptional configuration and locate the mechanism that separates edge and cycle optimization.",
+   "p": 0.1134,
+   "child": "n26"
+  },
+  {
+   "branch": "own",
+   "counterfactual": null,
+   "approach": null,
+   "p": null,
+   "child": null
+  }
+ ],
+ "cost": 0.2821,
+ "responses": 5,
+ "step_from": 40,
+ "known": [
+  "e1",
+  "e8"
+ ],
+ "created": 1795426600.250679,
+ "seen": "1aa20d3e4580163c8649c52d0822c8a6a3bae5786a90b5b3f7a2ea0bde1a78d3",
+ "take_at": 40
+}

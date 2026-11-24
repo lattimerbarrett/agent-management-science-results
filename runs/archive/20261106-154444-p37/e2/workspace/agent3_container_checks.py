@@ -1,0 +1,53 @@
+from pathlib import Path
+proof=r'''SELF-CONTAINED DEDEKIND UPPER ASYMPTOTIC
+Let D(n) count all upsets (equivalently antichains) of the Boolean lattice B_n, and w=binom(n,floor(n/2)). We prove log_2 D(n)<=(1+o(1))w.
+Set b=sqrt((3/8)n ln n), and V={A: ||A|-n/2|<=b}. Chernoff's inequality, obtained from E exp(t(X-n/2))=(cosh(t/2))^n<=exp(nt^2/8), gives |B_n\V|<=2^(n+1)n^(-3/4)=O(w n^(-1/4))=o(w). Thus outside V the antichain may be encoded with o(w) arbitrary bits.
+For all levels a in V, binom(n,a)>=w n^(-4/5) for sufficiently large n. Indeed Stirling or the product of successive binomial ratios gives ln(binom(n,a)/w)=-2(a-n/2)^2/n+O(b/n+b^3/n^2+1/n)>=-(3/4+o(1))ln n.
+For strict comparable A subset B in V, writing a=|A|, h=|B|-a, a random uniformly chosen maximal chain contains both with probability [binom(n,a)binom(n-a,h)]^(-1). Here 1<=h<=2b+1<n-a, so binom(n-a,h)>=n-a>=n/3. Thus that probability is <=3/(w n^(1/5)).
+For U subset V of size sw, s>1, let Z count its elements in a random maximal chain. Since every level has size <=w, E Z>=s. Convexity gives E binom(Z,2)>=(s^2-s)/2. Every pair counted is comparable; the preceding probability bound implies that the comparability graph induced on U has at least w n^(1/5)s(s-1)/6 edges, and therefore a vertex of degree at least n^(1/5)(s-1)/3.
+Set epsilon=n^(-1/20). Use this deterministic container procedure for an antichain F within V. Start U=V and T=empty. While |U|>(1+epsilon)w, select a maximum-degree vertex v (ties broken using a fixed order). If v belongs to F, put it into T and delete its closed neighborhood from U; otherwise delete only v. At termination F subset T union U. Moreover U is reconstructible from T: replay the deterministic algorithm, taking the closed-neighborhood branch exactly at vertices in T.
+During each dyadic phase 2^j w<|U|<=2^(j+1)w (j>=1), each closed-neighborhood deletion removes at least n^(1/5)(2^j-1)/3 vertices, so there are O(w/n^(1/5)) additions to T. There are O(log n) such phases because |V|/w<=2^n/w=O(sqrt n). In the final phase (1+epsilon)w<|U|<=2w, each addition removes at least epsilon n^(1/5)/3 vertices, so there are O(w/(epsilon n^(1/5)))=O(w n^(-3/20)) additions. Therefore |T|=O(w n^(-3/20)). The number of possible T is <=sum_{j<=m}binom(2^n,j)=2^{O(m log(2^n/m))}=2^{O(w n^(-3/20)log n)}=2^{o(w)}. Each T gives |T union U|<=(1+epsilon)w+O(w n^(-3/20))=(1+o(1))w. Encoding F as a subset of that container, then its o(w)-bit tail, proves D(n)<=2^{(1+o(1))w}.
+No unproved poset theorem is used; only elementary Chernoff, Stirling, and convexity estimates.
+'''
+Path('workspace/agent3_dedekind_container.txt').write_text(proof)
+# Verify the exact finite combinatorial identities and greedy reconstruction.
+from math import comb, factorial
+from itertools import combinations
+
+def antichains(n):
+ vals=list(range(1<<n))
+ def rec(i,chosen):
+  if i==len(vals):
+   yield tuple(chosen);return
+  yield from rec(i+1,chosen)
+  x=vals[i]
+  if all((x&y)!=x and (x&y)!=y for y in chosen):
+   chosen.append(x);yield from rec(i+1,chosen);chosen.pop()
+ yield from rec(0,[])
+def run_container(n,F,T_given=None):
+ V=set(range(1<<n)); U=set(V);T=set(); w=comb(n,n//2)
+ # small finite cutoff, unrelated to the asymptotic epsilon
+ cutoff=w+1
+ while len(U)>cutoff:
+  def neigh(x):return {y for y in U if y!=x and ((x&y)==x or (x&y)==y)}
+  v=max(U,key=lambda x:(len(neigh(x)),-x))
+  selected=v in (F if T_given is None else T_given)
+  if selected:T.add(v); U-=neigh(v)|{v}
+  else:U.remove(v)
+ return T,U
+for n in range(1,5):
+ count=0
+ for F0 in antichains(n):
+  F=set(F0);T,U=run_container(n,F)
+  Tr,Ur=run_container(n,None,T)
+  assert Tr==T and Ur==U and F<=T|U
+  count+=1
+ print('antichains and reconstructed containers',n,count)
+ # exact probability random-chain contains each comparable pair
+ for a in range(n+1):
+  for b in range(a+1,n+1):
+   p1=1/(comb(n,a)*comb(n-a,b-a))
+   p2=factorial(a)*factorial(b-a)*factorial(n-b)/factorial(n)
+   assert abs(p1-p2)<1e-12
+print('All exact combinatorial checks passed.')
+Path('workspace/agent3_container_checks.py').write_text(Path('scratchpad.py').read_text())
