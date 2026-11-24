@@ -1,0 +1,65 @@
+{
+ "run": "20261106-112838-p41-rerun-e6e7",
+ "exp": "e7",
+ "answer": "b(d,k)=d-2",
+ "halves": "Proving it takes two halves, for every \\(d\\ge3\\) and \\(k\\ge1\\): \\(b(d,k)\\le d-2\\) (every pure \\(d\\)-dimensional \\(k\\)-decomposable complex \\(\\Delta\\) on a finite vertex set \\(V\\) admits, after adjoining \\(d-2\\) new vertices, an ordering of all missing \\((d+1)\\)-element subsets such that adding their simplices in that order keeps every intermediate complex \\(k\\)-decomposable), and \\(b(d,k)\\ge d-2\\) (for every integer \\(0\\le r<d-2\\), some such \\(\\Delta\\) admits no such ordering after adjoining \\(r\\) new vertices).",
+ "reason": "all agents idle, the judge found the proof complete",
+ "contract": {
+  "form": "A complete answer is an explicit exact formula for b(d,k), valid for every integer d \u2265 3 and k \u2265 1, with values in the nonnegative integers together with +\u221e. Any finite claimed value must be established to satisfy the stated universal extension property and to be the least such value; a value of +\u221e must mean that no finite r satisfies that property.",
+  "not_enough": "Bounds, a range of possible values, an extension construction without proof of minimality, a conditional formula, or a result covering only some admissible pairs (d,k) would not settle the question. Neither would 'unknown' or 'not determined'."
+ },
+ "definite": true,
+ "definite_reason": "It gives an explicit exact nonnegative integer value for every admissible pair (d,k), asserting both the universal extension property and minimality.",
+ "procedure": false,
+ "stop": true,
+ "model": "gpt-6.1-sol",
+ "effort": "high",
+ "started": 1795535632.3906822,
+ "verdict": "sound",
+ "acknowledged": false,
+ "review": {
+  "claimed": "The team claims a complete proof that b(d,k)=d-2 for every d>=3 and k>=1.",
+  "verdict": "sound",
+  "team_acknowledged_gap": false,
+  "decisive_steps": [
+   {
+    "step": "Preservation lemmas and the upper-bound construction in agent_1's final proof, Sections 1\u20132.",
+    "basis": "argument",
+    "checked": "Checked the skeleton, link, cone, facet-prefix, and full-boundary-filling inductions, including zero-dimensional links. The dimension-two neighbor-growth construction uses only shedding edges and boundary fills. In higher dimensions, each lifted intermediate complex is k-decomposable by starting with its cone and boundary-filling the original facets. This proves the universal upper bound using exactly d-2 new vertices."
+   },
+   {
+    "step": "The explicit ten-vertex seed has a complete graph, at most two triangles on every four vertices, and a free-edge collapse sequence ending in a tree.",
+    "basis": "computation",
+    "checked": "Read the exact finite checks and reran workspace/compact_complete_agent1.py. Its checks of all 210 four-vertex sets, all 36 collapses, and connectivity of the remaining nine-edge graph pass."
+   },
+   {
+    "step": "Expanding every seed vertex to a block of d vertices and truncating to dimension d produces a pure 1-decomposable complex.",
+    "basis": "argument",
+    "checked": "Checked the expanded-tree construction and every type of reverse-collapse step. A newly allowed cross-edge has deletion equal to the previous complex and link skel_(d-2)(2^C*X), with |C|=d. The simplex core makes this link vertex-decomposable; padding with C proves purity. The block size d also ensures the expanded-tree base is pure. These arguments hold uniformly in d."
+   },
+   {
+    "step": "Actual decomposition and upper-extension certificate checks.",
+    "basis": "computation",
+    "checked": "Reran the complete compact verifier: 1642 upper inputs with 7040 additions, the stated dimension-three/four sampled checks, and lower constructions in dimensions 3,4,5 all pass. Also reran verify_lower_agent4.py's main(3) and main(4), suppressing only its output-file write. Its explicit intermediate-face deletion checks and recursive link recognitions pass, giving 3591 and 24984 facets with 324 and 576 edge steps, respectively."
+   },
+   {
+    "step": "The necessary attachment condition R(F,Gamma) notin Gamma.",
+    "basis": "argument",
+    "checked": "Verified the disconnected-link argument. If R is an existing face, extend it to a maximal face tau of Gamma intersect 2^F. No existing ridge can contain R, so |tau|<=d-1. The link after addition is the union of two vertex-disjoint nonempty positive-dimensional pieces, contradicting link preservation and connectedness for k-decomposable complexes."
+   },
+   {
+    "step": "The first-forbidden-support obstruction excludes every r<=d-3.",
+    "basis": "argument",
+    "checked": "Before the first facet with forbidden old block support, all old supports remain seed faces. Such a facet contains at least four old vertices. Existing ridges can omit only singleton old blocks; the missing-triangle case, four-block seed condition, and support-size-at-least-five case give |R|<=2. Complete old graph implies R was already an original face, contradicting the attachment condition. The examples are 1-decomposable and therefore apply to every k>=1."
+   }
+  ],
+  "failing_step": "No failing step found. The hardest step is the uniform reverse-collapse decomposition of the block-expanded lower-bound examples.",
+  "reason": "Both bounds are established by explicit, valid arguments, with the decisive finite seed data verified by exact rerun computations. The early lower-bound gap and concerns about smaller clone blocks are resolved in the final construction using blocks of size d; the final proof leaves no conditional citation or acknowledged gap."
+ },
+ "responses": 7,
+ "runs": 1,
+ "verify_cost": 0.2023,
+ "gate_cost": 0.0043,
+ "cost": 0.2066,
+ "seconds": 142.4
+}

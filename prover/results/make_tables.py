@@ -90,8 +90,10 @@ def minutes(folder, state, first=True):
 
 def full_system(month, p, archives, grades):
     """A problem's row and its teams' rows. The proof the system stopped on is the experiment its stopping rule
-    accepted (state.json: `manager.new`). An archive of 4 November ran under the earlier rule (the manager); where the
-    manager accepted none, the verifier's later read of the same records (runs/stopbench) is used, and noted."""
+    accepted (state.json: `manager.new`). An archive of 4 to 6 November ran under the earlier rule (the manager). The
+    verifier read those teams' saved records afterwards: runs/stopbench, and for September p41's e7, which the stop
+    bench doesn't have, the team's own verify/result.json. Such a problem is solved only if the verifier accepted the
+    proof afterwards. Where the manager accepted none, the proof is the one the verifier accepted afterwards."""
     teams, cost, mins, explorers, accepted, judge = [], 0.0, 0.0, 0, None, None
     for archive in archives:
         folder = RUNS / "archive" / archive
@@ -105,7 +107,7 @@ def full_system(month, p, archives, grades):
             if not (folder / e["id"]).is_dir():  # never started here: queued when the archive ended, or run elsewhere
                 continue
             g, v, m = grades.get(f"{archive}/{e['id']}", {}), e.get("verify") or {}, e.get("manager") or {}
-            after = later.get(e["id"], {})
+            after = later.get(e["id"]) or load(folder / e["id"] / "verify" / "result.json") or {}
             team = {"month": month, "problem": f"p{p % 100}", "folder": f"runs/archive/{archive}/{e['id']}",
                     "told": one_line(e["answer"]), "right": g.get("correct"), "graded_by": g.get("by"),
                     "cost": round(e.get("cost") or 0.0, 4), "ended": e.get("reason"),
@@ -116,7 +118,9 @@ def full_system(month, p, archives, grades):
                     "stop_afterwards": after.get("stop") if rule == "manager" else None}
             teams.append(team)
             if team["accepted"] and accepted is None:
-                accepted, judge = team, "the verifier" if rule == "verify" else "the manager"
+                accepted = team
+                judge = ("the verifier" if rule == "verify" else
+                         "the manager, and the verifier afterwards" if team["stop_afterwards"] else "the manager")
     if accepted is None:  # an archive under the earlier rule: the verifier's later read of its teams
         accepted = next((t for t in teams if t["stop_afterwards"]), None)
         judge = "the verifier, afterwards" if accepted else None
@@ -126,7 +130,7 @@ def full_system(month, p, archives, grades):
            "teams": len(teams), "right_answer_told": next((i for i, t in enumerate(teams, 1) if t["right"]), None),
            "accepted": accepted["folder"].split("/")[-1] if accepted else None, "accepted_by": judge,
            "answer": accepted["told"] if accepted else None, "right": accepted["right"] if accepted else None,
-           "solved": bool(accepted and accepted["right"])}
+           "solved": bool(accepted and accepted["right"] and (accepted["rule"] == "verify" or accepted["stop_afterwards"]))}
     return row, teams
 
 

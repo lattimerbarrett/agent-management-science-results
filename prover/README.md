@@ -57,8 +57,10 @@ spent on the model.
   to prove it.
 - **Four of the full-system runs (p12, p41, p43, p48) are from 4 to 6 November, before the judge above was the
   stopping rule.** An earlier judge, a model reading the team's report, accepted the proofs of p12, p41 and p48.
-  It turned down p43's. The judge above read the saved records of p12, p43 and p48 afterwards and accepted all
-  three, and p43 is counted on that reading. Those readings are in `runs/stopbench/`.
+  It turned down p43's. The judge above read the saved records of all four proofs afterwards and accepted each
+  one, and all four are counted as solved on that reading (`accepted_by` in `results/full_system.csv`). Those
+  readings are in `runs/stopbench/`, except p41's, which was made on 24 November and is in its proof team's
+  folder, `runs/archive/20261106-112838-p41-rerun-e6e7/e7/verify/`.
 
 ## October, problem by problem
 
@@ -149,7 +151,9 @@ An October problem's number has 1000 added in folder names: `p1041` is October's
 | `runs/OMITTED.tsv` | the files that were left out, with their sizes |
 
 September's p41 is two folders: `20261104-221825-p41`, and `20261106-112838-p41-rerun-e6e7`, which carries on from
-the first one's saved state and holds the proof.
+the first one's saved state and holds the proof. The readings in `runs/stopbench/` were made before that proof
+team (`e7`) ran, so the judge's later reading of it is in the team's own folder: `e7/verify/`, with the verdict
+in `result.json`.
 
 **In a lone-agent or team folder:**
 
