@@ -5,20 +5,18 @@ has one folder here, with what you need to check its numbers and to run it again
 
 ## The experiments
 
-In the order the post has them:
+The post has three case studies, then a prover. In the post's order:
 
-| experiment | section of the post | folder | what is in it today |
+| in the post | the experiment | folder | what is in it today |
 |---|---|---|---|
-| Harness optimizers | "Autoresearch needs somewhere to start" | [`harness-optimizers/`](harness-optimizers/) | waiting for its logs |
-| Peer reading | "Reading a peer spreads right answers and wrong ones" | [`peer-reading/`](peer-reading/) | waiting for its logs |
-| Program reconstruction | "A team boundary keeps work from traveling" | [`program-reconstruction/`](program-reconstruction/) | waiting for its logs |
-| Prover: explore, then prove | "Branch on a doubt, collaborate on a proof" | [`prover/`](prover/) | logs, result tables and code |
+| Case study "Groupthink: How should agents communicate?" (Figure 2) | peer reading, on MathArena problems | [`groupthink/`](groupthink/) | waiting for its logs |
+| Case study "Contingency Theory: How should agent systems be organized?" (Figure 3) | program reconstruction, on ProgramLab | [`contingency-theory/`](contingency-theory/) | waiting for its logs |
+| Case study "Superstitious Learning: How should agents learn from experience?" (Figure 4) | harness optimizers, on τ²-Bench | [`superstitious-learning/`](superstitious-learning/) | waiting for its logs |
+| "AMS lets us build much better agentic systems" (Figure 5) | the prover, on ArXivMath: explore, then prove | [`prover/`](prover/) | logs, result tables and code |
 
-A folder that is waiting for its logs has a README that lists what the post takes from the experiment, an empty
-`results/` and an empty `runs/`. Its numbers are not in this repo yet.
-
-The post also has two small pilots in fold-outs: a team lead reading reports about a flag, and a repair passed
-between two branches of a SQL warehouse. Neither has a folder yet.
+A case study's folder is named for the case study. A folder that is waiting for its logs has a README that lists
+what the post takes from the experiment, an empty `results/` and an empty `runs/`. Its numbers are not in this
+repo yet.
 
 ## Results at a glance
 
@@ -27,7 +25,7 @@ folder's own README.
 
 ### Prover: explore, then prove · [`prover/`](prover/)
 
-*Section of the post: "Branch on a doubt, collaborate on a proof".* One model, GPT-6.1 Sol at medium reasoning
+*Section of the post: "AMS lets us build much better agentic systems".* One model, GPT-6.1 Sol at medium reasoning
 effort, is organized three ways and set research-level problems from MathArena's ArXivMath.
 
 | problems solved | September, 9 problems | October, 14 problems |
@@ -45,9 +43,9 @@ in [`prover/`](prover/).
 ```
 README.md                 this page: every experiment, and the headline results of those whose numbers are in
 _template/                a README to start a new section from
-harness-optimizers/       a section, waiting for its logs
-peer-reading/             a section, waiting for its logs
-program-reconstruction/   a section, waiting for its logs
+groupthink/               a section (a case study), waiting for its logs
+contingency-theory/       a section (a case study), waiting for its logs
+superstitious-learning/   a section (a case study), waiting for its logs
 prover/                   a section
 ```
 
@@ -82,8 +80,8 @@ Inside a section:
 5. **Change only your own folder, and your own row and block on this page.** If something in another section
    looks wrong, tell whoever owns it.
 
-**If it has no folder yet** (one of the two pilots, or an experiment that joins the post later), make one first:
-a folder at the top level, named for the experiment in lowercase words joined by hyphens, with a copy of
+**If it has no folder yet** (an experiment that joins the post later), make one first: a folder at the top level,
+named for the case study or the experiment in lowercase words joined by hyphens, with a copy of
 `_template/README.md` in it. Add a row for it to the table at the top, then carry on from step 1.
 
 ### Before you commit
@@ -103,11 +101,11 @@ a folder at the top level, named for the experiment in lowercase words joined by
 
 ### Working on one section without downloading the others
 
-The prover's logs are about 2 GB. To get only your own folder (here `peer-reading`):
+The prover's logs are about 2 GB. To get only your own folder (here `groupthink`):
 
     git clone --filter=blob:none --sparse https://github.com/lattimerbarrett/agent-management-science-results.git
     cd agent-management-science-results
-    git sparse-checkout set peer-reading _template
+    git sparse-checkout set groupthink _template
 
 The files at the top level, this page among them, always come along. A folder that isn't in the repo yet works too:
 make it, add your files, then commit and push as usual.

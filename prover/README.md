@@ -1,6 +1,6 @@
 # Prover: explore, then prove
 
-*Section of the post: "Branch on a doubt, collaborate on a proof". One section of the
+*Section of the post: "AMS lets us build much better agentic systems". One section of the
 [Agent Management Science results](../README.md); every path and command below is from this folder, `prover/`.*
 
 The logs, result tables and code behind the prover experiments in the post. One model, GPT-6.1 Sol at medium
