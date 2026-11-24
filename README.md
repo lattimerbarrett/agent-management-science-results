@@ -3,9 +3,27 @@
 The data, logs and code behind the experiments in the post "Agent Management Science". Each experiment in the post
 has one folder here, with what you need to check its numbers and to run it again.
 
+## The experiments
+
+In the order the post has them:
+
+| experiment | section of the post | folder | what is in it today |
+|---|---|---|---|
+| Harness optimizers | "Autoresearch needs somewhere to start" | [`harness-optimizers/`](harness-optimizers/) | waiting for its logs |
+| Peer reading | "Reading a peer spreads right answers and wrong ones" | [`peer-reading/`](peer-reading/) | waiting for its logs |
+| Program reconstruction | "A team boundary keeps work from traveling" | [`program-reconstruction/`](program-reconstruction/) | waiting for its logs |
+| Prover: explore, then prove | "Branch on a doubt, collaborate on a proof" | [`prover/`](prover/) | logs, result tables and code |
+
+A folder that is waiting for its logs has a README that lists what the post takes from the experiment, an empty
+`results/` and an empty `runs/`. Its numbers are not in this repo yet.
+
+The post also has two small pilots in fold-outs: a team lead reading reports about a flag, and a repair passed
+between two branches of a SQL warehouse. Neither has a folder yet.
+
 ## Results at a glance
 
-One short block per experiment, in the order the post has them. The detail is in each folder's own README.
+One short block per experiment whose numbers are in, in the order the post has them. The detail is in each
+folder's own README.
 
 ### Prover: explore, then prove · [`prover/`](prover/)
 
@@ -25,9 +43,12 @@ in [`prover/`](prover/).
 ## How the repo is laid out
 
 ```
-README.md       this page: the headline results of every experiment
-_template/      a README to start a new section from
-prover/         a section
+README.md                 this page: every experiment, and the headline results of those whose numbers are in
+_template/                a README to start a new section from
+harness-optimizers/       a section, waiting for its logs
+peer-reading/             a section, waiting for its logs
+program-reconstruction/   a section, waiting for its logs
+prover/                   a section
 ```
 
 **A section is one folder, and it stands alone.** It has its own README, its own result tables, its own logs, and
@@ -45,16 +66,25 @@ Inside a section:
 
 `prover/` is laid out this way, if you want an example to copy from.
 
-## Adding your section
+## Putting your experiment in
 
-1. **Make a folder at the top level, named for the experiment**, in lowercase words joined by hyphens: for example
-   `peer-reading/`, `harness-optimizers/` or `program-reconstruction/`.
-2. **Copy `_template/README.md` into it and fill it in.** The headline numbers go first: the ones the post quotes.
-3. **Add your results, logs and code**, laid out as in the table above.
-4. **Add a block to "Results at a glance"** on this page: a heading that links to your folder, the section of the
-   post it belongs to, and one small table or a few sentences. Keep everything else in your own README.
-5. **Change only your own folder and your own block on this page.** If something in another section looks wrong,
-   tell whoever owns it.
+**If your experiment is in the table at the top of this page, its folder is already made.** Then:
+
+1. **Put the raw logs in `runs/`**, as your code wrote them, and the code in the folder beside them, with its own
+   dependency file.
+2. **Put the numbers in `results/`**, as small files, with the script that rebuilds them from the logs. Your
+   folder's README lists each figure and sentence of the post that needs a file.
+3. **Fill in your folder's README.** The headline numbers go first: the ones the post quotes. Replace everything
+   in angle brackets, and take out the "Waiting for its logs" note at the top.
+4. **On this page, change your row in the table at the top and add a block to "Results at a glance"**: a heading
+   that links to your folder, the section of the post it belongs to, and one small table or a few sentences. Keep
+   everything else in your own README.
+5. **Change only your own folder, and your own row and block on this page.** If something in another section
+   looks wrong, tell whoever owns it.
+
+**If it has no folder yet** (one of the two pilots, or an experiment that joins the post later), make one first:
+a folder at the top level, named for the experiment in lowercase words joined by hyphens, with a copy of
+`_template/README.md` in it. Add a row for it to the table at the top, then carry on from step 1.
 
 ### Before you commit
 
@@ -73,11 +103,11 @@ Inside a section:
 
 ### Working on one section without downloading the others
 
-The prover's logs are about 2 GB. To get only your own folder:
+The prover's logs are about 2 GB. To get only your own folder (here `peer-reading`):
 
     git clone --filter=blob:none --sparse https://github.com/lattimerbarrett/agent-management-science-results.git
     cd agent-management-science-results
-    git sparse-checkout set your-section _template
+    git sparse-checkout set peer-reading _template
 
 The files at the top level, this page among them, always come along. A folder that isn't in the repo yet works too:
 make it, add your files, then commit and push as usual.
