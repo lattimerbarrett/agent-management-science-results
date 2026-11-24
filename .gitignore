@@ -1,15 +1,19 @@
-# environments and caches (at the top of the repo only: nothing under runs/ is ignored by these)
-/.venv/
-/.sandbox/
-/cache/
-__pycache__/
-*.py[cod]
-.DS_Store
+# For every section. A section can add its own .gitignore inside its folder.
+
+# environments, at the top of a section folder only (so nothing inside a section's logs is hidden by these)
+/*/.venv/
+/*/venv/
+/*/node_modules/
 
 # keys never go in files here
 /.env
 /.env.*
+/*/.env
+/*/.env.*
+!/*/.env.example
 
-# what a live run writes besides its logs
-slack.db
-reading.live.json
+# caches and clutter, anywhere
+__pycache__/
+*.py[cod]
+.ipynb_checkpoints/
+.DS_Store
